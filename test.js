@@ -1,6 +1,6 @@
 
 
 function ALERTA(){ 
-alert("HOLA ALERTA2");
+alert("HOLA COMO TE VA");
 }
 
