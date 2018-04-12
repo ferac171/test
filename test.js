@@ -1,4 +1,4 @@
-alert("VERSION 104");
+alert("VERSION 105");
 function ALERTA(){ 
-alert("HOLA COMO TE VA INTERNO 104");
+alert("HOLA COMO TE VA INTERNO 105");
 }
