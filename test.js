@@ -1,3 +1,3 @@
 function ALERTA(){ 
-alert("HOLA COMO TE VA INTERNO 85");
+alert("HOLA COMO TE VA INTERNO 100");
 }
