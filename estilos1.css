@@ -1,3 +1,19 @@
+.login-page .buttonbar{				 
+	display: none; 
+} 
+
+.form .req-msg {
+	display: none; 
+} 
+
+.alert.error{ 	
+	display: none; 
+}		
+
+</style>
+
+<style>
+
 .estilo-menu {
 	style-type: none;
 	padding: 10px 0px 5px 10px;
