@@ -1,4 +1,4 @@
-console.log("VERSION 106");
+console.log("VERSION 107");
 function ALERTA(){ 
-alert("HOLA COMO TE VA INTERNO 106");
+alert("HOLA COMO TE VA INTERNO 107");
 } 
