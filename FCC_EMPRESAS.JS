@@ -6,7 +6,7 @@
 //#
 //# DESARROLLADO	: FERNANDO CALDERON 
 //# VERSION			: 9.0
-//# FECHA			: 06.06.18
+//# FECHA			: 05.07.18
 //#
 //# FORMULARIO		: Employeer_registration form
 //# CAMPO			: FCC_COD_1 (JS FUNCIONES)
