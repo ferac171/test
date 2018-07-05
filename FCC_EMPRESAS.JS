@@ -4,43 +4,51 @@
 //#	MODELO PARA MODIFICAR INTERFACE DE REGISTRO DE EMPRESA Y CONTACTO
 //# AMBITO: EMPRESA Y CONTACTO
 //#
-//# FORMULARIO		: Employeer_registration
-//# CAMPO			: FCC_COD_1 (JS FUNCIONES)
 //# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION			: 1.0
+//# VERSION			: 9.0
 //# FECHA			: 06.06.18
 //#
+//# FORMULARIO		: Employeer_registration form
+//# CAMPO			: FCC_COD_1 (JS FUNCIONES)
+//#
 //# NAME			: FCC_EMPRESAS.JS
+//# GITHUB			: 
 //#
 //# INVOCACION LOCALHOST
-//# => <script type="text/javascript"src="http://localhost/usb/FCC_EMPRESAS.js"></script>
-//#
-//# INVOCACION BIBLIOTECA
-//# => <script src="https://ulima-cde.symplicity.com/utils/view.php?id=76432cbebfa5d33fc56279f613fb0ff3"></script>
-//# 
+//# => <script type="text/javascript"src="http://localhost/usb/FCC_REGISTRO_EMPRESAS/FCC_EMPRESAS.js"></script>
 //#
 //# INVOCACION GITHUB
-//# https://raw.githubusercontent.com/ferac171/test/master/FCC_EMPRESAS.CSS
-//# https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.CSS	
+//# 
+//# https://raw.githubusercontent.com/ferac171/test/master/FCC_EMPRESAS.JS
+//# https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.JS	
 //#	
-//# => <link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.CSS">
+//# => <script src="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.JS"></script>
 //#
 //#############################################################################################################################
 
-/*  COPIAR PRUEBAS LOCALHOST	
 
-<script type="text/javascript"src="http://localhost/usb/FCC_EMPRESAS.js"></script>
-<link rel="stylesheet" type="text/css" href="http://localhost/usb/FCC_EMPRESAS.css">	
+//# INVOCACION LOCALHOST
+
+/*
+
+<link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.CSS">
+<script type="text/javascript" src="http://localhost/usb/FCC_CONTROL_JS_LOCALES.js"></script>
+
+<script type="text/javascript">
+	var FCC_SRC_FUENTE_SCRIPT="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.JS";
+	var FCC_SCRIPT_LOCAL = FCC_REGISTRO_EMPRESAS_SERVIDOR;
+
+	try{
+	  if(FCC_SCRIPT_LOCAL){FCC_SRC_FUENTE_SCRIPT=FCC_REGISTRO_EMPRESAS_LOCAL;}
+	}catch(err){}
+
+	console.log("FCC : EJECUTANDO: " +FCC_SRC_FUENTE_SCRIPT);
+	document.write('<script languaje="JavaScript" src="' + FCC_SRC_FUENTE_SCRIPT + '"><' + '/script>');
+</script>
 
 */
 
-/*  COPIAR PRODUCCION
-	
-<script src="https://ulima-cde.symplicity.com/utils/view.php?id=76432cbebfa5d33fc56279f613fb0ff3"></script>
 
-<link rel="stylesheet" type="text/css" href="https://ulima-cde.symplicity.com/utils/view.php?id=d34c261583d33034acc7e81aa54e7eb0">
-	
-*/
 
 /*############################################################################################################################
 
@@ -48,10 +56,11 @@ DECLARACION DE CONSTANTES
 
 ##############################################################################################################################*/
 
-const FCC_VERSION = 8;
+const FCC_VERSION = 9;
 const FCC_HABILITA_JS = true;
 const FCC_DEBUG = false;
 const FCC_AJUSTE_PICKLIST = 1;
+
 
 /*############################################################################################################################
 
@@ -59,11 +68,11 @@ LISTENERS
 
 ##############################################################################################################################*/
 
-try{
-	document.getElementById("dnf_class_values_employer_registration__contact_fname_").addEventListener("change", UL_COMPONE_FIRMA);
-	document.getElementById("dnf_class_values_employer_registration__contact_lname_").addEventListener("change", UL_COMPONE_FIRMA);
-	document.getElementById("dnf_class_values_employer_registration__apellido_materno_").addEventListener("change", UL_COMPONE_FIRMA);
-}catch(err){}
+//try{
+//	document.getElementById("dnf_class_values_employer_registration__contact_fname_").addEventListener("change", UL_COMPONE_FIRMA);
+//	document.getElementById("dnf_class_values_employer_registration__contact_lname_").addEventListener("change", UL_COMPONE_FIRMA);
+//	document.getElementById("dnf_class_values_employer_registration__apellido_materno_").addEventListener("change", UL_COMPONE_FIRMA);
+//}catch(err){}
 
 
 /*############################################################################################################################
@@ -103,7 +112,7 @@ window.onload=function() {
 	
 if (FCC_HABILITA_JS){	
 		
-	console.log("VERSION DE CONTROL: "+FCC_VERSION);
+	console.log("# CONTROL FCC_EMPRESAS V:"+FCC_VERSION);
 		
 // DECALRACION DE VARIABLES
 //---------------------------------------------------------------------------------------------------------
@@ -135,14 +144,15 @@ if (FCC_HABILITA_JS){
 	
 // IDENTIFICACION DE MODO DEBUG
 //---------------------------------------------------------------------------------------------------------	
-		
-	if (UL_MODO_DEBUG==1 || FCC_DEBUG){
-		console.log("MODO: DEBUG");
-		FCC_CONTROL_00.style.display = 'block';
-	}else{
-		console.log("MODO: USER"); 
-		FCC_CONTROL_00.style.display = 'none';
-	}	
+	try{	
+		if (UL_MODO_DEBUG==1 || FCC_DEBUG){
+			console.log("# MODO: DEBUG");
+			FCC_CONTROL_00.style.display = 'block';
+		}else{
+			console.log("# MODO: USER"); 
+			FCC_CONTROL_00.style.display = 'none';
+		}
+	}catch(err){}		
 
 // IDENTIFICACION DE FORMAULARIO DE CARGA
 //---------------------------------------------------------------------------------------------------------	
@@ -150,8 +160,7 @@ if (FCC_HABILITA_JS){
 	switch (UL_FORMULARIO_ORIGEN) {
 				
 		//FORMULARIO REGISTRO EMPRESA-------------------------------------------------------------------------		
-		case "E":
-				console.log("ENTRADA: REGISTRO EMPRESA/CONTACTO");
+		case "E": console.log("## ENTRADA: REGISTRO EMPRESA/CONTACTO");
 				
 				//OBTENIENDO VARIABLES DE CONTROL
 				UL_RUC=FCC_GET_VALOR_ELEMENTO(FCC_RUC);
@@ -163,8 +172,7 @@ if (FCC_HABILITA_JS){
 				console.log("=> UL_RUC = "+UL_RUC);
 				console.log("=> UL_RAZON = "+UL_RAZON);
 				console.log("=> UL_CONTROL_0 = "+UL_CONTROL_0);
-				console.log("...");
-				console.log("ESTADO > "+UL_FORM_ESTADO);
+				console.log("=> ESTADO > "+UL_FORM_ESTADO);
 					
 			
 				//VALIDANDO CASOS	
@@ -176,51 +184,50 @@ if (FCC_HABILITA_JS){
 				}else {
 									
 					//CASO	: CLIC BOTON REGRESAR 20100132592
+					
 					if(UL_RUC=="" && UL_RAZON==""){ 
 						console.log("=> UL_RUC & UL_RAZON = null =>" + UL_CONTROL_0);
 						UL_FORM_ESTADO = UL_CONTROL_0;	
 					}
 					
-					//CASO	: CLIC BOTON VALIDA RUC
-					if(UL_RUC!=""){ 
-						
-					console.log("# SOLICITUD DE VALIDACION DE RUC");
+					//CASO	: CREACION DE EMPRESA
+					
+					if(UL_RUC!=""&& UL_RAZON==""){ 
+						console.log("### SOLICITUD DE VALIDACION DE RAZON SOCIAL");
 					
 						//CASO	: EMPRESA YA EXISTE					
 						if (FCC_VALIDA_ERRORES(UL_ERRORES,"TaxID")){
 							UL_FORM_ESTADO = 6;
-							console.log("ERROR: EL RUC YA SE ENCUETRA REGISTRADO");
+							console.log("=> ERROR: EL RUC YA SE ENCUETRA REGISTRADO");
 						
 						//CASO	: EMPRESA NUEVA	
 						}else{
 							UL_FORM_ESTADO = 5; 
-							console.log("CORRECTO: EL RUC NO SE ENCUETRA REGISTRADO");
+							console.log("=> CORRECTO: EL RUC NO SE ENCUETRA REGISTRADO");
 
 						}
 					}
 					
-					//CASO	: CLIC ACTAULIZAR FORMULARIO
+					//CASO	: EMPRESA EXISTE
+					
 					if(UL_RUC!="" && UL_RAZON!=""){ 
-						
+						console.log("### EMPRESA EXISTE");
+				
+						UL_FORM_ESTADO = 7;
+					
 						//CASO	: EMPRESA YA EXISTE	
 						if (FCC_VALIDA_ERRORES(UL_ERRORES,"TaxID")){
-							UL_FORM_ESTADO = 7;
 							console.log("LA EMPRESA QUE INTENTA MODIFICAR YA ESTA REGISTRADA");
 							
 						//CASO	: EMPRESA NUEVA	
 						}else {
-							UL_FORM_ESTADO = 5;
-							console.log("RUC NUEVO");
-							console.log("=> UL_RUC & UL_RAZON "+UL_RUC+" => 5");
-							//console.log(UL_ERRORES);
+							console.log("=> REGISTRO DE NUEVO CONTACTO");
 							
 							try{
-								
-							console.log(UL_ERRORES);
-							tt = document.getElementsByClassName("alert error");
-							console.log(tt[0].style.display);
-							tt[0].style.display = 'block';
-							
+								tt = document.getElementsByClassName("alert error");
+								tt[0].style.display = 'block';
+								console.log("=> MOSTRANDO ERRORES");
+								console.log(UL_ERRORES);
 							}catch(err){}
 
 						}				
@@ -280,7 +287,7 @@ if (FCC_HABILITA_JS){
 // ACTUALIZANDO EL ESTADO DEL CAMPO DE CONTROL
 //---------------------------------------------------------------------------------------------------------	
 
-	console.log("ESTADO > " + CODIGO_FUNCION);
+	console.log("=> ESTADO > " + CODIGO_FUNCION);
 	document.getElementById('dnf_class_values_employer_registration__UL_CONTROL_0_').value=VALOR_FUNCION; 
 	document.getElementById('dnf_class_values_employer_registration__UL_CONTROL_0_').onchange();
 
@@ -317,7 +324,7 @@ function UL_CHANGE_CONTROL(){
 	UL_RAZON.readOnly = false;
 	}catch(err){}
 	
-	console.log("# EJECUTANDO FUNCIONES ADICIONALES DE ESTADO > "+ CODIGO_FUNCION);
+	console.log("==> EJECUTANDO FUNCIONES ADICIONALES DE ESTADO > "+ CODIGO_FUNCION);
 	
 	/*ajustes adicionales según estado enviado*/
 	switch(CODIGO_FUNCION) {
@@ -586,7 +593,59 @@ function UL_COMPONE_FIRMA(){
 		
 	FCC_FIRMA.value	= FCC_NOMBRE + " " + FCC_APP_1 + " " + FCC_APP_2;
 }	
+
+/*###################################################################################################################
+
+FUNCIONES	:	UL_FUNCIONES MANAGER
+DETALLE		:	Método uqe se ejeucta al cargar el formulario de manager paso 01
+
+#####################################################################################################################*/
+
+
+/*############################################################################################################################
+
+LISTENERS
+
+##############################################################################################################################*/
+try{
+document.getElementById("dnf_class_values_employer_registration__contact_fname_").addEventListener("change", UL_COMPONE_FIRMA);
+document.getElementById("dnf_class_values_employer_registration__contact_lname_").addEventListener("change", UL_COMPONE_FIRMA);
+document.getElementById("dnf_class_values_employer_registration__apellido_materno_").addEventListener("change", UL_COMPONE_FIRMA);
+}catch(err){}
+
+/*############################################################################################################################
+
+DECLARACION DE CONSTANTES
+
+##############################################################################################################################*/
+
+const FCC_VERSION_FCC_EMPRESAS_EXT = 1.1;
+
+/*############################################################################################################################
+
+OCULATA CAMPOS MANAGER
+
+##############################################################################################################################*/
+
+console.log("# CONTROL FCC_EMPRESAS_EXT V:"+FCC_VERSION_FCC_EMPRESAS_EXT);
+
+var x = document.getElementsByClassName("hi first");
+
+if (x.length>0){
 	
+	document.getElementById("_fieldgroup_UL_SEC_01_MENSAJES").style.display = 'none';
+	document.getElementById("_fieldgroup_UL_SEC_04_INF_COMERCIAL").style.display = 'none';
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_03_CONTROL_01_").style.display = 'none';
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_03_CONTROL_02_").style.display = 'none';
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_NOT_MARCA_").style.display = 'none';
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_04_CONTROL_01_").style.display = 'none';
+	
+	console.log("MANAGER : PASO 1");
+	
+}else{
+	console.log("NO ES MANAGER : PASO 1");
+}
+
 
 /*###################################################################################################################
 
@@ -594,3 +653,9 @@ FIN
 
 #####################################################################################################################*/
 
+
+
+
+
+
+	
