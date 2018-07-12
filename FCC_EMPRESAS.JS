@@ -5,8 +5,8 @@
 //# AMBITO: EMPRESA Y CONTACTO
 //#
 //# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION			: 9.0
-//# FECHA			: 05.07.18
+//# VERSION			: 10.0
+//# FECHA			: 12.07.18
 //#
 //# FORMULARIO		: Employeer_registration form
 //# CAMPO			: FCC_COD_1 (JS FUNCIONES)
@@ -27,24 +27,45 @@
 //#############################################################################################################################
 
 
+/*
+
+<input type="button" id="UL_BTN_COPIA_DIRECCION" name="UL_BTN_COPIA_DIRECCION"		
+onclick="UL_COMPONE_DIRECCION()" class="input-submit btn btn_primary" value="Copiar Dirección" />
+</div>		
+
+
+
+*/
+
+
+
+
 //# INVOCACION LOCALHOST
 
 /*
 
+<div class="estilo-menu">DECLARACIÓN DE POLÍTICA</div>
 <link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.CSS">
 <script type="text/javascript" src="http://localhost/usb/FCC_CONTROL_JS_LOCALES.js"></script>
 
 <script type="text/javascript">
-	var FCC_SRC_FUENTE_SCRIPT="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.JS";
-	var FCC_SCRIPT_LOCAL = FCC_REGISTRO_EMPRESAS_SERVIDOR;
 
+	var FCC_SRC_FUENTE_SCRIPT="https://cdn.rawgit.com/ferac171/test/master/FCC_EMPRESAS.JS";
+	var FCC_SCRIPT_LOCAL="";
+	
 	try{
-	  if(FCC_SCRIPT_LOCAL){FCC_SRC_FUENTE_SCRIPT=FCC_REGISTRO_EMPRESAS_LOCAL;}
+		FCC_SCRIPT_LOCAL = FCC_REGISTRO_EMPRESAS_SERVIDOR;
+		if(FCC_SCRIPT_LOCAL){FCC_SRC_FUENTE_SCRIPT=FCC_REGISTRO_EMPRESAS_LOCAL;}
 	}catch(err){}
 
 	console.log("FCC : EJECUTANDO: " +FCC_SRC_FUENTE_SCRIPT);
 	document.write('<script languaje="JavaScript" src="' + FCC_SRC_FUENTE_SCRIPT + '"><' + '/script>');
 </script>
+
+
+
+
+
 
 */
 
@@ -56,7 +77,7 @@ DECLARACION DE CONSTANTES
 
 ##############################################################################################################################*/
 
-const FCC_VERSION = 9;
+const FCC_VERSION = 10;
 const FCC_HABILITA_JS = true;
 const FCC_DEBUG = false;
 const FCC_AJUSTE_PICKLIST = 1;
@@ -594,6 +615,16 @@ function UL_COMPONE_FIRMA(){
 	FCC_FIRMA.value	= FCC_NOMBRE + " " + FCC_APP_1 + " " + FCC_APP_2;
 }	
 
+
+function UL_COMPONE_DIRECCION(){
+	
+	var FCC_DIR_EMP 	= document.getElementById("dnf_class_values_employer_registration__direccin_de_la_empresa_").value;
+	var FCC_DIR_CONTACTO	= document.getElementById("dnf_class_values_employer_registration__direccin_de_su_oficina_");
+		
+	FCC_DIR_CONTACTO.value	= FCC_DIR_EMP;
+}	
+
+
 /*###################################################################################################################
 
 FUNCIONES	:	UL_FUNCIONES MANAGER
@@ -611,6 +642,9 @@ try{
 document.getElementById("dnf_class_values_employer_registration__contact_fname_").addEventListener("change", UL_COMPONE_FIRMA);
 document.getElementById("dnf_class_values_employer_registration__contact_lname_").addEventListener("change", UL_COMPONE_FIRMA);
 document.getElementById("dnf_class_values_employer_registration__apellido_materno_").addEventListener("change", UL_COMPONE_FIRMA);
+
+//document.getElementById("dnf_class_values_employer_registration__direccin_de_la_empresa_").addEventListener("change", UL_COMPONE_DIRECCION);
+
 }catch(err){}
 
 /*############################################################################################################################
