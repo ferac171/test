@@ -81,7 +81,7 @@ if (FCC_HABILITA_JS){
 				UL_FORM_ESTADO =1;
 				
 				var WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_profile__address_");
-				//WIDGET_DIRECCION.style.display = "none";
+				WIDGET_DIRECCION.style.display = "none";
 				UL_COMPONE_DIRECCION_RAZONSOCIAL();
 			
 
