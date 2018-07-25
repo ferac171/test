@@ -5,10 +5,10 @@
 //# AMBITO: EMPRESA Y CONTACTO
 //#
 //# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION			: 10.0
-//# FECHA			: 12.07.18
+//# VERSION			: 11.0
+//# FECHA			: 25.07.18
 //#
-//# FORMULARIO		: Employeer_registration form
+//# FORMULARIO		: Employer Registration Form
 //# CAMPO			: FCC_COD_1 (JS FUNCIONES)
 //#
 //# NAME			: FCC_EMPRESAS.JS
@@ -27,49 +27,6 @@
 //#############################################################################################################################
 
 
-/*
-
-<input type="button" id="UL_BTN_COPIA_DIRECCION" name="UL_BTN_COPIA_DIRECCION"		
-onclick="UL_COMPONE_DIRECCION()" class="input-submit btn btn_primary" value="Copiar Dirección" />
-</div>		
-
-
-
-*/
-
-
-
-
-//# INVOCACION LOCALHOST
-
-/*
-
-<div class="estilo-menu">DECLARACIÓN DE POLÍTICA</div>
-<link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.CSS">
-<script type="text/javascript" src="http://localhost/usb/FCC_CONTROL_JS_LOCALES.js"></script>
-
-<script type="text/javascript">
-
-	var FCC_SRC_FUENTE_SCRIPT="https://cdn.rawgit.com/ferac171/test/master/FCC_EMPRESAS.JS";
-	var FCC_SCRIPT_LOCAL="";
-	
-	try{
-		FCC_SCRIPT_LOCAL = FCC_REGISTRO_EMPRESAS_SERVIDOR;
-		if(FCC_SCRIPT_LOCAL){FCC_SRC_FUENTE_SCRIPT=FCC_REGISTRO_EMPRESAS_LOCAL;}
-	}catch(err){}
-
-	console.log("FCC : EJECUTANDO: " +FCC_SRC_FUENTE_SCRIPT);
-	document.write('<script languaje="JavaScript" src="' + FCC_SRC_FUENTE_SCRIPT + '"><' + '/script>');
-</script>
-
-
-
-
-
-
-*/
-
-
 
 /*############################################################################################################################
 
@@ -81,19 +38,6 @@ const FCC_VERSION = 10;
 const FCC_HABILITA_JS = true;
 const FCC_DEBUG = false;
 const FCC_AJUSTE_PICKLIST = 1;
-
-
-/*############################################################################################################################
-
-LISTENERS
-
-##############################################################################################################################*/
-
-//try{
-//	document.getElementById("dnf_class_values_employer_registration__contact_fname_").addEventListener("change", UL_COMPONE_FIRMA);
-//	document.getElementById("dnf_class_values_employer_registration__contact_lname_").addEventListener("change", UL_COMPONE_FIRMA);
-//	document.getElementById("dnf_class_values_employer_registration__apellido_materno_").addEventListener("change", UL_COMPONE_FIRMA);
-//}catch(err){}
 
 
 /*############################################################################################################################
@@ -151,6 +95,8 @@ if (FCC_HABILITA_JS){
 	var FCC_RAZON;
 	var FCC_CONTROL_0;
 	var FCC_CONTROL_00;
+	
+
 		
 // INICIALIZANDO VARIABLES
 //---------------------------------------------------------------------------------------------------------	
@@ -162,6 +108,8 @@ if (FCC_HABILITA_JS){
 	FCC_RAZON= FCC_GET_ELEMENTO_BYID("autocomplete_input_dnf_class_values_employer_registration__employer_id_");
 	FCC_CONTROL_0= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__UL_CONTROL_0_");
 	FCC_CONTROL_00= FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_registration__UL_CONTROL_0_");
+		
+	
 	
 // IDENTIFICACION DE MODO DEBUG
 //---------------------------------------------------------------------------------------------------------	
@@ -258,10 +206,17 @@ if (FCC_HABILITA_JS){
 					
 		//FORMULARIO MANAGER -------------------------------------------------------------------------------
 		case "M":
-				console.log("ENTRADA: MANAGER");
+				console.log("ENTRADA: MANAGER2");
 				UL_FORM_ESTADO =1;
+				
+				var WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("emp_reg_form_fieldgroup_FCC_WIDGET_DIRECCION");
+				WIDGET_DIRECCION.style.display = "none";
+				UL_COMPONE_DIRECCION1();
+				UL_COMPONE_RAZON_SOCIAL();
+
 				break;		
 				
+
 		//FORMULARIO INVALIDO-------------------------------------------------------------------------			
 		case "X":
 				console.log("ENTRADA: INVALIDA");
@@ -280,6 +235,63 @@ if (FCC_HABILITA_JS){
 }
 
 }
+
+/*############################################################################################################################
+
+FUNCION		:	UL_COMPONE DIRECCION
+DETALLE		:	Estrucrura el copiado de campos de direccion en el widget de direccion para que apareza en todas las vistas
+
+##############################################################################################################################*/
+
+
+
+function UL_COMPONE_DIRECCION1(){
+	
+	var FCC_WIDGET_VAR1;
+	var FCC_WIDGET_VAR2;
+	var FCC_WIDGET_VAR3;
+	var FCC_PAIS;
+	var FCC_DEPARTAMENTO;
+	var FCC_DIRECCION;
+	var FCC_CIUDAD;
+	
+	//document.getElementById
+	FCC_WIDGET_VAR1= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__city_");
+	FCC_WIDGET_VAR2= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__street_");
+	FCC_WIDGET_VAR3= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__zip_");
+	
+	FCC_PAIS= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__pas_");
+	FCC_DEPARTAMENTO= FCC_GET_ELEMENTO_BYID("hp_input1");
+	FCC_DIRECCION= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__direccin_de_la_empresa_");
+	FCC_CIUDAD= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__ciudad_");
+				
+	var temp_Pais = FCC_PAIS.options[FCC_PAIS.selectedIndex].innerHTML + " / ";
+	var temp_direccion=FCC_DIRECCION.value;
+	var temp_departamento;
+				
+	if(FCC_DEPARTAMENTO.innerHTML!=""){
+		temp_departamento=FCC_DEPARTAMENTO.innerHTML + " / ";
+	}else{
+		temp_departamento=FCC_CIUDAD.value + " / ";
+	}
+	
+	//alert(temp_Pais+temp_departamento+temp_direccion);		
+	FCC_WIDGET_VAR2.value = temp_Pais+temp_departamento+temp_direccion;	
+	
+}	
+
+
+function UL_COMPONE_RAZON_SOCIAL(){
+	
+	var FCC_WIDGET_VAR3= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__zip_");
+	var FCC_RAZON_SOCIAL = FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__razon_social2_");
+	
+	FCC_WIDGET_VAR3.value = FCC_RAZON_SOCIAL.value;	
+	
+}
+
+
+
 
 /*############################################################################################################################
 
@@ -642,10 +654,20 @@ try{
 document.getElementById("dnf_class_values_employer_registration__contact_fname_").addEventListener("change", UL_COMPONE_FIRMA);
 document.getElementById("dnf_class_values_employer_registration__contact_lname_").addEventListener("change", UL_COMPONE_FIRMA);
 document.getElementById("dnf_class_values_employer_registration__apellido_materno_").addEventListener("change", UL_COMPONE_FIRMA);
+}catch(err){}
 
-//document.getElementById("dnf_class_values_employer_registration__direccin_de_la_empresa_").addEventListener("change", UL_COMPONE_DIRECCION);
+
+
+//hp_input1
+
+try{
+document.getElementById("dnf_class_values_employer_registration__pas_").addEventListener("change", UL_COMPONE_DIRECCION1);
+document.getElementById("dnf_class_values_employer_registration__departamentoprovinciadistrito__widget").addEventListener("change", UL_COMPONE_DIRECCION1);
+document.getElementById("dnf_class_values_employer_registration__ciudad_").addEventListener("change", UL_COMPONE_DIRECCION1);
+document.getElementById("dnf_class_values_employer_registration__direccin_de_la_empresa_").addEventListener("change", UL_COMPONE_DIRECCION1);
 
 }catch(err){}
+
 
 /*############################################################################################################################
 
@@ -657,7 +679,7 @@ const FCC_VERSION_FCC_EMPRESAS_EXT = 1.1;
 
 /*############################################################################################################################
 
-OCULATA CAMPOS MANAGER
+OCULTA CAMPOS MANAGER
 
 ##############################################################################################################################*/
 
