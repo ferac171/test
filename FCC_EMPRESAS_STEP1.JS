@@ -14,13 +14,14 @@
 //# NAME			: FCC_EMPRESAS_MAINTAB.JS
 //# GITHUB			: 
 //#
-//# INVOCACION LOCALHOST
-//# => <script type="text/javascript"src="http://localhost/usb/FCC_REGISTRO_EMPRESAS/FCC_EMPRESAS_MAINTAB.js"></script>
+//# LOCALHOST
+//# http://localhost/usb/FCC_REGISTRO_EMPRESAS/FCC_EMPRESAS_STEP1.js
 //#
 //# INVOCACION GITHUB
+//# https://raw.githubusercontent.com/ferac171/test/master/FCC_EMPRESAS_STEP1.JS
 //# 
-//#	
-//# => <script src="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.JS"></script>
+//#	RAWGIT
+//# https://rawgit.com/ferac171/test/master/FCC_EMPRESAS_STEP1.JS
 //#
 //#############################################################################################################################
 
