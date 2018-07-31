@@ -5,8 +5,6 @@
 //# AMBITO: EMPRESA Y CONTACTO
 //#
 //# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION			: 11.0
-//# FECHA			: 25.07.18
 //#
 //# FORMULARIO		: Employer Registration Form
 //# CAMPO			: FCC_COD_1 (JS FUNCIONES)
@@ -15,18 +13,27 @@
 //# GITHUB			: 
 //#
 //# INVOCACION LOCALHOST
-//# => <script type="text/javascript"src="http://localhost/usb/FCC_REGISTRO_EMPRESAS/FCC_EMPRESAS.js"></script>
+//# => http://localhost/DEV/01_REGISTRO_EMPRESAS/01_DEV/FCC_EMPRESAS.js
 //#
 //# INVOCACION GITHUB
 //# 
 //# https://raw.githubusercontent.com/ferac171/test/master/FCC_EMPRESAS.JS
-//# https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.JS	
+//# https://raw.githack.com/ferac171/test/master/FCC_EMPRESAS.JS
 //#	
-//# => <script src="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.JS"></script>
+//# 
 //#
 //#############################################################################################################################
 
+/*############################################################################################################################
 
+CONSTANTES DE VERSION
+
+##############################################################################################################################*/
+
+const FCC_VERSION = 12.0;
+const FCC_VERSION_FECHA= "31/07/18";
+
+console.log("# CONTROL FCC_EMPRESAS V:"+FCC_VERSION + " al "+FCC_VERSION_FECHA);
 
 /*############################################################################################################################
 
@@ -34,34 +41,110 @@ DECLARACION DE CONSTANTES
 
 ##############################################################################################################################*/
 
-const FCC_VERSION = 10;
 const FCC_HABILITA_JS = true;
 const FCC_DEBUG = false;
 const FCC_AJUSTE_PICKLIST = 1;
 
-
 /*############################################################################################################################
 
-FUNCION		: 	UL_BTN_VALIDA_RUC_CLIC
-DETALLE		: 	Se simula el envío del formulario con el botón "dnf_opt_submit"
-				Se espera que actúe el validador nativo del sistema y si el RUC existe genere un error de RUC repetido
+VARIABLES GENERALES
 
 ##############################################################################################################################*/
 
-	function UL_BTN_VALIDA_RUC_CLIC(){ 
-		document.emp_reg_form.dnf_opt_submit.click() ;
-	}
-	
+//ELEMENTOS DE CONTROL
+
+var UL_TB_001 = document.getElementById("UL_TB_001");
+var REG_UL_TB_001=document.getElementById("dnf_class_values_employer_registration__REG_UL_TB_001_");
+
+
+//ELEMENTOS DE EMPRESA
+
+
+var UL_EMPRESA_DIR_PAIS = document.getElementById("dnf_class_values_employer_registration__pas_");
+var UL_EMPRESA_DIR_DEPARTAMENTO = document.getElementById("hp_input1");
+var UL_EMPRESA_DIR_CIUDAD = document.getElementById("dnf_class_values_employer_registration__ciudad_");
+var UL_EMPRESA_DIR_CALLE = document.getElementById("dnf_class_values_employer_registration__direccin_de_la_empresa_");
+
+//ELEMENTOS DE CONTACTO
+
+var UL_CONTACTO_NOMBRE =document.getElementById("dnf_class_values_employer_registration__contact_fname_");
+var UL_CONTACTO_APELLIDO_1 = document.getElementById("dnf_class_values_employer_registration__contact_lname_");
+var UL_CONTACTO_APELLIDO_2 = document.getElementById("dnf_class_values_employer_registration__apellido_materno_");
+
+var UL_CONTACTO_DIR_PAIS = document.getElementById("dnf_class_values_employer_registration__especifique_el_pas_");
+var UL_CONTACTO_DIR_DEPARTAMENTO = document.getElementById("hp_input2");
+var UL_CONTACTO_DIR_CIUDAD = document.getElementById("dnf_class_values_employer_registration__ciudad_contacto_");
+var UL_CONTACTO_DIR_CALLE = document.getElementById("dnf_class_values_employer_registration__direccion_del_contacto_");
+
+var UL_CONTACTO_DIR_COMPLETA = document.getElementById("dnf_class_values_employer_registration__direccin_de_su_oficina_");
+
+
+
+
+
+
+
+
+
 /*############################################################################################################################
 
-FUNCION		:	UL_BTN_ENVIA_CLIC
-DETALLE		:	Se simula el envío del formulario con el botón "dnf_opt_submit"
+LISTENERS
 
-##############################################################################################################################*/	
+##############################################################################################################################*/
+
+
+UL_CONTACTO_DIR_COMPLETA.readOnly=true;
+
+// TOGGLE BUTTONS
+UL_TB_001.addEventListener("change", UL_COPIA_DIRECCION);
+
+// COMPONE FIRMA
+try{
+	UL_CONTACTO_NOMBRE.addEventListener("change", UL_COMPONE_FIRMA);
+	UL_CONTACTO_APELLIDO_1.addEventListener("change", UL_COMPONE_FIRMA);
+	UL_CONTACTO_APELLIDO_2.addEventListener("change", UL_COMPONE_FIRMA);
+}catch(err){}
+
+
+//COMPONE DIRECCION
+try{
+	UL_CONTACTO_DIR_PAIS.addEventListener("change", UL_COMPONE_DIRECCION1);
+	UL_CONTACTO_DIR_DEPARTAMENTO.addEventListener("change", UL_COMPONE_DIRECCION1);
+	UL_CONTACTO_DIR_CIUDAD.addEventListener("change", UL_COMPONE_DIRECCION1);
+	UL_CONTACTO_DIR_CALLE.addEventListener("change", UL_COMPONE_DIRECCION1);
+}catch(err){}
+
+
+
+
+
+/*############################################################################################################################
+
+CARGA INICIAL
+
+##############################################################################################################################*/
+
+var x = document.getElementsByClassName("hi first");
+
+if (x.length>0){
 	
-	function UL_BTN_ENVIA_CLIC(){ 
-		document.emp_reg_form.dnf_opt_submit.click() ;
-	}	
+	document.getElementById("_fieldgroup_UL_SEC_01_MENSAJES").style.display = 'none';
+	document.getElementById("_fieldgroup_UL_SEC_04_INF_COMERCIAL").style.display = 'none';
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_03_CONTROL_01_").style.display = 'none';
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_03_CONTROL_02_").style.display = 'none';
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_NOT_MARCA_").style.display = 'none';
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_04_CONTROL_01_").style.display = 'none';
+	
+	console.log("MANAGER : PASO 1");
+	
+}else{
+	console.log("NO ES MANAGER : PASO 1");
+}
+
+
+
+
+
 
 /*############################################################################################################################
 
@@ -97,7 +180,6 @@ if (FCC_HABILITA_JS){
 	var FCC_CONTROL_00;
 	
 
-		
 // INICIALIZANDO VARIABLES
 //---------------------------------------------------------------------------------------------------------	
 		
@@ -206,11 +288,14 @@ if (FCC_HABILITA_JS){
 					
 		//FORMULARIO MANAGER -------------------------------------------------------------------------------
 		case "M":
-				console.log("ENTRADA: MANAGER2");
+				console.log("ENTRADA: MANAGER");
 				UL_FORM_ESTADO =1;
 				
+				//OCUALTANDO WIDGET DIRECCION NATIVO
 				var WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("emp_reg_form_fieldgroup_FCC_WIDGET_DIRECCION");
 				WIDGET_DIRECCION.style.display = "none";
+				UL_CONTACTO_DIR_COMPLETA.readOnly=true;
+				
 				UL_COMPONE_DIRECCION1();
 				UL_COMPONE_RAZON_SOCIAL();
 
@@ -226,6 +311,23 @@ if (FCC_HABILITA_JS){
 
 	//HABILITANDO FORMULARIO-----------------------------------------------------------------------------------
 	if (UL_FORM_ESTADO!="") UL_HABILITA_GENERAL(UL_FORM_ESTADO);
+	
+	
+	// analisi de tb_001 
+	if (REG_UL_TB_001.value=="N"){
+		UL_TB_001.checked=false;
+	}else{
+		UL_TB_001.checked=true;
+	}
+	var WIDGET_UL_TB_001= FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_registration__REG_UL_TB_001_");
+	
+	WIDGET_UL_TB_001.style.display = "none";
+	
+	UL_COPIA_DIRECCION();
+	
+	
+	
+	
 
 // ACCIONES SI JS ESTA DESHABILITADO
 //---------------------------------------------------------------------------------------------------------
@@ -236,49 +338,126 @@ if (FCC_HABILITA_JS){
 
 }
 
+
 /*############################################################################################################################
 
-FUNCION		:	UL_COMPONE DIRECCION
-DETALLE		:	Estrucrura el copiado de campos de direccion en el widget de direccion para que apareza en todas las vistas
+FUNCION		: 	UL_BTN_VALIDA_RUC_CLIC
+DETALLE		: 	Se simula el envío del formulario con el botón "dnf_opt_submit"
+				Se espera que actúe el validador nativo del sistema y si el RUC existe genere un error de RUC repetido (tax_id)
 
 ##############################################################################################################################*/
 
-
-
-function UL_COMPONE_DIRECCION1(){
-	
-	var FCC_WIDGET_VAR1;
-	var FCC_WIDGET_VAR2;
-	var FCC_WIDGET_VAR3;
-	var FCC_PAIS;
-	var FCC_DEPARTAMENTO;
-	var FCC_DIRECCION;
-	var FCC_CIUDAD;
-	
-	//document.getElementById
-	FCC_WIDGET_VAR1= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__city_");
-	FCC_WIDGET_VAR2= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__street_");
-	FCC_WIDGET_VAR3= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__zip_");
-	
-	FCC_PAIS= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__pas_");
-	FCC_DEPARTAMENTO= FCC_GET_ELEMENTO_BYID("hp_input1");
-	FCC_DIRECCION= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__direccin_de_la_empresa_");
-	FCC_CIUDAD= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__ciudad_");
-				
-	var temp_Pais = FCC_PAIS.options[FCC_PAIS.selectedIndex].innerHTML + " / ";
-	var temp_direccion=FCC_DIRECCION.value;
-	var temp_departamento;
-				
-	if(FCC_DEPARTAMENTO.innerHTML!=""){
-		temp_departamento=FCC_DEPARTAMENTO.innerHTML + " / ";
-	}else{
-		temp_departamento=FCC_CIUDAD.value + " / ";
+	function UL_BTN_VALIDA_RUC_CLIC(){ 
+		document.emp_reg_form.dnf_opt_submit.click() ;
 	}
 	
-	//alert(temp_Pais+temp_departamento+temp_direccion);		
-	FCC_WIDGET_VAR2.value = temp_Pais+temp_departamento+temp_direccion;	
+/*############################################################################################################################
+
+FUNCION		:	UL_BTN_ENVIA_CLIC
+DETALLE		:	Se simula el envío del formulario con el botón "dnf_opt_submit"
+
+##############################################################################################################################*/	
 	
+	function UL_BTN_ENVIA_CLIC(){ 
+		document.emp_reg_form.dnf_opt_submit.click() ;
+	}
+
+
+/*############################################################################################################################
+
+FUNCION		:	UL_COMPONE DIRECCION
+DETALLE		:	Estructura el copiado de campos de dirección en el widget de dirección para que sea visible en:
+				MAIN TAB / STEP 1
+
+##############################################################################################################################*/
+
+function UL_COMPONE_DIRECCION1(){
+	UL_COPIA_DIRECCION();
 }	
+
+/*############################################################################################################################
+
+FUNCION		:	UL_COPIA_DIRECCION
+DETALLE		:	Estructura el copiado de campos de dirección de empresa en contacto cuando se indique que es la misma
+
+##############################################################################################################################*/
+
+function UL_COPIA_DIRECCION(){
+
+var TEMP_PAIS;
+var TEMP_DEPARTAMENTO;
+var TEMP_CALLE;
+
+var	FCC_WIDGET_VAR2= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__street_");
+
+var TEMP_CONTACTO_DIR1 =document.getElementById("so_formfield_dnf_class_values_employer_registration__especifique_el_pas_");
+var TEMP_CONTACTO_DIR2 =document.getElementById("so_formfield_dnf_class_values_employer_registration__departamentoprovinciadistrito2_");
+var TEMP_CONTACTO_DIR3 =document.getElementById("so_formfield_dnf_class_values_employer_registration__ciudad_contacto_");
+var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_employer_registration__direccion_del_contacto_");
+
+
+	if (UL_TB_001.checked) {
+		
+		//oculta campos dirección de contacto
+		TEMP_CONTACTO_DIR1.style.display = "none";
+		TEMP_CONTACTO_DIR2.style.display = "none";
+		TEMP_CONTACTO_DIR3.style.display = "none";
+		TEMP_CONTACTO_DIR4.style.display = "none";
+		
+		REG_UL_TB_001.value="Y";
+		
+		TEMP_PAIS = UL_EMPRESA_DIR_PAIS.options[UL_EMPRESA_DIR_PAIS.selectedIndex].innerHTML + " / ";
+		TEMP_CALLE=UL_EMPRESA_DIR_CALLE.value;
+
+		try{
+			if(UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML!=""){
+				TEMP_DEPARTAMENTO=UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML + " / ";
+			}else{
+				TEMP_DEPARTAMENTO=UL_EMPRESA_DIR_CALLE.value + " / ";
+			}
+		}catch(err){}
+			
+
+    } else {
+		
+		//muestra campos dirección de contacto
+		
+		TEMP_CONTACTO_DIR1.style.display = "";
+		TEMP_CONTACTO_DIR2.style.display = "";
+		//TEMP_CONTACTO_DIR3.style.display = "";
+		TEMP_CONTACTO_DIR4.style.display = "";
+		
+		REG_UL_TB_001.value="N";
+		
+		TEMP_PAIS = UL_CONTACTO_DIR_PAIS.options[UL_CONTACTO_DIR_PAIS.selectedIndex].innerHTML + " / ";
+		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
+
+		try{
+			if(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML!=""){
+				TEMP_DEPARTAMENTO=UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML + " / ";
+			}else{
+				TEMP_DEPARTAMENTO=UL_CONTACTO_DIR_CALLE.value + " / ";
+			}
+		}catch(err){}
+	
+		//UL_CONTACTO_DIR_PAIS.selectedIndex=0;
+
+    }
+
+	
+	FCC_WIDGET_VAR2.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;	
+	UL_CONTACTO_DIR_COMPLETA.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;	
+
+}
+
+
+/*############################################################################################################################
+
+FUNCION		:	UL_COMPONE RAZON SOCIAL
+DETALLE		:	Estructura el copiado de campos de Razón social en el widget de dirección para que sea visible en:
+				MAIN TAB / STEP 1
+
+##############################################################################################################################*/
 
 
 function UL_COMPONE_RAZON_SOCIAL(){
@@ -290,6 +469,22 @@ function UL_COMPONE_RAZON_SOCIAL(){
 	
 }
 
+/*###################################################################################################################
+
+FUNCIONES	:	UL_COMPONE_FIRMA
+DETALLE		:	Método que arma la firma profesional del contacto en base a la composición de sus nombres y apellidos
+
+#####################################################################################################################*/
+	
+function UL_COMPONE_FIRMA(){
+	
+	var FCC_NOMBRE 	= document.getElementById("dnf_class_values_employer_registration__contact_fname_").value;
+	var FCC_APP_1 	= document.getElementById("dnf_class_values_employer_registration__contact_lname_").value;
+	var FCC_APP_2 	= document.getElementById("dnf_class_values_employer_registration__apellido_materno_").value;
+	var FCC_FIRMA	= document.getElementById("dnf_class_values_employer_registration__contact_");
+		
+	FCC_FIRMA.value	= FCC_NOMBRE + " " + FCC_APP_1 + " " + FCC_APP_2;
+}	
 
 
 
@@ -408,6 +603,11 @@ function UL_CHANGE_CONTROL(){
 		}
 
 }	
+
+
+
+//FUNCIONES DE APOYO
+
 
 /*###################################################################################################################
 
@@ -610,97 +810,12 @@ function UL_BTN_ENVIA_NOTIFICACION_CLIC(){
 	window.location.href = UL_CORREO;
 }
 	
-/*###################################################################################################################
 
-FUNCIONES	:	UL_COMPONE_FIRMA
-DETALLE		:	Método que arma la firma profesional del contacto en base a la composición de sus nombres y apellidos
 
-#####################################################################################################################*/
+
 	
-function UL_COMPONE_FIRMA(){
-	
-	var FCC_NOMBRE 	= document.getElementById("dnf_class_values_employer_registration__contact_fname_").value;
-	var FCC_APP_1 	= document.getElementById("dnf_class_values_employer_registration__contact_lname_").value;
-	var FCC_APP_2 	= document.getElementById("dnf_class_values_employer_registration__apellido_materno_").value;
-	var FCC_FIRMA	= document.getElementById("dnf_class_values_employer_registration__contact_");
-		
-	FCC_FIRMA.value	= FCC_NOMBRE + " " + FCC_APP_1 + " " + FCC_APP_2;
-}	
 
 
-function UL_COMPONE_DIRECCION(){
-	
-	var FCC_DIR_EMP 	= document.getElementById("dnf_class_values_employer_registration__direccin_de_la_empresa_").value;
-	var FCC_DIR_CONTACTO	= document.getElementById("dnf_class_values_employer_registration__direccin_de_su_oficina_");
-		
-	FCC_DIR_CONTACTO.value	= FCC_DIR_EMP;
-}	
-
-
-/*###################################################################################################################
-
-FUNCIONES	:	UL_FUNCIONES MANAGER
-DETALLE		:	Método uqe se ejeucta al cargar el formulario de manager paso 01
-
-#####################################################################################################################*/
-
-
-/*############################################################################################################################
-
-LISTENERS
-
-##############################################################################################################################*/
-try{
-document.getElementById("dnf_class_values_employer_registration__contact_fname_").addEventListener("change", UL_COMPONE_FIRMA);
-document.getElementById("dnf_class_values_employer_registration__contact_lname_").addEventListener("change", UL_COMPONE_FIRMA);
-document.getElementById("dnf_class_values_employer_registration__apellido_materno_").addEventListener("change", UL_COMPONE_FIRMA);
-}catch(err){}
-
-
-
-//hp_input1
-
-try{
-document.getElementById("dnf_class_values_employer_registration__pas_").addEventListener("change", UL_COMPONE_DIRECCION1);
-document.getElementById("dnf_class_values_employer_registration__departamentoprovinciadistrito__widget").addEventListener("change", UL_COMPONE_DIRECCION1);
-document.getElementById("dnf_class_values_employer_registration__ciudad_").addEventListener("change", UL_COMPONE_DIRECCION1);
-document.getElementById("dnf_class_values_employer_registration__direccin_de_la_empresa_").addEventListener("change", UL_COMPONE_DIRECCION1);
-
-}catch(err){}
-
-
-/*############################################################################################################################
-
-DECLARACION DE CONSTANTES
-
-##############################################################################################################################*/
-
-const FCC_VERSION_FCC_EMPRESAS_EXT = 1.1;
-
-/*############################################################################################################################
-
-OCULTA CAMPOS MANAGER
-
-##############################################################################################################################*/
-
-console.log("# CONTROL FCC_EMPRESAS_EXT V:"+FCC_VERSION_FCC_EMPRESAS_EXT);
-
-var x = document.getElementsByClassName("hi first");
-
-if (x.length>0){
-	
-	document.getElementById("_fieldgroup_UL_SEC_01_MENSAJES").style.display = 'none';
-	document.getElementById("_fieldgroup_UL_SEC_04_INF_COMERCIAL").style.display = 'none';
-	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_03_CONTROL_01_").style.display = 'none';
-	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_03_CONTROL_02_").style.display = 'none';
-	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_NOT_MARCA_").style.display = 'none';
-	document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_SEC_04_CONTROL_01_").style.display = 'none';
-	
-	console.log("MANAGER : PASO 1");
-	
-}else{
-	console.log("NO ES MANAGER : PASO 1");
-}
 
 
 /*###################################################################################################################
