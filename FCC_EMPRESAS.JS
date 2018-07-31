@@ -30,7 +30,7 @@ CONSTANTES DE VERSION
 
 ##############################################################################################################################*/
 
-const FCC_VERSION = 12.0;
+const FCC_VERSION = 12.1;
 const FCC_VERSION_FECHA= "31/07/18";
 
 console.log("# CONTROL FCC_EMPRESAS V:"+FCC_VERSION + " al "+FCC_VERSION_FECHA);
@@ -108,10 +108,10 @@ try{
 
 //COMPONE DIRECCION
 try{
-	UL_CONTACTO_DIR_PAIS.addEventListener("change", UL_COMPONE_DIRECCION1);
-	UL_CONTACTO_DIR_DEPARTAMENTO.addEventListener("change", UL_COMPONE_DIRECCION1);
-	UL_CONTACTO_DIR_CIUDAD.addEventListener("change", UL_COMPONE_DIRECCION1);
-	UL_CONTACTO_DIR_CALLE.addEventListener("change", UL_COMPONE_DIRECCION1);
+	UL_CONTACTO_DIR_PAIS.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_CONTACTO_DIR_DEPARTAMENTO.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_CONTACTO_DIR_CIUDAD.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_CONTACTO_DIR_CALLE.addEventListener("change", UL_COPIA_DIRECCION);
 }catch(err){}
 
 
@@ -296,7 +296,7 @@ if (FCC_HABILITA_JS){
 				WIDGET_DIRECCION.style.display = "none";
 				UL_CONTACTO_DIR_COMPLETA.readOnly=true;
 				
-				UL_COMPONE_DIRECCION1();
+				//UL_COMPONE_DIRECCION1();
 				UL_COMPONE_RAZON_SOCIAL();
 
 				break;		
@@ -313,17 +313,20 @@ if (FCC_HABILITA_JS){
 	if (UL_FORM_ESTADO!="") UL_HABILITA_GENERAL(UL_FORM_ESTADO);
 	
 	
-	// analisi de tb_001 
+
+// ANALIZA EL VALOR DEL tb_001 
+	
 	if (REG_UL_TB_001.value=="N"){
 		UL_TB_001.checked=false;
 	}else{
 		UL_TB_001.checked=true;
 	}
+	
 	var WIDGET_UL_TB_001= FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_registration__REG_UL_TB_001_");
 	
 	WIDGET_UL_TB_001.style.display = "none";
 	
-	UL_COPIA_DIRECCION();
+	//UL_COPIA_DIRECCION();
 	
 	
 	
@@ -396,7 +399,7 @@ var TEMP_CONTACTO_DIR3 =document.getElementById("so_formfield_dnf_class_values_e
 var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_employer_registration__direccion_del_contacto_");
 
 
-	if (UL_TB_001.checked) {
+	if (UL_TB_001.checked==true) {
 		
 		//oculta campos dirección de contacto
 		TEMP_CONTACTO_DIR1.style.display = "none";
@@ -606,6 +609,12 @@ function UL_CHANGE_CONTROL(){
 
 
 
+
+
+
+
+
+
 //FUNCIONES DE APOYO
 
 
@@ -730,6 +739,12 @@ DETALLE		:	Determina en base a los parámetros de la URL la vista del formulario
 	
 	
 	
+	
+	
+	
+	
+	
+	
 /*###################################################################################################################
 
 FUNCION		:	UL_CARGA_NOTIFICACION
@@ -810,12 +825,6 @@ function UL_BTN_ENVIA_NOTIFICACION_CLIC(){
 	window.location.href = UL_CORREO;
 }
 	
-
-
-
-	
-
-
 
 
 /*###################################################################################################################
