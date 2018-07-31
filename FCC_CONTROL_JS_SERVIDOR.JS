@@ -4,7 +4,7 @@
 //#
 //# FORMULARIO		: TODOS
 //# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION		: 2.1
+//# VERSION		: 2.2
 //# FECHA		: 31.07.18
 //#	
 //#############################################################################################################################
@@ -15,11 +15,11 @@ EL USO DE CONSTANTES DETERMINA SI UNA INTEGRACION EN ESPECIFICO ESTARA BAJO EJEC
 TRUE : SE EJECUTA SCRIPT DEL SERVIDOR
 FALSE: SE EJECUTA SCRIPT LOCAL (IIS)
 
-https://cdn.rawgit.com/ferac171/test/master/FCC_CONTROL_JS_SERVIDOR.JS
+
+https://raw.githack.com/ferac171/test/master/FCC_CONTROL_JS_SERVIDOR.JS
 
 */
-
-const FCC_CONTROL_VERSION = 2.1;
+const FCC_CONTROL_VERSION = 2.2;
 
 console.log("LOCALHOST : CONTROLADOR DE JS LOCAL DETECTADO: V"+FCC_CONTROL_VERSION);
 
@@ -31,23 +31,23 @@ var FCC_SRC;
 switch(FCC_ESQUEMA) {
 	
     case "PUBLICACIONES":
-		FCC_SRC = "";
+		FCC_SRC = "https://raw.githack.com/ferac171/test/master/FCC_PUBLICACIONES.JS";
 		break;
 			
     case "EMPRESAS_STEP1":
-		FCC_SRC = "https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS_STEP1.JS";
+		FCC_SRC = "https://raw.githack.com/ferac171/test/master/FCC_EMPRESAS_STEP1.JS";
         break;
 		
 	case "EMPRESAS_MAINTAB":
-		FCC_SRC = "https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS_MAINTAB.JS";
+		FCC_SRC = "https://raw.githack.com/ferac171/test/master/FCC_EMPRESAS_MAINTAB.JS";
         break;	
 		
 	case "EMPRESAS":
-		FCC_SRC = "https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.JS";
+		FCC_SRC = "https://raw.githack.com/ferac171/test/master/FCC_EMPRESAS.JS";
         break;		
 		
 	case "CONTACTOS":
-		FCC_SRC = "https://rawcdn.githack.com/ferac171/test/master/FCC_CONTACTOS.JS";
+		FCC_SRC = "https://raw.githack.com/ferac171/test/master/FCC_CONTACTOS.JS";
         break;			
 		
     default:
