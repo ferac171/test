@@ -4,8 +4,8 @@
 //#
 //# FORMULARIO		: TODOS
 //# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION			: 2.0
-//# FECHA			: 31.07.18
+//# VERSION		: 2.0
+//# FECHA		: 31.07.18
 //#	
 //#############################################################################################################################
 
@@ -18,7 +18,8 @@ FALSE: SE EJECUTA SCRIPT LOCAL (IIS)
 https://cdn.rawgit.com/ferac171/test/master/FCC_CONTROL_JS_SERVIDOR.JS
 
 */
-const FCC_CONTROL_VERSION = 2;
+
+const FCC_CONTROL_VERSION = 2.1;
 
 console.log("LOCALHOST : CONTROLADOR DE JS LOCAL DETECTADO: V"+FCC_CONTROL_VERSION);
 
