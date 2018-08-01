@@ -137,8 +137,6 @@ window.onload=function() {
 	
 if (FCC_HABILITA_JS){	
 		
-	console.log("# CONTROL FCC_EMPRESAS V:"+FCC_VERSION);
-		
 // DECALRACION DE VARIABLES
 //---------------------------------------------------------------------------------------------------------
 		
