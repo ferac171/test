@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = 12.5;
+	const FCC_EMPRESAS_VERSION = 12.6;
 	const FCC_EMPRESAS_FECHA = "31/07/18";
 //#
 //#############################################################################################################################
@@ -289,7 +289,7 @@ if (FCC_HABILITA_JS){
 	
 	
 
-// ANALIZA EL VALOR DEL tb_001 
+// ANALIZA EL VALOR DEL TB_001 
 	
 	if (REG_UL_TB_001.value=="N"){
 		UL_TB_001.checked=false;
@@ -297,11 +297,12 @@ if (FCC_HABILITA_JS){
 		UL_TB_001.checked=true;
 	}
 	
+	
 	var WIDGET_UL_TB_001= FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_registration__REG_UL_TB_001_");
 	
 	WIDGET_UL_TB_001.style.display = "none";
 
-	
+	UL_COPIA_DIRECCION();
 
 // ACCIONES SI JS ESTA DESHABILITADO
 //---------------------------------------------------------------------------------------------------------
@@ -418,9 +419,9 @@ var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_e
 
     }
 
-	
-	FCC_WIDGET_VAR2.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;	
 	UL_CONTACTO_DIR_COMPLETA.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;	
+
+	FCC_WIDGET_VAR2.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;	
 
 }
 
