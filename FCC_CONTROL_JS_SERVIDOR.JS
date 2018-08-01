@@ -4,25 +4,20 @@
 //#
 //# FORMULARIO		: TODOS
 //# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION		: 2.2
-//# FECHA		: 31.07.18
+//#	
+	const FCC_CONTROL_JS_SERVIDOR_VERSION = 2.3;
+	const FCC_CONTROL_JS_SERVIDOR_FECHA = "31/07/18";
 //#	
 //#############################################################################################################################
 
-/*
-EL USO DE CONSTANTES DETERMINA SI UNA INTEGRACION EN ESPECIFICO ESTARA BAJO EJECUCION LOCAL O DE SERVIDOR
+console.log("SERVER : CONTROLADOR DE JS SERVIDOR DETECTADO: V"+FCC_CONTROL_JS_SERVIDOR_VERSION + " al: "+FCC_CONTROL_JS_SERVIDOR_FECHA);
 
-TRUE : SE EJECUTA SCRIPT DEL SERVIDOR
-FALSE: SE EJECUTA SCRIPT LOCAL (IIS)
+/*############################################################################################################################
 
+FUNCION		:	FCC_SERVIDOR_SRC
+DETALLE		:	En relación al código de esquema envía la SRC para dicho formulario
 
-https://raw.githack.com/ferac171/test/master/FCC_CONTROL_JS_SERVIDOR.JS
-
-*/
-const FCC_CONTROL_VERSION = 2.2;
-
-console.log("LOCALHOST : CONTROLADOR DE JS LOCAL DETECTADO: V"+FCC_CONTROL_VERSION);
-
+##############################################################################################################################*/
 
 function FCC_SERVIDOR_SRC(FCC_ESQUEMA){
 	
@@ -44,6 +39,7 @@ switch(FCC_ESQUEMA) {
 		
 	case "EMPRESAS":
 		FCC_SRC = "https://raw.githack.com/ferac171/test/master/FCC_EMPRESAS.JS";
+		//https://rawgit.com/ferac171/test/master/FCC_EMPRESAS.JS
         break;		
 		
 	case "CONTACTOS":
@@ -57,3 +53,12 @@ return FCC_SRC;
 
 	
 }	
+
+
+
+
+
+
+
+
+
