@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = 12.6;
+	const FCC_EMPRESAS_VERSION = 12.7;
 	const FCC_EMPRESAS_FECHA = "31/07/18";
 //#
 //#############################################################################################################################
@@ -118,11 +118,6 @@ if (x.length>0){
 	console.log("NO ES MANAGER : PASO 1");
 }
 
-
-
-
-
-
 /*############################################################################################################################
 
 FUNCION		:	ONLOAD
@@ -165,8 +160,6 @@ if (FCC_HABILITA_JS){
 	FCC_RAZON= FCC_GET_ELEMENTO_BYID("autocomplete_input_dnf_class_values_employer_registration__employer_id_");
 	FCC_CONTROL_0= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__UL_CONTROL_0_");
 	FCC_CONTROL_00= FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_registration__UL_CONTROL_0_");
-		
-	
 	
 // IDENTIFICACION DE MODO DEBUG
 //---------------------------------------------------------------------------------------------------------	
@@ -398,7 +391,7 @@ var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_e
 		//muestra campos dirección de contacto
 		
 		TEMP_CONTACTO_DIR1.style.display = "";
-		TEMP_CONTACTO_DIR2.style.display = "";
+		//TEMP_CONTACTO_DIR2.style.display = "";
 		//TEMP_CONTACTO_DIR3.style.display = "";
 		TEMP_CONTACTO_DIR4.style.display = "";
 		
