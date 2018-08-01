@@ -10,30 +10,13 @@
 //# CAMPO			: FCC_COD_1 (JS FUNCIONES)
 //#
 //# NAME			: FCC_EMPRESAS.JS
-//# GITHUB			: 
-//#
-//# INVOCACION LOCALHOST
-//# => http://localhost/DEV/01_REGISTRO_EMPRESAS/01_DEV/FCC_EMPRESAS.js
-//#
-//# INVOCACION GITHUB
-//# 
-//# https://raw.githubusercontent.com/ferac171/test/master/FCC_EMPRESAS.JS
-//# https://raw.githack.com/ferac171/test/master/FCC_EMPRESAS.JS
 //#	
-//# 
+	const FCC_EMPRESAS_VERSION = 12.5;
+	const FCC_EMPRESAS_FECHA = "31/07/18";
 //#
 //#############################################################################################################################
 
-/*############################################################################################################################
-
-CONSTANTES DE VERSION
-
-##############################################################################################################################*/
-
-const FCC_VERSION = 12.1;
-const FCC_VERSION_FECHA= "31/07/18";
-
-console.log("# CONTROL FCC_EMPRESAS V:"+FCC_VERSION + " al "+FCC_VERSION_FECHA);
+console.log("# CONTROL FCC_EMPRESAS V:"+FCC_EMPRESAS_VERSION + " al "+FCC_EMPRESAS_FECHA);
 
 /*############################################################################################################################
 
@@ -77,12 +60,6 @@ var UL_CONTACTO_DIR_CIUDAD = document.getElementById("dnf_class_values_employer_
 var UL_CONTACTO_DIR_CALLE = document.getElementById("dnf_class_values_employer_registration__direccion_del_contacto_");
 
 var UL_CONTACTO_DIR_COMPLETA = document.getElementById("dnf_class_values_employer_registration__direccin_de_su_oficina_");
-
-
-
-
-
-
 
 
 
@@ -325,11 +302,7 @@ if (FCC_HABILITA_JS){
 	var WIDGET_UL_TB_001= FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_registration__REG_UL_TB_001_");
 	
 	WIDGET_UL_TB_001.style.display = "none";
-	
-	//UL_COPIA_DIRECCION();
-	
-	
-	
+
 	
 
 // ACCIONES SI JS ESTA DESHABILITADO
