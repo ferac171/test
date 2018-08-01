@@ -5,7 +5,7 @@
 //# FORMULARIO		: TODOS
 //# DESARROLLADO	: FERNANDO CALDERON 
 //#	
-	const FCC_CONTROL_JS_SERVIDOR_VERSION = 2.3;
+	const FCC_CONTROL_JS_SERVIDOR_VERSION = 2.4;
 	const FCC_CONTROL_JS_SERVIDOR_FECHA = "31/07/18";
 //#	
 //#############################################################################################################################
