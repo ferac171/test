@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = 12.10;
+	const FCC_EMPRESAS_VERSION = 12.11;
 	const FCC_EMPRESAS_FECHA = "03/08/18";
 //#
 //#############################################################################################################################
@@ -25,7 +25,7 @@ DECLARACION DE CONSTANTES
 ##############################################################################################################################*/
 
 const FCC_HABILITA_JS = true;
-const FCC_DEBUG = 	false;
+const FCC_DEBUG = 	true;
 const FCC_AJUSTE_PICKLIST = 1;
 
 /*############################################################################################################################
@@ -545,12 +545,9 @@ function UL_CHANGE_CONTROL(){
 			case 1:	break;
 			
 			case 2:	
-					try{
-					console.log("==> OCUALTANDO DPTOS > ");	
-					
+					try{					
 					TEMP_EMPRESAS_DPTO.style.display = "none";
 					TEMP_CONTACTO_DPTO.style.display = "none";
-
 					}catch(err){}
 					
 					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
@@ -558,6 +555,11 @@ function UL_CHANGE_CONTROL(){
 					break;
 					
 			case 3:	
+					try{					
+					TEMP_EMPRESAS_DPTO.style.display = "none";
+					TEMP_CONTACTO_DPTO.style.display = "none";
+					}catch(err){}
+					
 					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
 					}catch(err){}
 					UL_RUC.value="";
@@ -567,6 +569,11 @@ function UL_CHANGE_CONTROL(){
 					break;
 
 			case 4:	
+					try{					
+					TEMP_EMPRESAS_DPTO.style.display = "none";
+					TEMP_CONTACTO_DPTO.style.display = "none";
+					}catch(err){}
+					
 					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
 					}catch(err){}					UL_RUC.value="";
 					UL_RAZON.value="";
