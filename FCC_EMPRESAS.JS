@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = "12.12x";
+	const FCC_EMPRESAS_VERSION = "12.13";
 	const FCC_EMPRESAS_FECHA = "03/08/18";
 //#
 //#############################################################################################################################
@@ -72,11 +72,14 @@ LISTENERS
 
 ##############################################################################################################################*/
 
-
+try{
 UL_CONTACTO_DIR_COMPLETA.readOnly=true;
+}catch(err){}
 
 // TOGGLE BUTTONS
+try{
 UL_TB_001.addEventListener("change", UL_COPIA_DIRECCION);
+}catch(err){}
 
 // COMPONE FIRMA
 try{
