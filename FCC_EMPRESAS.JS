@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = "12.11x";
+	const FCC_EMPRESAS_VERSION = "12.12x";
 	const FCC_EMPRESAS_FECHA = "03/08/18";
 //#
 //#############################################################################################################################
@@ -55,6 +55,9 @@ var UL_CONTACTO_APELLIDO_1 = document.getElementById("dnf_class_values_employer_
 var UL_CONTACTO_APELLIDO_2 = document.getElementById("dnf_class_values_employer_registration__apellido_materno_");
 
 var UL_CONTACTO_DIR_PAIS = document.getElementById("dnf_class_values_employer_registration__especifique_el_pas_");
+
+var UL_CONTACTO_DIR_PAIS2 = document.getElementById("dnf_class_values_employer_registration__especifique_el_pas__widget");
+
 var UL_CONTACTO_DIR_DEPARTAMENTO = document.getElementById("hp_input2");
 var UL_CONTACTO_DIR_CIUDAD = document.getElementById("dnf_class_values_employer_registration__ciudad_contacto_");
 var UL_CONTACTO_DIR_CALLE = document.getElementById("dnf_class_values_employer_registration__direccion_del_contacto_");
@@ -86,6 +89,7 @@ try{
 //COMPONE DIRECCION
 try{
 	UL_CONTACTO_DIR_PAIS.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_CONTACTO_DIR_PAIS2.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_DEPARTAMENTO.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_CIUDAD.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_CALLE.addEventListener("change", UL_COPIA_DIRECCION);
@@ -373,6 +377,8 @@ var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_e
 
 	if (UL_TB_001.checked==true) {
 		
+		
+	console.log("=> COPIA DIRECCION TRUE");		
 		//oculta campos dirección de contacto
 		TEMP_CONTACTO_DIR1.style.display = "none";
 		TEMP_CONTACTO_DIR2.style.display = "none";
@@ -394,8 +400,10 @@ var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_e
 			
 
     } else {
-		
-		//muestra campos dirección de contacto
+	
+	console.log("=> COPIA DIRECCION FALSE");			
+
+	//muestra campos dirección de contacto
 		
 		TEMP_CONTACTO_DIR1.style.display = "";
 		//TEMP_CONTACTO_DIR2.style.display = "";
@@ -406,6 +414,17 @@ var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_e
 		
 		TEMP_PAIS = UL_CONTACTO_DIR_PAIS.options[UL_CONTACTO_DIR_PAIS.selectedIndex].innerHTML + " / ";
 		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
+
+		
+		if(TEMP_PAIS=="PERU - 208 / ") {
+	
+			TEMP_CONTACTO_DIR2.style.display = "";
+			TEMP_CONTACTO_DIR3.style.display = "none";
+		}else{
+		
+			TEMP_CONTACTO_DIR2.style.display = "none";
+			TEMP_CONTACTO_DIR3.style.display = "";
+		}
 
 		try{
 			if(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML!=""){
