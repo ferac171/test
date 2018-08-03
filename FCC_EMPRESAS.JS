@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = 12.9;
+	const FCC_EMPRESAS_VERSION = 12.10;
 	const FCC_EMPRESAS_FECHA = "03/08/18";
 //#
 //#############################################################################################################################
@@ -25,7 +25,7 @@ DECLARACION DE CONSTANTES
 ##############################################################################################################################*/
 
 const FCC_HABILITA_JS = true;
-const FCC_DEBUG = true;
+const FCC_DEBUG = 	false;
 const FCC_AJUSTE_PICKLIST = 1;
 
 /*############################################################################################################################
@@ -530,8 +530,8 @@ function UL_CHANGE_CONTROL(){
 	}catch(err){}
 	
 	try{
-	TEMP_EMPRESAS_DPTO.display = "";
-	TEMP_CONTACTO_DPTO.display = "";
+	TEMP_EMPRESAS_DPTO.style.display = "";
+	TEMP_CONTACTO_DPTO.style.display = "";
 	}catch(err){}
 	
 	console.log("==> EJECUTANDO FUNCIONES ADICIONALES DE ESTADO > "+ CODIGO_FUNCION);
