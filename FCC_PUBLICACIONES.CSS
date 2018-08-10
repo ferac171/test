@@ -153,8 +153,9 @@ STYLOS PARA AYUDAS
 }
 .FCC_HELP:hover{
   opacity: 1;
-  -moz-opacity: 1;
-  filter:alpha (opacity=100);
+  background-color:#aaaaaa;	
+  -moz-opacity: 0;
+  filter:alpha (opacity=50);
 }
 .FCC_HELP a{
   color:#fff;
