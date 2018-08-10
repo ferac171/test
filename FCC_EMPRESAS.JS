@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = "12.15x";
+	const FCC_EMPRESAS_VERSION = "12.16";
 	const FCC_EMPRESAS_FECHA = "10/08/18";
 //#
 //#############################################################################################################################
@@ -603,11 +603,17 @@ var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_e
 		TEMP_PAIS = UL_CONTACTO_DIR_PAIS.options[UL_CONTACTO_DIR_PAIS.selectedIndex].innerHTML + " / ";
 		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
 
+
+		if(TEMP_PAIS==" / ") {
+	
+			TEMP_CONTACTO_DIR2.style.display = "none";
+			TEMP_CONTACTO_DIR3.style.display = "none";
 		
-		if(TEMP_PAIS=="PERU - 208 / ") {
+		}else if(TEMP_PAIS=="PERU - 208 / ") {
 	
 			TEMP_CONTACTO_DIR2.style.display = "";
 			TEMP_CONTACTO_DIR3.style.display = "none";
+		
 		}else{
 		
 			TEMP_CONTACTO_DIR2.style.display = "none";
