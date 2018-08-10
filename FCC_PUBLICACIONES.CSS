@@ -143,4 +143,40 @@ STYLOS PARA GESTION VENTANAS MODAL
 FIN STYLOS PARA GESTION VENTANAS MODAL
 */
 
+/*
+STYLOS PARA AYUDAS
+*/
 
+
+.FCC_HELP{
+  width:30px;
+  height:30px;
+  margin: 5px;
+  background-color:#FF8000;
+  border-radius: 15px;
+  letter-spacing:-3px;
+  line-height:30px;
+  text-align: center;
+  
+  font-weight: bold;
+  font-size:15px;
+  float:left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.FCC_HELP:hover{
+  opacity: 0.50;
+  -moz-opacity: .50;
+  filter:alpha (opacity=50);
+}
+.FCC_HELP a{
+  color:#fff;
+  text-decoration:none;
+  padding:5px 5px 5px 0;
+}
+
+
+/*
+FIN STYLOS PARA AYUDAS
+*/
+
+*/
