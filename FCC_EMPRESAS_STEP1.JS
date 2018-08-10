@@ -5,10 +5,7 @@
 //# AMBITO: EMPRESA Y CONTACTO
 //#
 //# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION			: 11.0
-//# FECHA			: 25.07.18
 //#
-//# FORMULARIO		: Employer MAIN TAB
 //# CAMPO			: PERFIL DEL EMPLEADOR
 //#
 //# NAME			: FCC_EMPRESAS_MAINTAB.JS
@@ -22,9 +19,14 @@
 //# 
 //#	RAWGIT
 //# https://rawgit.com/ferac171/test/master/FCC_EMPRESAS_STEP1.JS
+//# 
+//#	
+	const FCC_EMPRESAS_SETP1_VERSION = "1.1";
+	const FCC_EMPRESAS_SETP1_FECHA = "10/08/18";
 //#
 //#############################################################################################################################
 
+console.log("# CONTROL FCC_EMPRESAS_SEPT1 V:"+FCC_EMPRESAS_SETP1_VERSION + " al "+FCC_EMPRESAS_SETP1_FECHA);
 
 /*############################################################################################################################
 
@@ -32,12 +34,8 @@ DECLARACION DE CONSTANTES   // MAINTAB - STEP1
 
 ##############################################################################################################################*/
 
-const FCC_VERSION = 1;
 const FCC_HABILITA_JS = true;
 const FCC_DEBUG = false;
-const FCC_AJUSTE_PICKLIST = 1;
-
-
 
 /*############################################################################################################################
 
@@ -52,9 +50,7 @@ window.onload=function() {
 //---------------------------------------------------------------------------------------------------------
 	
 if (FCC_HABILITA_JS){	
-		
-	console.log("# CONTROL FCC_EMPRESAS_MAINTAB V:"+FCC_VERSION);
-		
+				
 // DECALRACION DE VARIABLES
 //---------------------------------------------------------------------------------------------------------
 		
@@ -77,16 +73,19 @@ if (FCC_HABILITA_JS){
 // INICIALIZANDO VARIABLES
 //---------------------------------------------------------------------------------------------------------	
 		
-				console.log("ENTRADA: MANAGER EMPLOYER STEP1");
-				UL_FORM_ESTADO =1;
+	UL_FORM_ESTADO =1;
 				
-				var WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_profile__address_");
-				WIDGET_DIRECCION.style.display = "none";
-				UL_COMPONE_DIRECCION_RAZONSOCIAL();
+	var WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_profile__address_");
+	WIDGET_DIRECCION.style.display = "none";
+	UL_COMPONE_DIRECCION_RAZONSOCIAL();
 			
-
-
 }
+
+
+else{
+	console.log("# CONTROL DE JS DESHABILITADO PARA FCC_EMPRESAS_SEPT1 V:"+FCC_EMPRESAS_SETP1_VERSION + " al "+FCC_EMPRESAS_SETP1_FECHA);
+}
+
 }
 
 /*############################################################################################################################
@@ -101,15 +100,15 @@ DETALLE		:	Estrucrura el copiado de campos de direccion en el widget de direccio
 function UL_COMPONE_DIRECCION_RAZONSOCIAL(){
 	
 
-	var FCC_WIDGET_VAR2;
-	var FCC_WIDGET_VAR3;
+	var FCC_WIDGET_DIR_DIRECCION;
+	var FCC_WIDGET_DIR_POSTAL;
+	
 	var FCC_DIRECCION;
 	var FCC_RAZON_SOCIAL;
 	
 	//document.getElementById
-	FCC_WIDGET_VAR2= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_profile__address__0__street_");
-	FCC_WIDGET_VAR3= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_profile__address__0__zip_");
-
+	FCC_WIDGET_DIR_DIRECCION= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[employer_profile][address][0][street]");
+	FCC_WIDGET_DIR_POSTAL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[employer_profile][address][0][zip]");
 	
 	FCC_DIRECCION= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_profile__travel_2_");
 	FCC_RAZON_SOCIAL= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_profile__offices_");
@@ -117,8 +116,12 @@ function UL_COMPONE_DIRECCION_RAZONSOCIAL(){
 	
 	
 	//alert(temp_Pais+temp_departamento+temp_direccion);		
-	FCC_DIRECCION.value = FCC_WIDGET_VAR2.value;	
-	FCC_RAZON_SOCIAL.value = FCC_WIDGET_VAR3.value;	
+	FCC_DIRECCION.value = FCC_WIDGET_DIR_DIRECCION.value;	
+	FCC_RAZON_SOCIAL.value = FCC_WIDGET_DIR_POSTAL.value;	
+	
+	
+	FCC_DIRECCION.rows="1";
+	FCC_RAZON_SOCIAL.rows="1";
 	
 	FCC_DIRECCION.readOnly = true;
 	FCC_RAZON_SOCIAL.readOnly = true;
@@ -145,6 +148,20 @@ var FCC_VALOR="";
 		
 return FCC_VALOR;
 }
+
+function FCC_GET_ELEMENTO_BYNAME(FCC_ID){
+	
+var FCC_VALOR="";
+
+		try {
+			FCC_VALOR=document.getElementsByName(FCC_ID)[0];
+		}catch(err) {
+			FCC_VALOR="FCC";
+		}
+		
+return FCC_VALOR;
+}
+
 
 
 
