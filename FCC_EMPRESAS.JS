@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = "12.14";
+	const FCC_EMPRESAS_VERSION = "12.15x";
 	const FCC_EMPRESAS_FECHA = "10/08/18";
 //#
 //#############################################################################################################################
@@ -243,15 +243,18 @@ if (FCC_HABILITA_JS){
 					//CASO	: CREACION DE CONTACTO
 					
 					if(UL_RUC!="" && UL_MARCA!=""){ 
+						
 						console.log("### EMPRESA EXISTE");
 						
 						TEMP_RUC_CONTROL= UL_MARCA.search(UL_RUC);
 						
 						//CASO	: EMPRESA YA EXISTE	
-						if (FCC_VALIDA_ERRORES(UL_ERRORES,"TaxID") || TEMP_RUC_CONTROL>=0){
-							console.log("LA EMPRESA QUE INTENTA MODIFICAR YA ESTA REGISTRADA");
-							UL_FORM_ESTADO = 6;
+						if (FCC_VALIDA_ERRORES(UL_ERRORES,"TaxID" || (FCC_CONTROL_0== "5" && TEMP_RUC_CONTROL>=0) )){
 							
+							console.log("=> LA EMPRESA QUE INTENTA MODIFICAR YA ESTA REGISTRADA");
+							
+							UL_FORM_ESTADO = 6;
+								
 						//CASO	: EMPRESA NUEVA	
 						}else {
 							console.log("=> REGISTRO DE NUEVO CONTACTO");
