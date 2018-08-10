@@ -147,20 +147,19 @@ FIN STYLOS PARA GESTION VENTANAS MODAL
 STYLOS PARA AYUDAS
 */
 
-
 .FCC_HELP{
   width:30px;
   height:30px;
   margin: 5px;
+  padding: 5px;
   background-color:#FF8000;
-  border-radius: 15px;
-  letter-spacing:-3px;
+  border-radius: 50px;
+  letter-spacing:0px;
   line-height:30px;
-  text-align: center;
   
+  text-align: center;
   font-weight: bold;
-  font-size:15px;
-  float:left;
+  font-size:15px; 
   font-family: Arial, Helvetica, sans-serif;
 }
 .FCC_HELP:hover{
@@ -173,7 +172,6 @@ STYLOS PARA AYUDAS
   text-decoration:none;
   padding:5px 5px 5px 0;
 }
-
 
 /*
 FIN STYLOS PARA AYUDAS
