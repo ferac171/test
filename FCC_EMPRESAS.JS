@@ -11,7 +11,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = "12.16";
+	const FCC_EMPRESAS_VERSION = "12.17";
 	const FCC_EMPRESAS_FECHA = "10/08/18";
 //#
 //#############################################################################################################################
@@ -891,7 +891,33 @@ function UL_BTN_ENVIA_NOTIFICACION_CLIC(){
 }
 	
 
+	
+/*###################################################################################################################
 
+FUNCIONES	:	GESTION DE MODALES
+DETALLE		:	Funciones para gestionar los eventos de las ventanas modales 
+
+#####################################################################################################################*/		
+	
+	
+	var modal;
+    
+	function MODAL_OPEN(ID_MODAL){				
+		modal = document.getElementById(ID_MODAL); 
+        modal.style.display = "block";
+	} 					 
+	
+	function MODAL_CLOSE(){		
+		modal.style.display = "none";
+	}		 
+	
+	window.onclick = function(event) {	
+	
+		if (event.target == modal){								
+			modal.style.display = "none";} 
+	} 
+		
+	
 /*###################################################################################################################
 
 FIN
