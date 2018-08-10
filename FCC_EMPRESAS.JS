@@ -11,8 +11,8 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = "12.13";
-	const FCC_EMPRESAS_FECHA = "03/08/18";
+	const FCC_EMPRESAS_VERSION = "12.14";
+	const FCC_EMPRESAS_FECHA = "10/08/18";
 //#
 //#############################################################################################################################
 
@@ -157,6 +157,7 @@ if (FCC_HABILITA_JS){
 	var FCC_MARCA;
 	var FCC_CONTROL_0;
 	var FCC_CONTROL_00;
+	var TEMP_RUC_CONTROL;
 	
 
 // INICIALIZANDO VARIABLES
@@ -183,7 +184,7 @@ if (FCC_HABILITA_JS){
 		}
 	}catch(err){}		
 
-// IDENTIFICACION DE FORMAULARIO DE CARGA
+// EVALUANDO ESTADO PARA DEFINIR COMPORTAMIENTO DEL FOMRULARIO
 //---------------------------------------------------------------------------------------------------------	
 		
 	switch (UL_FORMULARIO_ORIGEN) {
@@ -243,11 +244,13 @@ if (FCC_HABILITA_JS){
 					
 					if(UL_RUC!="" && UL_MARCA!=""){ 
 						console.log("### EMPRESA EXISTE");
-									
+						
+						TEMP_RUC_CONTROL= UL_MARCA.search(UL_RUC);
+						
 						//CASO	: EMPRESA YA EXISTE	
-						if (FCC_VALIDA_ERRORES(UL_ERRORES,"TaxID")){
+						if (FCC_VALIDA_ERRORES(UL_ERRORES,"TaxID") || TEMP_RUC_CONTROL>=0){
 							console.log("LA EMPRESA QUE INTENTA MODIFICAR YA ESTA REGISTRADA");
-							UL_FORM_ESTADO = 7;
+							UL_FORM_ESTADO = 6;
 							
 						//CASO	: EMPRESA NUEVA	
 						}else {
@@ -291,9 +294,9 @@ if (FCC_HABILITA_JS){
 				break;
 	}
 
-	//HABILITANDO FORMULARIO-----------------------------------------------------------------------------------
+//HABILITANDO COMPORTAMIENTO DEL FORMULARIO-----------------------------------------------------------------------------------
+
 	if (UL_FORM_ESTADO!="") UL_HABILITA_GENERAL(UL_FORM_ESTADO);
-	
 	
 
 // ANALIZA EL VALOR DEL TB_001 
@@ -319,6 +322,185 @@ if (FCC_HABILITA_JS){
 }
 
 }
+
+
+
+
+/*############################################################################################################################
+
+FUNCION		:	UL_HABILITA_GENERAL
+DETALLE		:	Establece un estado en la variable de control "UL_SEC_CONTROL_0"  para que se validen las 
+				dependencias registradas en el formulario de la aplicación
+				
+				Se cuenta con una variable de "ajustePickList" ya que los picklist en la aplicación no 
+				trabajan por descripción sino por un código de indice.
+
+##############################################################################################################################*/
+			
+function UL_HABILITA_GENERAL(CODIGO_FUNCION){ 
+
+// VALIDACION DE EJECUCION DE JS
+//---------------------------------------------------------------------------------------------------------
+	
+if (FCC_HABILITA_JS){	
+
+// INICIALIZANDO VARIABLES
+//---------------------------------------------------------------------------------------------------------	
+
+	var ajustePickList =1;
+	var VALOR_FUNCION=CODIGO_FUNCION + FCC_AJUSTE_PICKLIST;
+		
+// ACTUALIZANDO EL ESTADO DEL CAMPO DE CONTROL
+//---------------------------------------------------------------------------------------------------------	
+
+	console.log("=> ESTADO > " + CODIGO_FUNCION);
+	document.getElementById('dnf_class_values_employer_registration__UL_CONTROL_0_').value=VALOR_FUNCION; 
+	document.getElementById('dnf_class_values_employer_registration__UL_CONTROL_0_').onchange();
+
+// ACTUALIZANDO ACCIONES ADICIONALES
+//---------------------------------------------------------------------------------------------------------	
+	UL_CHANGE_CONTROL();
+	
+}else{
+	
+	console.log("JS DESHABILITADO");	
+}
+}
+	
+/*###################################################################################################################
+
+FUNCION		:	UL_CHANGE_CONTROL
+DETALLE		:	Establece el comportamiento particular de cada estado del "UL_SEC_CONTROL_0"
+
+#####################################################################################################################*/
+
+function UL_CHANGE_CONTROL(){
+		
+// INICIALIZANDO VARIABLES
+//---------------------------------------------------------------------------------------------------------	
+
+	var ajustePickList =1;
+	FCC_CONTROL_0= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__UL_CONTROL_0_");
+	var CODIGO_FUNCION = FCC_GET_NUMERO_ELEMENTO(FCC_CONTROL_0);
+	var UL_RUC = document.getElementById('dnf_class_values_employer_registration__tax_id_');
+	var UL_RAZON = document.getElementById('autocomplete_input_dnf_class_values_employer_registration__employer_id_');
+	var TEMP_EMPRESAS_DPTO= document.getElementById('so_formfield_dnf_class_values_employer_registration__departamentoprovinciadistrito_');
+	var TEMP_CONTACTO_DPTO= document.getElementById('so_formfield_dnf_class_values_employer_registration__departamentoprovinciadistrito2_');
+	
+	var TEMP_SECCION_TL_TB_001= document.getElementById('so_formfield_dnf_class_values_employer_registration__oficina_se_encuentra_en_el_dom_');
+	
+	
+// MENSAJE DE CONTROL
+//---------------------------------------------------------------------------------------------------------	
+	
+	console.log("==> EJECUTANDO FUNCIONES ADICIONALES DE ESTADO > "+ CODIGO_FUNCION);	
+	
+// EJECUCION DEL PROCESO
+//---------------------------------------------------------------------------------------------------------		
+	
+	try{
+	UL_RUC.readOnly = false;
+	UL_RAZON.readOnly = false;
+	}catch(err){}
+	
+	try{
+	TEMP_EMPRESAS_DPTO.style.display = "";
+	TEMP_CONTACTO_DPTO.style.display = "";
+	}catch(err){}
+	
+	
+	/*ajustes adicionales según estado enviado*/
+	switch(CODIGO_FUNCION) {
+			case 0: 
+					UL_CARGA_NOTIFICACION();
+					break;
+					
+			case 1:	
+			
+			break;
+			
+			case 2:	
+					try{					
+						TEMP_EMPRESAS_DPTO.style.display = "none";
+						TEMP_CONTACTO_DPTO.style.display = "none";
+					}catch(err){}
+					
+					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
+					}catch(err){}
+					break;
+					
+			case 3:	
+					try{					
+						TEMP_EMPRESAS_DPTO.style.display = "none";
+						TEMP_CONTACTO_DPTO.style.display = "none";
+					}catch(err){}
+					
+					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
+					}catch(err){}
+					UL_RUC.value="";
+					UL_RAZON.value="";
+					console.log("=> BORRA RUC");
+					console.log("=> BORRA RAZON");
+					break;
+
+			case 4:	//
+					try{					
+						TEMP_EMPRESAS_DPTO.style.display = "none";
+						TEMP_CONTACTO_DPTO.style.display = "none";
+					}catch(err){}
+					
+					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
+					}catch(err){}	
+					UL_RUC.value="";
+					UL_RAZON.value="";
+					console.log("=> BORRA RUC");
+					console.log("=> BORRA RAZON");
+					break;
+					
+			case 5:	//REGISTRO DE NUEVA EMPRESA + CONTACTO 
+					try{					
+						TEMP_EMPRESAS_DPTO.style.display = "none";
+						TEMP_CONTACTO_DPTO.style.display = "none";
+					}catch(err){}
+			
+					UL_RUC.readOnly = true ;
+					console.log("=> BLOQUEA RUC");
+					break;
+					
+			case 6:	//ERROR: CREACION/MODIFICACION DE UNA EMPRESA QUE YA EXISTE
+			
+					try{					
+							TEMP_EMPRESAS_DPTO.style.display = "none";
+							TEMP_CONTACTO_DPTO.style.display = "none";
+							}catch(err){}
+					break;
+			
+			
+			case 7:	//REGISTRO DE NUEVO CONTACTO
+					
+					try{					
+						TEMP_EMPRESAS_DPTO.style.display = "none";
+						TEMP_CONTACTO_DPTO.style.display = "none";
+						TEMP_SECCION_TL_TB_001.style.display = "none";
+					}catch(err){}
+			
+					REG_UL_TB_001.value="N";
+					
+					UL_RUC.readOnly = true;
+					UL_RAZON.readOnly = true;
+					console.log("=> BLOQUEA RUC");
+					console.log("=> BLOQUEA RAZON");
+					console.log("=> COPIA DIRECCION: " + REG_UL_TB_001.value);
+					break;
+					
+			case 8:	break;
+			case 9:	break;
+			case 10:break;
+			default:
+		}
+
+}	
+
 
 
 /*############################################################################################################################
@@ -482,148 +664,6 @@ function UL_COMPONE_FIRMA(){
 		
 	FCC_FIRMA.value	= FCC_NOMBRE + " " + FCC_APP_1 + " " + FCC_APP_2;
 }	
-
-
-
-/*############################################################################################################################
-
-FUNCION		:	UL_HABILITA_GENERAL
-DETALLE		:	Establece un estado en la variable de control "UL_SEC_CONTROL_0"  para que se validen las 
-				dependencias registradas en el formulario de la aplicación
-				
-				Se cuenta con una variable de "ajustePickList" ya que los picklist en la aplicación no 
-				trabajan por descripción sino por un código de indice.
-
-##############################################################################################################################*/
-			
-function UL_HABILITA_GENERAL(CODIGO_FUNCION){ 
-
-// VALIDACION DE EJECUCION DE JS
-//---------------------------------------------------------------------------------------------------------
-	
-if (FCC_HABILITA_JS){	
-
-// INICIALIZANDO VARIABLES
-//---------------------------------------------------------------------------------------------------------	
-
-	var ajustePickList =1;
-	var VALOR_FUNCION=CODIGO_FUNCION + FCC_AJUSTE_PICKLIST;
-		
-// ACTUALIZANDO EL ESTADO DEL CAMPO DE CONTROL
-//---------------------------------------------------------------------------------------------------------	
-
-	console.log("=> ESTADO > " + CODIGO_FUNCION);
-	document.getElementById('dnf_class_values_employer_registration__UL_CONTROL_0_').value=VALOR_FUNCION; 
-	document.getElementById('dnf_class_values_employer_registration__UL_CONTROL_0_').onchange();
-
-// ACTUALIZANDO ACCIONES ADICIONALES
-//---------------------------------------------------------------------------------------------------------	
-	UL_CHANGE_CONTROL();
-	
-}else{
-	
-	console.log("JS DESHABILITADO");	
-}
-}
-	
-/*###################################################################################################################
-
-FUNCION		:	UL_CHANGE_CONTROL
-DETALLE		:	Establece el comportamiento particular de cada estado del "UL_SEC_CONTROL_0"
-
-#####################################################################################################################*/
-
-function UL_CHANGE_CONTROL(){
-		
-// INICIALIZANDO VARIABLES
-//---------------------------------------------------------------------------------------------------------	
-
-	var ajustePickList =1;
-	FCC_CONTROL_0= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__UL_CONTROL_0_");
-	var CODIGO_FUNCION = FCC_GET_NUMERO_ELEMENTO(FCC_CONTROL_0);
-	var UL_RUC = document.getElementById('dnf_class_values_employer_registration__tax_id_');
-	var UL_RAZON = document.getElementById('autocomplete_input_dnf_class_values_employer_registration__employer_id_');
-	var TEMP_EMPRESAS_DPTO= document.getElementById('so_formfield_dnf_class_values_employer_registration__departamentoprovinciadistrito_');
-	var TEMP_CONTACTO_DPTO= document.getElementById('so_formfield_dnf_class_values_employer_registration__departamentoprovinciadistrito2_');
-	
-	try{
-	UL_RUC.readOnly = false;
-	UL_RAZON.readOnly = false;
-	}catch(err){}
-	
-	try{
-	TEMP_EMPRESAS_DPTO.style.display = "";
-	TEMP_CONTACTO_DPTO.style.display = "";
-	}catch(err){}
-	
-	console.log("==> EJECUTANDO FUNCIONES ADICIONALES DE ESTADO > "+ CODIGO_FUNCION);
-	
-	/*ajustes adicionales según estado enviado*/
-	switch(CODIGO_FUNCION) {
-			case 0: 
-					UL_CARGA_NOTIFICACION();
-					break;
-					
-			case 1:	break;
-			
-			case 2:	
-					try{					
-					TEMP_EMPRESAS_DPTO.style.display = "none";
-					TEMP_CONTACTO_DPTO.style.display = "none";
-					}catch(err){}
-					
-					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
-					}catch(err){}
-					break;
-					
-			case 3:	
-					try{					
-					TEMP_EMPRESAS_DPTO.style.display = "none";
-					TEMP_CONTACTO_DPTO.style.display = "none";
-					}catch(err){}
-					
-					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
-					}catch(err){}
-					UL_RUC.value="";
-					UL_RAZON.value="";
-					console.log("=> BORRA RUC");
-					console.log("=> BORRA RAZON");
-					break;
-
-			case 4:	
-					try{					
-					TEMP_EMPRESAS_DPTO.style.display = "none";
-					TEMP_CONTACTO_DPTO.style.display = "none";
-					}catch(err){}
-					
-					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
-					}catch(err){}					UL_RUC.value="";
-					UL_RAZON.value="";
-					console.log("=> BORRA RUC");
-					console.log("=> BORRA RAZON");
-					break;
-					
-			case 5:	UL_RUC.readOnly = true ;
-					console.log("=> BLOQUEA RUC");
-					break;
-					
-			case 6:	break;
-			
-			case 7:	UL_RUC.readOnly = true;
-					UL_RAZON.readOnly = true;
-					console.log("=> BLOQUEA RUC");
-					console.log("=> BLOQUEA RAZON");
-					break;
-					
-			case 8:	break;
-			case 9:	break;
-			case 10:break;
-			default:
-		}
-
-}	
-
-
 
 
 
