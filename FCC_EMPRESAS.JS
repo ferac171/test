@@ -2,7 +2,8 @@
 //#############################################################################################################################
 //#
 //#	MODELO PARA MODIFICAR INTERFACE DE REGISTRO DE EMPRESA Y CONTACTO
-//# AMBITO: EMPRESA Y CONTACTO
+//# AMBITO: REGISTRO DE EMPRESAS Y CONTACTOS
+//#			APROBACION DE EMPRESAS Y CONTACTOS PIRNCIPAL 
 //#
 //# DESARROLLADO	: FERNANDO CALDERON 
 //#
@@ -11,8 +12,8 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = "12.17";
-	const FCC_EMPRESAS_FECHA = "10/08/18";
+	const FCC_EMPRESAS_VERSION = "12.18";
+	const FCC_EMPRESAS_FECHA = "13/08/18";
 //#
 //#############################################################################################################################
 
@@ -25,7 +26,7 @@ DECLARACION DE CONSTANTES
 ##############################################################################################################################*/
 
 const FCC_HABILITA_JS = true;
-const FCC_DEBUG = 	false;
+const FCC_DEBUG = 	true;
 const FCC_AJUSTE_PICKLIST = 1;
 
 /*############################################################################################################################
@@ -39,12 +40,10 @@ VARIABLES GENERALES
 var UL_TB_001 = document.getElementById("UL_TB_001");
 var REG_UL_TB_001=document.getElementById("dnf_class_values_employer_registration__REG_UL_TB_001_");
 
-
 //ELEMENTOS DE EMPRESA
 
-
 var UL_EMPRESA_DIR_PAIS = document.getElementById("dnf_class_values_employer_registration__pas_");
-var UL_EMPRESA_DIR_DEPARTAMENTO = document.getElementById("hp_input1");
+var UL_EMPRESA_DIR_DEPARTAMENTO = document.getElementById("hp_input3");
 var UL_EMPRESA_DIR_CIUDAD = document.getElementById("dnf_class_values_employer_registration__ciudad_");
 var UL_EMPRESA_DIR_CALLE = document.getElementById("dnf_class_values_employer_registration__direccin_de_la_empresa_");
 
@@ -54,11 +53,13 @@ var UL_CONTACTO_NOMBRE =document.getElementById("dnf_class_values_employer_regis
 var UL_CONTACTO_APELLIDO_1 = document.getElementById("dnf_class_values_employer_registration__contact_lname_");
 var UL_CONTACTO_APELLIDO_2 = document.getElementById("dnf_class_values_employer_registration__apellido_materno_");
 
-var UL_CONTACTO_DIR_PAIS = document.getElementById("dnf_class_values_employer_registration__especifique_el_pas_");
 
+var UL_CONTACTO_DIR_PAIS = document.getElementById("dnf_class_values_employer_registration__especifique_el_pas_");
 var UL_CONTACTO_DIR_PAIS2 = document.getElementById("dnf_class_values_employer_registration__especifique_el_pas__widget");
 
-var UL_CONTACTO_DIR_DEPARTAMENTO = document.getElementById("hp_input2");
+var UL_CONTACTO_DIR_DEPARTAMENTO = document.getElementById("hp_input4");
+var UL_CONTACTO_DIR_DEPARTAMENTO2 = document.getElementById("dnf_class_values_employer_registration__direccion_del_contacto__widget");
+
 var UL_CONTACTO_DIR_CIUDAD = document.getElementById("dnf_class_values_employer_registration__ciudad_contacto_");
 var UL_CONTACTO_DIR_CALLE = document.getElementById("dnf_class_values_employer_registration__direccion_del_contacto_");
 
@@ -94,6 +95,7 @@ try{
 	UL_CONTACTO_DIR_PAIS.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_PAIS2.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_DEPARTAMENTO.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_CONTACTO_DIR_DEPARTAMENTO2.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_CIUDAD.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_CALLE.addEventListener("change", UL_COPIA_DIRECCION);
 }catch(err){}
@@ -248,28 +250,37 @@ if (FCC_HABILITA_JS){
 						
 						TEMP_RUC_CONTROL= UL_MARCA.search(UL_RUC);
 						
+						console.log(TEMP_RUC_CONTROL);
+						console.log(UL_CONTROL_0);
+						
 						//CASO	: EMPRESA YA EXISTE	
-						if (FCC_VALIDA_ERRORES(UL_ERRORES,"TaxID" || (FCC_CONTROL_0== "5" && TEMP_RUC_CONTROL>=0) )){
-							
+						if (FCC_VALIDA_ERRORES(UL_ERRORES,"TaxID")){
+	
 							console.log("=> LA EMPRESA QUE INTENTA MODIFICAR YA ESTA REGISTRADA");
-							
 							UL_FORM_ESTADO = 6;
-								
-						//CASO	: EMPRESA NUEVA	
+						
 						}else {
-							console.log("=> REGISTRO DE NUEVO CONTACTO");
 							
-							try{
-								tt = document.getElementsByClassName("alert error");
-								tt[0].style.display = 'block';
-								console.log("=> MOSTRANDO ERRORES");
-								console.log(UL_ERRORES);
-							}catch(err){}
+							//CASO	: EMPRESA NUEVA	
+							if(UL_CONTROL_0== "5" && TEMP_RUC_CONTROL>=0){
+								console.log("=> LA MARCA COMERCIAL YA SE ENCUENTRA REGISTRADA");
+								UL_FORM_ESTADO = 6;
 							
-							if(UL_RAZON==""){UL_FORM_ESTADO = 7;}
-							
+							}else {
+								console.log("=> REGISTRO DE NUEVO CONTACTO");
+								
+								try{
+									tt = document.getElementsByClassName("alert error");
+									tt[0].style.display = 'block';
+									console.log("=> MOSTRANDO ERRORES");
+									console.log(UL_ERRORES);
+								}catch(err){}
+								
+								if(UL_RAZON==""){UL_FORM_ESTADO = 7;}
+								
 
-						}				
+							}
+						}	
 					}
 				}		
 				break;
@@ -430,6 +441,7 @@ function UL_CHANGE_CONTROL(){
 					
 					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
 					}catch(err){}
+					
 					break;
 					
 			case 3:	
@@ -440,10 +452,14 @@ function UL_CHANGE_CONTROL(){
 					
 					try{document.getElementsByClassName("alert error")[0].style.display = 'none';
 					}catch(err){}
+					
 					UL_RUC.value="";
 					UL_RAZON.value="";
+					UL_MARCA.value="";
+					
 					console.log("=> BORRA RUC");
 					console.log("=> BORRA RAZON");
+					console.log("=> BORRA MARCA");
 					break;
 
 			case 4:	//
@@ -456,8 +472,11 @@ function UL_CHANGE_CONTROL(){
 					}catch(err){}	
 					UL_RUC.value="";
 					UL_RAZON.value="";
+					UL_MARCA.value="";
+					
 					console.log("=> BORRA RUC");
 					console.log("=> BORRA RAZON");
+					console.log("=> BORRA MARCA");
 					break;
 					
 			case 5:	//REGISTRO DE NUEVA EMPRESA + CONTACTO 
@@ -551,33 +570,52 @@ DETALLE		:	Estructura el copiado de campos de dirección de empresa en contacto 
 
 function UL_COPIA_DIRECCION(){
 
-var TEMP_PAIS;
-var TEMP_DEPARTAMENTO;
-var TEMP_CALLE;
+//Declaración de variables
 
-var	FCC_WIDGET_VAR2= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__street_");
+	//variables temporales
+	var TEMP_PAIS;
+	var TEMP_DEPARTAMENTO;
+	var TEMP_CALLE;
 
-var TEMP_CONTACTO_DIR1 =document.getElementById("so_formfield_dnf_class_values_employer_registration__especifique_el_pas_");
-var TEMP_CONTACTO_DIR2 =document.getElementById("so_formfield_dnf_class_values_employer_registration__departamentoprovinciadistrito2_");
-var TEMP_CONTACTO_DIR3 =document.getElementById("so_formfield_dnf_class_values_employer_registration__ciudad_contacto_");
-var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_employer_registration__direccion_del_contacto_");
+	//variables de las secciones de los campos de dirección del contacto
+	
+	var SECC_CONTACTO_DIR1;
+	var SECC_CONTACTO_DIR2;
+	var SECC_CONTACTO_DIR3;
+	var SECC_CONTACTO_DIR4;
 
+	//variables del formulario	
+	var	FCC_WIDGET_VAR2;
+	
+	
+	
+//Inicialización de variables
 
+ FCC_WIDGET_VAR2= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__street_");
+
+ SECC_CONTACTO_DIR1 =document.getElementById("so_formfield_dnf_class_values_employer_registration__especifique_el_pas_");
+ SECC_CONTACTO_DIR2 =document.getElementById("so_formfield_dnf_class_values_employer_registration__departamentoprovinciadistrito2_");
+ SECC_CONTACTO_DIR3 =document.getElementById("so_formfield_dnf_class_values_employer_registration__ciudad_contacto_");
+ SECC_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_employer_registration__direccion_del_contacto_");
+
+ 
+//Definición del proceso
+ 
 	if (UL_TB_001.checked==true) {
-		
-		
-	console.log("=> COPIA DIRECCION TRUE");		
-		//oculta campos dirección de contacto
-		TEMP_CONTACTO_DIR1.style.display = "none";
-		TEMP_CONTACTO_DIR2.style.display = "none";
-		TEMP_CONTACTO_DIR3.style.display = "none";
-		TEMP_CONTACTO_DIR4.style.display = "none";
-		
+			
+	console.log("=> COPIA DIRECCION TRUE : COPIA DIRECCION DE LA EMPRESA");	
+	
 		REG_UL_TB_001.value="Y";
-		
+	
+		//Oculta campos dirección del contacto
+		SECC_CONTACTO_DIR1.style.display = "none";
+		SECC_CONTACTO_DIR2.style.display = "none";
+		SECC_CONTACTO_DIR3.style.display = "none";
+		SECC_CONTACTO_DIR4.style.display = "none";
+	
+		//Composición de variables temporales de dirección
 		TEMP_PAIS = UL_EMPRESA_DIR_PAIS.options[UL_EMPRESA_DIR_PAIS.selectedIndex].innerHTML + " / ";
-		TEMP_CALLE=UL_EMPRESA_DIR_CALLE.value;
-
+		
 		try{
 			if(UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML!=""){
 				TEMP_DEPARTAMENTO=UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML + " / ";
@@ -585,40 +623,25 @@ var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_e
 				TEMP_DEPARTAMENTO=UL_EMPRESA_DIR_CIUDAD.value + " / ";
 			}
 		}catch(err){}
+		
+		TEMP_CALLE=UL_EMPRESA_DIR_CALLE.value;
 			
 
-    } else {
+    } else if (UL_TB_001.checked==false) {
 	
-	console.log("=> COPIA DIRECCION FALSE");			
+	console.log("=> COPIA DIRECCION FALSE : INGRESO DIRECCION DE CONTACTO");			
 
-	//muestra campos dirección de contacto
-		
-		TEMP_CONTACTO_DIR1.style.display = "";
-		//TEMP_CONTACTO_DIR2.style.display = "";
-		//TEMP_CONTACTO_DIR3.style.display = "";
-		TEMP_CONTACTO_DIR4.style.display = "";
-		
 		REG_UL_TB_001.value="N";
 		
+		//Muestra campos dirección del contacto
+		SECC_CONTACTO_DIR1.style.display = "";
+		//SECC_CONTACTO_DIR2.style.display = "";
+		//SECC_CONTACTO_DIR2.style.display = "";
+		SECC_CONTACTO_DIR4.style.display = "";
+		
+		
+		//Composición de variables temporales de dirección		
 		TEMP_PAIS = UL_CONTACTO_DIR_PAIS.options[UL_CONTACTO_DIR_PAIS.selectedIndex].innerHTML + " / ";
-		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
-
-
-		if(TEMP_PAIS==" / ") {
-	
-			TEMP_CONTACTO_DIR2.style.display = "none";
-			TEMP_CONTACTO_DIR3.style.display = "none";
-		
-		}else if(TEMP_PAIS=="PERU - 208 / ") {
-	
-			TEMP_CONTACTO_DIR2.style.display = "";
-			TEMP_CONTACTO_DIR3.style.display = "none";
-		
-		}else{
-		
-			TEMP_CONTACTO_DIR2.style.display = "none";
-			TEMP_CONTACTO_DIR3.style.display = "";
-		}
 
 		try{
 			if(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML!=""){
@@ -627,13 +650,26 @@ var TEMP_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_e
 				TEMP_DEPARTAMENTO=UL_CONTACTO_DIR_CIUDAD.value + " / ";
 			}
 		}catch(err){}
-	
-		//UL_CONTACTO_DIR_PAIS.selectedIndex=0;
+		
+		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
+			
+		//Comportamiento por Pais
+		if(TEMP_PAIS==" / ") {
+			SECC_CONTACTO_DIR2.style.display = "none";
+			SECC_CONTACTO_DIR3.style.display = "none";
+		}else if(TEMP_PAIS=="PERU - 208 / ") {
+			SECC_CONTACTO_DIR2.style.display = "";
+			SECC_CONTACTO_DIR3.style.display = "none";
+		}else{
+			SECC_CONTACTO_DIR2.style.display = "none";
+			SECC_CONTACTO_DIR3.style.display = "";
+		}
 
     }
+	
+	//Componiendo la direccion completa
 
 	UL_CONTACTO_DIR_COMPLETA.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;	
-
 	FCC_WIDGET_VAR2.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;	
 
 }
