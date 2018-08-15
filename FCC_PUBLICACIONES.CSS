@@ -117,7 +117,7 @@ STYLOS PARA GESTION VENTANAS MODAL
 	 
 .FCC_MODAL_close {				 
 	color: #aaaaaa;				 
-	float: right;				 
+	float: left;				 
 	font-size: 20px;				 
 	font-weight: bold; 
 	}		
