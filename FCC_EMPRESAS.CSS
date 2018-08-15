@@ -44,6 +44,11 @@
 	display: none;		
 }				
 
+.input-text{
+text-transform: uppercase;	
+	
+}
+
 .estilo-menu { 	
 	style-type: none; 	
 	padding: 10px 0px 5px 10px; 	
