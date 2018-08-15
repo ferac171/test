@@ -109,16 +109,22 @@ STYLOS PARA GESTION VENTANAS MODAL
 	border: 1px solid #888;				 
 	width: 60%;				 
 	color: black;				 
-	line-height: 20px;						
-	font-size: 12px;						
+	line-height: 30px;						
+	font-size: 16px;						
 	text-align: justify;	
 	font-weight: normal;	
 	}	
 	 
 .FCC_MODAL_close {				 
-	color: #aaaaaa;				 
-	float: left;				 
-	font-size: 20px;				 
+	color: #ff6d22;				 
+	float: right;	
+	
+	padding-top: 0px;
+    padding-right: 10px;
+    padding-bottom: 80px;
+    padding-left: 20px;
+    	
+	font-size: 28px;				 
 	font-weight: bold; 
 	}		
 
