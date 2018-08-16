@@ -434,7 +434,7 @@ function UL_CHANGE_CONTROL(){
 	
 	/*ajustes adicionales según estado enviado*/
 	switch(CODIGO_FUNCION) {
-			case 0: //VISTA MANAGER PASO 1
+			case 0: //VISTA MANAGER PASO 3
 					UL_COPIA_DIRECCION();
 					UL_CARGA_NOTIFICACION();
 					
@@ -445,14 +445,8 @@ function UL_CHANGE_CONTROL(){
 					
 					break;
 					
-			case 1:	//VISTA MANAGER PASO 3
-					UL_COPIA_DIRECCION();
-					
-					try{					
-						TEMP_EMPRESAS_DPTO.style.display = "";
-						TEMP_CONTACTO_DPTO.style.display = "";
-					}catch(err){}
-					
+			case 1:	//VISTA MANAGER PASO 1
+					UL_COPIA_DIRECCION();			
 					
 					break;
 			
