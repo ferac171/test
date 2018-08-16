@@ -1,16 +1,18 @@
 
 /*##############################################################################################################################*/
 
-// MODELO PARA MODIFICAR INTERFACE DE REGISTRO DE EMPRESA Y CONTACTO
-// AMBITO: REGISTRO DE EMPRESAS Y CONTACTOS
-// APROBACION DE EMPRESAS Y CONTACTOS PIRNCIPAL 
+// MODELO PARA MODIFICAR INTERFACE DE:
+// 		 	REGISTRO DE EMPRESAS Y CONTACTOS
+//			REGISTRO DE CONTACTOS 
+//			APROBACION DE EMPRESAS DESDE MANAGER
+//			ACTUALIZACION DE PERFIL DE EMPRESAS DESDE MANAGER
 
 // FORMULARIO		: Employer Registration Form
 // CAMPO			: FCC_COD_1 (JS FUNCIONES)
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.02";
+	const FCC_EMPRESAS_VERSION = "13.02x";
 	const FCC_EMPRESAS_FECHA = "16/08/18";
 	
 /*############################################################################################################################*/
@@ -45,6 +47,7 @@ const ID_FCC_CONTROL_0= "dnf_class_values_employer_registration__UL_CONTROL_0_";
 const ID_FCC_CONTROL_00= "so_formfield_dnf_class_values_employer_registration__UL_CONTROL_0_";
 
 const CLASS_ERRORES ="alert error";
+
 
 //ELEMENTOS DE EMPRESA
 //------------------------------------------------------------------------------------------------------------------
@@ -99,7 +102,7 @@ const ID_CONTACTO_DIR_COMPLETA = "dnf_class_values_employer_registration__direcc
 //ELEMENTOS DE CONTROL
 
 var UL_TB_001 = document.getElementById(ID_TB_001);
-var REG_UL_TB_001=document.getElementById(ID_REG_TB_001);
+var REG_UL_TB_001 = document.getElementById(ID_REG_TB_001);
 
 //ELEMENTOS DE EMPRESA
 
@@ -110,7 +113,7 @@ var UL_EMPRESA_DIR_CALLE = document.getElementById(ID_EMPRESA_DIR_CALLE);
 
 //ELEMENTOS DE CONTACTO
 
-var UL_CONTACTO_NOMBRE =document.getElementById(ID_CONTACTO_NOMBRE);
+var UL_CONTACTO_NOMBRE = document.getElementById(ID_CONTACTO_NOMBRE);
 var UL_CONTACTO_APELLIDO_1 = document.getElementById(ID_CONTACTO_APELLIDO_1);
 var UL_CONTACTO_APELLIDO_2 = document.getElementById(ID_CONTACTO_APELLIDO_2);
 
@@ -133,7 +136,7 @@ var UL_CONTACTO_DIR_COMPLETA = document.getElementById(ID_CONTACTO_DIR_COMPLETA)
 
 
 try{
-	UL_CONTACTO_DIR_COMPLETA.readOnly=true;
+	UL_CONTACTO_DIR_COMPLETA.readOnly = true;
 }catch(err){}
 
 // TOGGLE BUTTONS
@@ -166,6 +169,7 @@ try{
 
 var x = document.getElementsByClassName("hi first");
 var PASO1 = false;
+
 if (x.length>0){
 	console.log("MANAGER : PASO 1");	
 	PASO1=true;
@@ -175,11 +179,9 @@ if (x.length>0){
 	document.getElementById(ID_S03_CONTROL_02).style.display = 'none';
 	document.getElementById(ID_NOT_MARCA).style.display = 'none';
 	document.getElementById(ID_S04_CONTROL_01).style.display = 'none';
-	document.getElementById("so_formfield_dnf_class_values_employer_registration__REG_UL_TB_001_").style.display = 'none';
-	document.getElementById("so_formfield_dnf_class_values_employer_registration__oficina_se_encuentra_en_el_dom_").style.display = 'none';
-	
-}else{
-	//document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_CONTROL_0_").style.display = 'none';
+	document.getElementById(ID_SECC_TB_001).style.display = 'none';
+	document.getElementById(ID_WIDGET_TB_001).style.display = 'none';	
+
 }
 
 
@@ -219,7 +221,6 @@ if (FCC_HABILITA_JS && !PASO1){
 	var TEMP_RUC_CONTROL;
 	var TEMP_ERRORES_TAX;
 	
-
 // INICIALIZANDO VARIABLES
 //---------------------------------------------------------------------------------------------------------	
 		
@@ -362,10 +363,10 @@ if (FCC_HABILITA_JS && !PASO1){
 
 // FUNCION		:	UL_HABILITA_GENERAL
 // DETALLE		:	Establece un estado en la variable de control "UL_SEC_CONTROL_0"  para que se validen las 
-//				dependencias registradas en el formulario de la aplicación
+//					dependencias registradas en el formulario de la aplicación
 				
-//				Se cuenta con una variable de "ajustePickList" ya que los picklist en la aplicación no 
-//				trabajan por descripción sino por un código de indice.
+//					Se cuenta con una variable de "ajustePickList" ya que los picklist en la aplicación no 
+//					trabajan por descripción sino por un código de indice.
 
 /*##############################################################################################################################*/
 			
@@ -379,7 +380,6 @@ function UL_HABILITA_GENERAL(CODIGO_FUNCION){
 //---------------------------------------------------------------------------------------------------------	
 
 	console.log("=> ESTADO > " + CODIGO_FUNCION);
-	console.log("=> VALOR_FUNCION > " + VALOR_FUNCION);
 	//Simular click en el control
 	
 	document.getElementById('dnf_class_values_employer_registration__UL_CONTROL_0_').value=VALOR_FUNCION; 
@@ -392,12 +392,12 @@ function UL_HABILITA_GENERAL(CODIGO_FUNCION){
 
 }
 	
-/*###################################################################################################################
+/*###################################################################################################################*/
 
-FUNCION		:	UL_CHANGE_CONTROL
-DETALLE		:	Establece el comportamiento particular de cada estado del "UL_SEC_CONTROL_0"
+// FUNCION		:	UL_CHANGE_CONTROL
+// DETALLE		:	Establece el comportamiento particular de cada estado del "UL_SEC_CONTROL_0"
 
-#####################################################################################################################*/
+/*###################################################################################################################*/
 
 function UL_CHANGE_CONTROL(){
 		
@@ -465,7 +465,12 @@ function UL_CHANGE_CONTROL(){
 					break;
 					
 			case 1:	//VISTA MANAGER PASO 1
-					UL_COPIA_DIRECCION();			
+					UL_COPIA_DIRECCION();		
+					
+					try{					
+						TEMP_EMPRESAS_DPTO.style.display = "";
+						TEMP_CONTACTO_DPTO.style.display = "";
+					}catch(err){}
 					
 					break;
 			
