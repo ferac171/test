@@ -86,7 +86,7 @@ FIN STYLOS PARA GESTION DE TOOGLE BUTTON
 STYLOS PARA GESTION VENTANAS MODAL
 */
 
-FCC_MODAL{				 
+.FCC_MODAL{				 
 	display: none;						
 	position: fixed;						
 	z-index: 1;						
