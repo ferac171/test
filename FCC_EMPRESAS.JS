@@ -12,7 +12,7 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.02x";
+	const FCC_EMPRESAS_VERSION = "13.03";
 	const FCC_EMPRESAS_FECHA = "16/08/18";
 	
 /*############################################################################################################################*/
@@ -334,7 +334,6 @@ if (FCC_HABILITA_JS && !PASO1){
 				try{WIDGET_DIRECCION.style.display = "none";}catch(err){}
 				try{UL_CONTACTO_DIR_COMPLETA.readOnly=true;}catch(err){}
 				
-				//UL_COMPONE_DIRECCION1();
 				UL_COMPONE_RAZON_SOCIAL();
 
 				break;		
@@ -401,8 +400,8 @@ function UL_HABILITA_GENERAL(CODIGO_FUNCION){
 
 function UL_CHANGE_CONTROL(){
 		
-// INICIALIZANDO VARIABLES
-//---------------------------------------------------------------------------------------------------------	
+	// INICIALIZANDO VARIABLES
+	//---------------------------------------------------------------------------------------------------------	
 
 	var CODIGO_FUNCION = FCC_GET_NUMERO_ELEMENTO(ID_FCC_CONTROL_0);
 	
@@ -419,14 +418,14 @@ function UL_CHANGE_CONTROL(){
 	var TEMP_ERRORES="";
 	try{TEMP_ERRORES = document.getElementsByClassName(CLASS_ERRORES)[0];}catch(err){}
 	
-// MENSAJE DE CONTROL
-//---------------------------------------------------------------------------------------------------------	
-	
+	// MENSAJE DE CONTROL
+	//---------------------------------------------------------------------------------------------------------	
+		
 	console.log("==> EJECUTANDO FUNCIONES ADICIONALES DE ESTADO > "+ CODIGO_FUNCION);	
 	
-// EJECUCION DEL PROCESO
-//---------------------------------------------------------------------------------------------------------		
-	
+	// EJECUCION DEL PROCESO
+	//---------------------------------------------------------------------------------------------------------		
+		
 	try{
 		UL_RUC.readOnly = false;
 		UL_RAZON.readOnly = false;
@@ -438,8 +437,8 @@ function UL_CHANGE_CONTROL(){
 	}catch(err){}
 	
 	
-// ANALIZA EL VALOR DEL TB_001 
-	
+	// ANALIZA EL VALOR DEL TB_001 
+		
 	
 	if (REG_UL_TB_001.value=="N"){
 		UL_TB_001.checked=false;
@@ -451,26 +450,27 @@ function UL_CHANGE_CONTROL(){
 	TEMP_WIDGET_TB_001.style.display = "none";
 
 	
-	/*ajustes adicionales según estado enviado*/
+	// AJUSTES ADICIONALES SEGUN EL ESTADO ENVIADO 
+	
 	switch(CODIGO_FUNCION) {
 			case 0: //VISTA MANAGER PASO 3
-					UL_COPIA_DIRECCION();
-					UL_CARGA_NOTIFICACION();
-					
 					try{					
 						TEMP_EMPRESAS_DPTO.style.display = "";
 						TEMP_CONTACTO_DPTO.style.display = "";
 					}catch(err){}
 					
+					UL_COPIA_DIRECCION();
+					UL_CARGA_NOTIFICACION();
+
 					break;
 					
 			case 1:	//VISTA MANAGER PASO 1
-					UL_COPIA_DIRECCION();		
-					
 					try{					
 						TEMP_EMPRESAS_DPTO.style.display = "";
 						TEMP_CONTACTO_DPTO.style.display = "";
 					}catch(err){}
+					
+					UL_COPIA_DIRECCION();		
 					
 					break;
 			
@@ -596,6 +596,8 @@ function UL_COPIA_DIRECCION(){
  SECC_CONTACTO_DIR4 =document.getElementById("so_formfield_dnf_class_values_employer_registration__direccion_del_contacto_");
 
  
+
+ 
 //Definición del proceso
  
 	if (UL_TB_001.checked==true) {
@@ -651,6 +653,7 @@ function UL_COPIA_DIRECCION(){
 		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
 			
 		//Comportamiento por Pais
+		console.log("pasi =>" + TEMP_PAIS);
 		if(TEMP_PAIS==" / ") {
 			SECC_CONTACTO_DIR2.style.display = "none";
 			SECC_CONTACTO_DIR3.style.display = "none";
