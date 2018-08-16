@@ -10,7 +10,7 @@
 //#
 //# NAME			: FCC_EMPRESAS.JS
 //#	
-	const FCC_EMPRESAS_VERSION = "12.19";
+	const FCC_EMPRESAS_VERSION = "12.20";
 	const FCC_EMPRESAS_FECHA = "15/08/18";
 //#
 //#############################################################################################################################
