@@ -12,7 +12,7 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.03";
+	const FCC_EMPRESAS_VERSION = "13.03x";
 	const FCC_EMPRESAS_FECHA = "16/08/18";
 	
 /*############################################################################################################################*/
@@ -182,6 +182,7 @@ if (x.length>0){
 	document.getElementById(ID_SECC_TB_001).style.display = 'none';
 	document.getElementById(ID_WIDGET_TB_001).style.display = 'none';	
 
+	document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';		
 }
 
 
