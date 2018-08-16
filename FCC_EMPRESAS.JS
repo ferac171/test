@@ -1,39 +1,41 @@
 
-//#############################################################################################################################
-//#
-//#	MODELO PARA MODIFICAR INTERFACE DE REGISTRO DE EMPRESA Y CONTACTO
-//# AMBITO: REGISTRO DE EMPRESAS Y CONTACTOS
-//#			APROBACION DE EMPRESAS Y CONTACTOS PIRNCIPAL 
-//#
-//# FORMULARIO		: Employer Registration Form
-//# CAMPO			: FCC_COD_1 (JS FUNCIONES)
-//#
-//# NAME			: FCC_EMPRESAS.JS
-//#	
-	const FCC_EMPRESAS_VERSION = "12.20";
-	const FCC_EMPRESAS_FECHA = "15/08/18";
-//#
-//#############################################################################################################################
+/*##############################################################################################################################*/
+
+// MODELO PARA MODIFICAR INTERFACE DE REGISTRO DE EMPRESA Y CONTACTO
+// AMBITO: REGISTRO DE EMPRESAS Y CONTACTOS
+// APROBACION DE EMPRESAS Y CONTACTOS PIRNCIPAL 
+
+// FORMULARIO		: Employer Registration Form
+// CAMPO			: FCC_COD_1 (JS FUNCIONES)
+
+// NAME			: FCC_EMPRESAS.JS
+	
+	const FCC_EMPRESAS_VERSION = "13.01";
+	const FCC_EMPRESAS_FECHA = "16/08/18";
+	
+/*############################################################################################################################*/
 
 console.log("# CONTROL FCC_EMPRESAS V:"+FCC_EMPRESAS_VERSION + " al "+FCC_EMPRESAS_FECHA);
 
-/*############################################################################################################################
+/*############################################################################################################################*/
 
-DECLARACION DE CONSTANTES
+// DECLARACION DE CONSTANTES
 
-##############################################################################################################################*/
+/*##############################################################################################################################*/
 
 const FCC_HABILITA_JS = true;
 const FCC_DEBUG = 	false;
 const FCC_AJUSTE_PICKLIST = 1;
 
-/*############################################################################################################################
+/*############################################################################################################################*/
 
-DECLARACION DE NOMBRE O ID ELEMENTOS DE FORMULARIO 
+// DECLARACION DE NOMBRE O ID ELEMENTOS DE FORMULARIO 
 
-##############################################################################################################################*/
+/*##############################################################################################################################*/
 
 //ELEMENTOS DE CONTROL 
+//------------------------------------------------------------------------------------------------------------------
+
 const ID_TB_001 = "UL_TB_001";
 const ID_REG_TB_001 = "dnf_class_values_employer_registration__REG_UL_TB_001_";
 const ID_SECC_TB_001= "so_formfield_dnf_class_values_employer_registration__oficina_se_encuentra_en_el_dom_"
@@ -45,6 +47,8 @@ const ID_FCC_CONTROL_00= "so_formfield_dnf_class_values_employer_registration__U
 const CLASS_ERRORES ="alert error";
 
 //ELEMENTOS DE EMPRESA
+//------------------------------------------------------------------------------------------------------------------
+
 const ID_EMPRESA_DIR_PAIS = "dnf_class_values_employer_registration__pas_"; 
 const ID_EMPRESA_DIR_DEPARTAMENTO = "hp_input3"; 
 const ID_EMPRESA_DIR_CIUDAD = "dnf_class_values_employer_registration__ciudad_"; 
@@ -58,6 +62,7 @@ const ID_EMPRESA_SECC_DIR_DEPARTAMENTO= "so_formfield_dnf_class_values_employer_
 const ID_CONTACTO_SECC_DIR_DEPARTAMENTO="so_formfield_dnf_class_values_employer_registration__departamentoprovinciadistrito2_";
 	
 //ELEMENTOS DE NOTIFICACION
+//------------------------------------------------------------------------------------------------------------------
 
 const ID_SECC_MENSAJES= "_fieldgroup_UL_SEC_01_MENSAJES";
 const ID_SECC_INF_COMERCIAL= "_fieldgroup_UL_SEC_04_INF_COMERCIAL";
@@ -68,6 +73,7 @@ const ID_NOT_MARCA= "so_formfield_dnf_class_values_employer_registration__UL_NOT
 const ID_S04_CONTROL_01= "so_formfield_dnf_class_values_employer_registration__UL_SEC_04_CONTROL_01_";
 
 //ELEMENTOS DE CONTACTO
+//------------------------------------------------------------------------------------------------------------------
 
 const ID_CONTACTO_NOMBRE ="dnf_class_values_employer_registration__contact_fname_";
 const ID_CONTACTO_APELLIDO_1 = "dnf_class_values_employer_registration__contact_lname_";
@@ -84,11 +90,11 @@ const ID_CONTACTO_DIR_CALLE = "dnf_class_values_employer_registration__direccion
 
 const ID_CONTACTO_DIR_COMPLETA = "dnf_class_values_employer_registration__direccin_de_su_oficina_";
 
-/*############################################################################################################################
+/*##############################################################################################################################*/
 
-VARIABLES GENERALES
+// VARIABLES GENERALES
 
-##############################################################################################################################*/
+/*##############################################################################################################################*/
 
 //ELEMENTOS DE CONTROL
 
@@ -119,11 +125,12 @@ var UL_CONTACTO_DIR_CALLE = document.getElementById(ID_CONTACTO_DIR_CALLE);
 
 var UL_CONTACTO_DIR_COMPLETA = document.getElementById(ID_CONTACTO_DIR_COMPLETA);
 
-/*############################################################################################################################
+/*##############################################################################################################################*/
 
-LISTENERS
+// LISTENERS
 
-##############################################################################################################################*/
+/*##############################################################################################################################*/
+
 
 try{
 	UL_CONTACTO_DIR_COMPLETA.readOnly=true;
@@ -217,6 +224,7 @@ if (FCC_HABILITA_JS){
 	
 // IDENTIFICACION DE MODO DEBUG
 //---------------------------------------------------------------------------------------------------------	
+
 	try{	
 		if (FCC_DEBUG){
 			console.log("# MODO: DEBUG");
@@ -315,7 +323,8 @@ if (FCC_HABILITA_JS){
 				
 				//OCUALTANDO WIDGET DIRECCION NATIVO
 				var WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("emp_reg_form_fieldgroup_FCC_WIDGET_DIRECCION");
-				WIDGET_DIRECCION.style.display = "none";
+				
+				try{WIDGET_DIRECCION.style.display = "none";}catch(err){}
 				UL_CONTACTO_DIR_COMPLETA.readOnly=true;
 				
 				//UL_COMPONE_DIRECCION1();
