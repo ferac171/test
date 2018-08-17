@@ -12,7 +12,11 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
+<<<<<<< HEAD
 	const FCC_EMPRESAS_VERSION = "13.03XX";
+=======
+	const FCC_EMPRESAS_VERSION = "13.03";
+>>>>>>> e8124d59d38a6d5ff803a6c7a4af1b9a769febff
 	const FCC_EMPRESAS_FECHA = "16/08/18";
 	
 /*############################################################################################################################*/
@@ -181,6 +185,7 @@ if (x.length>0){
 	document.getElementById(ID_S04_CONTROL_01).style.display = 'none';
 	document.getElementById(ID_SECC_TB_001).style.display = 'none';
 	document.getElementById(ID_WIDGET_TB_001).style.display = 'none';	
+<<<<<<< HEAD
 	
 	var temp = document.getElementById("dnf_class_values_employer_registration__REG_UL_TB_001__widget").innerHTML
 	
@@ -194,6 +199,9 @@ if (x.length>0){
 	}
 
 			
+=======
+
+>>>>>>> e8124d59d38a6d5ff803a6c7a4af1b9a769febff
 }
 
 
@@ -473,7 +481,11 @@ function UL_CHANGE_CONTROL(){
 					
 					UL_COPIA_DIRECCION();
 					UL_CARGA_NOTIFICACION();
+<<<<<<< HEAD
 					
+=======
+
+>>>>>>> e8124d59d38a6d5ff803a6c7a4af1b9a769febff
 					break;
 					
 			case 1:	//VISTA MANAGER PASO 1
