@@ -12,7 +12,7 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.03x";
+	const FCC_EMPRESAS_VERSION = "13.04";
 	const FCC_EMPRESAS_FECHA = "16/08/18";
 	
 /*############################################################################################################################*/
@@ -166,24 +166,38 @@ try{
 // CARGA INICIAL
 
 /*##############################################################################################################################*/
-
-var x = document.getElementsByClassName("hi first");
 var PASO1 = false;
 
-if (x.length>0){
-	console.log("MANAGER : PASO 1");	
-	PASO1=true;
-	document.getElementById(ID_SECC_MENSAJES).style.display = 'none';
-	document.getElementById(ID_SECC_INF_COMERCIAL).style.display = 'none';
-	document.getElementById(ID_S03_CONTROL_01).style.display = 'none';
-	document.getElementById(ID_S03_CONTROL_02).style.display = 'none';
-	document.getElementById(ID_NOT_MARCA).style.display = 'none';
-	document.getElementById(ID_S04_CONTROL_01).style.display = 'none';
-	document.getElementById(ID_SECC_TB_001).style.display = 'none';
-	document.getElementById(ID_WIDGET_TB_001).style.display = 'none';	
+try{
+	var x = document.getElementsByClassName("hi first");
+	if (x.length>0){
+		console.log("MANAGER : PASO 1");	
+		PASO1=true;
+		document.getElementById(ID_SECC_MENSAJES).style.display = 'none';
+		document.getElementById(ID_SECC_INF_COMERCIAL).style.display = 'none';
+		document.getElementById(ID_S03_CONTROL_01).style.display = 'none';
+		document.getElementById(ID_S03_CONTROL_02).style.display = 'none';
+		document.getElementById(ID_NOT_MARCA).style.display = 'none';
+		document.getElementById(ID_S04_CONTROL_01).style.display = 'none';
+		document.getElementById(ID_SECC_TB_001).style.display = 'none';
+		document.getElementById(ID_WIDGET_TB_001).style.display = 'none';	
+		
+		var temp = document.getElementById("dnf_class_values_employer_registration__REG_UL_TB_001__widget").innerHTML
+		
+		if (temp.search("N")>=0){
+			
+			try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';
+			}catch(err){}
+		}else{
+			try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
+			}catch(err){}
+		}
+	}
+}catch(err){}
 
-	document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';		
-}
+
+	
+
 
 
 /*##############################################################################################################################*/
@@ -236,7 +250,7 @@ if (FCC_HABILITA_JS && !PASO1){
 	try{	
 		if (FCC_DEBUG){
 			console.log("# MODO: DEBUG");
-			FCC_CONTROL_00.style.display = 'block';
+			FCC_CONTROL_00.style.display = '';
 		}else{ 
 			console.log("# MODO: USER"); 
 			FCC_CONTROL_00.style.display = 'none';
@@ -433,8 +447,8 @@ function UL_CHANGE_CONTROL(){
 	}catch(err){}
 	
 	try{
-		TEMP_EMPRESAS_DPTO.style.display = "none";
-		TEMP_CONTACTO_DPTO.style.display = "none";
+		//TEMP_EMPRESAS_DPTO.style.display = "none";
+		//TEMP_CONTACTO_DPTO.style.display = "none";
 	}catch(err){}
 	
 	
@@ -456,19 +470,19 @@ function UL_CHANGE_CONTROL(){
 	switch(CODIGO_FUNCION) {
 			case 0: //VISTA MANAGER PASO 3
 					try{					
-						TEMP_EMPRESAS_DPTO.style.display = "";
-						TEMP_CONTACTO_DPTO.style.display = "";
+						//TEMP_EMPRESAS_DPTO.style.display = "";
+						//TEMP_CONTACTO_DPTO.style.display = "";
 					}catch(err){}
 					
 					UL_COPIA_DIRECCION();
 					UL_CARGA_NOTIFICACION();
-
+					
 					break;
 					
 			case 1:	//VISTA MANAGER PASO 1
 					try{					
-						TEMP_EMPRESAS_DPTO.style.display = "";
-						TEMP_CONTACTO_DPTO.style.display = "";
+						//TEMP_EMPRESAS_DPTO.style.display = "";
+						//TEMP_CONTACTO_DPTO.style.display = "";
 					}catch(err){}
 					
 					UL_COPIA_DIRECCION();		
@@ -612,6 +626,10 @@ function UL_COPIA_DIRECCION(){
 		SECC_CONTACTO_DIR2.style.display = "none";
 		SECC_CONTACTO_DIR3.style.display = "none";
 		SECC_CONTACTO_DIR4.style.display = "none";
+		
+		//Mensaje de copia de direccion
+		try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
+		}catch(err){}
 	
 		//Composición de variables temporales de dirección
 		TEMP_PAIS = UL_EMPRESA_DIR_PAIS.options[UL_EMPRESA_DIR_PAIS.selectedIndex].innerHTML + " / ";
@@ -635,10 +653,11 @@ function UL_COPIA_DIRECCION(){
 		
 		//Muestra campos dirección del contacto
 		SECC_CONTACTO_DIR1.style.display = "";
-		//SECC_CONTACTO_DIR2.style.display = "";
-		//SECC_CONTACTO_DIR2.style.display = "";
 		SECC_CONTACTO_DIR4.style.display = "";
 		
+		//Mensaje de copia de direccion
+		try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';
+		}catch(err){}
 		
 		//Composición de variables temporales de dirección		
 		TEMP_PAIS = UL_CONTACTO_DIR_PAIS.options[UL_CONTACTO_DIR_PAIS.selectedIndex].innerHTML + " / ";
