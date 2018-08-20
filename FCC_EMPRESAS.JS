@@ -12,8 +12,8 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.04";
-	const FCC_EMPRESAS_FECHA = "16/08/18";
+	const FCC_EMPRESAS_VERSION = "13.05X";
+	const FCC_EMPRESAS_FECHA = "20/08/18";
 	
 /*############################################################################################################################*/
 
@@ -527,7 +527,11 @@ function UL_CHANGE_CONTROL(){
 			case 7:	//REGISTRO DE NUEVO CONTACTO
 					
 					try{TEMP_SECCION_TL_TB_001.style.display = "none";}catch(err){}
+					
 					REG_UL_TB_001.value="N";
+					UL_TB_001.checked=false;
+					
+					UL_COPIA_DIRECCION();
 					
 					UL_RUC.readOnly = true;
 					UL_RAZON.readOnly = true;
@@ -590,6 +594,7 @@ function UL_COPIA_DIRECCION(){
 	var TEMP_PAIS;
 	var TEMP_DEPARTAMENTO;
 	var TEMP_CALLE;
+	var CODIGO_FUNCION;
 
 	//variables de las secciones de los campos de dirección del contacto
 	
@@ -602,6 +607,8 @@ function UL_COPIA_DIRECCION(){
 	var	FCC_WIDGET_VAR2;
 	
 //Inicialización de variables
+
+ CODIGO_FUNCION = FCC_GET_NUMERO_ELEMENTO(ID_FCC_CONTROL_0);
 
  FCC_WIDGET_VAR2= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__street_");
 
@@ -627,8 +634,11 @@ function UL_COPIA_DIRECCION(){
 		SECC_CONTACTO_DIR3.style.display = "none";
 		SECC_CONTACTO_DIR4.style.display = "none";
 		
-		//Mensaje de copia de direccion
-		try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
+		//Mensaje de copia de dirección
+		try{ 
+			if (CODIGO_FUNCION == 1 || CODIGO_FUNCION==0){
+				document.getElementById(				"so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
+			}
 		}catch(err){}
 	
 		//Composición de variables temporales de dirección
