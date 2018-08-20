@@ -12,15 +12,7 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-<<<<<<< HEAD
 	const FCC_EMPRESAS_VERSION = "13.04";
-=======
-<<<<<<< HEAD
-	const FCC_EMPRESAS_VERSION = "13.03XX";
-=======
-	const FCC_EMPRESAS_VERSION = "13.03";
->>>>>>> e8124d59d38a6d5ff803a6c7a4af1b9a769febff
->>>>>>> 78f348c05af59872c10cfc0ea33380fe9b639ebf
 	const FCC_EMPRESAS_FECHA = "16/08/18";
 	
 /*############################################################################################################################*/
@@ -176,7 +168,6 @@ try{
 /*##############################################################################################################################*/
 var PASO1 = false;
 
-<<<<<<< HEAD
 try{
 	var x = document.getElementsByClassName("hi first");
 	if (x.length>0){
@@ -207,37 +198,6 @@ try{
 
 	
 
-=======
-if (x.length>0){
-	console.log("MANAGER : PASO 1");	
-	PASO1=true;
-	document.getElementById(ID_SECC_MENSAJES).style.display = 'none';
-	document.getElementById(ID_SECC_INF_COMERCIAL).style.display = 'none';
-	document.getElementById(ID_S03_CONTROL_01).style.display = 'none';
-	document.getElementById(ID_S03_CONTROL_02).style.display = 'none';
-	document.getElementById(ID_NOT_MARCA).style.display = 'none';
-	document.getElementById(ID_S04_CONTROL_01).style.display = 'none';
-	document.getElementById(ID_SECC_TB_001).style.display = 'none';
-	document.getElementById(ID_WIDGET_TB_001).style.display = 'none';	
-<<<<<<< HEAD
-	
-	var temp = document.getElementById("dnf_class_values_employer_registration__REG_UL_TB_001__widget").innerHTML
-	
-	if (temp.search("N")>=0){
-		
-		try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';
-		}catch(err){}
-	}else{
-		try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
-		}catch(err){}
-	}
-
-			
-=======
-
->>>>>>> e8124d59d38a6d5ff803a6c7a4af1b9a769febff
-}
->>>>>>> 78f348c05af59872c10cfc0ea33380fe9b639ebf
 
 
 /*##############################################################################################################################*/
@@ -516,15 +476,7 @@ function UL_CHANGE_CONTROL(){
 					
 					UL_COPIA_DIRECCION();
 					UL_CARGA_NOTIFICACION();
-<<<<<<< HEAD
 					
-=======
-<<<<<<< HEAD
-					
-=======
-
->>>>>>> e8124d59d38a6d5ff803a6c7a4af1b9a769febff
->>>>>>> 78f348c05af59872c10cfc0ea33380fe9b639ebf
 					break;
 					
 			case 1:	//VISTA MANAGER PASO 1
