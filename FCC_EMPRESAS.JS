@@ -5,7 +5,7 @@
 // 		 	REGISTRO DE EMPRESAS Y CONTACTOS
 //			REGISTRO DE CONTACTOS
 //			APROBACION DE EMPRESAS DESDE MANAGER
-//			ACTUALIZACION DE PERFIL DE EMPRESAS DgESDE MANAGER
+//			ACTUALIZACION DE PERFIL DE EMPRESAS DESDE MANAGER
 
 // FORMULARIO		: Employer Registration Form
 // CAMPO			: FCC_COD_1 (JS FUNCIONES)
@@ -13,7 +13,7 @@
 // NAME			: FCC_EMPRESAS.JS
 
 	const FCC_EMPRESAS_VERSION = "13.06";
-	const FCC_EMPRESAS_FECHA = "20/08/18";
+	const FCC_EMPRESAS_FECHA = "21/08/18";
 
 /*############################################################################################################################*/
 
