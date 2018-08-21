@@ -27,10 +27,10 @@ CONSTANTES DE VERSION
 
 ##############################################################################################################################*/
 
-const FCC_VERSION = 1;
-const FCC_VERSION_FECHA= "31/07/18";
+const FCC_VERSION = "1.1";
+const FCC_VERSION_FECHA= "20/08/18";
 
-console.log("# CONTROL FCC_CONTACTOS V:"+FCC_VERSION);
+console.log("# CONTROL FCC_CONTACTOS V: "+ FCC_VERSION);
 
 /*############################################################################################################################
 
@@ -108,7 +108,9 @@ window.onload=function() {
 //---------------------------------------------------------------------------------------------------------
 	
 	if (FCC_HABILITA_JS){	
+		
 			
+			UL_COMPONE_DIRECCION1();
 	
 		
 // DECALRACION DE VARIABLES
