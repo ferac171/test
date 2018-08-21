@@ -12,7 +12,7 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.05X";
+	const FCC_EMPRESAS_VERSION = "13.05Xxx";
 	const FCC_EMPRESAS_FECHA = "20/08/18";
 	
 /*############################################################################################################################*/
@@ -182,16 +182,33 @@ try{
 		document.getElementById(ID_SECC_TB_001).style.display = 'none';
 		document.getElementById(ID_WIDGET_TB_001).style.display = 'none';	
 		
-		var temp = document.getElementById("dnf_class_values_employer_registration__REG_UL_TB_001__widget").innerHTML
+		try{ 
+		console.log("# validando mensaje de copia de dirección");		
+			var temp = document.getElementById("dnf_class_values_employer_registration__REG_UL_TB_001__widget").innerHTML;
 		
-		if (temp.search("N")>=0){
+			if (temp.search("N")>=0){
+				document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';
+			}else{
+				document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';	
+			}
+		}catch(err){}
+		
+		
+
+
+		
+		//VALIDAR SECCION DE INFORMACION COMPLEMENTARIA CUANDO ES SOLO CONTACTO
+		var tempRS = null;
+		
+		try{ 
+			console.log("# validando seccion informacion completnaria ");	
+			tempRS = document.getElementById("dnf_class_values_employer_registration__razon_social2__widget").innerHTML;
+		}catch(err){}
 			
-			try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';
-			}catch(err){}
-		}else{
-			try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
-			}catch(err){}
+		if (tempRS==null){
+				document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_TIT_05_INF_COMPLEMENTARIA_").style.display = 'none';	
 		}
+
 	}
 }catch(err){}
 
