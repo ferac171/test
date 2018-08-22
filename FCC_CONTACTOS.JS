@@ -1,24 +1,14 @@
 
-//#############################################################################################################################
+//#####################################################################################################################
 //#
-//#	MODELO PARA GESTIONAR LA GESTION DE CONTACTOS
+//#	MODELO PARA GESTIONAR LA CREACION DE CONTACTOS DESDE EL PASO 03 DEL MANAGER
 //#
 //# DESARROLLADO	: FERNANDO CALDERON 
 //#
 //# FORMULARIO		: 
 //# CAMPO			: 
 //#
-//# LOCALHOST
-//# 
-//#
-//# INVOCACION GITHUB
-//# 
-//# 
-//#	RAWGIT
-//# 
-//# 
-//#
-//#############################################################################################################################
+//#################################################################################################################
 
 
 /*############################################################################################################################
@@ -27,10 +17,10 @@ CONSTANTES DE VERSION
 
 ##############################################################################################################################*/
 
-const FCC_VERSION = "1.1";
-const FCC_VERSION_FECHA= "20/08/18";
+const FCC_CONTACTOS_VERSION = "1.3";
+const FCC_CONTACTOS_VERSION_FECHA= "20/08/18";
 
-console.log("# CONTROL FCC_CONTACTOS V: "+ FCC_VERSION);
+console.log("# CONTROL FCC_CONTACTOS V: "+ FCC_CONTACTOS_VERSION + " al: "+ FCC_CONTACTOS_VERSION_FECHA);
 
 /*############################################################################################################################
 
@@ -38,9 +28,32 @@ DECLARACION DE CONSTANTES
 
 ##############################################################################################################################*/
 
-
 const FCC_HABILITA_JS = true;
-const FCC_DEBUG = false;
+
+
+/*############################################################################################################################*/
+
+// DECLARACION DE NOMBRE O ID ELEMENTOS DE FORMULARIO 
+
+/*##############################################################################################################################*/
+
+//ELEMENTOS DE CONTACTO
+//------------------------------------------------------------------------------------------------------------------
+
+const ID_CONTACTO_NOMBRE ="dnf_class_values_contact__fname_";
+const ID_CONTACTO_APELLIDO_1 = "dnf_class_values_contact__lname_";
+const ID_CONTACTO_APELLIDO_2 = "dnf_class_values_contact__apellido_materno_";
+
+const ID_CONTACTO_FIRMA_PROF = "dnf_class_values_contact__fullname_";
+
+
+const ID_CONTACTO_DIR_PAIS = "dnf_class_values_contact__especifique_el_pas_";
+const ID_CONTACTO_DIR_DEPARTAMENTO = "hp_input1";
+const ID_CONTACTO_DIR_CIUDAD = "dnf_class_values_contact__ciudad_contacto_";
+const ID_CONTACTO_DIR_CALLE = "dnf_class_values_contact__direccion_del_contacto_";
+
+const ID_CONTACTO_DIR_COMPLETA = "dnf_class_values_contact__direccin_de_su_oficina_";
+
 
 /*############################################################################################################################
 
@@ -50,18 +63,18 @@ DECLARACION DE VARIABLES
 
 //ELEMENTOS DE CONTACTO
 
-var UL_CONTACTO_NOMBRE =document.getElementById("dnf_class_values_contact__fname_");
-var UL_CONTACTO_APELLIDO_1 = document.getElementById("dnf_class_values_contact__lname_");
-var UL_CONTACTO_APELLIDO_2 = document.getElementById("dnf_class_values_contact__apellido_materno_");
+var UL_CONTACTO_NOMBRE =FCC_GET_ELEMENTO_BYID(ID_CONTACTO_NOMBRE);
+var UL_CONTACTO_APELLIDO_1 = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_APELLIDO_1);
+var UL_CONTACTO_APELLIDO_2 = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_APELLIDO_2);
 
-var UL_CONTACTO_FIRMA_PROF = document.getElementById("dnf_class_values_contact__fullname_");
+var UL_CONTACTO_FIRMA_PROF = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_FIRMA_PROF);
 
-var UL_CONTACTO_DIR_PAIS = document.getElementById("dnf_class_values_contact__especifique_el_pas_");
-var UL_CONTACTO_DIR_DEPARTAMENTO = document.getElementById("hp_input1");
-var UL_CONTACTO_DIR_CIUDAD = document.getElementById("dnf_class_values_contact__ciudad_contacto_");
-var UL_CONTACTO_DIR_CALLE = document.getElementById("dnf_class_values_contact__direccion_del_contacto_");
+var UL_CONTACTO_DIR_PAIS = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_DIR_PAIS);
+var UL_CONTACTO_DIR_DEPARTAMENTO = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_DIR_DEPARTAMENTO);
+var UL_CONTACTO_DIR_CIUDAD = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_DIR_CIUDAD);
+var UL_CONTACTO_DIR_CALLE = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_DIR_CALLE);
 
-var UL_CONTACTO_DIR_COMPLETA = document.getElementById("dnf_class_values_contact__direccin_de_su_oficina_");
+var UL_CONTACTO_DIR_COMPLETA = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_DIR_COMPLETA);
 
 
 /*############################################################################################################################
@@ -109,24 +122,10 @@ window.onload=function() {
 	
 	if (FCC_HABILITA_JS){	
 		
-			
-			UL_COMPONE_DIRECCION1();
-	
-		
-// DECALRACION DE VARIABLES
-//---------------------------------------------------------------------------------------------------------
-		
-	var UL_FCC_GEN1 ="";	
-		
-
-		
-// INICIALIZANDO VARIABLES
-//---------------------------------------------------------------------------------------------------------	
-		
-
-	
+		UL_COMPONE_DIRECCION1();
 	
 	}
+	
 }
 
 
@@ -179,24 +178,28 @@ var TEMP_DEPARTAMENTO;
 var TEMP_CALLE;
 	
 				
-		
-		
+			
+		console.log("# COMPONIENDO DIRECCION");			
+	
+		//Composición de variables temporales de dirección		
 		TEMP_PAIS = UL_CONTACTO_DIR_PAIS.options[UL_CONTACTO_DIR_PAIS.selectedIndex].innerHTML + " / ";
-		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
 
 		try{
 			if(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML!=""){
 				TEMP_DEPARTAMENTO=UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML + " / ";
 			}else{
-				TEMP_DEPARTAMENTO=UL_CONTACTO_DIR_CALLE.value + " / ";
+				TEMP_DEPARTAMENTO=UL_CONTACTO_DIR_CIUDAD.value + " / ";
 			}
 		}catch(err){}
-
-
+		
+		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
+			
+		//Componiendo la direccion completa
+		UL_CONTACTO_DIR_COMPLETA.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;
 	
-	UL_CONTACTO_DIR_COMPLETA.value = TEMP_PAIS+TEMP_DEPARTAMENTO+TEMP_CALLE;	
-
-}
+    }
+	
+	
 
 
 

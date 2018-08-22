@@ -20,5 +20,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-FCC_EMPRESAS-H0413_90237715.JS
+FCC_CONTACTOS-H0413_90237715.JS
 *.JS
+-H0413_90237715.gitignore
