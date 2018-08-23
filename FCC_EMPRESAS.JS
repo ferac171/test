@@ -12,7 +12,7 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.10";
+	const FCC_EMPRESAS_VERSION = "13.12";
 	const FCC_EMPRESAS_FECHA = "23/08/18";
 	
 /*############################################################################################################################*/
@@ -57,6 +57,7 @@ const ID_EMPRESA_RESEÑA= "dnf_class_values_employer_registration__description_"
 
 const ID_EMPRESA_DIR_PAIS = "dnf_class_values_employer_registration__pas_"; 
 const ID_EMPRESA_DIR_DEPARTAMENTO = "hp_input3"; 
+const ID_EMPRESA_DIR_DEPARTAMENTO_HIDDEN = "hp_hidden3"; 
 const ID_EMPRESA_DIR_CIUDAD = "dnf_class_values_employer_registration__ciudad_"; 
 const ID_EMPRESA_DIR_CALLE = "dnf_class_values_employer_registration__direccin_de_la_empresa_"; 
 
@@ -92,6 +93,9 @@ const ID_CONTACTO_DIR_PAIS = "dnf_class_values_employer_registration__especifiqu
 const ID_CONTACTO_DIR_PAIS2 = "dnf_class_values_employer_registration__especifique_el_pas__widget";
 
 const ID_CONTACTO_DIR_DEPARTAMENTO = "hp_input4";
+const ID_CONTACTO_DIR_DEPARTAMENTO_HIDDEN = "hp_hidden4";
+const ID_CONTACTO_DIR_DEPARTAMENTO_SELECTION = "hp_selection_4";
+
 const ID_CONTACTO_DIR_DEPARTAMENTO2 = "dnf_class_values_employer_registration__direccion_del_contacto__widget";
 
 const ID_CONTACTO_DIR_CIUDAD = "dnf_class_values_employer_registration__ciudad_contacto_";
@@ -120,6 +124,8 @@ var UL_EMPRESA_RESEÑA = document.getElementById(ID_EMPRESA_RESEÑA);
 
 var UL_EMPRESA_DIR_PAIS = document.getElementById(ID_EMPRESA_DIR_PAIS);
 var UL_EMPRESA_DIR_DEPARTAMENTO = document.getElementById(ID_EMPRESA_DIR_DEPARTAMENTO);
+var UL_EMPRESA_DIR_DEPARTAMENTO_HIDDEN = document.getElementById(ID_EMPRESA_DIR_DEPARTAMENTO_HIDDEN);
+
 var UL_EMPRESA_DIR_CIUDAD = document.getElementById(ID_EMPRESA_DIR_CIUDAD);
 var UL_EMPRESA_DIR_CALLE = document.getElementById(ID_EMPRESA_DIR_CALLE);
 
@@ -142,6 +148,8 @@ var UL_CONTACTO_DIR_PAIS = document.getElementById(ID_CONTACTO_DIR_PAIS);
 var UL_CONTACTO_DIR_PAIS2 = document.getElementById(ID_CONTACTO_DIR_PAIS2);
 
 var UL_CONTACTO_DIR_DEPARTAMENTO = document.getElementById(ID_CONTACTO_DIR_DEPARTAMENTO);
+var UL_CONTACTO_DIR_DEPARTAMENTO_HIDDEN = document.getElementById(ID_CONTACTO_DIR_DEPARTAMENTO_HIDDEN);
+var UL_CONTACTO_DIR_DEPARTAMENTO_SELECTION = document.getElementById(ID_CONTACTO_DIR_DEPARTAMENTO_SELECTION);
 var UL_CONTACTO_DIR_DEPARTAMENTO2 = document.getElementById(ID_CONTACTO_DIR_DEPARTAMENTO2);
 
 var UL_CONTACTO_DIR_CIUDAD = document.getElementById(ID_CONTACTO_DIR_CIUDAD);
@@ -196,7 +204,20 @@ try{
 	UL_CONTACTO_APELLIDO_2.addEventListener("change", UL_COMPONE_FIRMA);
 }catch(err){}
 
-//COMPONE DIRECCION
+
+//COMPONE DIRECCION DESDE EMPRESA
+try{
+	UL_EMPRESA_DIR_PAIS.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_EMPRESA_DIR_DEPARTAMENTO.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_EMPRESA_DIR_CIUDAD.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_EMPRESA_DIR_CALLE.addEventListener("change", UL_COPIA_DIRECCION);
+
+}catch(err){}
+
+
+
+
+//COMPONE DIRECCION DESDE CONTACTO
 try{
 	UL_CONTACTO_DIR_PAIS.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_PAIS2.addEventListener("change", UL_COPIA_DIRECCION);
@@ -204,6 +225,7 @@ try{
 	UL_CONTACTO_DIR_DEPARTAMENTO2.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_CIUDAD.addEventListener("change", UL_COPIA_DIRECCION);
 	UL_CONTACTO_DIR_CALLE.addEventListener("change", UL_COPIA_DIRECCION);
+	UL_CONTACTO_DIR_DEPARTAMENTO_SELECTION.addEventListener("onblur", UL_COPIA_DIRECCION);
 }catch(err){}
 
 /*##############################################################################################################################*/
@@ -238,9 +260,6 @@ try{
 			}
 		}catch(err){}
 		
-		
-
-
 		
 		//VALIDAR SECCION DE INFORMACION COMPLEMENTARIA CUANDO ES SOLO CONTACTO
 		var tempRS = null;
@@ -705,49 +724,58 @@ function UL_COPIA_DIRECCION(){
 		
 		//COPIADO DE CAMPOS DE EMPRESA A CONTACTO
 		
-		try{ 
-			if (CODIGO_FUNCION == 1 || CODIGO_FUNCION==0){
-				
-				UL_CONTACTO_DIR_CIUDAD.value=UL_EMPRESA_DIR_CIUDAD.value;
-				UL_CONTACTO_DIR_CALLE.value=UL_EMPRESA_DIR_CALLE.value;
-		
+	
+		if (CODIGO_FUNCION == 1 || CODIGO_FUNCION==0){
+			
+			try{		
 				UL_CONTACTO_DIR_PAIS.value=UL_EMPRESA_DIR_PAIS.value;
 				UL_CONTACTO_DIR_PAIS.onchange();
-				
-				UL_CONTACTO_DIR_DEPARTAMENTO.value=UL_EMPRESA_DIR_DEPARTAMENTO.value;
-				UL_CONTACTO_DIR_DEPARTAMENTO.onchange();
+				UL_CONTACTO_DIR_CIUDAD.value=UL_EMPRESA_DIR_CIUDAD.value;
+				UL_CONTACTO_DIR_CALLE.value=UL_EMPRESA_DIR_CALLE.value;
 				
 				console.log(UL_CONTACTO_DIR_CIUDAD.value+ " : " +UL_EMPRESA_DIR_CIUDAD.value );
 				console.log(UL_CONTACTO_DIR_CALLE.value+ " : " +UL_EMPRESA_DIR_CALLE.value );
-				
 				console.log(UL_CONTACTO_DIR_PAIS.value+ " : " +UL_EMPRESA_DIR_PAIS.value );
-				console.log(UL_CONTACTO_DIR_DEPARTAMENTO.value+ " : " +UL_EMPRESA_DIR_DEPARTAMENTO.value );
-			}
-		}catch(err){}
-			
-		//DEFINIEINDO MOSTRA CAMPO DE COPIA DE DIRECCION OK	
-		try{ 
-			if (CODIGO_FUNCION == 1 || CODIGO_FUNCION==0){
-				document.getElementById(				"so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
-			}
-		}catch(err){}
-	
+			}catch(err){}	
+				
+				
+			try{
+				UL_CONTACTO_DIR_DEPARTAMENTO_HIDDEN.value=UL_EMPRESA_DIR_DEPARTAMENTO_HIDDEN.value;
+				UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML=UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML;
+				console.log(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML+ " : " +UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML );
+			}catch(err){}		
+				
+				
+		}
 		
-	
-		//Composición de variables temporales de dirección
-		TEMP_PAIS = UL_EMPRESA_DIR_PAIS.options[UL_EMPRESA_DIR_PAIS.selectedIndex].innerHTML + " / ";
 		
-		try{
-			if(UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML!=""){
-				TEMP_DEPARTAMENTO=UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML + " / ";
-			}else{
-				TEMP_DEPARTAMENTO=UL_EMPRESA_DIR_CIUDAD.value + " / ";
-			}
-		}catch(err){}
-		
-		TEMP_CALLE=UL_EMPRESA_DIR_CALLE.value;
-			
+		//Composición de variables temporales de dirección		
+		TEMP_PAIS = UL_CONTACTO_DIR_PAIS.options[UL_CONTACTO_DIR_PAIS.selectedIndex].innerHTML + " / ";
 
+		try{
+			if(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML!=""){
+				TEMP_DEPARTAMENTO=UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML + " / ";
+			}else{
+				TEMP_DEPARTAMENTO=UL_CONTACTO_DIR_CIUDAD.value + " / ";
+			}
+		}catch(err){}
+		
+		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
+		//Comportamiento por Pais
+		console.log("VALOR -Y- PARA PAIS: =>" + TEMP_PAIS);
+		if(TEMP_PAIS==" / ") {
+			SECC_CONTACTO_DIR2.style.display = "none";
+			SECC_CONTACTO_DIR3.style.display = "none";
+		}else if(TEMP_PAIS=="PERU - 208 / ") {
+			SECC_CONTACTO_DIR2.style.display = "";
+			SECC_CONTACTO_DIR3.style.display = "none";
+		}else{
+			SECC_CONTACTO_DIR2.style.display = "none";
+			SECC_CONTACTO_DIR3.style.display = "";
+		}
+			
+			
+	
     } else if (UL_TB_001.checked==false) {
 	
 	console.log("=> COPIA DIRECCION FALSE : INGRESO DIRECCION DE CONTACTO");			
@@ -758,7 +786,7 @@ function UL_COPIA_DIRECCION(){
 		SECC_CONTACTO_DIR1.style.display = "";
 		SECC_CONTACTO_DIR4.style.display = "";
 		
-		//Mensaje de copia de direccion
+		//Mensaje de copia de dirección
 		try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';
 		}catch(err){}
 		
