@@ -17,7 +17,7 @@ CONSTANTES DE VERSION
 
 ##############################################################################################################################*/
 
-const FCC_CONTACTOS_VERSION = "1.5";
+const FCC_CONTACTOS_VERSION = "1.6";
 const FCC_CONTACTOS_VERSION_FECHA= "23/08/18";
 
 console.log("# CONTROL FCC_CONTACTOS V: "+ FCC_CONTACTOS_VERSION + " al: "+ FCC_CONTACTOS_VERSION_FECHA);
@@ -124,8 +124,10 @@ window.onload=function() {
 //---------------------------------------------------------------------------------------------------------
 	
 	if (FCC_HABILITA_JS){	
+		
 		UL_WIDGET_TB_001.style.display = 'none';
-	//	UL_COMPONE_DIRECCION1();
+		
+		UL_COMPONE_DIRECCION1();
 	
 	}
 	
