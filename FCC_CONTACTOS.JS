@@ -17,8 +17,8 @@ CONSTANTES DE VERSION
 
 ##############################################################################################################################*/
 
-const FCC_CONTACTOS_VERSION = "1.3";
-const FCC_CONTACTOS_VERSION_FECHA= "20/08/18";
+const FCC_CONTACTOS_VERSION = "1.5";
+const FCC_CONTACTOS_VERSION_FECHA= "23/08/18";
 
 console.log("# CONTROL FCC_CONTACTOS V: "+ FCC_CONTACTOS_VERSION + " al: "+ FCC_CONTACTOS_VERSION_FECHA);
 
@@ -37,13 +37,14 @@ const FCC_HABILITA_JS = true;
 
 /*##############################################################################################################################*/
 
+const ID_WIDGET_TB_001= "so_formfield_dnf_class_values_contact__REG_UL_TB_001_";
+
 //ELEMENTOS DE CONTACTO
 //------------------------------------------------------------------------------------------------------------------
 
 const ID_CONTACTO_NOMBRE ="dnf_class_values_contact__fname_";
 const ID_CONTACTO_APELLIDO_1 = "dnf_class_values_contact__lname_";
 const ID_CONTACTO_APELLIDO_2 = "dnf_class_values_contact__apellido_materno_";
-
 const ID_CONTACTO_FIRMA_PROF = "dnf_class_values_contact__fullname_";
 
 
@@ -61,6 +62,8 @@ DECLARACION DE VARIABLES
 
 ##############################################################################################################################*/
 
+
+var UL_WIDGET_TB_001= FCC_GET_ELEMENTO_BYID(ID_WIDGET_TB_001);
 //ELEMENTOS DE CONTACTO
 
 var UL_CONTACTO_NOMBRE =FCC_GET_ELEMENTO_BYID(ID_CONTACTO_NOMBRE);
@@ -121,8 +124,8 @@ window.onload=function() {
 //---------------------------------------------------------------------------------------------------------
 	
 	if (FCC_HABILITA_JS){	
-		
-		UL_COMPONE_DIRECCION1();
+		UL_WIDGET_TB_001.style.display = 'none';
+	//	UL_COMPONE_DIRECCION1();
 	
 	}
 	

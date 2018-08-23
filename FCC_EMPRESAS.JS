@@ -12,8 +12,8 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.08";
-	const FCC_EMPRESAS_FECHA = "22/08/18";
+	const FCC_EMPRESAS_VERSION = "13.10";
+	const FCC_EMPRESAS_FECHA = "23/08/18";
 	
 /*############################################################################################################################*/
 
@@ -691,10 +691,10 @@ function UL_COPIA_DIRECCION(){
 		REG_UL_TB_001.value="Y";
 	
 		//Oculta campos dirección del contacto
-		SECC_CONTACTO_DIR1.style.display = "none";
+	/*	SECC_CONTACTO_DIR1.style.display = "none";
 		SECC_CONTACTO_DIR2.style.display = "none";
 		SECC_CONTACTO_DIR3.style.display = "none";
-		SECC_CONTACTO_DIR4.style.display = "none";
+		SECC_CONTACTO_DIR4.style.display = "none";*/
 		
 		//Mensaje de copia de dirección
 		try{ 
@@ -702,6 +702,37 @@ function UL_COPIA_DIRECCION(){
 				document.getElementById(				"so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
 			}
 		}catch(err){}
+		
+		//COPIADO DE CAMPOS DE EMPRESA A CONTACTO
+		
+		try{ 
+			if (CODIGO_FUNCION == 1 || CODIGO_FUNCION==0){
+				
+				UL_CONTACTO_DIR_CIUDAD.value=UL_EMPRESA_DIR_CIUDAD.value;
+				UL_CONTACTO_DIR_CALLE.value=UL_EMPRESA_DIR_CALLE.value;
+		
+				UL_CONTACTO_DIR_PAIS.value=UL_EMPRESA_DIR_PAIS.value;
+				UL_CONTACTO_DIR_PAIS.onchange();
+				
+				UL_CONTACTO_DIR_DEPARTAMENTO.value=UL_EMPRESA_DIR_DEPARTAMENTO.value;
+				UL_CONTACTO_DIR_DEPARTAMENTO.onchange();
+				
+				console.log(UL_CONTACTO_DIR_CIUDAD.value+ " : " +UL_EMPRESA_DIR_CIUDAD.value );
+				console.log(UL_CONTACTO_DIR_CALLE.value+ " : " +UL_EMPRESA_DIR_CALLE.value );
+				
+				console.log(UL_CONTACTO_DIR_PAIS.value+ " : " +UL_EMPRESA_DIR_PAIS.value );
+				console.log(UL_CONTACTO_DIR_DEPARTAMENTO.value+ " : " +UL_EMPRESA_DIR_DEPARTAMENTO.value );
+			}
+		}catch(err){}
+			
+		//DEFINIEINDO MOSTRA CAMPO DE COPIA DE DIRECCION OK	
+		try{ 
+			if (CODIGO_FUNCION == 1 || CODIGO_FUNCION==0){
+				document.getElementById(				"so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
+			}
+		}catch(err){}
+	
+		
 	
 		//Composición de variables temporales de dirección
 		TEMP_PAIS = UL_EMPRESA_DIR_PAIS.options[UL_EMPRESA_DIR_PAIS.selectedIndex].innerHTML + " / ";
