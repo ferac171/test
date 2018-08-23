@@ -15,12 +15,13 @@
 # NAME			: FCC_EMPRESAS.CSS
 #
 # INVOCACION LOCALHOST
-# => <link rel="stylesheet" type="text/css" href="http://localhost/usb/FCC_EMPRESAS.css">
+# => <link rel="stylesheet" type="text/css" href="http://localhost/usb/FCC_REGISTRO_EMPRESAS/FCC_EMPRESAS.css">
 #
 # INVOCACION GITHUB
-# 	
+# https://raw.githubusercontent.com/ferac171/test/master/FCC_EMPRESAS.CSS
+# https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.CSS	
 #	
-# => <link rel="stylesheet" type="text/css" href="http://localhost/usb/FCC_EMPRESAS.css">
+# => <link rel="stylesheet" type="text/css" href="https://rawcdn.githack.com/ferac171/test/master/FCC_EMPRESAS.CSS">
 # 
 #
 #
@@ -37,17 +38,16 @@
 /**/ 
 .form .req-msg{ 	
 	display: none;		
-}		 
+}	
+
+.field .field-widget{
+	 word-wrap: normal;
+}	 
 
 /*Ocultar sección de mensajes de error*/ 
 .alert.error{ 	 	
 	display: none;		
 }				
-
-.input-text{
-text-transform: uppercase;	
-	
-}
 
 .estilo-menu { 	
 	style-type: none; 	
