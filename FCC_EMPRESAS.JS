@@ -12,7 +12,7 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.12";
+	const FCC_EMPRESAS_VERSION = "13.12X";
 	const FCC_EMPRESAS_FECHA = "23/08/18";
 	
 /*############################################################################################################################*/
@@ -708,12 +708,7 @@ function UL_COPIA_DIRECCION(){
 	console.log("=> COPIA DIRECCION TRUE : COPIA DIRECCION DE LA EMPRESA");	
 	
 		REG_UL_TB_001.value="Y";
-	
-		//Oculta campos dirección del contacto
-	/*	SECC_CONTACTO_DIR1.style.display = "none";
-		SECC_CONTACTO_DIR2.style.display = "none";
-		SECC_CONTACTO_DIR3.style.display = "none";
-		SECC_CONTACTO_DIR4.style.display = "none";*/
+		
 		
 		//Mensaje de copia de dirección
 		try{ 
@@ -733,16 +728,16 @@ function UL_COPIA_DIRECCION(){
 				UL_CONTACTO_DIR_CIUDAD.value=UL_EMPRESA_DIR_CIUDAD.value;
 				UL_CONTACTO_DIR_CALLE.value=UL_EMPRESA_DIR_CALLE.value;
 				
-				console.log(UL_CONTACTO_DIR_CIUDAD.value+ " : " +UL_EMPRESA_DIR_CIUDAD.value );
+				/*console.log(UL_CONTACTO_DIR_CIUDAD.value+ " : " +UL_EMPRESA_DIR_CIUDAD.value );
 				console.log(UL_CONTACTO_DIR_CALLE.value+ " : " +UL_EMPRESA_DIR_CALLE.value );
-				console.log(UL_CONTACTO_DIR_PAIS.value+ " : " +UL_EMPRESA_DIR_PAIS.value );
+				console.log(UL_CONTACTO_DIR_PAIS.value+ " : " +UL_EMPRESA_DIR_PAIS.value );*/
 			}catch(err){}	
 				
 				
 			try{
 				UL_CONTACTO_DIR_DEPARTAMENTO_HIDDEN.value=UL_EMPRESA_DIR_DEPARTAMENTO_HIDDEN.value;
 				UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML=UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML;
-				console.log(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML+ " : " +UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML );
+			/*	console.log(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML+ " : " +UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML );*/
 			}catch(err){}		
 				
 				
@@ -762,18 +757,14 @@ function UL_COPIA_DIRECCION(){
 		
 		TEMP_CALLE=UL_CONTACTO_DIR_CALLE.value;
 		//Comportamiento por Pais
-		console.log("VALOR -Y- PARA PAIS: =>" + TEMP_PAIS);
-		if(TEMP_PAIS==" / ") {
+		
+				//Oculta campos dirección del contacto
+		
+	
+			SECC_CONTACTO_DIR1.style.display = "none";
 			SECC_CONTACTO_DIR2.style.display = "none";
 			SECC_CONTACTO_DIR3.style.display = "none";
-		}else if(TEMP_PAIS=="PERU - 208 / ") {
-			SECC_CONTACTO_DIR2.style.display = "";
-			SECC_CONTACTO_DIR3.style.display = "none";
-		}else{
-			SECC_CONTACTO_DIR2.style.display = "none";
-			SECC_CONTACTO_DIR3.style.display = "";
-		}
-			
+			SECC_CONTACTO_DIR4.style.display = "none";	
 			
 	
     } else if (UL_TB_001.checked==false) {
