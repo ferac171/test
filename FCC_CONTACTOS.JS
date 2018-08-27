@@ -182,6 +182,24 @@ window.onload=function() {
 			
 			UL_COMPONE_DIRECCION1();
 		}catch(err){}
+		
+		
+		
+		try{
+			document.getElementById("so_formfield_dnf_class_values_contact__FCC_CONTACTOS_").style.display = 'none';
+			document.getElementById("so_formfield_dnf_class_values_contact__hide_info_").style.display = 'none';
+			
+			if (UL_FCC_CONTACTOS.value=="Si" ){
+				document.getElementById("so_formfield_dnf_class_values_contact__FCC_MUESTRA_ALUMNOS_").style.display = '';
+				document.getElementById("dnf_class_values_contact__propaganda_no__field-blurb").style.display = '';
+			}else{
+				document.getElementById("so_formfield_dnf_class_values_contact__FCC_MUESTRA_ALUMNOS_").style.display = 'none';
+				document.getElementById("dnf_class_values_contact__propaganda_no__field-blurb").style.display = 'none';
+			}
+			
+		}catch(err){}
+		
+		
 		//ACTUALIZA ESTADO DEL BOTON NATIVO DE OCULTAR INFORMACION
 		try{
 			UL_MUESTRA_ALUMNOS();
@@ -231,7 +249,7 @@ function UL_VISIBLE_CONTACTOS(PERMISO){
 
 
 function UL_ACTUALIZA_BOTONES(){
-	
+	try{
 	console.log("UL_FCC_CONTACTOS: " +UL_FCC_CONTACTOS.value );
 	
 	if (UL_FCC_CONTACTOS.value=="No"){
@@ -246,6 +264,7 @@ function UL_ACTUALIZA_BOTONES(){
 		FCC_GET_ELEMENTO_BYID("FCC_DEL").style.display="none";
 		FCC_GET_ELEMENTO_BYID("FCC_ADD").style.display="none";
 	}
+	}catch(err){}
 }
 
 
