@@ -17,8 +17,8 @@ CONSTANTES DE VERSION
 
 ##############################################################################################################################*/
 
-const FCC_CONTACTOS_VERSION = "1.6";
-const FCC_CONTACTOS_VERSION_FECHA= "23/08/18";
+const FCC_CONTACTOS_VERSION = "2.00";
+const FCC_CONTACTOS_VERSION_FECHA= "27/08/18";
 
 console.log("# CONTROL FCC_CONTACTOS V: "+ FCC_CONTACTOS_VERSION + " al: "+ FCC_CONTACTOS_VERSION_FECHA);
 
@@ -29,7 +29,6 @@ DECLARACION DE CONSTANTES
 ##############################################################################################################################*/
 
 const FCC_HABILITA_JS = true;
-
 
 /*############################################################################################################################*/
 
@@ -47,14 +46,30 @@ const ID_CONTACTO_APELLIDO_1 = "dnf_class_values_contact__lname_";
 const ID_CONTACTO_APELLIDO_2 = "dnf_class_values_contact__apellido_materno_";
 const ID_CONTACTO_FIRMA_PROF = "dnf_class_values_contact__fullname_";
 
-
 const ID_CONTACTO_DIR_PAIS = "dnf_class_values_contact__especifique_el_pas_";
 const ID_CONTACTO_DIR_DEPARTAMENTO = "hp_input1";
 const ID_CONTACTO_DIR_CIUDAD = "dnf_class_values_contact__ciudad_contacto_";
 const ID_CONTACTO_DIR_CALLE = "dnf_class_values_contact__direccion_del_contacto_";
-
 const ID_CONTACTO_DIR_COMPLETA = "dnf_class_values_contact__direccin_de_su_oficina_";
 
+//ELEMENTOS DE PERMISOS
+//------------------------------------------------------------------------------------------------------------------
+
+const NAME_BOTON_LISTA = "formaction";
+
+const NAME_CHECK_MUESTRA_ALUMNOS="dnf_class_values[contact][FCC_MUESTRA_ALUMNOS]";
+
+const ID_BOTON_AGREGAR = "FCC_ADD";
+const ID_BOTON_QUITAR = "FCC_DEL";
+
+const ID_FCC_CONTACTOS = "dnf_class_values_contact__FCC_CONTACTOS_";
+
+const ID_WIDGET_OCULTAR_INFORMACION = "so_formfield_dnf_class_values_contact__hide_info_";
+
+//ELEMENTOS DE NAVEGACION
+//------------------------------------------------------------------------------------------------------------------
+
+const CLASS_BARRA_SUPERIOR ="buttonbar buttonbar-top";
 
 /*############################################################################################################################
 
@@ -79,10 +94,28 @@ var UL_CONTACTO_DIR_CALLE = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_DIR_CALLE);
 
 var UL_CONTACTO_DIR_COMPLETA = FCC_GET_ELEMENTO_BYID(ID_CONTACTO_DIR_COMPLETA);
 
+var UL_BOTON_LISTA_TOP = document.getElementsByClassName("input-submit btn btn_primary btn_add")[0];
+var UL_BOTON_LISTA_BUTTON = document.getElementsByClassName("input-submit btn btn_primary btn_add")[1];
+
+var UL_BOTON_AGREGAR = FCC_GET_ELEMENTO_BYID(ID_BOTON_AGREGAR);
+var UL_BOTON_QUITAR = FCC_GET_ELEMENTO_BYID(ID_BOTON_QUITAR);
+
+
+var UL_FCC_CONTACTOS = FCC_GET_ELEMENTO_BYID(ID_FCC_CONTACTOS);
+
+var UL_CHECK_MUESTRA_ALUMNOS_SI = document.getElementsByName("dnf_class_values[contact][FCC_MUESTRA_ALUMNOS]")[0];
+var UL_CHECK_MUESTRA_ALUMNOS_NO = document.getElementsByName("dnf_class_values[contact][FCC_MUESTRA_ALUMNOS]")[1];
+
+var UL_BARRA_SUPERIOR = document.getElementsByClassName(CLASS_BARRA_SUPERIOR)[0];
+
+
+var UL_WIDGET_OCULTAR_INFORMACION = FCC_GET_ELEMENTO_BYID(ID_WIDGET_OCULTAR_INFORMACION);;
+
+
 
 /*############################################################################################################################
 
-LISTENERS
+LISTENERS UL_BOTON_LISTA
 
 ##############################################################################################################################*/
 
@@ -106,17 +139,32 @@ try{
 	UL_CONTACTO_DIR_CALLE.addEventListener("change", UL_COMPONE_DIRECCION1);
 }catch(err){}
 
+//MOSTRAR INFO A LOS ALUMNOS
+try{
+	UL_CHECK_MUESTRA_ALUMNOS_NO.addEventListener("click", UL_MUESTRA_ALUMNOS);
+	UL_CHECK_MUESTRA_ALUMNOS_SI.addEventListener("click", UL_MUESTRA_ALUMNOS);
+}catch(err){}
 
+//AGREGA A LISTA
+try{
+	
+	UL_FCC_CONTACTOS.addEventListener("click", UL_ACTUALIZA_BOTONES);
+	//UL_BOTON_LISTA_TOP.addEventListener("mouseover", FCC_PUBLICAR_LISTA);
+	//UL_BOTON_LISTA_BUTTON.addEventListener("mouseover", FCC_PUBLICAR_LISTA);
+}catch(err){}
 
+try{
+//	UL_BOTON_AGREGAR.addEventListener("click", UL_VISIBLE_CONTACTOS());
+//	UL_BOTON_QUITAR.addEventListener("click", UL_VISIBLE_CONTACTOS());
+}catch(err){}
 
+/*############################################################################################################################*/
 
-/*############################################################################################################################
+// FUNCION		:	ONLOAD
+// DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
+//     				Se ejecuta una vez acasarados todos los componentes de la pagina
 
-FUNCION		:	ONLOAD
-DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
-				Se ejecuta una vez acasarados todos los componentes de la pagina
-
-##############################################################################################################################*/
+/*##############################################################################################################################*/
 
 window.onload=function() {
 
@@ -126,12 +174,83 @@ window.onload=function() {
 	if (FCC_HABILITA_JS){	
 		
 		UL_WIDGET_TB_001.style.display = 'none';
+		UL_WIDGET_OCULTAR_INFORMACION.style.display = 'none';
+		UL_FCC_CONTACTOS.disabled = true;
 		
 		UL_COMPONE_DIRECCION1();
-	
+		
+		//ACTUALIZA ESTADO DEL BOTON NATIVO DE OCULTAR INFORMACION
+		UL_MUESTRA_ALUMNOS();
+		
+		UL_ACTUALIZA_BOTONES();
+		
 	}
 	
 }
+
+
+
+
+
+/*###################################################################################################################
+
+FUNCIONES	:	un si quees no
+
+#####################################################################################################################*/	
+
+
+function UL_VISIBLE_CONTACTOS(PERMISO){
+	
+	
+	var xxx = document.getElementById("FCC_ACCION");
+	
+	if (PERMISO){
+		UL_FCC_CONTACTOS.value=1;
+		xxx.value="Agregar a Vista de estudiante";
+		
+	}else {
+		UL_FCC_CONTACTOS.value=2;
+		xxx.value="Quitar de la Vista de estudiante";
+	}
+	
+	
+	UL_ACTUALIZA_BOTONES();
+	console.log("accion " + xxx.value);
+	
+	
+	xxx.click();
+}
+
+
+function UL_ACTUALIZA_BOTONES(){
+	
+	console.log("UL_FCC_CONTACTOS: " +UL_FCC_CONTACTOS.value );
+	
+	if (UL_FCC_CONTACTOS.value==2){
+		FCC_GET_ELEMENTO_BYID("FCC_DEL").style.display="none";
+		FCC_GET_ELEMENTO_BYID("FCC_ADD").style.display="block";
+		}
+	else if (UL_FCC_CONTACTOS.value==1){
+		FCC_GET_ELEMENTO_BYID("FCC_DEL").style.display="block";
+		FCC_GET_ELEMENTO_BYID("FCC_ADD").style.display="none";
+		}
+	else {
+		FCC_GET_ELEMENTO_BYID("FCC_DEL").style.display="none";
+		FCC_GET_ELEMENTO_BYID("FCC_ADD").style.display="none";
+	}
+}
+
+
+
+
+function UL_MUESTRA_ALUMNOS(){
+	document.getElementsByName("dnf_class_values[contact][hide_info]")[0].checked=UL_CHECK_MUESTRA_ALUMNOS_NO.checked;
+	document.getElementsByName("dnf_class_values[contact][hide_info]")[1].checked=UL_CHECK_MUESTRA_ALUMNOS_SI.checked;
+}
+
+
+
+
 
 
 /*###################################################################################################################
