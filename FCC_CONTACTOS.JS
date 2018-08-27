@@ -17,7 +17,7 @@ CONSTANTES DE VERSION
 
 ##############################################################################################################################*/
 
-const FCC_CONTACTOS_VERSION = "2.00";
+const FCC_CONTACTOS_VERSION = "2.01";
 const FCC_CONTACTOS_VERSION_FECHA= "27/08/18";
 
 console.log("# CONTROL FCC_CONTACTOS V: "+ FCC_CONTACTOS_VERSION + " al: "+ FCC_CONTACTOS_VERSION_FECHA);
@@ -175,7 +175,10 @@ window.onload=function() {
 		
 		UL_WIDGET_TB_001.style.display = 'none';
 		UL_WIDGET_OCULTAR_INFORMACION.style.display = 'none';
-		UL_FCC_CONTACTOS.disabled = true;
+		UL_FCC_CONTACTOS.readOnly = true;
+		
+		if (UL_FCC_CONTACTOS.value=="" ){UL_FCC_CONTACTOS.value="No";}
+		
 		
 		UL_COMPONE_DIRECCION1();
 		
@@ -205,11 +208,11 @@ function UL_VISIBLE_CONTACTOS(PERMISO){
 	var xxx = document.getElementById("FCC_ACCION");
 	
 	if (PERMISO){
-		UL_FCC_CONTACTOS.value=1;
+		UL_FCC_CONTACTOS.value="Si";
 		xxx.value="Agregar a Vista de estudiante";
 		
 	}else {
-		UL_FCC_CONTACTOS.value=2;
+		UL_FCC_CONTACTOS.value="No";
 		xxx.value="Quitar de la Vista de estudiante";
 	}
 	
@@ -226,11 +229,11 @@ function UL_ACTUALIZA_BOTONES(){
 	
 	console.log("UL_FCC_CONTACTOS: " +UL_FCC_CONTACTOS.value );
 	
-	if (UL_FCC_CONTACTOS.value==2){
+	if (UL_FCC_CONTACTOS.value=="No"){
 		FCC_GET_ELEMENTO_BYID("FCC_DEL").style.display="none";
 		FCC_GET_ELEMENTO_BYID("FCC_ADD").style.display="block";
 		}
-	else if (UL_FCC_CONTACTOS.value==1){
+	else if (UL_FCC_CONTACTOS.value=="Si"){
 		FCC_GET_ELEMENTO_BYID("FCC_DEL").style.display="block";
 		FCC_GET_ELEMENTO_BYID("FCC_ADD").style.display="none";
 		}
