@@ -17,7 +17,7 @@ CONSTANTES DE VERSION
 
 ##############################################################################################################################*/
 
-const FCC_CONTACTOS_VERSION = "2.01";
+const FCC_CONTACTOS_VERSION = "2.02";
 const FCC_CONTACTOS_VERSION_FECHA= "27/08/18";
 
 console.log("# CONTROL FCC_CONTACTOS V: "+ FCC_CONTACTOS_VERSION + " al: "+ FCC_CONTACTOS_VERSION_FECHA);
@@ -119,9 +119,9 @@ LISTENERS UL_BOTON_LISTA
 
 ##############################################################################################################################*/
 
-
+try{
 UL_CONTACTO_DIR_COMPLETA.readOnly=true;
-
+}catch(err){}
 
 // COMPONE FIRMA
 try{
@@ -172,20 +172,25 @@ window.onload=function() {
 //---------------------------------------------------------------------------------------------------------
 	
 	if (FCC_HABILITA_JS){	
-		
-		UL_WIDGET_TB_001.style.display = 'none';
-		UL_WIDGET_OCULTAR_INFORMACION.style.display = 'none';
-		UL_FCC_CONTACTOS.readOnly = true;
-		
-		if (UL_FCC_CONTACTOS.value=="" ){UL_FCC_CONTACTOS.value="No";}
-		
-		
-		UL_COMPONE_DIRECCION1();
-		
+		try{
+			UL_WIDGET_TB_001.style.display = 'none';
+			UL_WIDGET_OCULTAR_INFORMACION.style.display = 'none';
+			UL_FCC_CONTACTOS.readOnly = true;
+			
+			if (UL_FCC_CONTACTOS.value=="" ){UL_FCC_CONTACTOS.value="No";}
+			
+			
+			UL_COMPONE_DIRECCION1();
+		}catch(err){}
 		//ACTUALIZA ESTADO DEL BOTON NATIVO DE OCULTAR INFORMACION
-		UL_MUESTRA_ALUMNOS();
+		try{
+			UL_MUESTRA_ALUMNOS();
+		}catch(err){}
 		
-		UL_ACTUALIZA_BOTONES();
+		try{
+			UL_ACTUALIZA_BOTONES();
+		}catch(err){}
+		
 		
 	}
 	
