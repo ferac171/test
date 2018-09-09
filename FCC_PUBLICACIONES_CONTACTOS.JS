@@ -23,9 +23,6 @@ console.log("# CONTROL FCC_PUBLICACIONES V:"+FCC_PUBLICACIONES_CONTACTO_VERSION 
 //DECLARACION DE CONSTANTES
 /*############################################################################################################################*/
 
-const FCC_HABILITA_JS = true;
-const FCC_DEBUG = false;
-
 const FCC_BLOCK = "block";
 const FCC_NONE = "none";
 const FCC_VIEW = "";
@@ -108,7 +105,7 @@ window.onload=function() {
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
 	
-	if (FCC_HABILITA_JS){	
+
 		
 		//OCULTANDO SOPORTES
 		UL_SECCION_TXT_001.style.display=FCC_NONE;
@@ -130,7 +127,7 @@ window.onload=function() {
 		UL_TB_003_CHANGE();
 		UL_TB_004_CHANGE();
 		UL_TB_005_CHANGE();
-	}
+	
 }
 
 
