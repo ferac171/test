@@ -7,7 +7,7 @@
 // CAMPO			:
 // NAME				: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION = "2.7x";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION = "2.7xX";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA= "09/09/18";
 	
 /*############################################################################################################################*/
