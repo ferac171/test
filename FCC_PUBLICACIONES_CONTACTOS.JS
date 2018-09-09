@@ -17,7 +17,7 @@
 //CONSTANTES DE VERSION
 /*############################################################################################################################*/
 
-console.log("# CONTROL FCC_PUBLICACIONES V:"+FCC_PUBLICACIONES_CONTACTO_VERSION + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA);
+console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO_VERSION + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA);
 
 /*############################################################################################################################*/
 //DECLARACION DE CONSTANTES
