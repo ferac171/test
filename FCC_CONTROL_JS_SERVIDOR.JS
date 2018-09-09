@@ -5,15 +5,13 @@
 //# FORMULARIO		: TODOS
 //# DESARROLLADO	: FERNANDO CALDERON 
 //#
-//# GITHUB
-//# https://rawgit.com/ferac171/test/master/FCC_CONTROL_JS_SERVIDOR.JS
 //#
 	const FCC_CONTROL_JS_SERVIDOR_VERSION = 7.0;
 	const FCC_CONTROL_JS_SERVIDOR_FECHA = "09/09/18";
 //#	
 //#############################################################################################################################
 
-console.log("SERVER : CONTROLADOR DE JS SERVIDOR DETECTADO: V"+FCC_CONTROL_JS_SERVIDOR_VERSION + " al: "+FCC_CONTROL_JS_SERVIDOR_FECHA);
+console.log("SERVER : CONTROLADOR DE JS: V"+FCC_CONTROL_JS_SERVIDOR_VERSION + " al: "+FCC_CONTROL_JS_SERVIDOR_FECHA);
 
 /*############################################################################################################################
 
@@ -47,6 +45,7 @@ switch(FCC_ESQUEMA) {
 	case "CONTACTOS":
 		FCC_SRC = "https://rawgit.com/ferac171/test/master/FCC_CONTACTOS.JS";
         break;	
+		
 	case "PUBLICACIONES_CONTACTOS":
 		FCC_SRC = "https://rawgit.com/ferac171/test/master/FCC_PUBLICACIONES_CONTACTOS.JS";
         break;		
@@ -58,7 +57,6 @@ return FCC_SRC;
 
 	
 }	
-
 
 /*###################################################################################################################
 
