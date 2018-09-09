@@ -7,7 +7,7 @@
 // CAMPO			:
 // NAME				: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION = "2.7";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION = "2.7x";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA= "09/09/18";
 	
 /*############################################################################################################################*/
@@ -174,10 +174,8 @@ function FCC_GET_ELEMENTO_BYCLASSNAME(FCC_ID){
 
 
 /*###################################################################################################################*/
-
 // FUNCION		:	UL_TB_001_CHANGE
 // DETALLE		:	ACCIONES SOBRE CAMBIOS EN UN TOGGLE BUTTON
-
 /*###################################################################################################################*/
 
 
