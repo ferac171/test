@@ -8,8 +8,8 @@
 //# GITHUB
 //# https://rawgit.com/ferac171/test/master/FCC_CONTROL_JS_SERVIDOR.JS
 //#
-	const FCC_CONTROL_JS_SERVIDOR_VERSION = 2.5;
-	const FCC_CONTROL_JS_SERVIDOR_FECHA = "31/07/18";
+	const FCC_CONTROL_JS_SERVIDOR_VERSION = 2.6;
+	const FCC_CONTROL_JS_SERVIDOR_FECHA = "09/09/18";
 //#	
 //#############################################################################################################################
 
