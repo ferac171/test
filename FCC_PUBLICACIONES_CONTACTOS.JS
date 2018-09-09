@@ -7,8 +7,8 @@
 // CAMPO			:
 // NAME				: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION = "2.7";
-	const FCC_PUBLICACIONES_FECHA= "09/09/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION = "2.7";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA= "09/09/18";
 	
 /*############################################################################################################################*/
 
@@ -17,7 +17,7 @@
 //CONSTANTES DE VERSION
 /*############################################################################################################################*/
 
-console.log("# CONTROL FCC_PUBLICACIONES V:"+FCC_PUBLICACIONES_VERSION + " al "+FCC_PUBLICACIONES_FECHA);
+console.log("# CONTROL FCC_PUBLICACIONES V:"+FCC_PUBLICACIONES_CONTACTO_VERSION + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA);
 
 /*############################################################################################################################*/
 //DECLARACION DE CONSTANTES
