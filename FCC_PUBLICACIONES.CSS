@@ -105,10 +105,10 @@ input:checked + .FCC_SLIDER:before {
 #UL_TB_004:checked  ~ #SI {display:inline;}
 #UL_TB_004:checked  ~ #NO {display:none;}
 
-#UL_TB_005 ~ #SI {display:none;}
-#UL_TB_005 ~ #NO {display:inline;}
-#UL_TB_005:checked  ~ #SI {display:inline;}
-#UL_TB_005:checked  ~ #NO {display:none;}
+#UL_TB_0055 ~ #SI {display:none;}
+#UL_TB_0055 ~ #NO {display:inline;}
+#UL_TB_0055:checked  ~ #SI {display:inline;}
+#UL_TB_0055:checked  ~ #NO {display:none;}
 
 /*
 FIN STYLOS PARA GESTION DE TOOGLE BUTTON

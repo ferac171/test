@@ -38,7 +38,7 @@ var UL_TB_001 = FCC_GET_ELEMENTO_BYID("UL_TB_001");
 var UL_TB_002 = FCC_GET_ELEMENTO_BYID("UL_TB_002");
 var UL_TB_003 = FCC_GET_ELEMENTO_BYID("UL_TB_003");
 var UL_TB_004 = FCC_GET_ELEMENTO_BYID("UL_TB_004");
-var UL_TB_005 = FCC_GET_ELEMENTO_BYID("UL_TB_0055");
+var UL_TB_005 = FCC_GET_ELEMENTO_BYID("UL_TB_005");
 
 var UL_TXT_001 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_001_"); 
 var UL_TXT_002 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_002_"); 
@@ -90,11 +90,11 @@ var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__
 // LISTENERS
 /*##############################################################################################################################*/
 
-try{UL_TB_001.addEventListener("change", UL_TB_001_CHANGE);}catch(err){}
-try{UL_TB_002.addEventListener("change", UL_TB_002_CHANGE);}catch(err){}
-try{UL_TB_003.addEventListener("change", UL_TB_003_CHANGE);}catch(err){}
-try{UL_TB_004.addEventListener("change", UL_TB_004_CHANGE);}catch(err){}
-try{UL_TB_005.addEventListener("change", UL_TB_005_CHANGE);}catch(err){}
+try{UL_TB_001.addEventListener("change", UL_TB_001_CHANGE(true));}catch(err){}
+try{UL_TB_002.addEventListener("change", UL_TB_002_CHANGE(true));}catch(err){}
+try{UL_TB_003.addEventListener("change", UL_TB_003_CHANGE(true));}catch(err){}
+try{UL_TB_004.addEventListener("change", UL_TB_004_CHANGE(true));}catch(err){}
+try{UL_TB_005.addEventListener("change", UL_TB_005_CHANGE(true));}catch(err){}
 
 
 /*############################################################################################################################
@@ -306,6 +306,8 @@ function UL_TB_004_CHANGE(TEMP_ACCION){
 
 // PRACTICAS PRO - CARRERAS	
 function UL_TB_005_CHANGE(TEMP_ACCION){
+	console.log("hola");
+	
 	try{
 		var TEMP_CONTROL = UL_TB_005.checked;
 		UL_TXT_005.value = TEMP_CONTROL;
@@ -313,11 +315,13 @@ function UL_TB_005_CHANGE(TEMP_ACCION){
 		if (TEMP_CONTROL) {
 			UL_SECCION_CARRERA_PRACTICAPRO_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_NONE;
+			
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"DEL");}
 			
 		} else if (!TEMP_CONTROL){
 			UL_SECCION_CARRERA_PRACTICAPRO_OBL.style.display=FCC_NONE;
 			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_VIEW;
+			
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"ADD");}
 		}
 	}catch(err){}
