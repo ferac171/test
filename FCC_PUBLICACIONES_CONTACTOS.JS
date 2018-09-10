@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.2";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.3";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "10/09/18";
 	
 /*############################################################################################################################*/
@@ -23,7 +23,7 @@ console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO
 /*############################################################################################################################*/
 
 const FCC_BLOCK = "block";
-const FCC_NONE = "none";
+const FCC_NONE = "";
 const FCC_VIEW = "";
 
 /*############################################################################################################################*/
@@ -89,11 +89,9 @@ var UL_ARREGLO_CONDICION_EMPLEO_OBL = new Array("0080","0060", "0040", "0020");
 
 var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
-
-var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];
-
+try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];
 console.log("# CODIGO DE EMPLEO: " + UL_CODIGO_EMPLEO.value );
-
+}ctach(err){}
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
