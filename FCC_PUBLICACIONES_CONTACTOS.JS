@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "2.7x5";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "2.7x6";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "09/09/18";
 	
 /*############################################################################################################################*/
@@ -123,54 +123,44 @@ window.onload=function() {
 		if(UL_TXT_001.value==""){
 			UL_TXT_001.value=true;
 			UL_TB_001.checked=true;
-			UL_TB_001_CHANGE();
-		}else if(UL_TXT_001.value=="true"){UL_TB_001.checked=true;		
-		}else if(UL_TXT_001.value=="false"){UL_TB_001.checked=false;}
+			UL_TB_001_CHANGE(true);
+		}else if(UL_TXT_001.value=="true"){UL_TB_001.checked=true;	UL_TB_001_CHANGE(false);	
+		}else if(UL_TXT_001.value=="false"){UL_TB_001.checked=false;UL_TB_001_CHANGE(false);}
 		
 		//CONTROL TB_002
 		if(UL_TXT_002.value==""){
 			UL_TXT_002.value=true;
 			UL_TB_002.checked=true;
-			UL_TB_002_CHANGE();
-		}else if(UL_TXT_002.value=="true"){UL_TB_002.checked=true;		
-		}else if(UL_TXT_002.value=="false"){UL_TB_002.checked=false;}
+			UL_TB_002_CHANGE(true);
+		}else if(UL_TXT_002.value=="true"){UL_TB_002.checked=true;	UL_TB_002_CHANGE(false);	
+		}else if(UL_TXT_002.value=="false"){UL_TB_002.checked=false;UL_TB_002_CHANGE(false);}
 		
 		//CONTROL TB_003
 		if(UL_TXT_003.value==""){
 			UL_TXT_003.value=true;
 			UL_TB_003.checked=true;
-			UL_TB_003_CHANGE();
-		}else if(UL_TXT_003.value=="true"){UL_TB_003.checked=true;		
-		}else if(UL_TXT_003.value=="false"){UL_TB_003.checked=false;}
+			UL_TB_003_CHANGE(true);
+		}else if(UL_TXT_003.value=="true"){UL_TB_003.checked=true;	UL_TB_003_CHANGE(false);	
+		}else if(UL_TXT_003.value=="false"){UL_TB_003.checked=false;UL_TB_003_CHANGE(false);}
 		
 		//CONTROL TB_004
 		if(UL_TXT_004.value==""){
 			UL_TXT_004.value=true;
 			UL_TB_004.checked=true;
-			UL_TB_004_CHANGE();
-		}else if(UL_TXT_004.value=="true"){UL_TB_004.checked=true;		
-		}else if(UL_TXT_004.value=="false"){UL_TB_004.checked=false;}
+			UL_TB_004_CHANGE(true);
+		}else if(UL_TXT_004.value=="true"){UL_TB_004.checked=true;	UL_TB_004_CHANGE(false);	
+		}else if(UL_TXT_004.value=="false"){UL_TB_004.checked=false;UL_TB_004_CHANGE(false);}
 				
 		//CONTROL TB_005
 		if(UL_TXT_005.value==""){
 			UL_TXT_005.value=true;
 			UL_TB_005.checked=true;
-			UL_TB_005_CHANGE();
-		}else if(UL_TXT_005.value=="true"){UL_TB_005.checked=true;		
-		}else if(UL_TXT_005.value=="false"){UL_TB_005.checked=false;}
+			UL_TB_005_CHANGE(true);
+		}else if(UL_TXT_005.value=="true"){UL_TB_005.checked=true;	UL_TB_005_CHANGE(false);	
+		}else if(UL_TXT_005.value=="false"){UL_TB_005.checked=false;UL_TB_005_CHANGE(false);}
 	
 }
 
-
-function FCC_INICIALIZA_CONTROLES(TEMP_TB,TEMP_TXT){
-	
-	if(TEMP_TXT.value==""){
-		TEMP_TXT.value=true;
-		TEMP_TB.checked=true;
-		
-	}else if(TEMP_TXT.value=="true"){TEMP_TB.checked=true;		
-	}else if(TEMP_TXT.value=="false"){TEMP_TB.checked=false;}
-}
 
 
 /*###################################################################################################################
@@ -209,7 +199,7 @@ function FCC_GET_ELEMENTO_BYCLASSNAME(FCC_ID){
 
 
 // PRACTICAS PREPROFESIONALES - CARRERAS
-function UL_TB_001_CHANGE(){
+function UL_TB_001_CHANGE(TEMP_ACCION){
 	try{	
 		var TEMP_CONTROL = UL_TB_001.checked;
 		UL_TXT_001.value = TEMP_CONTROL;
@@ -217,17 +207,20 @@ function UL_TB_001_CHANGE(){
 		if (TEMP_CONTROL) {
 			UL_SECCION_CARRERA_PRACTICAPRE_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_NONE;
-			FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"DEL");
+			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"DEL");}
 		} else if (!TEMP_CONTROL){
 			UL_SECCION_CARRERA_PRACTICAPRE_OBL.style.display=FCC_NONE;
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_VIEW;
-			FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"ADD");
+			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"ADD");}
 		}
 	}catch(err){}
+	
+	
+	
 }
 
 // PRACTICAS PREPROFESIONALES - NIVELES	
-function UL_TB_002_CHANGE(){
+function UL_TB_002_CHANGE(TEMP_ACCION){
 	try{
 		var TEMP_CONTROL = UL_TB_002.checked;
 			UL_TXT_002.value = TEMP_CONTROL;
@@ -235,17 +228,17 @@ function UL_TB_002_CHANGE(){
 		if (TEMP_CONTROL) {
 			UL_SECCION_NIVEL_PRACTICAPRE_OBL.style.display=FCC_VIEW;
 			UL_SECCION_NIVEL_PRACTICAPRE_DES.style.display=FCC_NONE;
-			FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"DEL");
+			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"DEL");}
 		} else if (!TEMP_CONTROL){
 			UL_SECCION_NIVEL_PRACTICAPRE_OBL.style.display=FCC_NONE;
 			UL_SECCION_NIVEL_PRACTICAPRE_DES.style.display=FCC_VIEW;
-			FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"ADD");
+			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"ADD");}
 		}
 	}catch(err){}
 }
 
 // EMPLEOS - CARRERAS
-function UL_TB_003_CHANGE(){
+function UL_TB_003_CHANGE(TEMP_ACCION){
 	try{
 		var TEMP_CONTROL = UL_TB_003.checked;
 		var UL_ARREGLO_CARRERA_EMPLEO_OBL = new Array("0303", "0301", "0025", "0020", "0040", "0060", "0080", "0100", "0120", "0140", "0160", "0180", "0200", "0220", "0240", "0260", "0280", "0300");
@@ -254,25 +247,28 @@ function UL_TB_003_CHANGE(){
 		if (TEMP_CONTROL) {
 			UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_NONE;
-			FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");	
+			
+			if(TEMP_ACCION){
+				FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");	
 
-			var ul = UL_LIST_CARRERA_EMPLEO_OBL.getElementsByTagName("ul")[0];	
-			var li= ul.getElementsByTagName('li'); 
-					
-			for(xi=0; xi<20; xi++){
-				ul.removeChild(ul.childNodes[0]);
-			}	
+				var ul = UL_LIST_CARRERA_EMPLEO_OBL.getElementsByTagName("ul")[0];	
+				var li= ul.getElementsByTagName('li'); 
+						
+				for(xi=0; xi<20; xi++){
+					ul.removeChild(ul.childNodes[0]);
+				}	
+			}
 			
 		} else if (!TEMP_CONTROL){
 			UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_NONE;
 			UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_VIEW;
-			FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");
+			if(TEMP_ACCION){FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");}
 		}
 	}catch(err){}
 }
 
 // EMPLEOS - CONDICION	
-function UL_TB_004_CHANGE(){
+function UL_TB_004_CHANGE(TEMP_ACCION){
 
 	
 	try{
@@ -283,27 +279,28 @@ function UL_TB_004_CHANGE(){
 		if (TEMP_CONTROL) {
 			UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_NONE;
-			FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
-			
-			var ul = UL_LIST_CONDICION_EMPLEO_OBL.getElementsByTagName("ul")[0];	
-			var li= ul.getElementsByTagName('li'); 
-					
-			for(xi=0; xi<5; xi++){
-				ul.removeChild(ul.childNodes[0]);
-			}	
-			
+			if(TEMP_ACCION){
+				FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
+				
+				var ul = UL_LIST_CONDICION_EMPLEO_OBL.getElementsByTagName("ul")[0];	
+				var li= ul.getElementsByTagName('li'); 
+						
+				for(xi=0; xi<5; xi++){
+					ul.removeChild(ul.childNodes[0]);
+				}	
+			}
 			
 		} else if (!TEMP_CONTROL){
 			UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_NONE;
 			UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_VIEW;
-			FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");
+			if(TEMP_ACCION){FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");}
 		}
 	}catch(err){}	
 	
 }
 
 // PRACTICAS PRO - CARRERAS	
-function UL_TB_005_CHANGE(){
+function UL_TB_005_CHANGE(TEMP_ACCION){
 	try{
 		var TEMP_CONTROL = UL_TB_005.checked;
 		UL_TXT_005.value = TEMP_CONTROL;
