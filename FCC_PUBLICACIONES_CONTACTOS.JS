@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.1";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.2";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "10/09/18";
 	
 /*############################################################################################################################*/
@@ -32,6 +32,8 @@ const FCC_VIEW = "";
 
 //VARIABLES DE CONTROL 
 //------------------------------------------------------------------------------------------------------------------
+
+var UL_CONTROL_LISTENER =false;	
 
 var UL_TB_001 = FCC_GET_ELEMENTO_BYID("UL_TB_001");
 var UL_TB_002 = FCC_GET_ELEMENTO_BYID("UL_TB_002");
@@ -82,20 +84,25 @@ var UL_SELECT_CONDICION_EMPLEO_OBL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[jo
 var UL_SECCION_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_certificate___"); 
 var UL_SECCION_CONDICION_EMPLEO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__condicionnivel___"); 
 
-var UL_ARREGLO_CARRERA_EMPLEO_OBL = new Array("0303", "0301", "0025", "0020", "0040", "0060", "0080", "0100", "0120", "0140", "0160", "0180", "0200", "0220", "0240", "0260", "0280", "0300");
+var UL_ARREGLO_CARRERA_EMPLEO_OBL = new Array("0025", "0020", "0040", "0060", "0080", "0100", "0120", "0140", "0160", "0180", "0200", "0220", "0240", "0260", "0280", "0300");
 var UL_ARREGLO_CONDICION_EMPLEO_OBL = new Array("0080","0060", "0040", "0020");	
 
 var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
+
+
+var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];
+
+console.log("# CODIGO DE EMPLEO: " + UL_CODIGO_EMPLEO.value );
 
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
 
-try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(true);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
-try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(true);});}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
-try{UL_TB_003.addEventListener("change", function(){UL_TB_003_CHANGE(true);});}catch(err){console.log("ERR LISTENER: UL_TB_003_CHANGE");}
-try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(true);});}catch(err){console.log("ERR LISTENER: UL_TB_004_CHANGE");}
-try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(true);});}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
+try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
+try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
+try{UL_TB_003.addEventListener("change", function(){UL_TB_003_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_003_CHANGE");}
+try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_004_CHANGE");}
+try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
 
 /*############################################################################################################################
 
@@ -118,7 +125,7 @@ window.onload=function() {
 		UL_SECCION_TXT_005.style.display=FCC_NONE;
 				
 				
-		var CONTROL_LISTENER =false;		
+			
 				
 		//CONTROL TB_001
 	try{	
@@ -142,6 +149,7 @@ window.onload=function() {
 			
 		//CONTROL TB_003
 	try{
+		console.log("003 - desde load");
 		if(UL_TXT_003.value==""){
 			UL_TXT_003.value=true;
 			UL_TB_003.checked=true;
@@ -169,6 +177,9 @@ window.onload=function() {
 		}else if(UL_TXT_005.value=="true"){UL_TB_005.checked=true;	UL_TB_005_CHANGE(false);	
 		}else if(UL_TXT_005.value=="false"){UL_TB_005.checked=false;UL_TB_005_CHANGE(false);}
 	}catch(err){}
+	
+	
+	UL_CONTROL_LISTENER=true;
 	
 }
 
@@ -257,8 +268,6 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 	var TEMP_CONTROL = UL_TB_003.checked;
 	UL_TXT_003.value = TEMP_CONTROL;
 	
-	
-		
 		if (TEMP_CONTROL) {
 			
 			try{
@@ -266,68 +275,81 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 				UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_NONE;
 			}catch(err){}
 			
-			console.log("eliminando");
-			
 			try{
-				FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");	
-
-				var ul = UL_LIST_CARRERA_EMPLEO_OBL.getElementsByTagName("ul")[0];	
-				var li= ul.getElementsByTagName('li'); 
-						
-				for(xi=0; xi<20; xi++){
-					ul.removeChild(ul.childNodes[0]);
-				}
+				if(TEMP_ACCION){
+					console.log("eliminando");	
+					FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");
+					var ul = UL_LIST_CARRERA_EMPLEO_OBL.getElementsByTagName("ul")[0];	
+					var li= ul.getElementsByTagName('li'); 
+					console.log(li.length);	
+					
+					for(xi=0; xi<20; xi++){
+						ul.removeChild(ul.childNodes[0]);
+					}					
+				}	
 			}catch(err){}	
 			
 		} else if (!TEMP_CONTROL){
+			
 			try{
 				UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_NONE;
 				UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_VIEW;
-				console.log("agregando");
-				
-				FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");
+			}catch(err){}
+
+			try{
+				if(TEMP_ACCION){
+					console.log("agregando");
+					FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");
+				}
 			}catch(err){}
 		}
-	
-		console.log ("ERR: UL_TB_003_CHANGE");
-	
 }
 
-// EMPLEOS - CONDICION	
+// EMPLEOS - CARRERAS
 function UL_TB_004_CHANGE(TEMP_ACCION){
-
-	console.log ("UL_TB_004_CHANGE: "+UL_TB_004.checked);
 	
-	try{
-		var TEMP_CONTROL = UL_TB_004.checked;
-		
-		UL_TXT_004.value = TEMP_CONTROL;
-
+	console.log ("UL_TB_004_CHANGE: "+" TB="+UL_TB_004.checked+" ACCION="+TEMP_ACCION);
+	var TEMP_CONTROL = UL_TB_004.checked;
+	UL_TXT_004.value = TEMP_CONTROL;
+	
 		if (TEMP_CONTROL) {
-			UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_VIEW;
-			UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_NONE;
 			
-			if(TEMP_ACCION){
-				FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[1],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
-				
-				var ul = UL_LIST_CONDICION_EMPLEO_OBL.getElementsByTagName("ul")[0];	
-				var li= ul.getElementsByTagName('li'); 
-						
-				for(xi=0; xi<5; xi++){
-					ul.removeChild(ul.childNodes[0]);
+			try{
+				UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_VIEW;
+				UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_NONE;
+			}catch(err){}
+			
+			try{
+				if(TEMP_ACCION){
+					console.log("eliminando");	
+					FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[1],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
+					var ul = UL_LIST_CONDICION_EMPLEO_OBL.getElementsByTagName("ul")[0];	
+					var li= ul.getElementsByTagName('li'); 
+					console.log(li.length);	
+					
+					for(xi=0; xi<5; xi++){
+						ul.removeChild(ul.childNodes[0]);
+					}					
 				}	
-			}
+			}catch(err){}	
 			
 		} else if (!TEMP_CONTROL){
-			UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_NONE;
-			UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_VIEW;
-			if(TEMP_ACCION){FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[1],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");}
+			
+			try{
+				UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_NONE;
+				UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_VIEW;
+			}catch(err){}
+
+			try{
+				if(TEMP_ACCION){
+					console.log("agregando");
+					FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[1],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");
+				}
+			}catch(err){}
 		}
-	}catch(err){
-		//console.log ("ERR: UL_TB_004_CHANGE");
-	}	
-	
 }
+
+
 
 // PRACTICAS PRO - CARRERAS	
 function UL_TB_005_CHANGE(TEMP_ACCION){
