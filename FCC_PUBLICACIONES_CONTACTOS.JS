@@ -7,11 +7,10 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "2.7x8";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "09/09/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.0";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "10/09/18";
 	
 /*############################################################################################################################*/
-
 
 /*############################################################################################################################*/
 //CONSTANTES DE VERSION
@@ -24,7 +23,7 @@ console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO
 /*############################################################################################################################*/
 
 const FCC_BLOCK = "block";
-const FCC_NONE = "none";
+const FCC_NONE = "";
 const FCC_VIEW = "";
 
 /*############################################################################################################################*/
@@ -81,21 +80,18 @@ var UL_LIST_CARRERA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__sc
 var UL_SELECT_CONDICION_EMPLEO_OBL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][screen_certificate][]");
 var UL_SECCION_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_certificate___"); 
 var UL_SECCION_CONDICION_EMPLEO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__condicionnivel___"); 
-var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
-
-
+//var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
 
-try{UL_TB_001.addEventListener("change", UL_TB_001_CHANGE(true));}catch(err){}
-try{UL_TB_002.addEventListener("change", UL_TB_002_CHANGE(true));}catch(err){}
-try{UL_TB_003.addEventListener("change", UL_TB_003_CHANGE(true));}catch(err){}
-try{UL_TB_004.addEventListener("change", UL_TB_004_CHANGE(true));}catch(err){}
-try{UL_TB_005.addEventListener("change", UL_TB_005_CHANGE(true));}catch(err){}
-
+try{UL_TB_001.addEventListener("change", UL_TB_001_CHANGE);}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
+try{UL_TB_002.addEventListener("change", UL_TB_002_CHANGE);}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
+try{UL_TB_003.addEventListener("change", UL_TB_003_CHANGE);}catch(err){console.log("ERR LISTENER: UL_TB_003_CHANGE");}
+try{UL_TB_004.addEventListener("change", UL_TB_004_CHANGE);}catch(err){console.log("ERR LISTENER: UL_TB_004_CHANGE");}
+try{UL_TB_005.addEventListener("change", UL_TB_005_CHANGE);}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
 
 /*############################################################################################################################
 
@@ -169,7 +165,6 @@ window.onload=function() {
 	
 }
 
-
 /*###################################################################################################################
 
 FUNCIONES	:	GET ELEMENTO
@@ -204,10 +199,12 @@ function FCC_GET_ELEMENTO_BYCLASSNAME(FCC_ID){
 
 // PRACTICAS PREPROFESIONALES - CARRERAS
 function UL_TB_001_CHANGE(TEMP_ACCION){
+	
+	console.log ("UL_TB_001_CHANGE: "+UL_TB_001.checked);
+	var TEMP_CONTROL = UL_TB_001.checked;
+	UL_TXT_001.value = TEMP_CONTROL;
+	
 	try{	
-		var TEMP_CONTROL = UL_TB_001.checked;
-		UL_TXT_001.value = TEMP_CONTROL;
-
 		if (TEMP_CONTROL) {
 			UL_SECCION_CARRERA_PRACTICAPRE_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_NONE;
@@ -217,14 +214,17 @@ function UL_TB_001_CHANGE(TEMP_ACCION){
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_VIEW;
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"ADD");}
 		}
-	}catch(err){}
-	
-	
-	
+	}catch(err){
+		//console.log ("ERR: UL_TB_001_CHANGE");
+	}
+
 }
 
 // PRACTICAS PREPROFESIONALES - NIVELES	
 function UL_TB_002_CHANGE(TEMP_ACCION){
+	
+	console.log ("UL_TB_002_CHANGE: "+UL_TB_002.checked);
+	
 	try{
 		var TEMP_CONTROL = UL_TB_002.checked;
 			UL_TXT_002.value = TEMP_CONTROL;
@@ -238,12 +238,18 @@ function UL_TB_002_CHANGE(TEMP_ACCION){
 			UL_SECCION_NIVEL_PRACTICAPRE_DES.style.display=FCC_VIEW;
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"ADD");}
 		}
-	}catch(err){}
+	}catch(err){
+		//console.log ("ERR: UL_TB_002_CHANGE");
+	}
 }
 
 // EMPLEOS - CARRERAS
 function UL_TB_003_CHANGE(TEMP_ACCION){
+	
+	console.log ("UL_TB_003_CHANGE: "+UL_TB_003.checked);
+	
 	try{
+		
 		var TEMP_CONTROL = UL_TB_003.checked;
 		var UL_ARREGLO_CARRERA_EMPLEO_OBL = new Array("0303", "0301", "0025", "0020", "0040", "0060", "0080", "0100", "0120", "0140", "0160", "0180", "0200", "0220", "0240", "0260", "0280", "0300");
 		UL_TXT_003.value = TEMP_CONTROL;
@@ -268,12 +274,15 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 			UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_VIEW;
 			if(TEMP_ACCION){FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");}
 		}
-	}catch(err){}
+	}catch(err){
+		//console.log ("ERR: UL_TB_003_CHANGE");
+	}
 }
 
 // EMPLEOS - CONDICION	
 function UL_TB_004_CHANGE(TEMP_ACCION){
 
+	console.log ("UL_TB_004_CHANGE: "+UL_TB_004.checked);
 	
 	try{
 		var TEMP_CONTROL = UL_TB_004.checked;
@@ -300,14 +309,17 @@ function UL_TB_004_CHANGE(TEMP_ACCION){
 			UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_VIEW;
 			if(TEMP_ACCION){FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");}
 		}
-	}catch(err){}	
+	}catch(err){
+		//console.log ("ERR: UL_TB_004_CHANGE");
+	}	
 	
 }
 
 // PRACTICAS PRO - CARRERAS	
 function UL_TB_005_CHANGE(TEMP_ACCION){
-	console.log("hola");
 	
+	console.log ("UL_TB_005_CHANGE: "+UL_TB_005.checked);
+
 	try{
 		var TEMP_CONTROL = UL_TB_005.checked;
 		UL_TXT_005.value = TEMP_CONTROL;
@@ -324,7 +336,9 @@ function UL_TB_005_CHANGE(TEMP_ACCION){
 			
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"ADD");}
 		}
-	}catch(err){}
+	}catch(err){
+		//console.log ("ERR: UL_TB_005_CHANGE");
+	}
 }
 
 /*###################################################################################################################*/
