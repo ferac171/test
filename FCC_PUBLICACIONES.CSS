@@ -84,6 +84,7 @@ input:checked + .FCC_SLIDER:before {
   font-size:15px; 
   font-family: Arial, Helvetica, sans-serif;
 }
+
 /*
 #UL_TB_001 ~ #SI {display:none;}
 #UL_TB_001 ~ #NO {display:inline;}
