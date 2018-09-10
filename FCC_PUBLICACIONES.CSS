@@ -1,106 +1,139 @@
 
+//#############################################################################################################################
+//#
+//#	MODELO PARA GESTIONAR EL REGISTRO DE PUBLICACIONES DE EMPLEO
+//#
+//# DESARROLLADO	: FERNANDO CALDERON 
+//#
+//# FORMULARIO		: 
+//# CAMPO			: 
+//#
+//# LOCALHOST
+//# http://localhost/DEV/02_PUBLICACION_EMPLEO/01_DEV/FCC_PUBLICACIONES.js
+//#
+//# INVOCACION GITHUB
+//# 
+//# 
+//#	RAWGIT
+//# 
+//# 
+//#
+//#############################################################################################################################
+
+
+/*############################################################################################################################
+
+CONSTANTES DE VERSION
+
+##############################################################################################################################*/
+
+const FCC_PUBLICACIONES_VERSION = "2.3";
+const FCC_PUBLICACIONES_FECHA= "05/09/18";
+
+console.log("# CONTROL FCC_PUBLICACIONES V:"+FCC_PUBLICACIONES_VERSION + " al "+FCC_PUBLICACIONES_FECHA);
+
+/*############################################################################################################################
+
+DECLARACION DE CONSTANTES
+
+##############################################################################################################################*/
+
+
+const FCC_HABILITA_JS = true;
+const FCC_DEBUG = false;
+
+/*############################################################################################################################*/
+
+// DECLARACION DE NOMBRE O ID ELEMENTOS DE FORMULARIO 
 
 /*##############################################################################################################################*/
 
-// MODELO PARA MODIFICAR INTERFACE DE:
-// REGISTRO DE PUBLICACIONES DE EMPLEO - VISTA CONTACTO
-//
-// NAME		: FCC_PUBLICACIONES_CONTACTO.JS
-	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.3";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "10/09/18";
-	
-/*############################################################################################################################*/
+//ELEMENTOS DE CONTROL 
+//------------------------------------------------------------------------------------------------------------------
 
-/*############################################################################################################################*/
-//CONSTANTES DE VERSION
-/*############################################################################################################################*/
 
-console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL);
+const ID_TB_001 = "UL_TB_001";
+const ID_TB_002 = "UL_TB_002";
+const ID_TB_003 = "UL_TB_003";
+const ID_TB_004 = "UL_TB_004";
+const ID_TB_005 = "UL_TB_005";
 
-/*############################################################################################################################*/
-//DECLARACION DE CONSTANTES
-/*############################################################################################################################*/
+const ID_TXT_001 = "dnf_class_values_job__UL_TXT_001_";
+const ID_TXT_002 = "dnf_class_values_job__UL_TXT_002_";
+const ID_TXT_003 = "dnf_class_values_job__UL_TXT_003_";
+const ID_TXT_004 = "dnf_class_values_job__UL_TXT_004_";
+const ID_TXT_005 = "dnf_class_values_job__UL_TXT_005_";
 
-const FCC_BLOCK = "block";
-const FCC_NONE = "";
-const FCC_VIEW = "";
-
-/*############################################################################################################################*/
-// DECLARACION GENERAL DE VARIABLES DE ELEMENTOS
-/*##############################################################################################################################*/
+const ID_SECCION_PROP_001 = "so_formfield_dnf_class_values_job__UL_PROP_001_";
+const ID_SECCION_PROP_002 = "so_formfield_dnf_class_values_job__UL_PROP_002_";
+const ID_SECCION_PROP_003 = "so_formfield_dnf_class_values_job__UL_PROP_003_";
+const ID_SECCION_PROP_004 = "so_formfield_dnf_class_values_job__UL_PROP_004_";
+const ID_SECCION_PROP_005 = "so_formfield_dnf_class_values_job__UL_PROP_005_";
 
 //VARIABLES DE CONTROL 
 //------------------------------------------------------------------------------------------------------------------
 
-var UL_CONTROL_LISTENER =false;	
+var UL_TB_001 = FCC_GET_ELEMENTO_BYID(ID_TB_001);
+var UL_TB_002 = FCC_GET_ELEMENTO_BYID(ID_TB_002);
+var UL_TB_003 = FCC_GET_ELEMENTO_BYID(ID_TB_003);
+var UL_TB_004 = FCC_GET_ELEMENTO_BYID(ID_TB_004);
+var UL_TB_005 = FCC_GET_ELEMENTO_BYID(ID_TB_005);
 
-var UL_TB_001 = FCC_GET_ELEMENTO_BYID("UL_TB_001");
-var UL_TB_002 = FCC_GET_ELEMENTO_BYID("UL_TB_002");
-var UL_TB_003 = FCC_GET_ELEMENTO_BYID("UL_TB_003");
-var UL_TB_004 = FCC_GET_ELEMENTO_BYID("UL_TB_004");
-var UL_TB_005 = FCC_GET_ELEMENTO_BYID("UL_TB_0055");
+var UL_TXT_001 = FCC_GET_ELEMENTO_BYID(ID_TXT_001); 
+var UL_TXT_002 = FCC_GET_ELEMENTO_BYID(ID_TXT_002); 
+var UL_TXT_003 = FCC_GET_ELEMENTO_BYID(ID_TXT_003); 
+var UL_TXT_004 = FCC_GET_ELEMENTO_BYID(ID_TXT_004); 
+var UL_TXT_005 = FCC_GET_ELEMENTO_BYID(ID_TXT_005); 
 
-var UL_TXT_001 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_001_"); 
-var UL_TXT_002 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_002_"); 
-var UL_TXT_003 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_003_"); 
-var UL_TXT_004 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_004_"); 
-var UL_TXT_005 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_0055_"); 
+var UL_SECCION_PROP_001 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_001); 
+var UL_SECCION_PROP_002 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_002); 
+var UL_SECCION_PROP_003 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_003); 
+var UL_SECCION_PROP_004 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_004); 
+var UL_SECCION_PROP_005 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_005); 
 
-var UL_SECCION_TXT_001 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_001_"); 
-var UL_SECCION_TXT_002 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_002_"); 
-var UL_SECCION_TXT_003 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_003_"); 
-var UL_SECCION_TXT_004 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_004_"); 
-var UL_SECCION_TXT_005 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_0055_"); 
 
 //ELEMENTOS DE PRACTICAS PRE 
 //------------------------------------------------------------------------------------------------------------------
 
-var UL_SECCION_CARRERA_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__carreras_para_practicas_pre_pr___"); 
-var UL_SECCION_CARRERA_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_work_authorization___"); 
-var UL_LISTA_CARRERA_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_work_authorization___");
-var UL_SECCION_NIVEL_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__nivel_deseable_pre___"); 
-var UL_SECCION_NIVEL_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_class_level___"); 
-var UL_WIDGET_NIVEL_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_class_level____widget");
-var UL_LISTA_NIVEL_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_class_level___");
+const ID_RANKING_ACADEMICO = "dnf_class_values_job__ranking_acadmico_ulima_";
+const ID_CARRERAS_PRACTICAS_PRE = "dnf_class_values_job__screen_work_authorization___";
+
 
 //ELEMENTOS DE PRACTICAS PRO 
 //------------------------------------------------------------------------------------------------------------------
 
-var UL_SECCION_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_applicant_type___"); 
-var UL_SECCION_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__sf_carreras_para_practicas_pro___"); 
-var UL_LISTA_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_applicant_type___");
+const ID_NIVEL_LISTA = "dnf_class_values_job__screen_class_level___";
+const ID_NIVEL_MULTIPLE = "dnf_class_values_job__screen_class_level____widget";
+
+
+//ELEMENTOS DE INTERNADO 
+//------------------------------------------------------------------------------------------------------------------
+const ID_1 = "";
+const ID_2 = "";
 
 //ELEMENTOS DE EMPLEOS Y OTROS 
 //------------------------------------------------------------------------------------------------------------------
 
-var UL_SECCION_CARRERA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_minor___"); 
-var UL_SECCION_CARRERA_EMPLEO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__carrera_profesional_emp___"); 
-var UL_SELECT_CARRERA_EMPLEO_OBL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][screen_minor][]");
-var UL_LIST_CARRERA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_minor____widget");
+
+//ELEMENTOS DE EMPLEOS EJECUTIVO 
+//------------------------------------------------------------------------------------------------------------------
 
 
-var UL_SELECT_CONDICION_EMPLEO_OBL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][screen_certificate][]");
-var UL_SECCION_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_certificate___"); 
-var UL_SECCION_CONDICION_EMPLEO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__condicionnivel___"); 
 
-var UL_ARREGLO_CARRERA_EMPLEO_OBL = new Array("0025", "0020", "0040", "0060", "0080", "0100", "0120", "0140", "0160", "0180", "0200", "0220", "0240", "0260", "0280", "0300");
-var UL_ARREGLO_CONDICION_EMPLEO_OBL = new Array("0080","0060", "0040", "0020");	
+const ID_SECCION_NIVEL = "so_formfield_dnf_class_values_job__screen_class_level___";
 
-var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
-try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];
-console.log("# CODIGO DE EMPLEO: " + UL_CODIGO_EMPLEO.value );
-}ctach(err){}
-/*############################################################################################################################*/
-// LISTENERS
-/*##############################################################################################################################*/
 
-try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
-try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
-try{UL_TB_003.addEventListener("change", function(){UL_TB_003_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_003_CHANGE");}
-try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_004_CHANGE");}
-try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
+//VARIABLES DE FORMULARIO 
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_NIVEL_LISTA = FCC_GET_ELEMENTO_BYID(ID_NIVEL_LISTA);
+var UL_NIVEL_MULTIPLE = FCC_GET_ELEMENTO_BYID(ID_NIVEL_MULTIPLE);
+var UL_SECCION_NIVEL = FCC_GET_ELEMENTO_BYID(ID_SECCION_NIVEL);
+
+var UL_SECCION_PRAC_PRE = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_work_authorization___");
+var UL_CARR_PRAC_PRE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_work_authorization___");
+
 
 /*############################################################################################################################
 
@@ -114,72 +147,14 @@ window.onload=function() {
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
-
-		//OCULTANDO SOPORTES
-		UL_SECCION_TXT_001.style.display=FCC_NONE;
-		UL_SECCION_TXT_002.style.display=FCC_NONE;
-		UL_SECCION_TXT_003.style.display=FCC_NONE;
-		UL_SECCION_TXT_004.style.display=FCC_NONE;
-		UL_SECCION_TXT_005.style.display=FCC_NONE;
-				
-				
+	
+	if (FCC_HABILITA_JS){	
 			
-				
-		//CONTROL TB_001
-	try{	
-		if(UL_TXT_001.value==""){
-			UL_TXT_001.value=true;
-			UL_TB_001.checked=true;
-			UL_TB_001_CHANGE(true);
-		}else if(UL_TXT_001.value=="true"){UL_TB_001.checked=true;	UL_TB_001_CHANGE(false);	
-		}else if(UL_TXT_001.value=="false"){UL_TB_001.checked=false;UL_TB_001_CHANGE(false);}
-	}catch(err){}
-	
-		//CONTROL TB_002
-	try{
-		if(UL_TXT_002.value==""){
-			UL_TXT_002.value=true;
-			UL_TB_002.checked=true;
-			UL_TB_002_CHANGE(true);
-		}else if(UL_TXT_002.value=="true"){UL_TB_002.checked=true;	UL_TB_002_CHANGE(false);	
-		}else if(UL_TXT_002.value=="false"){UL_TB_002.checked=false;UL_TB_002_CHANGE(false);}
-	}catch(err){}
-			
-		//CONTROL TB_003
-	try{
-		console.log("003 - desde load");
-		if(UL_TXT_003.value==""){
-			UL_TXT_003.value=true;
-			UL_TB_003.checked=true;
-			UL_TB_003_CHANGE(true);
-		}else if(UL_TXT_003.value=="true"){UL_TB_003.checked=true;	UL_TB_003_CHANGE(false);	
-		}else if(UL_TXT_003.value=="false"){UL_TB_003.checked=false;UL_TB_003_CHANGE(false);}
-	}catch(err){}
-			
-		//CONTROL TB_004
-	try{
-		if(UL_TXT_004.value==""){
-			UL_TXT_004.value=true;
-			UL_TB_004.checked=true;
-			UL_TB_004_CHANGE(true);
-		}else if(UL_TXT_004.value=="true"){UL_TB_004.checked=true;	UL_TB_004_CHANGE(false);	
-		}else if(UL_TXT_004.value=="false"){UL_TB_004.checked=false;UL_TB_004_CHANGE(false);}
-	}catch(err){}
-					
-		//CONTROL TB_005
-	try{
-		if(UL_TXT_005.value==""){
-			UL_TXT_005.value=true;
-			UL_TB_005.checked=true;
-			UL_TB_005_CHANGE(true);
-		}else if(UL_TXT_005.value=="true"){UL_TB_005.checked=true;	UL_TB_005_CHANGE(false);	
-		}else if(UL_TXT_005.value=="false"){UL_TB_005.checked=false;UL_TB_005_CHANGE(false);}
-	}catch(err){}
-	
-	
-	UL_CONTROL_LISTENER=true;
-	
+		var UL_FCC_GEN1 ="";	
+		
+	}
 }
+
 
 /*###################################################################################################################
 
@@ -189,226 +164,67 @@ DETALLE		:	Se obtiene los elementos o valores de los elementos validando errores
 #####################################################################################################################*/	
 
 function FCC_GET_ELEMENTO_BYID(FCC_ID){
-	var FCC_VALOR="";
-	try {FCC_VALOR=document.getElementById(FCC_ID);	}catch(err) {FCC_VALOR="FCC";}
-	return FCC_VALOR;
+	
+var FCC_VALOR="";
+
+		try {
+			FCC_VALOR=document.getElementById(FCC_ID);
+		}catch(err) {
+			FCC_VALOR="FCC";
+		}
+		
+return FCC_VALOR;
 }
 
-function FCC_GET_ELEMENTO_BYNAME(FCC_ID){
-	var FCC_VALOR="";
-	try {FCC_VALOR=document.getElementsByName(FCC_ID);}catch(err) {FCC_VALOR="FCC";}
-	return FCC_VALOR;
-}
 
-function FCC_GET_ELEMENTO_BYCLASSNAME(FCC_ID){
-	var FCC_VALOR="";
-	try {FCC_VALOR=document.getElementsByClassName(FCC_ID);}catch(err) {FCC_VALOR="FCC";}
-	return FCC_VALOR;
-}
+
+
+/*############################################################################################################################
+
+LISTENERS
+
+##############################################################################################################################*/
+
+
+try{
+document.getElementById("dnf_class_values_employer__direccin_de_la_empresa_").addEventListener("change", UL_COMPONE_DIRECCION1);
+
+}catch(err){}
+
+
+
+//listeners
+UL_TB_001.addEventListener("change", UL_TB_001_CHANGE);
 
 
 /*###################################################################################################################*/
+
 // FUNCION		:	UL_TB_001_CHANGE
 // DETALLE		:	ACCIONES SOBRE CAMBIOS EN UN TOGGLE BUTTON
-/*###################################################################################################################*/
-
-
-// PRACTICAS PREPROFESIONALES - CARRERAS
-function UL_TB_001_CHANGE(TEMP_ACCION){
-	
-	console.log ("UL_TB_001_CHANGE: "+UL_TB_001.checked);
-	var TEMP_CONTROL = UL_TB_001.checked;
-	UL_TXT_001.value = TEMP_CONTROL;
-	
-	try{	
-		if (TEMP_CONTROL) {
-			UL_SECCION_CARRERA_PRACTICAPRE_OBL.style.display=FCC_VIEW;
-			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_NONE;
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"DEL");}
-		} else if (!TEMP_CONTROL){
-			UL_SECCION_CARRERA_PRACTICAPRE_OBL.style.display=FCC_NONE;
-			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_VIEW;
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"ADD");}
-		}
-	}catch(err){
-		//console.log ("ERR: UL_TB_001_CHANGE");
-	}
-
-}
-
-// PRACTICAS PREPROFESIONALES - NIVELES	
-function UL_TB_002_CHANGE(TEMP_ACCION){
-	
-	console.log ("UL_TB_002_CHANGE: "+UL_TB_002.checked);
-	
-	try{
-		var TEMP_CONTROL = UL_TB_002.checked;
-			UL_TXT_002.value = TEMP_CONTROL;
-
-		if (TEMP_CONTROL) {
-			UL_SECCION_NIVEL_PRACTICAPRE_OBL.style.display=FCC_VIEW;
-			UL_SECCION_NIVEL_PRACTICAPRE_DES.style.display=FCC_NONE;
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"DEL");}
-		} else if (!TEMP_CONTROL){
-			UL_SECCION_NIVEL_PRACTICAPRE_OBL.style.display=FCC_NONE;
-			UL_SECCION_NIVEL_PRACTICAPRE_DES.style.display=FCC_VIEW;
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"ADD");}
-		}
-	}catch(err){
-		//console.log ("ERR: UL_TB_002_CHANGE");
-	}
-}
-
-// EMPLEOS - CARRERAS
-function UL_TB_003_CHANGE(TEMP_ACCION){
-	
-	console.log ("UL_TB_003_CHANGE: "+" TB="+UL_TB_003.checked+" ACCION="+TEMP_ACCION);
-	var TEMP_CONTROL = UL_TB_003.checked;
-	UL_TXT_003.value = TEMP_CONTROL;
-	
-		if (TEMP_CONTROL) {
-			
-			try{
-				UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_VIEW;
-				UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_NONE;
-			}catch(err){}
-			
-			try{
-				if(TEMP_ACCION){
-					console.log("eliminando");	
-					FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");
-					var ul = UL_LIST_CARRERA_EMPLEO_OBL.getElementsByTagName("ul")[0];	
-					var li= ul.getElementsByTagName('li'); 
-					console.log(li.length);	
-					
-					for(xi=0; xi<20; xi++){
-						ul.removeChild(ul.childNodes[0]);
-					}					
-				}	
-			}catch(err){}	
-			
-		} else if (!TEMP_CONTROL){
-			
-			try{
-				UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_NONE;
-				UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_VIEW;
-			}catch(err){}
-
-			try{
-				if(TEMP_ACCION){
-					console.log("agregando");
-					FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");
-				}
-			}catch(err){}
-		}
-}
-
-// EMPLEOS - CARRERAS
-function UL_TB_004_CHANGE(TEMP_ACCION){
-	
-	console.log ("UL_TB_004_CHANGE: "+" TB="+UL_TB_004.checked+" ACCION="+TEMP_ACCION);
-	var TEMP_CONTROL = UL_TB_004.checked;
-	UL_TXT_004.value = TEMP_CONTROL;
-	
-		if (TEMP_CONTROL) {
-			
-			try{
-				UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_VIEW;
-				UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_NONE;
-			}catch(err){}
-			
-			try{
-				if(TEMP_ACCION){
-					console.log("eliminando");	
-					FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[1],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
-					var ul = UL_LIST_CONDICION_EMPLEO_OBL.getElementsByTagName("ul")[0];	
-					var li= ul.getElementsByTagName('li'); 
-					console.log(li.length);	
-					
-					for(xi=0; xi<5; xi++){
-						ul.removeChild(ul.childNodes[0]);
-					}					
-				}	
-			}catch(err){}	
-			
-		} else if (!TEMP_CONTROL){
-			
-			try{
-				UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_NONE;
-				UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_VIEW;
-			}catch(err){}
-
-			try{
-				if(TEMP_ACCION){
-					console.log("agregando");
-					FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[1],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");
-				}
-			}catch(err){}
-		}
-}
-
-
-
-// PRACTICAS PRO - CARRERAS	
-function UL_TB_005_CHANGE(TEMP_ACCION){
-	
-	console.log ("UL_TB_005_CHANGE: "+UL_TB_005.checked);
-
-	try{
-		var TEMP_CONTROL = UL_TB_005.checked;
-		UL_TXT_005.value = TEMP_CONTROL;
-		
-		if (TEMP_CONTROL) {
-			UL_SECCION_CARRERA_PRACTICAPRO_OBL.style.display=FCC_VIEW;
-			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_NONE;
-			
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"DEL");}
-			
-		} else if (!TEMP_CONTROL){
-			UL_SECCION_CARRERA_PRACTICAPRO_OBL.style.display=FCC_NONE;
-			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_VIEW;
-			
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"ADD");}
-		}
-	}catch(err){
-		//console.log ("ERR: UL_TB_005_CHANGE");
-	}
-}
 
 /*###################################################################################################################*/
-// FUNCION		:	FCC_SELECCION_LISTA_JERARQUICA
-// DETALLE		:	Selecciona, deselecciona elementos de un picklista jerarquico multivalor (con popup)
-/*###################################################################################################################*/
 
 
-function FCC_SELECCION_LISTA_JERARQUICA(TEMP_SELECT,TEMP_ARREGLO, ACCION){
+function UL_TB_001_CHANGE(){
 	
-var TEMP_ELEMENT = document.createElement("option");
-			
-		
-	if (ACCION=="ADD") {	
-		try{
-			for (ni=0; ni<TEMP_ARREGLO.length; ni++){
-				TEMP_ELEMENT = document.createElement("option");
-				TEMP_ELEMENT.value = TEMP_ARREGLO[ni];
-				TEMP_SELECT.options.add(TEMP_ELEMENT,0);
-				TEMP_SELECT.options[0].selected = true;
-			}
-		}catch(err){}	
-		
-	} else if (ACCION=="DEL"){
-		try{
-			for (ni=0; ni<TEMP_ARREGLO.length; ni++){
-				TEMP_SELECT.options.remove(0);
-			}	
-		}catch(err){}
-	}
+
+	if (UL_TB_001.checked) {
+		FCC_ACCION_SOBRE_SIMPLE(UL_CARR_PRAC_PRE,"ADD");
+		FCC_ACCION_SOBRE_MULTIPLE(UL_SECCION_NIVEL,UL_NIVEL_MULTIPLE,UL_NIVEL_LISTA,"ADD");
+    } else {
+		FCC_ACCION_SOBRE_SIMPLE(UL_CARR_PRAC_PRE,"DEL");
+		FCC_ACCION_SOBRE_MULTIPLE(UL_SECCION_NIVEL,UL_NIVEL_MULTIPLE,UL_NIVEL_LISTA,"DEL");
+    }
+	
+	UL_TXT_002.value = UL_TB_001.checked;
 	
 }
 
 /*###################################################################################################################*/
+
 // FUNCION		:	FCC_ACCION_SOBRE_SIMPLE
 // DETALLE		:	Completa / borra de foorma automatica todo el contenido de un picklist multivalor simple
+
 /*###################################################################################################################*/
 
 
@@ -423,9 +239,11 @@ function FCC_ACCION_SOBRE_SIMPLE (TEMP_SIMPLE, ACCION){
 }
 
 /*###################################################################################################################*/
+
 // FUNCION		:	FCC_ACCION_SOBRE_MULTIPLE
 // DETALLE		:	Completa / borra de foorma automatica todo el contenido de un picklist multivalor jerarquico 
 //					(con boton añadir y borrar)
+
 /*###################################################################################################################*/
 
 function FCC_ACCION_SOBRE_MULTIPLE (TEMP_SECCION, TEMP_MULTIPLE, TEMP_LISTA, ACCION){
@@ -434,18 +252,29 @@ function FCC_ACCION_SOBRE_MULTIPLE (TEMP_SECCION, TEMP_MULTIPLE, TEMP_LISTA, ACC
 	var TEMP_MULTIPLE_SELECCION_NAME = TEMP_MULTIPLE_SELECCION.id.substring(20, 100);
 
 	if (ACCION=="ADD") {
+		
 		TEMP_MULTIPLE_SELECCION.onmouseover();
+		
 		for (ni=1; ni<TEMP_LISTA.length; ni++){
 			TEMP_LISTA.value=TEMP_LISTA.options[ni].value;
 			TEMP_LISTA.onchange();
 		}
+		
 		TEMP_SECCION.style.display="";
+		
     } else if (ACCION=="DEL"){
 		//METODO SYMPLICITY
 		mult_sel_del_all(TEMP_MULTIPLE_SELECCION,TEMP_MULTIPLE_SELECCION_NAME);
 		TEMP_SECCION.style.display="";
     }
+			
 }
+
+
+
+
+
+
 
 /*###################################################################################################################
 
