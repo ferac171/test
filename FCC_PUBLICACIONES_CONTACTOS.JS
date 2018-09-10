@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.3x";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.3x2";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "10/09/18";
 	
 /*############################################################################################################################*/
@@ -23,7 +23,7 @@ console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO
 /*############################################################################################################################*/
 
 const FCC_BLOCK = "block";
-const FCC_NONE = "";
+const FCC_NONE = "none";
 const FCC_VIEW = "";
 
 /*############################################################################################################################*/
