@@ -1,14 +1,14 @@
+
+
 /*##############################################################################################################################*/
 
 // MODELO PARA MODIFICAR INTERFACE DE:
 // REGISTRO DE PUBLICACIONES DE EMPLEO - VISTA CONTACTO
 //
-// FORMULARIO		: 
-// CAMPO			:
-// NAME				: FCC_PUBLICACIONES_CONTACTO.JS
+// NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION = "2.7xX";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA= "09/09/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "2.7x4";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "09/09/18";
 	
 /*############################################################################################################################*/
 
@@ -17,7 +17,7 @@
 //CONSTANTES DE VERSION
 /*############################################################################################################################*/
 
-console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO_VERSION + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA);
+console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL);
 
 /*############################################################################################################################*/
 //DECLARACION DE CONSTANTES
@@ -76,9 +76,14 @@ var UL_LISTA_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_j
 var UL_SECCION_CARRERA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_minor___"); 
 var UL_SECCION_CARRERA_EMPLEO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__carrera_profesional_emp___"); 
 var UL_SELECT_CARRERA_EMPLEO_OBL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][screen_minor][]");
+var UL_LIST_CARRERA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_minor____widget");
+
 var UL_SELECT_CONDICION_EMPLEO_OBL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][screen_certificate][]");
 var UL_SECCION_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_certificate___"); 
 var UL_SECCION_CONDICION_EMPLEO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__condicionnivel___"); 
+var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
+
+
 
 
 /*############################################################################################################################*/
@@ -225,7 +230,15 @@ function UL_TB_003_CHANGE(){
 		if (TEMP_CONTROL) {
 			UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_NONE;
-			FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");					
+			FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");	
+
+			var ul = UL_LIST_CARRERA_EMPLEO_OBL.getElementsByTagName("ul")[0];	
+			var li= ul.getElementsByTagName('li'); 
+					
+			for(xi=0; xi<20; xi++){
+				ul.removeChild(ul.childNodes[0]);
+			}	
+			
 		} else if (!TEMP_CONTROL){
 			UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_NONE;
 			UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_VIEW;
@@ -236,6 +249,8 @@ function UL_TB_003_CHANGE(){
 
 // EMPLEOS - CONDICION	
 function UL_TB_004_CHANGE(){
+
+	
 	try{
 		var TEMP_CONTROL = UL_TB_004.checked;
 		var UL_ARREGLO_CONDICION_EMPLEO_OBL = new Array("0060", "0040", "0020");	
@@ -245,12 +260,22 @@ function UL_TB_004_CHANGE(){
 			UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_NONE;
 			FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
+			
+			var ul = UL_LIST_CONDICION_EMPLEO_OBL.getElementsByTagName("ul")[0];	
+			var li= ul.getElementsByTagName('li'); 
+					
+			for(xi=0; xi<5; xi++){
+				ul.removeChild(ul.childNodes[0]);
+			}	
+			
+			
 		} else if (!TEMP_CONTROL){
 			UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_NONE;
 			UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_VIEW;
 			FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");
 		}
-	}catch(err){}			
+	}catch(err){}	
+	
 }
 
 // PRACTICAS PRO - CARRERAS	
@@ -272,37 +297,39 @@ function UL_TB_005_CHANGE(){
 }
 
 /*###################################################################################################################*/
-
 // FUNCION		:	FCC_SELECCION_LISTA_JERARQUICA
 // DETALLE		:	Selecciona, deselecciona elementos de un picklista jerarquico multivalor (con popup)
-
 /*###################################################################################################################*/
 
 
 function FCC_SELECCION_LISTA_JERARQUICA(TEMP_SELECT,TEMP_ARREGLO, ACCION){
 	
 var TEMP_ELEMENT = document.createElement("option");
-	try{	
-		if (ACCION=="ADD") {		
+			
+		
+	if (ACCION=="ADD") {	
+		try{
 			for (ni=0; ni<TEMP_ARREGLO.length; ni++){
 				TEMP_ELEMENT = document.createElement("option");
 				TEMP_ELEMENT.value = TEMP_ARREGLO[ni];
 				TEMP_SELECT.options.add(TEMP_ELEMENT,0);
 				TEMP_SELECT.options[0].selected = true;
 			}
-		} else if (ACCION=="DEL"){
-			for (ni=0; ni<3; ni++){
+		}catch(err){}	
+		
+	} else if (ACCION=="DEL"){
+		try{
+			for (ni=0; ni<TEMP_ARREGLO.length; ni++){
 				TEMP_SELECT.options.remove(0);
 			}	
-		}
-	}catch(err){}
+		}catch(err){}
+	}
+	
 }
 
 /*###################################################################################################################*/
-
 // FUNCION		:	FCC_ACCION_SOBRE_SIMPLE
 // DETALLE		:	Completa / borra de foorma automatica todo el contenido de un picklist multivalor simple
-
 /*###################################################################################################################*/
 
 
@@ -317,11 +344,9 @@ function FCC_ACCION_SOBRE_SIMPLE (TEMP_SIMPLE, ACCION){
 }
 
 /*###################################################################################################################*/
-
 // FUNCION		:	FCC_ACCION_SOBRE_MULTIPLE
 // DETALLE		:	Completa / borra de foorma automatica todo el contenido de un picklist multivalor jerarquico 
 //					(con boton añadir y borrar)
-
 /*###################################################################################################################*/
 
 function FCC_ACCION_SOBRE_MULTIPLE (TEMP_SECCION, TEMP_MULTIPLE, TEMP_LISTA, ACCION){
