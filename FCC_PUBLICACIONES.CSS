@@ -1,290 +1,198 @@
 
-//#############################################################################################################################
-//#
-//#	MODELO PARA GESTIONAR EL REGISTRO DE PUBLICACIONES DE EMPLEO
-//#
-//# DESARROLLADO	: FERNANDO CALDERON 
-//#
-//# FORMULARIO		: 
-//# CAMPO			: 
-//#
-//# LOCALHOST
-//# http://localhost/DEV/02_PUBLICACION_EMPLEO/01_DEV/FCC_PUBLICACIONES.js
-//#
-//# INVOCACION GITHUB
-//# 
-//# 
-//#	RAWGIT
-//# 
-//# 
-//#
-//#############################################################################################################################
+/*
+#############################################################################################################################
+#
+# HOJA DE ESTILOS PARA FORMULARIO DE PUBLICACIONES
+#	
+# FORMULARIO	: 
+# CAMPO			: 
+# DESARROLLADO	: FERNANDO CALDERON 
+# VERSION		: 2.1
+# FECHA			: 15.08.18
+#
+# NAME			: FCC_PUBLICACIONES.CSS
+#
+#############################################################################################################################
+*/
 
+/*
+STYLOS PARA GESTION DE TOOGLE BUTTON
+*/
 
-/*############################################################################################################################
-
-CONSTANTES DE VERSION
-
-##############################################################################################################################*/
-
-const FCC_PUBLICACIONES_VERSION = "2.3";
-const FCC_PUBLICACIONES_FECHA= "05/09/18";
-
-console.log("# CONTROL FCC_PUBLICACIONES V:"+FCC_PUBLICACIONES_VERSION + " al "+FCC_PUBLICACIONES_FECHA);
-
-/*############################################################################################################################
-
-DECLARACION DE CONSTANTES
-
-##############################################################################################################################*/
-
-
-const FCC_HABILITA_JS = true;
-const FCC_DEBUG = false;
-
-/*############################################################################################################################*/
-
-// DECLARACION DE NOMBRE O ID ELEMENTOS DE FORMULARIO 
-
-/*##############################################################################################################################*/
-
-//ELEMENTOS DE CONTROL 
-//------------------------------------------------------------------------------------------------------------------
-
-
-const ID_TB_001 = "UL_TB_001";
-const ID_TB_002 = "UL_TB_002";
-const ID_TB_003 = "UL_TB_003";
-const ID_TB_004 = "UL_TB_004";
-const ID_TB_005 = "UL_TB_005";
-
-const ID_TXT_001 = "dnf_class_values_job__UL_TXT_001_";
-const ID_TXT_002 = "dnf_class_values_job__UL_TXT_002_";
-const ID_TXT_003 = "dnf_class_values_job__UL_TXT_003_";
-const ID_TXT_004 = "dnf_class_values_job__UL_TXT_004_";
-const ID_TXT_005 = "dnf_class_values_job__UL_TXT_005_";
-
-const ID_SECCION_PROP_001 = "so_formfield_dnf_class_values_job__UL_PROP_001_";
-const ID_SECCION_PROP_002 = "so_formfield_dnf_class_values_job__UL_PROP_002_";
-const ID_SECCION_PROP_003 = "so_formfield_dnf_class_values_job__UL_PROP_003_";
-const ID_SECCION_PROP_004 = "so_formfield_dnf_class_values_job__UL_PROP_004_";
-const ID_SECCION_PROP_005 = "so_formfield_dnf_class_values_job__UL_PROP_005_";
-
-//VARIABLES DE CONTROL 
-//------------------------------------------------------------------------------------------------------------------
-
-var UL_TB_001 = FCC_GET_ELEMENTO_BYID(ID_TB_001);
-var UL_TB_002 = FCC_GET_ELEMENTO_BYID(ID_TB_002);
-var UL_TB_003 = FCC_GET_ELEMENTO_BYID(ID_TB_003);
-var UL_TB_004 = FCC_GET_ELEMENTO_BYID(ID_TB_004);
-var UL_TB_005 = FCC_GET_ELEMENTO_BYID(ID_TB_005);
-
-var UL_TXT_001 = FCC_GET_ELEMENTO_BYID(ID_TXT_001); 
-var UL_TXT_002 = FCC_GET_ELEMENTO_BYID(ID_TXT_002); 
-var UL_TXT_003 = FCC_GET_ELEMENTO_BYID(ID_TXT_003); 
-var UL_TXT_004 = FCC_GET_ELEMENTO_BYID(ID_TXT_004); 
-var UL_TXT_005 = FCC_GET_ELEMENTO_BYID(ID_TXT_005); 
-
-var UL_SECCION_PROP_001 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_001); 
-var UL_SECCION_PROP_002 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_002); 
-var UL_SECCION_PROP_003 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_003); 
-var UL_SECCION_PROP_004 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_004); 
-var UL_SECCION_PROP_005 = FCC_GET_ELEMENTO_BYID(ID_SECCION_PROP_005); 
-
-
-//ELEMENTOS DE PRACTICAS PRE 
-//------------------------------------------------------------------------------------------------------------------
-
-const ID_RANKING_ACADEMICO = "dnf_class_values_job__ranking_acadmico_ulima_";
-const ID_CARRERAS_PRACTICAS_PRE = "dnf_class_values_job__screen_work_authorization___";
-
-
-//ELEMENTOS DE PRACTICAS PRO 
-//------------------------------------------------------------------------------------------------------------------
-
-const ID_NIVEL_LISTA = "dnf_class_values_job__screen_class_level___";
-const ID_NIVEL_MULTIPLE = "dnf_class_values_job__screen_class_level____widget";
-
-
-//ELEMENTOS DE INTERNADO 
-//------------------------------------------------------------------------------------------------------------------
-const ID_1 = "";
-const ID_2 = "";
-
-//ELEMENTOS DE EMPLEOS Y OTROS 
-//------------------------------------------------------------------------------------------------------------------
-
-
-//ELEMENTOS DE EMPLEOS EJECUTIVO 
-//------------------------------------------------------------------------------------------------------------------
-
-
-
-const ID_SECCION_NIVEL = "so_formfield_dnf_class_values_job__screen_class_level___";
-
-
-
-//VARIABLES DE FORMULARIO 
-//------------------------------------------------------------------------------------------------------------------
-
-var UL_NIVEL_LISTA = FCC_GET_ELEMENTO_BYID(ID_NIVEL_LISTA);
-var UL_NIVEL_MULTIPLE = FCC_GET_ELEMENTO_BYID(ID_NIVEL_MULTIPLE);
-var UL_SECCION_NIVEL = FCC_GET_ELEMENTO_BYID(ID_SECCION_NIVEL);
-
-var UL_SECCION_PRAC_PRE = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_work_authorization___");
-var UL_CARR_PRAC_PRE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_work_authorization___");
-
-
-/*############################################################################################################################
-
-FUNCION		:	ONLOAD
-DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
-				Se ejecuta una vez acasarados todos los componentes de la pagina
-
-##############################################################################################################################*/
-
-window.onload=function() {
-
-// VALIDACION DE EJECUCION DE JS
-//---------------------------------------------------------------------------------------------------------
-	
-	if (FCC_HABILITA_JS){	
-			
-		var UL_FCC_GEN1 ="";	
-		
-	}
+.FCC_SWITCH {
+  position: relative;
+  display: inline-block;
+  
+  width: 50px;
+  height: 25px;
 }
 
+.FCC_SWITCH input {display:none;}
 
-/*###################################################################################################################
-
-FUNCIONES	:	GET ELEMENTO
-DETALLE		:	Se obtiene los elementos o valores de los elementos validando errores
-
-#####################################################################################################################*/	
-
-function FCC_GET_ELEMENTO_BYID(FCC_ID){
-	
-var FCC_VALOR="";
-
-		try {
-			FCC_VALOR=document.getElementById(FCC_ID);
-		}catch(err) {
-			FCC_VALOR="FCC";
-		}
-		
-return FCC_VALOR;
+.FCC_SLIDER {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-
-
-
-/*############################################################################################################################
-
-LISTENERS
-
-##############################################################################################################################*/
-
-
-try{
-document.getElementById("dnf_class_values_employer__direccin_de_la_empresa_").addEventListener("change", UL_COMPONE_DIRECCION1);
-
-}catch(err){}
-
-
-
-//listeners
-UL_TB_001.addEventListener("change", UL_TB_001_CHANGE);
-
-
-/*###################################################################################################################*/
-
-// FUNCION		:	UL_TB_001_CHANGE
-// DETALLE		:	ACCIONES SOBRE CAMBIOS EN UN TOGGLE BUTTON
-
-/*###################################################################################################################*/
-
-
-function UL_TB_001_CHANGE(){
-	
-
-	if (UL_TB_001.checked) {
-		FCC_ACCION_SOBRE_SIMPLE(UL_CARR_PRAC_PRE,"ADD");
-		FCC_ACCION_SOBRE_MULTIPLE(UL_SECCION_NIVEL,UL_NIVEL_MULTIPLE,UL_NIVEL_LISTA,"ADD");
-    } else {
-		FCC_ACCION_SOBRE_SIMPLE(UL_CARR_PRAC_PRE,"DEL");
-		FCC_ACCION_SOBRE_MULTIPLE(UL_SECCION_NIVEL,UL_NIVEL_MULTIPLE,UL_NIVEL_LISTA,"DEL");
-    }
-	
-	UL_TXT_002.value = UL_TB_001.checked;
-	
+.FCC_SLIDER:before {
+  position: absolute;
+  content: "";
+  
+  width: 40%;
+  height: 60%;
+ 
+  left: 10%;
+  bottom: 20%;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-/*###################################################################################################################*/
-
-// FUNCION		:	FCC_ACCION_SOBRE_SIMPLE
-// DETALLE		:	Completa / borra de foorma automatica todo el contenido de un picklist multivalor simple
-
-/*###################################################################################################################*/
-
-
-function FCC_ACCION_SOBRE_SIMPLE (TEMP_SIMPLE, ACCION){
-	
-	if (ACCION=="ADD") {
-		for (i=0; ele = TEMP_SIMPLE.options[i]; i++){ ele.selected = true;} 
-	} else if (ACCION=="DEL"){
-		for (i=0; ele = TEMP_SIMPLE.options[i]; i++){ ele.selected = false;}
-    }
-	
+input:checked + .FCC_SLIDER {
+  background-color: #2196F3;
 }
 
-/*###################################################################################################################*/
-
-// FUNCION		:	FCC_ACCION_SOBRE_MULTIPLE
-// DETALLE		:	Completa / borra de foorma automatica todo el contenido de un picklist multivalor jerarquico 
-//					(con boton añadir y borrar)
-
-/*###################################################################################################################*/
-
-function FCC_ACCION_SOBRE_MULTIPLE (TEMP_SECCION, TEMP_MULTIPLE, TEMP_LISTA, ACCION){
-	
-	var TEMP_MULTIPLE_SELECCION = TEMP_MULTIPLE.getElementsByClassName("scrollable_readonly_ms")[0];
-	var TEMP_MULTIPLE_SELECCION_NAME = TEMP_MULTIPLE_SELECCION.id.substring(20, 100);
-
-	if (ACCION=="ADD") {
-		
-		TEMP_MULTIPLE_SELECCION.onmouseover();
-		
-		for (ni=1; ni<TEMP_LISTA.length; ni++){
-			TEMP_LISTA.value=TEMP_LISTA.options[ni].value;
-			TEMP_LISTA.onchange();
-		}
-		
-		TEMP_SECCION.style.display="";
-		
-    } else if (ACCION=="DEL"){
-		//METODO SYMPLICITY
-		mult_sel_del_all(TEMP_MULTIPLE_SELECCION,TEMP_MULTIPLE_SELECCION_NAME);
-		TEMP_SECCION.style.display="";
-    }
-			
+input:focus + .FCC_SLIDER {
+  box-shadow: 0 0 1px #2196F3;
 }
 
+input:checked + .FCC_SLIDER:before {
+  -webkit-transform: translateX(90%);
+  -ms-transform: translateX(90%);
+  transform: translateX(90%);
+}
+
+/* Rounded sliders */
+.FCC_SLIDER.round {
+  border-radius: 50px;
+}
+
+.FCC_SLIDER.round:before {
+  border-radius: 50%;
+}
+
+/*
+FIN STYLOS PARA GESTION DE TOOGLE BUTTON
+*/
 
 
+/*
+STYLOS PARA GESTION VENTANAS MODAL
+*/
 
 
+.FCC_MODAL{				 
+	display: none;						
+	position: fixed;						
+	z-index: 1;						
+	padding-top: 100px;						
+	left: 0;				 
+	top: 0;				 
+	width: 100%;						
+	height: 100%;						
+	overflow: auto;				 
+	background-color: rgb(0,0,0);						
+	background-color: rgba(0,0,0,0.4); 
+	}		 
 
+.FCC_MODAL_content {				 
+	background-color: #fefefe;				 
+	margin: auto;				 
+	padding: 40px;				 
+	border: 1px solid #888;				 
+	width: 60%;				 
+	color: black;				 
+	line-height: 20px;						
+	font-size: 12px;						
+	text-align: justify;	
+	font-weight: normal;	
+	}	
+	 
+.FCC_MODAL_close {				 
+	color: #aaaaaa;				 
+	float: right;				 
+	font-size: 20px;				 
+	font-weight: bold; 
+	}		
 
-/*###################################################################################################################
-
-FIN
-
-#####################################################################################################################*/
-
-
-
-
-
+.FCC_MODAL_close:hover, .FCC_MODAL_close:focus {				
+	color: #000;				 
+	text-decoration: none;				 
+	cursor: pointer;
+	} 
+	
 
 	
+	
+	
+/*
+FIN STYLOS PARA GESTION VENTANAS MODAL
+*/
+
+/*
+STYLOS PARA AYUDAS
+*/
+
+.FCC_HELP{
+  width:30px;
+  height:30px;
+  margin: 5px;
+  padding: 5px;
+  background-color:#FF8000;
+  border-radius: 50px;
+  letter-spacing:0px;
+  line-height:30px;
+  
+  text-align: center;
+  font-weight: bold;
+  font-size:15px; 
+  font-family: Arial, Helvetica, sans-serif;
+}
+.FCC_HELP:hover{
+ /* opacity: 0.50;
+  -moz-opacity: .50;
+  filter:alpha (opacity=50);*/
+}
+.FCC_HELP a{
+  color:#fff;
+  text-decoration:none;
+  padding:5px 5px 5px 0;
+}
+
+/*
+FIN STYLOS PARA AYUDAS
+*/
+
+
+
+#UL_TB_001 ~ #SI {display:none;}
+#UL_TB_001 ~ #NO {display:inline;}
+#UL_TB_001:checked  ~ #SI {display:inline;}
+#UL_TB_001:checked  ~ #NO {display:none;}
+
+#UL_TB_002 ~ #SI {display:none;}
+#UL_TB_002 ~ #NO {display:inline;}
+#UL_TB_002:checked  ~ #SI {display:inline;}
+#UL_TB_002:checked  ~ #NO {display:none;}
+
+#UL_TB_003 ~ #SI {display:none;}
+#UL_TB_003 ~ #NO {display:inline;}
+#UL_TB_003:checked  ~ #SI {display:inline;}
+#UL_TB_003:checked  ~ #NO {display:none;}
+
+#UL_TB_004 ~ #SI {display:none;}
+#UL_TB_004 ~ #NO {display:inline;}
+#UL_TB_004:checked  ~ #SI {display:inline;}
+#UL_TB_004:checked  ~ #NO {display:none;}
+
+#UL_TB_0055 ~ #SI {display:none;}
+#UL_TB_0055 ~ #NO {display:inline;}
+#UL_TB_0055:checked  ~ #SI {display:inline;}
+#UL_TB_0055:checked  ~ #NO {display:none;}
