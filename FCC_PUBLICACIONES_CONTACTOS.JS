@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "2.7x6";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "2.7x7";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "09/09/18";
 	
 /*############################################################################################################################*/
@@ -109,9 +109,7 @@ window.onload=function() {
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
-	
 
-		
 		//OCULTANDO SOPORTES
 		UL_SECCION_TXT_001.style.display=FCC_NONE;
 		UL_SECCION_TXT_002.style.display=FCC_NONE;
@@ -158,9 +156,7 @@ window.onload=function() {
 			UL_TB_005_CHANGE(true);
 		}else if(UL_TXT_005.value=="true"){UL_TB_005.checked=true;	UL_TB_005_CHANGE(false);	
 		}else if(UL_TXT_005.value=="false"){UL_TB_005.checked=false;UL_TB_005_CHANGE(false);}
-	
 }
-
 
 
 /*###################################################################################################################
@@ -171,21 +167,18 @@ DETALLE		:	Se obtiene los elementos o valores de los elementos validando errores
 #####################################################################################################################*/	
 
 function FCC_GET_ELEMENTO_BYID(FCC_ID){
-	
 	var FCC_VALOR="";
 	try {FCC_VALOR=document.getElementById(FCC_ID);	}catch(err) {FCC_VALOR="FCC";}
 	return FCC_VALOR;
 }
 
 function FCC_GET_ELEMENTO_BYNAME(FCC_ID){
-	
 	var FCC_VALOR="";
 	try {FCC_VALOR=document.getElementsByName(FCC_ID);}catch(err) {FCC_VALOR="FCC";}
 	return FCC_VALOR;
 }
 
 function FCC_GET_ELEMENTO_BYCLASSNAME(FCC_ID){
-	
 	var FCC_VALOR="";
 	try {FCC_VALOR=document.getElementsByClassName(FCC_ID);}catch(err) {FCC_VALOR="FCC";}
 	return FCC_VALOR;
@@ -279,6 +272,7 @@ function UL_TB_004_CHANGE(TEMP_ACCION){
 		if (TEMP_CONTROL) {
 			UL_SECCION_CONDICION_EMPLEO_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CONDICION_EMPLEO_DES.style.display=FCC_NONE;
+			
 			if(TEMP_ACCION){
 				FCC_SELECCION_LISTA_JERARQUICA(UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
 				
@@ -304,15 +298,16 @@ function UL_TB_005_CHANGE(TEMP_ACCION){
 	try{
 		var TEMP_CONTROL = UL_TB_005.checked;
 		UL_TXT_005.value = TEMP_CONTROL;
-
+		
 		if (TEMP_CONTROL) {
 			UL_SECCION_CARRERA_PRACTICAPRO_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_NONE;
-			FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"DEL");
+			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"DEL");}
+			
 		} else if (!TEMP_CONTROL){
 			UL_SECCION_CARRERA_PRACTICAPRO_OBL.style.display=FCC_NONE;
 			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_VIEW;
-			FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"ADD");
+			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"ADD");}
 		}
 	}catch(err){}
 }
