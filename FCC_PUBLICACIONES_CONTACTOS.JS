@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.3";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.3x";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "10/09/18";
 	
 /*############################################################################################################################*/
@@ -91,7 +91,7 @@ var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__
 
 try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];
 console.log("# CODIGO DE EMPLEO: " + UL_CODIGO_EMPLEO.value );
-}ctach(err){}
+}catch(err){}
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
