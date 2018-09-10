@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "2.7x4";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "2.7x5";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "09/09/18";
 	
 /*############################################################################################################################*/
@@ -119,19 +119,45 @@ window.onload=function() {
 		UL_SECCION_TXT_004.style.display=FCC_NONE;
 		UL_SECCION_TXT_005.style.display=FCC_NONE;
 				
-		//INICIALIZANDO TB Y TEXTOS DE CONTROL	
-		FCC_INICIALIZA_CONTROLES(UL_TB_001,UL_TXT_001);
-		FCC_INICIALIZA_CONTROLES(UL_TB_002,UL_TXT_002);
-		FCC_INICIALIZA_CONTROLES(UL_TB_003,UL_TXT_003);
-		FCC_INICIALIZA_CONTROLES(UL_TB_004,UL_TXT_004);
-		FCC_INICIALIZA_CONTROLES(UL_TB_005,UL_TXT_005);
+		//CONTROL TB_001
+		if(UL_TXT_001.value==""){
+			UL_TXT_001.value=true;
+			UL_TB_001.checked=true;
+			UL_TB_001_CHANGE();
+		}else if(UL_TXT_001.value=="true"){UL_TB_001.checked=true;		
+		}else if(UL_TXT_001.value=="false"){UL_TB_001.checked=false;}
 		
-		//EJECUTANDO CONTROLES	
-		UL_TB_001_CHANGE();
-		UL_TB_002_CHANGE();
-		UL_TB_003_CHANGE();
-		UL_TB_004_CHANGE();
-		UL_TB_005_CHANGE();
+		//CONTROL TB_002
+		if(UL_TXT_002.value==""){
+			UL_TXT_002.value=true;
+			UL_TB_002.checked=true;
+			UL_TB_002_CHANGE();
+		}else if(UL_TXT_002.value=="true"){UL_TB_002.checked=true;		
+		}else if(UL_TXT_002.value=="false"){UL_TB_002.checked=false;}
+		
+		//CONTROL TB_003
+		if(UL_TXT_003.value==""){
+			UL_TXT_003.value=true;
+			UL_TB_003.checked=true;
+			UL_TB_003_CHANGE();
+		}else if(UL_TXT_003.value=="true"){UL_TB_003.checked=true;		
+		}else if(UL_TXT_003.value=="false"){UL_TB_003.checked=false;}
+		
+		//CONTROL TB_004
+		if(UL_TXT_004.value==""){
+			UL_TXT_004.value=true;
+			UL_TB_004.checked=true;
+			UL_TB_004_CHANGE();
+		}else if(UL_TXT_004.value=="true"){UL_TB_004.checked=true;		
+		}else if(UL_TXT_004.value=="false"){UL_TB_004.checked=false;}
+				
+		//CONTROL TB_005
+		if(UL_TXT_005.value==""){
+			UL_TXT_005.value=true;
+			UL_TB_005.checked=true;
+			UL_TB_005_CHANGE();
+		}else if(UL_TXT_005.value=="true"){UL_TB_005.checked=true;		
+		}else if(UL_TXT_005.value=="false"){UL_TB_005.checked=false;}
 	
 }
 
@@ -141,11 +167,9 @@ function FCC_INICIALIZA_CONTROLES(TEMP_TB,TEMP_TXT){
 	if(TEMP_TXT.value==""){
 		TEMP_TXT.value=true;
 		TEMP_TB.checked=true;
-	}else if(TEMP_TXT.value=="true"){
-		TEMP_TB.checked=true;
-	}else if(TEMP_TXT.value=="false"){
-		TEMP_TB.checked=false;
-	}
+		
+	}else if(TEMP_TXT.value=="true"){TEMP_TB.checked=true;		
+	}else if(TEMP_TXT.value=="false"){TEMP_TB.checked=false;}
 }
 
 
