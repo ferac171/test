@@ -84,7 +84,7 @@ input:checked + .FCC_SLIDER:before {
   font-size:15px; 
   font-family: Arial, Helvetica, sans-serif;
 }
-
+/*
 #UL_TB_001 ~ #SI {display:none;}
 #UL_TB_001 ~ #NO {display:inline;}
 #UL_TB_001:checked  ~ #SI {display:inline;}
@@ -110,7 +110,7 @@ input:checked + .FCC_SLIDER:before {
 #UL_TB_0055:checked  ~ #SI {display:inline;}
 #UL_TB_0055:checked  ~ #NO {display:none;}
 
-/*
+
 FIN STYLOS PARA GESTION DE TOOGLE BUTTON
 */
 
