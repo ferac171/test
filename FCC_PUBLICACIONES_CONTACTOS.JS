@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.6";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.7x";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "12/09/18";
 //pl_40a0086af506f1ec0530b5fb8893a558_trunk
 //<div id="pl_mask" class="masked"></div>
@@ -48,14 +48,26 @@ var UL_TXT_003 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_003_");
 var UL_TXT_004 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_004_"); 
 var UL_TXT_005 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_0055_"); 
 
+var UL_SECCION_TXT_006 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_061_"); 
+
 var UL_SECCION_TXT_001 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_001_"); 
 var UL_SECCION_TXT_002 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_002_"); 
 var UL_SECCION_TXT_003 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_003_"); 
 var UL_SECCION_TXT_004 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_004_"); 
 var UL_SECCION_TXT_005 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_0055_"); 
 
+var UL_SECCION_TXT_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_061_"); 
+var UL_SECCION_SLC_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_PROP_061_"); 
+
+
 //ELEMENTOS GENERALES DE POSTULACION 
 //------------------------------------------------------------------------------------------------------------------
+
+var UL_TXT_FECHAPUBLICACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start_"); 
+var UL_TXT_FECHAFINALIZACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end_"); 
+
+var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0"); 
+var UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
 
 var UL_LISTA_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_"); 
 var UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_"); 
@@ -66,6 +78,14 @@ var UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_");
 var UL_TXT_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_email_"); 
 var UL_TXT_CORREO_DOMINIO = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DOMINIO"); 
 var UL_TXT_CORREO_DIRECCION = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DIRECCION"); 
+
+var UL_CHK_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_mode___email_check"); 
+
+var UL_SECCION_CORREO = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__correo_electrnico_predetermina_"); 
+
+var UL_SECCION_CORREO_ORIGINAL = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__resume_email_"); 
+
+
 
 var UL_CORREO = "";
 var UL_CORREO_DIRECCION = "";
@@ -108,11 +128,29 @@ var UL_ARREGLO_CONDICION_EMPLEO_OBL = new Array("0080","0060", "0040", "0020");
 var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
 try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];
+
 console.log("# CODIGO DE EMPLEO: " + UL_CODIGO_EMPLEO.value );
 }catch(err){}
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
+
+// BLOQUEANDO ACCIONES NO DESEADAS ;)
+$(document).ready(function() {
+
+  $('form').keypress(function(e){   
+    if(e == 13){
+      return false;
+    }
+  });
+
+  $('input').keypress(function(e){
+    if(e.which == 13){
+      return false;
+    }
+  });
+
+});
 
 
 
@@ -123,6 +161,10 @@ try{UL_LISTA_AREA.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
 try{UL_TXT_AREA.addEventListener("change",UL_CALCULA_POSICION);}catch(err){}
 try{UL_LISTA_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
 try{UL_TXT_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
+
+try{UL_CHK_CORREO.addEventListener("change", FCC_VER_CORREO);}catch(err){}
+
+
 
 
 try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
@@ -144,14 +186,26 @@ window.onload=function() {
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
-
+var  UL_CODIGO="0";
 	//OCULTANDO SOPORTES
-	UL_SECCION_TXT_001.style.display=FCC_NONE;
-	UL_SECCION_TXT_002.style.display=FCC_NONE;
-	UL_SECCION_TXT_003.style.display=FCC_NONE;
-	UL_SECCION_TXT_004.style.display=FCC_NONE;
-	UL_SECCION_TXT_005.style.display=FCC_NONE;
+	try{
+		UL_SECCION_TXT_001.style.display=FCC_NONE;
+		UL_SECCION_TXT_002.style.display=FCC_NONE;
+		UL_SECCION_TXT_003.style.display=FCC_NONE;
+		UL_SECCION_TXT_004.style.display=FCC_NONE;
+		UL_SECCION_TXT_005.style.display=FCC_NONE;
+	}catch(err){}
+	
+	try{
 				
+		UL_CODIGO = UL_CODIGO_EMPLEO.value;
+		
+	}catch(err){}
+	
+	
+	
+	
+	
 		//CONTROL TB_001
 	try{	
 		if(UL_TXT_001.value==""){
@@ -204,18 +258,43 @@ window.onload=function() {
 	}catch(err){}
 	
 	
+	//CARTACRERISTIAS DE LA FECHA ED PUBLICACIONES
+	
+
+	UL_TXT_FECHAPUBLICACION.readOnly  = true;
+	UL_BTN_PUBLICAR.style.display="none";
+	UL_BTN_BORRAR.style.display="none";
+	
+	UL_SECCION_TXT_006.readOnly  = true;
+	
+	if (UL_CODIGO == 0 ) { 
+		FCC_INICIA_AFECHA();
+		
+		UL_SECCION_SLC_006.style.display="";
+		UL_SECCION_TXT_006.style.display="none";
+	} else{
+		UL_SECCION_SLC_006.style.display="none";
+		UL_SECCION_TXT_006.style.display="";
+	 		
+	}
+		
 	//CARACTERISTICAS DEL CORREO
 	
-	
-	UL_CORREO= UL_TXT_CORREO.value;
-	UL_CORREO_DOMINIO= UL_CORREO.substring(UL_CORREO.indexOf('@'));
-	UL_CORREO_DIRECCION = UL_CORREO.substring(0,UL_CORREO.indexOf('@'));
+	try{
+		UL_CORREO= UL_TXT_CORREO.value;
+		UL_CORREO_DOMINIO= UL_CORREO.substring(UL_CORREO.indexOf('@'));
+		UL_CORREO_DIRECCION = UL_CORREO.substring(0,UL_CORREO.indexOf('@'));
+			
+		UL_TXT_CORREO_DIRECCION.value=UL_CORREO_DIRECCION;	
+		UL_TXT_CORREO_DOMINIO.value=UL_CORREO_DOMINIO;
 		
-	UL_TXT_CORREO_DIRECCION.value=UL_CORREO_DIRECCION;	
-	UL_TXT_CORREO_DOMINIO.value=UL_CORREO_DOMINIO;
+		UL_TXT_CORREO.readOnly  = true;
+		UL_TXT_CORREO_DOMINIO.readOnly  = true;
+
+	}catch(err){}
+		
+	FCC_VER_CORREO();	
 	
-	UL_TXT_CORREO.readOnly  = true;
-	UL_TXT_CORREO_DOMINIO.readOnly  = true;
 	//HABILITA LISTENERS
 	UL_CONTROL_LISTENER=true;
 }
@@ -543,6 +622,50 @@ function UL_COMPONE_CORREO(){
 
 
 }
+
+
+function FCC_INICIA_AFECHA(){
+
+
+	try{
+			
+		var numero ="1";
+		  //la fecha
+		  var TuFecha = new Date();
+		  
+		  //dias a sumar
+		  var dias = parseInt(numero);
+		  
+		  //nueva fecha sumada
+		  TuFecha.setDate(TuFecha.getDate() + dias);
+		  //formato de salida para la fecha
+		  
+		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + TuFecha.getDate();
+
+	}catch(err){}
+
+
+}
+function FCC_VER_CORREO(){
+
+
+	try{
+			if(UL_CHK_CORREO.checked){
+				UL_SECCION_CORREO_ORIGINAL.style.display = "none";
+				UL_SECCION_CORREO.style.display = "";
+			} else{
+				UL_SECCION_CORREO_ORIGINAL.style.display = "none";
+				UL_SECCION_CORREO.style.display = "none";
+
+			}
+
+	}catch(err){}
+
+
+}
+
+
+
 /*###################################################################################################################
 
 FIN
