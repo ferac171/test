@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.7x";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.7xx";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "12/09/18";
 //pl_40a0086af506f1ec0530b5fb8893a558_trunk
 //<div id="pl_mask" class="masked"></div>
@@ -48,7 +48,7 @@ var UL_TXT_003 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_003_");
 var UL_TXT_004 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_004_"); 
 var UL_TXT_005 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_0055_"); 
 
-var UL_SECCION_TXT_006 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_061_"); 
+var UL_TXT_006 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_061_"); 
 
 var UL_SECCION_TXT_001 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_001_"); 
 var UL_SECCION_TXT_002 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_002_"); 
@@ -265,7 +265,7 @@ var  UL_CODIGO="0";
 	UL_BTN_PUBLICAR.style.display="none";
 	UL_BTN_BORRAR.style.display="none";
 	
-	UL_SECCION_TXT_006.readOnly  = true;
+	UL_TXT_006.readOnly  = true;
 	
 	if (UL_CODIGO == 0 ) { 
 		FCC_INICIA_AFECHA();
