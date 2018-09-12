@@ -7,8 +7,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "35";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "11/09/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.6";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "12/09/18";
 //pl_40a0086af506f1ec0530b5fb8893a558_trunk
 //<div id="pl_mask" class="masked"></div>
 /*############################################################################################################################*/
@@ -54,6 +54,23 @@ var UL_SECCION_TXT_003 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_jo
 var UL_SECCION_TXT_004 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_004_"); 
 var UL_SECCION_TXT_005 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_0055_"); 
 
+//ELEMENTOS GENERALES DE POSTULACION 
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_LISTA_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_"); 
+var UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_"); 
+var UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_"); 
+var UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
+var UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
+
+var UL_TXT_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_email_"); 
+var UL_TXT_CORREO_DOMINIO = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DOMINIO"); 
+var UL_TXT_CORREO_DIRECCION = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DIRECCION"); 
+
+var UL_CORREO = "";
+var UL_CORREO_DIRECCION = "";
+var UL_CORREO_DOMINIO = "";
+
 //ELEMENTOS DE PRACTICAS PRE 
 //------------------------------------------------------------------------------------------------------------------
 
@@ -97,59 +114,43 @@ console.log("# CODIGO DE EMPLEO: " + UL_CODIGO_EMPLEO.value );
 // LISTENERS
 /*##############################################################################################################################*/
 
+
+
+
+try{UL_TXT_CORREO_DIRECCION.addEventListener("change", UL_COMPONE_CORREO);}catch(err){}
+
+try{UL_LISTA_AREA.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
+try{UL_TXT_AREA.addEventListener("change",UL_CALCULA_POSICION);}catch(err){}
+try{UL_LISTA_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
+try{UL_TXT_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
+
+
 try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
 try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
 try{UL_TB_003.addEventListener("change", function(){UL_TB_003_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_003_CHANGE");}
 try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_004_CHANGE");}
 try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
 
-/*
-try{UL_TXT_003.addEventListener("mouseover", 
-	function(){
-		
-		try{
-			
-			var pp = UL_LIST_CARRERA_EMPLEO_OBL.getElementsByClassName("pl-widget pl-widget-multi");
-			var jj = pp[0].getElementsByClassName("pl-rm");
-			
-			console.log(jj.length);
-			
-			var tope= jj.length;
-			for (ii= 0; ii<tope ; ii++){
-				jj[0].click();
-			}
-			
-			
-		}catch(err){}
-		
-			}
-		
-		);}catch(err){console.log("ERR LISTENER: txt");}
 
 
-*/
-/*############################################################################################################################
 
-FUNCION		:	ONLOAD
-DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
-				Se ejecuta una vez acasarados todos los componentes de la pagina
-
-##############################################################################################################################*/
+/*############################################################################################################################*/
+//FUNCION		:	ONLOAD
+//DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
+//					Se ejecuta una vez acasarados todos los componentes de la pagina
+/*############################################################################################################################*/
 
 window.onload=function() {
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
 
-		//OCULTANDO SOPORTES
-		UL_SECCION_TXT_001.style.display=FCC_NONE;
-		UL_SECCION_TXT_002.style.display=FCC_NONE;
-		UL_SECCION_TXT_003.style.display=FCC_NONE;
-		UL_SECCION_TXT_004.style.display=FCC_NONE;
-		UL_SECCION_TXT_005.style.display=FCC_NONE;
-				
-				
-			
+	//OCULTANDO SOPORTES
+	UL_SECCION_TXT_001.style.display=FCC_NONE;
+	UL_SECCION_TXT_002.style.display=FCC_NONE;
+	UL_SECCION_TXT_003.style.display=FCC_NONE;
+	UL_SECCION_TXT_004.style.display=FCC_NONE;
+	UL_SECCION_TXT_005.style.display=FCC_NONE;
 				
 		//CONTROL TB_001
 	try{	
@@ -203,18 +204,20 @@ window.onload=function() {
 	}catch(err){}
 	
 	
+	//CARACTERISTICAS DEL CORREO
+	
+	
+	UL_CORREO= UL_TXT_CORREO.value;
+	UL_CORREO_DOMINIO= UL_CORREO.substring(UL_CORREO.indexOf('@'));
+	UL_CORREO_DIRECCION = UL_CORREO.substring(0,UL_CORREO.indexOf('@'));
+		
+	UL_TXT_CORREO_DIRECCION.value=UL_CORREO_DIRECCION;	
+	UL_TXT_CORREO_DOMINIO.value=UL_CORREO_DOMINIO;
+	
+	UL_TXT_CORREO.readOnly  = true;
+	UL_TXT_CORREO_DOMINIO.readOnly  = true;
+	//HABILITA LISTENERS
 	UL_CONTROL_LISTENER=true;
-	
-	
-	//otras val
-	
-
-	
-	
-	
-	//pl_p_pl_55951b35e36b80d58c103be41191ab87
-	//pl_55951b35e36b80d58c103be41191ab87_trunk
-	
 }
 
 /*###################################################################################################################
@@ -266,9 +269,7 @@ function UL_TB_001_CHANGE(TEMP_ACCION){
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_VIEW;
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"ADD");}
 		}
-	}catch(err){
-		//console.log ("ERR: UL_TB_001_CHANGE");
-	}
+	}catch(err){}
 
 }
 
@@ -290,9 +291,7 @@ function UL_TB_002_CHANGE(TEMP_ACCION){
 			UL_SECCION_NIVEL_PRACTICAPRE_DES.style.display=FCC_VIEW;
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"ADD");}
 		}
-	}catch(err){
-		//console.log ("ERR: UL_TB_002_CHANGE");
-	}
+	}catch(err){}
 }
 
 // EMPLEOS - CARRERAS
@@ -364,8 +363,6 @@ function UL_TB_004_CHANGE(TEMP_ACCION){
 			}catch(err){}
 		}
 }	
-		
-
 
 // PRACTICAS PRO - CARRERAS	
 function UL_TB_005_CHANGE(TEMP_ACCION){
@@ -443,9 +440,7 @@ function FCC_SELECCION_LISTA_JERARQUICA(TEMP_LISTA, TEMP_SELECT,TEMP_ARREGLO, AC
 				TEMP_SELECT.options.remove(0);
 			}	
 		}catch(err){}
-
 	}
-	
 }
 
 
@@ -465,8 +460,89 @@ function FCC_ACCION_SOBRE_SIMPLE (TEMP_SIMPLE, ACCION){
 	
 }
 
+/*###################################################################################################################*/
+// FUNCION		:	FCC_CONTROL DE IDICOMAS
+// DETALLE		:	AÑADE Y ELEIINA LISTA DE IDIOMAS
+/*###################################################################################################################*/
 
 
+function UL_ADD_IDIOMA() {
+	try{
+		var idioma = document.getElementById("UL_CBX_001");
+		var nivel = document.getElementById("UL_CBX_002");
+		var lista = document.getElementById("UL_GRD_001");
+		var valor = "";
+
+		valor = idioma.value + "-" + nivel.value;
+
+
+		var TEMP_ELEMENT = document.createElement("option");
+		TEMP_ELEMENT.text = valor;
+		TEMP_ELEMENT.value = valor;
+
+		lista.options.add(TEMP_ELEMENT,0);
+
+		UL_LISTA_IDIOMAS();
+	}catch(err){}
+}
+
+function UL_DEL_IDIOMA() {
+	try{
+		var lista = document.getElementById("UL_GRD_001");
+		lista.options.remove(lista.selectedIndex);
+
+		UL_LISTA_IDIOMAS();
+	}catch(err){}
+}
+
+function UL_LISTA_IDIOMAS() {
+	try{
+		var lista = document.getElementById("UL_GRD_001");
+		var tope = lista.length;
+		var resumen = document.getElementById("dnf_class_values_job__UL_TXT_061_");
+
+		resumen.value="";
+		resumen.value+=lista.options[0].text;  
+
+		  for (i=1; i<tope; i++){
+			  resumen.value+=" / "+lista.options[i].text;
+		  }
+	}catch(err){}
+}
+
+
+/*###################################################################################################################*/
+// FUNCION		:	FCC CALCULA POSICION
+// DETALLE		:	CALCULA LA POSICION A PUBLICAR
+/*###################################################################################################################*/
+
+function UL_CALCULA_POSICION(){
+	try{
+		var TEMP_AREA =  UL_LISTA_AREA.options[UL_LISTA_AREA.selectedIndex].text;
+		var TEMP_CARGO = UL_LISTA_CARGO.options[UL_LISTA_CARGO.selectedIndex].text;
+
+		if (TEMP_AREA=="OTRO"){	TEMP_AREA=UL_TXT_AREA.value;}
+		if (TEMP_CARGO=="OTRO"){TEMP_CARGO=UL_TXT_CARGO.value;}
+		
+		UL_TXT_POSICION.value=TEMP_CARGO+" DE "+TEMP_AREA;
+	}catch(err){}
+}
+
+
+function UL_COMPONE_CORREO(){
+
+
+	try{
+		var TEMP_DOMINIO =  UL_CORREO_DOMINIO;
+		var TEMP_DIRECCION = UL_TXT_CORREO_DIRECCION.value;
+
+		if (TEMP_DIRECCION!=""){
+			UL_TXT_CORREO.value=TEMP_DIRECCION+TEMP_DOMINIO;
+		}
+	}catch(err){}
+
+
+}
 /*###################################################################################################################
 
 FIN
