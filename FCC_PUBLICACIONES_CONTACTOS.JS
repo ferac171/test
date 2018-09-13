@@ -7,8 +7,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.7xx";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "12/09/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.8";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "13/09/18";
 //pl_40a0086af506f1ec0530b5fb8893a558_trunk
 //<div id="pl_mask" class="masked"></div>
 /*############################################################################################################################*/
@@ -31,19 +31,76 @@ const FCC_VIEW = "";
 // DECLARACION GENERAL DE VARIABLES DE ELEMENTOS
 /*##############################################################################################################################*/
 
-//VARIABLES DE CONTROL 
+
+//VARIABLES DE CONTROL DE LISTENERS Y EVENTOS
 //------------------------------------------------------------------------------------------------------------------
 
 var UL_CONTROL_LISTENER =false;	
+try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];}catch(err){}
+try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
+
+//VARIABLES DE CONTROL DE IDIOMAS
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_CBX_001 = FCC_GET_ELEMENTO_BYID("UL_CBX_001");
+var UL_TXT_006 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_061_"); 
+var UL_TXT_OTRO_IDIOMA = FCC_GET_ELEMENTO_BYID("UL_TXT_OTRO_IDIOMA"); 
+
+var UL_SECCION_TXT_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_061_"); 
+var UL_SECCION_SLC_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_PROP_061_"); 
+
+//VARIABLES DE CONTROL DE HABILIDADES
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_CBX_002 = FCC_GET_ELEMENTO_BYID("UL_CBX_003");
+var UL_TXT_007 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__ul_txt_077_"); 
+var UL_TXT_OTRO_HABILIDAD = FCC_GET_ELEMENTO_BYID("UL_TXT_OTRO_HABILIDAD"); 
+
+var UL_SECCION_TXT_007 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__ul_txt_077_"); 
+var UL_SECCION_SLC_007 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__ul_prop_077_"); 
+
+
+//VARIABLES DE CONTROL DE CORREO ELECTRONICO
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_TXT_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_email_"); 
+var UL_TXT_CORREO_DOMINIO = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DOMINIO"); 
+var UL_TXT_CORREO_DIRECCION = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DIRECCION"); 
+
+var UL_CHK_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_mode___email_check"); 
+var UL_SECCION_CORREO = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__correo_electrnico_predetermina_"); 
+var UL_SECCION_CORREO_ORIGINAL = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__resume_email_"); 
+
+var UL_CORREO = "";
+var UL_CORREO_DIRECCION = "";
+var UL_CORREO_DOMINIO = "";
+
+//VARIABLES DE CONTROL DE FECHAS DE POSTULACION
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_TXT_FECHAPUBLICACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start_"); 
+var UL_TXT_FECHAFINALIZACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end_"); 
+
+var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0"); 
+var UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
+
+//VARIABLES DE CONTROL DE CARGO A PUBLICAR
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_LISTA_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_"); 
+var UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_"); 
+var UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_"); 
+var UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
+var UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
+
+//VARIABLES DE CONTROL DE  INFORMACION ACADEMICA
+//------------------------------------------------------------------------------------------------------------------
 
 var UL_TB_001 = FCC_GET_ELEMENTO_BYID("UL_TB_001");
 var UL_TB_002 = FCC_GET_ELEMENTO_BYID("UL_TB_002");
 var UL_TB_003 = FCC_GET_ELEMENTO_BYID("UL_TB_003");
 var UL_TB_004 = FCC_GET_ELEMENTO_BYID("UL_TB_004");
 var UL_TB_005 = FCC_GET_ELEMENTO_BYID("UL_TB_0055");
-
-var UL_CBX_001 = FCC_GET_ELEMENTO_BYID("UL_CBX_001");
-
 
 var UL_SECCION_MSJ_001 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_MSG_001_");
 var UL_SECCION_MSJ_002 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_MSG_0022_");
@@ -57,49 +114,12 @@ var UL_TXT_003 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_003_");
 var UL_TXT_004 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_004_"); 
 var UL_TXT_005 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_0055_"); 
 
-var UL_TXT_006 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_061_"); 
-var UL_TXT_OTRO_IDIOMA = FCC_GET_ELEMENTO_BYID("UL_TXT_OTRO_IDIOMA"); 
 
 var UL_SECCION_TXT_001 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_001_"); 
 var UL_SECCION_TXT_002 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_002_"); 
 var UL_SECCION_TXT_003 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_003_"); 
 var UL_SECCION_TXT_004 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_004_"); 
 var UL_SECCION_TXT_005 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_0055_"); 
-
-var UL_SECCION_TXT_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_061_"); 
-var UL_SECCION_SLC_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_PROP_061_"); 
-
-
-//ELEMENTOS GENERALES DE POSTULACION 
-//------------------------------------------------------------------------------------------------------------------
-
-var UL_TXT_FECHAPUBLICACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start_"); 
-var UL_TXT_FECHAFINALIZACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end_"); 
-
-var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0"); 
-var UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
-
-var UL_LISTA_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_"); 
-var UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_"); 
-var UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_"); 
-var UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
-var UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
-
-var UL_TXT_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_email_"); 
-var UL_TXT_CORREO_DOMINIO = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DOMINIO"); 
-var UL_TXT_CORREO_DIRECCION = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DIRECCION"); 
-
-var UL_CHK_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_mode___email_check"); 
-
-var UL_SECCION_CORREO = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__correo_electrnico_predetermina_"); 
-
-var UL_SECCION_CORREO_ORIGINAL = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__resume_email_"); 
-
-
-
-var UL_CORREO = "";
-var UL_CORREO_DIRECCION = "";
-var UL_CORREO_DOMINIO = "";
 
 //ELEMENTOS DE PRACTICAS PRE 
 //------------------------------------------------------------------------------------------------------------------
@@ -124,7 +144,6 @@ var UL_SECCION_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf
 var UL_LISTA_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_applicant_type___");
 var UL_LISTA_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__sf_carreras_para_practicas_pro___");
 
-
 //ELEMENTOS DE EMPLEOS Y OTROS 
 //------------------------------------------------------------------------------------------------------------------
 
@@ -143,47 +162,20 @@ var UL_ARREGLO_CONDICION_EMPLEO_OBL = new Array("0080","0060", "0040", "0020");
 
 var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
-try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];}catch(err){}
-
-try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
-
 
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
 
-// BLOQUEANDO ACCIONES NO DESEADAS ;)
-$(document).ready(function() {
-
-  $('form').keypress(function(e){   
-    if(e == 13){
-      return false;
-    }
-  });
-
-  $('input').keypress(function(e){
-    if(e.which == 13){
-      return false;
-    }
-  });
-
-});
-
-
-
 try{UL_CBX_001.addEventListener("change", UL_HABILITA_IDIOMA);}catch(err){}
+try{UL_CBX_002.addEventListener("change", UL_HABILITA_HABILIDAD);}catch(err){}
 
 try{UL_TXT_CORREO_DIRECCION.addEventListener("change", UL_COMPONE_CORREO);}catch(err){}
-
 try{UL_LISTA_AREA.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
 try{UL_TXT_AREA.addEventListener("change",UL_CALCULA_POSICION);}catch(err){}
 try{UL_LISTA_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
 try{UL_TXT_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
-
 try{UL_CHK_CORREO.addEventListener("change", FCC_VER_CORREO);}catch(err){}
-
-
-
 
 try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
 try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
@@ -192,6 +184,15 @@ try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(UL_CONTROL_
 try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
 
 
+// BLOQUEANDO ACCIONES NO DESEADAS ;)
+$(document).ready(function() {
+  $('form').keypress(function(e){   
+    if(e == 13){return false;}
+  });
+  $('input').keypress(function(e){
+    if(e.which == 13){return false;}
+  });
+});
 
 
 /*############################################################################################################################*/
@@ -220,25 +221,19 @@ var  UL_CODIGO="1";
 		try{UL_SECCION_MSJ_004.style.display=FCC_NONE;}catch(err){}
 		try{UL_SECCION_MSJ_005.style.display=FCC_NONE;}catch(err){}
 		try{UL_TXT_OTRO_IDIOMA.style.display=FCC_NONE;}catch(err){}
-
-	try{		
+		try{UL_TXT_OTRO_HABILIDAD.style.display=FCC_NONE;}catch(err){}
 		
+	try{		
 		var TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
 		var tope_barra = TEMP_ELEMENTOS.length;
 		
 		for ( bb = 0; bb <tope_barra ; bb++){
-			
-			//console.log("# miraaaaaaaa: " + TEMP_ELEMENTOS[bb].value);
 			if (TEMP_ELEMENTOS[bb].value=="GUARDAR Y FINALIZAR MAS TARDE"){	UL_CODIGO="0";
 			}
-		}
-		
-		console.log("# CODIGO DE : " + UL_CODIGO);
-			
+		}			
 	}catch(err){}
 	
-	
-		//CONTROL TB_001
+	//CONTROL TB_001
 	try{	
 		if(UL_TXT_001.value==""){
 			UL_TXT_001.value=true;
@@ -248,7 +243,7 @@ var  UL_CODIGO="1";
 		}else if(UL_TXT_001.value=="false"){UL_TB_001.checked=false;UL_TB_001_CHANGE(false);}
 	}catch(err){}
 	
-		//CONTROL TB_002
+	//CONTROL TB_002
 	try{
 		if(UL_TXT_002.value==""){
 			UL_TXT_002.value=true;
@@ -258,7 +253,7 @@ var  UL_CODIGO="1";
 		}else if(UL_TXT_002.value=="false"){UL_TB_002.checked=false;UL_TB_002_CHANGE(false);}
 	}catch(err){}
 			
-		//CONTROL TB_003
+	//CONTROL TB_003
 	try{
 		console.log("003 - desde load");
 		if(UL_TXT_003.value==""){
@@ -269,7 +264,7 @@ var  UL_CODIGO="1";
 		}else if(UL_TXT_003.value=="false"){UL_TB_003.checked=false;UL_TB_003_CHANGE(false);}
 	}catch(err){}
 			
-		//CONTROL TB_004
+	//CONTROL TB_004
 	try{
 		if(UL_TXT_004.value==""){
 			UL_TXT_004.value=true;
@@ -279,7 +274,7 @@ var  UL_CODIGO="1";
 		}else if(UL_TXT_004.value=="false"){UL_TB_004.checked=false;UL_TB_004_CHANGE(false);}
 	}catch(err){}
 					
-		//CONTROL TB_005
+	//CONTROL TB_005
 	try{
 		if(UL_TXT_005.value==""){
 			UL_TXT_005.value=true;
@@ -290,9 +285,8 @@ var  UL_CODIGO="1";
 	}catch(err){}
 	
 	
-	//CARTACRERISTIAS DE LA FECHA ED PUBLICACIONES
+	//CARTACRERISTIAS DE LA FECHA DE PUBLICACIONES
 	
-
 	UL_TXT_FECHAPUBLICACION.readOnly  = true;
 	UL_BTN_PUBLICAR.style.display="none";
 	UL_BTN_BORRAR.style.display="none";
@@ -312,6 +306,7 @@ var  UL_CODIGO="1";
 		
 		
 	UL_INICIA_IDIOMA();
+	UL_INICIA_HABILIDAD();
 	
 	//CARACTERISTICAS DEL CORREO
 	
@@ -329,6 +324,9 @@ var  UL_CODIGO="1";
 	}catch(err){}
 		
 	FCC_VER_CORREO();	
+	
+	//CARGA INICIAL DE ACTIVIDADES
+	FCC_CARGA_LISTA_ACTIVIDADES();
 	
 	//HABILITA LISTENERS
 	UL_CONTROL_LISTENER=true;
@@ -625,16 +623,9 @@ function UL_HABILITA_IDIOMA() {
 		} else{
 			UL_TXT_OTRO_IDIOMA.style.display="none";
 		}
-
-
 	}catch(err){}
 }
 	
-
-
-
-
-
 function UL_ADD_IDIOMA() {
 	try{
 		var idioma = document.getElementById("UL_CBX_001");
@@ -680,9 +671,6 @@ function UL_INICIA_IDIOMA() {
 		
 	}catch(err){}
 }
-
-
-
 
 function UL_DEL_IDIOMA() {
 	try{
@@ -784,6 +772,104 @@ function FCC_VER_CORREO(){
 
 
 }
+
+/*###################################################################################################################*/
+// FUNCION		:LISTA DE ACTVIDADES
+// DETALLE		:FUNCIOENS PARA LSTA DE ACTIVDIADES
+/*###################################################################################################################*/
+
+
+function FCC_CARGA_LISTA_ACTIVIDADES(){
+	
+	
+	
+	
+	
+}
+
+
+
+function UL_HABILITA_HABILIDAD() {
+	try{
+		
+		if (UL_CBX_003.value == "OTRO" ){
+			UL_TXT_OTRO_HABILIDAD.style.display="";
+		} else{
+			UL_TXT_OTRO_HABILIDAD.style.display="none";
+		}
+	}catch(err){}
+}
+	
+function UL_ADD_HABILIDAD() {
+	try{
+		var habilidad = UL_CBX_003;
+		var lista = document.getElementById("UL_GRD_002");
+		
+		var valor = "";
+		
+		if (habilidad.value == "OTRO" ){
+			valor = UL_TXT_OTRO_HABILIDAD.value;
+		} else{
+			valor = UL_CBX_003.value;
+		}
+	
+		var TEMP_ELEMENT = document.createElement("option");
+		TEMP_ELEMENT.text = valor;
+		TEMP_ELEMENT.value = valor;
+
+		lista.options.add(TEMP_ELEMENT,0);
+
+		UL_LISTA_HABILIDAD();
+	}catch(err){}
+}
+
+function UL_INICIA_HABILIDAD() {
+	try{
+		
+		var resumen = document.getElementById("dnf_class_values_job__ul_txt_077_").value;
+		var lista = document.getElementById("UL_GRD_002");
+		var TEMP_ELEMENT = document.createElement("option");
+
+		var arrayDeCadenas = resumen.split(" / ");
+		var limitell = arrayDeCadenas;
+		
+		for (ll=0 ; ll<limitell.length; ll++){
+	
+			TEMP_ELEMENT = document.createElement("option");
+			TEMP_ELEMENT.text = arrayDeCadenas[ll];
+			TEMP_ELEMENT.value = arrayDeCadenas[ll];
+			lista.options.add(TEMP_ELEMENT,0);
+		}
+		
+	}catch(err){}
+}
+
+function UL_DEL_HABILIDAD() {
+	try{
+		var lista = document.getElementById("UL_GRD_002");
+		lista.options.remove(lista.selectedIndex);
+
+		UL_LISTA_HABILIDAD();
+	}catch(err){}
+}
+
+function UL_LISTA_HABILIDAD() {
+	try{
+		var lista = document.getElementById("UL_GRD_002");
+		var tope = lista.length;
+		var resumen = document.getElementById("dnf_class_values_job__ul_txt_077_");
+
+		resumen.value="";
+		resumen.value+=lista.options[0].text;  
+
+		  for (i=1; i<tope; i++){
+			  resumen.value+=" / "+lista.options[i].text;
+		  }
+	}catch(err){}
+}
+
+
+
 
 
 
