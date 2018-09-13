@@ -74,6 +74,16 @@
 	background-color: #e2f1fd; 	
 	font-size: 14px; 	
 	margin: 0px; 
+}	
+
+.UL_CSS_MENSAJE { 	
+	border-radius: 3px; 	
+	padding: 10px 10px 10px 10px; 	
+	border-left: 5px solid #fde112; 	
+	color: ##b3a646; 	
+	background-color: #ffea165c; 	
+	font-size: 14px; 	
+	margin: 0px; 
 }		
 
 .UL_CSS_ERROR { 	
