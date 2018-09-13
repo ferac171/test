@@ -106,11 +106,15 @@ var UL_CORREO_DOMINIO = "";
 
 var UL_SECCION_CARRERA_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__carreras_para_practicas_pre_pr___"); 
 var UL_SECCION_CARRERA_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_work_authorization___"); 
+
 var UL_LISTA_CARRERA_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_work_authorization___");
+var UL_LISTA_CARRERA_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__carreras_para_practicas_pre_pr___");
 var UL_SECCION_NIVEL_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__nivel_deseable_pre___"); 
 var UL_SECCION_NIVEL_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_class_level___"); 
 var UL_WIDGET_NIVEL_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_class_level____widget");
+
 var UL_LISTA_NIVEL_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_class_level___");
+var UL_LISTA_NIVEL_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__nivel_deseable_pre___");
 
 //ELEMENTOS DE PRACTICAS PRO 
 //------------------------------------------------------------------------------------------------------------------
@@ -118,6 +122,8 @@ var UL_LISTA_NIVEL_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job
 var UL_SECCION_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_applicant_type___"); 
 var UL_SECCION_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__sf_carreras_para_practicas_pro___"); 
 var UL_LISTA_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_applicant_type___");
+var UL_LISTA_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__sf_carreras_para_practicas_pro___");
+
 
 //ELEMENTOS DE EMPLEOS Y OTROS 
 //------------------------------------------------------------------------------------------------------------------
@@ -368,13 +374,19 @@ function UL_TB_001_CHANGE(TEMP_ACCION){
 	UL_TXT_001.value = TEMP_CONTROL;
 	
 	try{	
-		if (TEMP_CONTROL) {
+			
+		if (TEMP_CONTROL) {		
+			UL_LISTA_CARRERA_PRACTICAPRE_OBL.style.height = "360px";	
+			
 			UL_SECCION_CARRERA_PRACTICAPRE_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_NONE;
 			UL_SECCION_MSJ_001.style.display=FCC_NONE;	
-			
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"DEL");}
+			
 		} else if (!TEMP_CONTROL){
+			
+			UL_LISTA_CARRERA_PRACTICAPRE_DES.style.height = "360px";
+			
 			UL_SECCION_CARRERA_PRACTICAPRE_OBL.style.display=FCC_NONE;
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_VIEW;
 			UL_SECCION_MSJ_001.style.display=FCC_VIEW;	
@@ -395,12 +407,18 @@ function UL_TB_002_CHANGE(TEMP_ACCION){
 			UL_TXT_002.value = TEMP_CONTROL;
 
 		if (TEMP_CONTROL) {
+			
+			UL_LISTA_NIVEL_PRACTICAPRE_OBL.style.height = "270px";
+			
 			UL_SECCION_NIVEL_PRACTICAPRE_OBL.style.display=FCC_VIEW;
 			UL_SECCION_NIVEL_PRACTICAPRE_DES.style.display=FCC_NONE;
 			UL_SECCION_MSJ_002.style.display=FCC_NONE;	
 			
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_NIVEL_PRACTICAPRE_OBL,"DEL");}
 		} else if (!TEMP_CONTROL){
+			
+			UL_LISTA_NIVEL_PRACTICAPRE_DES.style.height = "270px";
+			
 			UL_SECCION_NIVEL_PRACTICAPRE_OBL.style.display=FCC_NONE;
 			UL_SECCION_NIVEL_PRACTICAPRE_DES.style.display=FCC_VIEW;
 			UL_SECCION_MSJ_002.style.display=FCC_VIEW;	
@@ -498,6 +516,10 @@ function UL_TB_005_CHANGE(TEMP_ACCION){
 		UL_TXT_005.value = TEMP_CONTROL;
 		
 		if (TEMP_CONTROL) {
+			
+			
+			UL_LISTA_CARRERA_PRACTICAPRO_OBL.style.height = "360px";
+			
 			UL_SECCION_CARRERA_PRACTICAPRO_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_NONE;
 			UL_SECCION_MSJ_005.style.display=FCC_NONE;	
@@ -506,11 +528,13 @@ function UL_TB_005_CHANGE(TEMP_ACCION){
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"DEL");}
 			
 		} else if (!TEMP_CONTROL){
+			
+			UL_LISTA_CARRERA_PRACTICAPRO_DES.style.height = "360px";
+			
 			UL_SECCION_CARRERA_PRACTICAPRO_OBL.style.display=FCC_NONE;
 			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_VIEW;
 			UL_SECCION_MSJ_005.style.display=FCC_VIEW;	
 
-			
 			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"ADD");}
 		}
 	}catch(err){
