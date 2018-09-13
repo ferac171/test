@@ -58,7 +58,6 @@ var UL_TXT_004 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_004_");
 var UL_TXT_005 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_0055_"); 
 
 var UL_TXT_006 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_061_"); 
-
 var UL_TXT_OTRO_IDIOMA = FCC_GET_ELEMENTO_BYID("UL_TXT_OTRO_IDIOMA"); 
 
 var UL_SECCION_TXT_001 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_001_"); 
@@ -138,10 +137,11 @@ var UL_ARREGLO_CONDICION_EMPLEO_OBL = new Array("0080","0060", "0040", "0020");
 
 var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
-try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];
+try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];}catch(err){}
 
-console.log("# CODIGO DE EMPLEO: " + UL_CODIGO_EMPLEO.value );
-}catch(err){}
+try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
+
+
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
@@ -198,7 +198,7 @@ window.onload=function() {
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
-var  UL_CODIGO="0";
+var  UL_CODIGO="1";
 	//OCULTANDO SOPORTES
 	try{
 		UL_SECCION_TXT_001.style.display=FCC_NONE;
@@ -213,11 +213,22 @@ var  UL_CODIGO="0";
 		try{UL_SECCION_MSJ_003.style.display=FCC_NONE;}catch(err){}
 		try{UL_SECCION_MSJ_004.style.display=FCC_NONE;}catch(err){}
 		try{UL_SECCION_MSJ_005.style.display=FCC_NONE;}catch(err){}
-		
 		try{UL_TXT_OTRO_IDIOMA.style.display=FCC_NONE;}catch(err){}
 
 	try{		
-		UL_CODIGO = UL_CODIGO_EMPLEO.value;
+		
+		var TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
+		var tope_barra = TEMP_ELEMENTOS.length;
+		
+		for ( bb = 0; bb <tope_barra ; bb++){
+			
+			//console.log("# miraaaaaaaa: " + TEMP_ELEMENTOS[bb].value);
+			if (TEMP_ELEMENTOS[bb].value=="GUARDAR Y FINALIZAR MAS TARDE"){	UL_CODIGO="0";
+			}
+		}
+		
+		console.log("# CODIGO DE : " + UL_CODIGO);
+			
 	}catch(err){}
 	
 	
@@ -293,6 +304,9 @@ var  UL_CODIGO="0";
 	 		
 	}
 		
+		
+	UL_INICIA_IDIOMA();
+	
 	//CARACTERISTICAS DEL CORREO
 	
 	try{
@@ -620,6 +634,31 @@ function UL_ADD_IDIOMA() {
 		UL_LISTA_IDIOMAS();
 	}catch(err){}
 }
+
+function UL_INICIA_IDIOMA() {
+	try{
+		
+		var resumen = document.getElementById("dnf_class_values_job__UL_TXT_061_").value;
+		var lista = document.getElementById("UL_GRD_001");
+		var TEMP_ELEMENT = document.createElement("option");
+
+		var arrayDeCadenas = resumen.split(" / ");
+		var limitell = arrayDeCadenas;
+		
+		for (ll=0 ; ll<limitell.length; ll++){
+			
+	
+			TEMP_ELEMENT = document.createElement("option");
+			TEMP_ELEMENT.text = arrayDeCadenas[ll];
+			TEMP_ELEMENT.value = arrayDeCadenas[ll];
+			lista.options.add(TEMP_ELEMENT,0);
+		}
+		
+	}catch(err){}
+}
+
+
+
 
 function UL_DEL_IDIOMA() {
 	try{
