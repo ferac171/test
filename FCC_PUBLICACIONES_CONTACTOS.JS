@@ -7,8 +7,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.8XX";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "13/09/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.9";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "17/09/18";
 //pl_40a0086af506f1ec0530b5fb8893a558_trunk
 //<div id="pl_mask" class="masked"></div>
 /*############################################################################################################################*/
@@ -171,11 +171,20 @@ try{UL_CBX_001.addEventListener("change", UL_HABILITA_IDIOMA);}catch(err){}
 try{UL_CBX_002.addEventListener("change", UL_HABILITA_HABILIDAD);}catch(err){}
 
 try{UL_TXT_CORREO_DIRECCION.addEventListener("change", UL_COMPONE_CORREO);}catch(err){}
-try{UL_LISTA_AREA.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
-try{UL_TXT_AREA.addEventListener("change",UL_CALCULA_POSICION);}catch(err){}
-try{UL_LISTA_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
-try{UL_TXT_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
 try{UL_CHK_CORREO.addEventListener("change", FCC_VER_CORREO);}catch(err){}
+
+// POSICION A PUBLICAR
+try{UL_LISTA_AREA.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
+try{UL_LISTA_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
+
+try{UL_TXT_AREA.addEventListener("change",  function(){UL_TXT_AREA.value = UL_TXT_AREA.value.toUpperCase();  UL_CALCULA_POSICION(); }  );}catch(err){}
+
+try{UL_TXT_CARGO.addEventListener("change", function(){UL_TXT_CARGO.value = UL_TXT_CARGO.value.toUpperCase();  UL_CALCULA_POSICION(); } );}catch(err){}
+
+try{UL_TXT_POSICION.addEventListener("change", function(){UL_TXT_POSICION.value = UL_TXT_POSICION.value.toUpperCase();});}catch(err){}
+
+
+
 
 try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
 try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
@@ -708,13 +717,14 @@ function UL_CALCULA_POSICION(){
 	try{
 		var TEMP_AREA =  UL_LISTA_AREA.options[UL_LISTA_AREA.selectedIndex].text;
 		var TEMP_CARGO = UL_LISTA_CARGO.options[UL_LISTA_CARGO.selectedIndex].text;
+		
 		var TEMP_AREA_2 = UL_TXT_AREA.value;
 		var TEMP_CARGO_2= UL_TXT_CARGO.value;
 		
 		if (TEMP_AREA_2!=""){	TEMP_AREA=TEMP_AREA_2;}
 		if (TEMP_CARGO_2!=""){TEMP_CARGO=TEMP_CARGO_2;}
 		
-		UL_TXT_POSICION.value=TEMP_CARGO+" DE "+TEMP_AREA;
+		UL_TXT_POSICION.value=TEMP_CARGO.toUpperCase()+" DE "+TEMP_AREA.toUpperCase();
 	}catch(err){}
 }
 
