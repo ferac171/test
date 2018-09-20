@@ -7,8 +7,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "3.9";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "17/09/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.0";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "19/09/18";
 //pl_40a0086af506f1ec0530b5fb8893a558_trunk
 //<div id="pl_mask" class="masked"></div>
 /*############################################################################################################################*/
@@ -297,8 +297,8 @@ var  UL_CODIGO="1";
 	//CARTACRERISTIAS DE LA FECHA DE PUBLICACIONES
 	
 	UL_TXT_FECHAPUBLICACION.readOnly  = true;
-	UL_BTN_PUBLICAR.style.display="none";
-	UL_BTN_BORRAR.style.display="none";
+	UL_BTN_PUBLICAR.style.display=FCC_NONE;
+	UL_BTN_BORRAR.style.display=FCC_NONE;
 	
 	UL_TXT_006.readOnly  = true;
 	
@@ -306,11 +306,12 @@ var  UL_CODIGO="1";
 		FCC_INICIA_AFECHA();
 		
 		UL_SECCION_SLC_006.style.display="";
-		UL_SECCION_TXT_006.style.display="none";
+		UL_SECCION_TXT_006.style.display=FCC_NONE;
+		UL_SECCION_TXT_007.style.display=FCC_NONE;
 	} else{
-		UL_SECCION_SLC_006.style.display="none";
+		UL_SECCION_SLC_006.style.display=FCC_NONE;
 		UL_SECCION_TXT_006.style.display="";
-	 		
+	 	UL_SECCION_TXT_007.style.display="";	
 	}
 		
 		
@@ -632,7 +633,7 @@ function UL_HABILITA_IDIOMA() {
 		if (UL_CBX_001.value == "OTRO" ){
 			UL_TXT_OTRO_IDIOMA.style.display="";
 		} else{
-			UL_TXT_OTRO_IDIOMA.style.display="none";
+			UL_TXT_OTRO_IDIOMA.style.display=FCC_NONE;
 		}
 	}catch(err){}
 }
@@ -772,11 +773,11 @@ function FCC_VER_CORREO(){
 
 	try{
 			if(UL_CHK_CORREO.checked){
-				UL_SECCION_CORREO_ORIGINAL.style.display = "none";
+				UL_SECCION_CORREO_ORIGINAL.style.display = FCC_NONE;
 				UL_SECCION_CORREO.style.display = "";
 			} else{
-				UL_SECCION_CORREO_ORIGINAL.style.display = "none";
-				UL_SECCION_CORREO.style.display = "none";
+				UL_SECCION_CORREO_ORIGINAL.style.display = FCC_NONE;
+				UL_SECCION_CORREO.style.display = FCC_NONE;
 
 			}
 
@@ -807,7 +808,7 @@ function UL_HABILITA_HABILIDAD() {
 		if (UL_CBX_003.value == "OTRO" ){
 			UL_TXT_OTRO_HABILIDAD.style.display="";
 		} else{
-			UL_TXT_OTRO_HABILIDAD.style.display="none";
+			UL_TXT_OTRO_HABILIDAD.style.display=FCC_NONE;
 		}
 	}catch(err){}
 }
