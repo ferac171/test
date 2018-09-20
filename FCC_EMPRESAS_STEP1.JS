@@ -21,7 +21,7 @@
 //# https://rawgit.com/ferac171/test/master/FCC_EMPRESAS_STEP1.JS
 //# 
 //#	
-	const FCC_EMPRESAS_SETP1_VERSION = "1.2";
+	const FCC_EMPRESAS_SETP1_VERSION = "1.3";
 	const FCC_EMPRESAS_SETP1_FECHA = "20/09/18";
 //#
 //#############################################################################################################################
@@ -79,18 +79,23 @@ if (FCC_HABILITA_JS){
 	WIDGET_DIRECCION.style.display = "none";
 	UL_COMPONE_DIRECCION_RAZONSOCIAL();
 			
+
+	try{
+				
+		var buscador = document.getElementsByClassName("search-filters form form-editmode")[0];
+		
+		buscador.style.display = "none";
+		
+		
+	}catch(err){
+		console.log (err);
+		
+	}	
+			
+			
+			
+			
 }
-
-
-try{
-	
-	
-	var buscador = element.getElementsByClassName("search-filters form form-editmode")[0];
-	buscador.style.display = "none";
-	
-	
-}catch(err){}
-
 
 
 else{
@@ -131,7 +136,7 @@ function UL_COMPONE_DIRECCION_RAZONSOCIAL(){
 	FCC_RAZON_SOCIAL.value = FCC_WIDGET_DIR_POSTAL.value;	
 	
 	
-	FCC_DIRECCION.rows="1";
+	FCC_DIRECCION.rows="2";
 	FCC_RAZON_SOCIAL.rows="1";
 	
 	FCC_DIRECCION.readOnly = true;
