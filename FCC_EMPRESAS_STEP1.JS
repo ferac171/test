@@ -21,8 +21,8 @@
 //# https://rawgit.com/ferac171/test/master/FCC_EMPRESAS_STEP1.JS
 //# 
 //#	
-	const FCC_EMPRESAS_SETP1_VERSION = "1.1";
-	const FCC_EMPRESAS_SETP1_FECHA = "10/08/18";
+	const FCC_EMPRESAS_SETP1_VERSION = "1.2";
+	const FCC_EMPRESAS_SETP1_FECHA = "20/09/18";
 //#
 //#############################################################################################################################
 
@@ -80,6 +80,17 @@ if (FCC_HABILITA_JS){
 	UL_COMPONE_DIRECCION_RAZONSOCIAL();
 			
 }
+
+
+try{
+	
+	
+	var buscador = element.getElementsByClassName("search-filters form form-editmode")[0];
+	buscador.style.display = "none";
+	
+	
+}catch(err){}
+
 
 
 else{
