@@ -30,7 +30,7 @@ const FCC_AJUSTE_PICKLIST = 1;
 /*############################################################################################################################*/
 
 const FCC_BLOCK = "block";
-const FCC_NONE = "";
+const FCC_NONE = "none";
 const FCC_VIEW = "";
 
 
