@@ -42,7 +42,7 @@ const FCC_DEBUG = false;
 /*############################################################################################################################*/
 
 const FCC_BLOCK = "block";
-const FCC_NONE = "";
+const FCC_NONE = "none";
 const FCC_VIEW = "";
 
 
