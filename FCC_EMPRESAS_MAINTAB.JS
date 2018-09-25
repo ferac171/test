@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_EMPRESAS_MAINTAB.JS
 	
-	const FCC_EMPRESAS_MAINTAB_VERSION_LOCAL = "1.01";
-	const FCC_EMPRESAS_MAINTAB_FECHA_LOCAL= "24/09/18";
+	const FCC_EMPRESAS_MAINTAB_VERSION_LOCAL = "1.02";
+	const FCC_EMPRESAS_MAINTAB_FECHA_LOCAL= "25/09/18";
 
 /*##############################################################################################################################*/
 
@@ -44,7 +44,7 @@ var UL_FORM_ESTADO ="";
 //VARIABLES DE WIDGET DIRECCION
 var UL_WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("employer_form_fieldgroup_FCC_WIDGET_DIRECCION");
 var UL_TXT_DIRECCION_CALLE = FCC_GET_ELEMENTO_BYID("dnf_class_values_employer__employer_profile__0__address__0__street_");
-var UL_TXT_DIRECCION_POSTAL= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer__employer_profile__0__address__0__zip_");
+var UL_TXT_DIRECCION_POSTAL= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer__employer_profile__0__address__0__city_");
 
 //CAMPOS DIRECCION
 var UL_LISTA_PAIS = FCC_GET_ELEMENTO_BYID("dnf_class_values_employer__pas_");
@@ -74,18 +74,6 @@ try{UL_TXT_RAZON_SOCIAL.addEventListener("change", UL_COMPONE_RAZON_SOCIAL);}cat
 try{UL_HIDDEN_DEPARTAMENTO[0].addEventListener("onkeydown", FCC_TEST);}catch(err){}
 
 
-
-// BLOQUEANDO ACCIONES NO DESEADAS ;)
-$(document).ready(function() {
-  $('form').keypress(function(e){   
-    if(e == 13){return false;}
-  });
-  $('input').keypress(function(e){
-    if(e.which == 13){return false;}
-  });
-});	
-	
-	
 /*############################################################################################################################*/
 //FUNCION		:	ONLOAD
 //DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.

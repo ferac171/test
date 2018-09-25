@@ -21,8 +21,8 @@
 //# https://rawgit.com/ferac171/test/master/FCC_EMPRESAS_STEP1.JS
 //# 
 //#	
-	const FCC_EMPRESAS_SETP1_VERSION = "1.4";
-	const FCC_EMPRESAS_SETP1_FECHA = "20/09/18";
+	const FCC_EMPRESAS_SETP1_VERSION = "1.5";
+	const FCC_EMPRESAS_SETP1_FECHA = "25/09/18";
 //#
 //#############################################################################################################################
 
@@ -37,6 +37,16 @@ DECLARACION DE CONSTANTES   // MAINTAB - STEP1
 const FCC_HABILITA_JS = true;
 const FCC_DEBUG = false;
 
+/*############################################################################################################################*/
+//DECLARACION DE CONSTANTES
+/*############################################################################################################################*/
+
+const FCC_BLOCK = "block";
+const FCC_NONE = "";
+const FCC_VIEW = "";
+
+
+
 /*############################################################################################################################
 
 FUNCION		:	ONLOAD
@@ -48,7 +58,7 @@ DETALLE		:	Función principal que analiza el detalle de los formularios y accion
 				
 		var buscador = document.getElementsByClassName("search-filters form form-editmode")[0];
 		
-		buscador.style.display = "none";
+		buscador.style.display = FCC_NONE;
 		
 		
 	}catch(err){
@@ -89,14 +99,11 @@ if (FCC_HABILITA_JS){
 	UL_FORM_ESTADO =1;
 				
 	var WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_employer_profile__address_");
-	WIDGET_DIRECCION.style.display = "none";
+	WIDGET_DIRECCION.style.display = FCC_NONE;
 	UL_COMPONE_DIRECCION_RAZONSOCIAL();
 			
 
 	
-			
-			
-			
 			
 }
 
@@ -127,7 +134,7 @@ function UL_COMPONE_DIRECCION_RAZONSOCIAL(){
 	
 	//document.getElementById
 	FCC_WIDGET_DIR_DIRECCION= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[employer_profile][address][0][street]");
-	FCC_WIDGET_DIR_POSTAL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[employer_profile][address][0][zip]");
+	FCC_WIDGET_DIR_POSTAL= FCC_GET_ELEMENTO_BYNAME("dnf_class_values[employer_profile][address][0][city]");
 	
 	FCC_DIRECCION= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_profile__travel_2_");
 	FCC_RAZON_SOCIAL= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_profile__offices_");

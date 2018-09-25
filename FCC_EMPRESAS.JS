@@ -12,12 +12,21 @@
 
 // NAME			: FCC_EMPRESAS.JS
 	
-	const FCC_EMPRESAS_VERSION = "13.12X";
-	const FCC_EMPRESAS_FECHA = "23/08/18";
+	const FCC_EMPRESAS_VERSION = "13.13";
+	const FCC_EMPRESAS_FECHA = "25/09/18";
 	
 /*############################################################################################################################*/
 
 console.log("# CONTROL FCC_EMPRESAS V:"+FCC_EMPRESAS_VERSION + " al "+FCC_EMPRESAS_FECHA);
+
+
+/*############################################################################################################################*/
+//DECLARACION DE CONSTANTES
+/*############################################################################################################################*/
+
+const FCC_BLOCK = "block";
+const FCC_NONE = "none";
+const FCC_VIEW = "";
 
 /*############################################################################################################################*/
 
@@ -240,21 +249,21 @@ try{
 	if (x.length>0){
 		console.log("MANAGER : PASO 1");	
 		PASO1=true;
-		document.getElementById(ID_SECC_MENSAJES).style.display = 'none';
-		document.getElementById(ID_SECC_INF_COMERCIAL).style.display = 'none';
-		document.getElementById(ID_S03_CONTROL_01).style.display = 'none';
-		document.getElementById(ID_S03_CONTROL_02).style.display = 'none';
-		document.getElementById(ID_NOT_MARCA).style.display = 'none';
-		document.getElementById(ID_S04_CONTROL_01).style.display = 'none';
-		document.getElementById(ID_SECC_TB_001).style.display = 'none';
-		document.getElementById(ID_WIDGET_TB_001).style.display = 'none';	
+		document.getElementById(ID_SECC_MENSAJES).style.display = FCC_NONE;
+		document.getElementById(ID_SECC_INF_COMERCIAL).style.display = FCC_NONE;
+		document.getElementById(ID_S03_CONTROL_01).style.display = FCC_NONE;
+		document.getElementById(ID_S03_CONTROL_02).style.display = FCC_NONE;
+		document.getElementById(ID_NOT_MARCA).style.display = FCC_NONE;
+		document.getElementById(ID_S04_CONTROL_01).style.display = FCC_NONE;
+		document.getElementById(ID_SECC_TB_001).style.display = FCC_NONE;
+		document.getElementById(ID_WIDGET_TB_001).style.display = FCC_NONE;	
 		
 		try{ 
 		console.log("# validando mensaje de copia de dirección");		
 			var temp = document.getElementById("dnf_class_values_employer_registration__REG_UL_TB_001__widget").innerHTML;
 		
 			if (temp.search("N")>=0){
-				document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';
+				document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = FCC_NONE;
 			}else{
 				document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';	
 			}
@@ -270,7 +279,7 @@ try{
 		}catch(err){}
 			
 		if (tempRS==null){
-				document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_TIT_05_INF_COMPLEMENTARIA_").style.display = 'none';	
+				document.getElementById("so_formfield_dnf_class_values_employer_registration__UL_TIT_05_INF_COMPLEMENTARIA_").style.display = FCC_NONE;	
 		}
 
 	}
@@ -334,7 +343,7 @@ if (FCC_HABILITA_JS && !PASO1){
 			FCC_CONTROL_00.style.display = '';
 		}else{ 
 			console.log("# MODO: USER"); 
-			FCC_CONTROL_00.style.display = 'none';
+			FCC_CONTROL_00.style.display = FCC_NONE;
 		}
 	}catch(err){}		
 
@@ -427,7 +436,7 @@ if (FCC_HABILITA_JS && !PASO1){
 				//OCUALTANDO WIDGET DIRECCION NATIVO
 				var WIDGET_DIRECCION = FCC_GET_ELEMENTO_BYID("emp_reg_form_fieldgroup_FCC_WIDGET_DIRECCION");
 				
-				try{WIDGET_DIRECCION.style.display = "none";}catch(err){}
+				try{WIDGET_DIRECCION.style.display = FCC_NONE;}catch(err){}
 				try{UL_CONTACTO_DIR_COMPLETA.readOnly=true;}catch(err){}
 				
 				UL_COMPONE_RAZON_SOCIAL();
@@ -528,8 +537,8 @@ function UL_CHANGE_CONTROL(){
 	}catch(err){}
 	
 	try{
-		//TEMP_EMPRESAS_DPTO.style.display = "none";
-		//TEMP_CONTACTO_DPTO.style.display = "none";
+		//TEMP_EMPRESAS_DPTO.style.display = FCC_NONE;
+		//TEMP_CONTACTO_DPTO.style.display = FCC_NONE;
 	}catch(err){}
 	
 	
@@ -543,7 +552,7 @@ function UL_CHANGE_CONTROL(){
 	}
 	
 	
-	TEMP_WIDGET_TB_001.style.display = "none";
+	TEMP_WIDGET_TB_001.style.display = FCC_NONE;
 
 	
 	// AJUSTES ADICIONALES SEGUN EL ESTADO ENVIADO 
@@ -571,12 +580,12 @@ function UL_CHANGE_CONTROL(){
 					break;
 			
 			case 2:	//PAGINA INICIAL DE REGISTRO
-					try{TEMP_ERRORES.style.display = 'none';}catch(err){}
+					try{TEMP_ERRORES.style.display = FCC_NONE;}catch(err){}
 					
 					break;
 					
 			case 3:	//CREACION DE NUEVA EMPRESA - VALIDACION DE RUC
-					try{TEMP_ERRORES.style.display = 'none';}catch(err){}
+					try{TEMP_ERRORES.style.display = FCC_NONE;}catch(err){}
 					
 					UL_RUC.value="";
 					UL_RAZON.value="";
@@ -585,7 +594,7 @@ function UL_CHANGE_CONTROL(){
 					break;
 
 			case 4:	//CREACION DE NUEVO CONTACTO - VALIDACION DE MARCA COMERCIAL
-					try{TEMP_ERRORES.style.display = 'none';}catch(err){}
+					try{TEMP_ERRORES.style.display = FCC_NONE;}catch(err){}
 					
 					UL_RUC.value="";
 					UL_RAZON.value="";
@@ -607,7 +616,7 @@ function UL_CHANGE_CONTROL(){
 			
 			case 7:	//REGISTRO DE NUEVO CONTACTO
 					
-					try{TEMP_SECCION_TL_TB_001.style.display = "none";}catch(err){}
+					try{TEMP_SECCION_TL_TB_001.style.display = FCC_NONE;}catch(err){}
 					
 					REG_UL_TB_001.value="N";
 					UL_TB_001.checked=false;
@@ -713,7 +722,7 @@ function UL_COPIA_DIRECCION(){
 		//Mensaje de copia de dirección
 		try{ 
 			if (CODIGO_FUNCION == 1 || CODIGO_FUNCION==0){
-				document.getElementById(				"so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
+				document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = '';
 			}
 		}catch(err){}
 		
@@ -727,17 +736,12 @@ function UL_COPIA_DIRECCION(){
 				UL_CONTACTO_DIR_PAIS.onchange();
 				UL_CONTACTO_DIR_CIUDAD.value=UL_EMPRESA_DIR_CIUDAD.value;
 				UL_CONTACTO_DIR_CALLE.value=UL_EMPRESA_DIR_CALLE.value;
-				
-				/*console.log(UL_CONTACTO_DIR_CIUDAD.value+ " : " +UL_EMPRESA_DIR_CIUDAD.value );
-				console.log(UL_CONTACTO_DIR_CALLE.value+ " : " +UL_EMPRESA_DIR_CALLE.value );
-				console.log(UL_CONTACTO_DIR_PAIS.value+ " : " +UL_EMPRESA_DIR_PAIS.value );*/
 			}catch(err){}	
 				
 				
 			try{
 				UL_CONTACTO_DIR_DEPARTAMENTO_HIDDEN.value=UL_EMPRESA_DIR_DEPARTAMENTO_HIDDEN.value;
 				UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML=UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML;
-			/*	console.log(UL_CONTACTO_DIR_DEPARTAMENTO.innerHTML+ " : " +UL_EMPRESA_DIR_DEPARTAMENTO.innerHTML );*/
 			}catch(err){}		
 				
 				
@@ -761,10 +765,10 @@ function UL_COPIA_DIRECCION(){
 				//Oculta campos dirección del contacto
 		
 	
-			SECC_CONTACTO_DIR1.style.display = "none";
-			SECC_CONTACTO_DIR2.style.display = "none";
-			SECC_CONTACTO_DIR3.style.display = "none";
-			SECC_CONTACTO_DIR4.style.display = "none";	
+			SECC_CONTACTO_DIR1.style.display = FCC_NONE;
+			SECC_CONTACTO_DIR2.style.display = FCC_NONE;
+			SECC_CONTACTO_DIR3.style.display = FCC_NONE;
+			SECC_CONTACTO_DIR4.style.display = FCC_NONE;	
 			
 	
     } else if (UL_TB_001.checked==false) {
@@ -778,7 +782,7 @@ function UL_COPIA_DIRECCION(){
 		SECC_CONTACTO_DIR4.style.display = "";
 		
 		//Mensaje de copia de dirección
-		try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = 'none';
+		try{ document.getElementById("so_formfield_dnf_class_values_employer_registration__misma_direccion_contacto_empre_").style.display = FCC_NONE;
 		}catch(err){}
 		
 		//Composición de variables temporales de dirección		
@@ -797,13 +801,13 @@ function UL_COPIA_DIRECCION(){
 		//Comportamiento por Pais
 		console.log("paiS =>" + TEMP_PAIS);
 		if(TEMP_PAIS==" / ") {
-			SECC_CONTACTO_DIR2.style.display = "none";
-			SECC_CONTACTO_DIR3.style.display = "none";
+			SECC_CONTACTO_DIR2.style.display = FCC_NONE;
+			SECC_CONTACTO_DIR3.style.display = FCC_NONE;
 		}else if(TEMP_PAIS=="PERU - 208 / ") {
 			SECC_CONTACTO_DIR2.style.display = "";
-			SECC_CONTACTO_DIR3.style.display = "none";
+			SECC_CONTACTO_DIR3.style.display = FCC_NONE;
 		}else{
-			SECC_CONTACTO_DIR2.style.display = "none";
+			SECC_CONTACTO_DIR2.style.display = FCC_NONE;
 			SECC_CONTACTO_DIR3.style.display = "";
 		}
 
@@ -828,7 +832,9 @@ DETALLE		:	Estructura el copiado de campos de Razón social en el widget de dire
 
 function UL_COMPONE_RAZON_SOCIAL(){
 	try{
-		var FCC_WIDGET_VAR3= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__zip_");
+		//var FCC_WIDGET_VAR3= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__zip_");
+		var FCC_WIDGET_VAR3= FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__city_");
+		
 		var FCC_RAZON_SOCIAL = FCC_GET_ELEMENTO_BYID("dnf_class_values_employer_registration__razon_social2_");
 		
 		FCC_WIDGET_VAR3.value = FCC_RAZON_SOCIAL.value;	
@@ -1010,7 +1016,7 @@ function UL_CARGA_NOTIFICACION(){
 		var UL_MSJ_CC=document.getElementById('dnf_class_values_employer_registration__UL_CONCOPIA_');
 		var UL_MSJ_ASUNTO=document.getElementById('dnf_class_values_employer_registration__UL_ASUNTO_');
 		var UL_MSJ_MENSAJE=document.getElementById('so_formfield_dnf_class_values_employer_registration__UL_MENSAJE_');
-		UL_MSJ_MENSAJE.style.display='none';
+		UL_MSJ_MENSAJE.style.display=FCC_NONE;
 		
 // INICIALIZACION DE VARIABLES
 //---------------------------------------------------------------------------------------------------------	
@@ -1072,13 +1078,13 @@ DETALLE		:	Funciones para gestionar los eventos de las ventanas modales
 	} 					 
 	
 	function MODAL_CLOSE(){		
-		modal.style.display = "none";
+		modal.style.display = FCC_NONE;
 	}		 
 	
 	window.onclick = function(event) {	
 	
 		if (event.target == modal){								
-			modal.style.display = "none";} 
+			modal.style.display = FCC_NONE;} 
 	} 
 		
 	
