@@ -5,7 +5,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.1xx";
+	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.2";
 	const FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL= "01/10/18";
 
 /*############################################################################################################################*/
@@ -484,6 +484,7 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 			try{	
 				if(TEMP_ACCION){ 
 					
+					
 					FCC_SELECCION_LISTA_JERARQUICA1(UL_WIDGET_CARRERA_EMPLEO_OBL, UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");
 
 
@@ -509,15 +510,13 @@ function FCC_SELECCION_LISTA_JERARQUICA1(TEMP_LISTA_MULTIPLE, TEMP_SELECT,TEMP_A
 	
 
 		//LIMPIANDO LISTA DE PRESENTACION CON WIDGET
-		/*try{
-			var pp = TEMP_LISTA.getElementsByClassName("pl-widget pl-widget-multi");
-			var jj = pp[0].getElementsByClassName("pl-rm");
-					
-			var tope= jj.length;
-			for (ii= 0; ii<tope ; ii++){
-				jj[0].click();
-			}
-		}catch(err){}	*/
+		try{		
+			var TEMP_MULTIPLE_SELECCION = TEMP_LISTA_MULTIPLE.getElementsByClassName("scrollable_readonly_ms")[0];
+			var TEMP_MULTIPLE_SELECCION_NAME = TEMP_MULTIPLE_SELECCION.id.substring(20, 100);
+			mult_sel_del_all(TEMP_MULTIPLE_SELECCION,TEMP_MULTIPLE_SELECCION_NAME);
+			
+			
+		}catch(err){}	
 	
 	if (ACCION=="ADD") {	
 		//AÑADIENDO ELEMENTOS AL SELECT INTERNO
