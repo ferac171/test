@@ -5,7 +5,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.1x";
+	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.1xx";
 	const FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL= "01/10/18";
 
 /*############################################################################################################################*/
@@ -14,7 +14,7 @@
 //CONSTANTES DE VERSION
 /*############################################################################################################################*/
 
-console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL);
+console.log("# CONTROL FCC_PUBLICACIONES_MANAGER V:"+FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL);
 
 /*############################################################################################################################*/
 //DECLARACION DE CONSTANTES
@@ -165,19 +165,9 @@ var UL_ARREGLO_CONDICION_EMPLEO_OBL = new Array("0080","0060", "0040", "0020");
 var UL_LIST_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
 
+var UL_WIDGET_CARRERA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_minor____widget");
 
-UL_LISTA_CARRERA_EMPLEO_OBL=FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_minor___"); 
-UL_WIDGET_CARRERA_EMPELO_OBL =FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_minor____widget");
-
-//UL_SECCION_CARRERA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_minor___");
-
-//var UL_NIVEL_LISTA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_class_level___");
-//var UL_NIVEL_MULTIPLE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_class_level____widget");
-//var UL_SECCION_NIVEL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_class_level___");
-
-
-
-
+var UL_WIDGET_CONDICION_EMPLEO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_certificate____widget");
 
 /*############################################################################################################################*/
 // LISTENERS
@@ -460,9 +450,7 @@ function UL_TB_002_CHANGE(TEMP_ACCION){
 // EMPLEOS - CARRERAS
 
 function UL_TB_003_CHANGE(TEMP_ACCION){
-	
-	
-	console.log("hola");
+		
 	var TEMP_CONTROL = UL_TB_003.checked;
 	UL_TXT_003.value = TEMP_CONTROL;
 	
@@ -477,15 +465,10 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 			
 		try{ // ACCION SOBRE COPORTAMIENTO DE CAMPOS 	
 			if(TEMP_ACCION){		
-			
-				console.log("DEL");
-				
-				FCC_ACCION_SOBRE_MULTIPLE(UL_SECCION_CARRERA_EMPLEO_OBL,UL_WIDGET_CARRERA_EMPELO_OBL,UL_LISTA_CARRERA_EMPLEO_OBL,"DEL");
+
+				FCC_SELECCION_LISTA_JERARQUICA1(UL_WIDGET_CARRERA_EMPLEO_OBL, UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");
 
 				
-				
-				
-				//FCC_SELECCION_LISTA_JERARQUICA(UL_LIST_CARRERA_EMPLEO_OBL, UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");
 			}
 		}catch(err){}		
 					
@@ -500,65 +483,77 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 
 			try{	
 				if(TEMP_ACCION){ 
-				
-					console.log("ADD");
 					
-					FCC_ACCION_SOBRE_MULTIPLE(UL_SECCION_CARRERA_EMPLEO_OBL,UL_WIDGET_CARRERA_EMPELO_OBL,UL_LISTA_CARRERA_EMPLEO_OBL,"ADD");
+					FCC_SELECCION_LISTA_JERARQUICA1(UL_WIDGET_CARRERA_EMPLEO_OBL, UL_SELECT_CARRERA_EMPLEO_OBL[1],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");
 
-					//FCC_SELECCION_LISTA_JERARQUICA(UL_LIST_CARRERA_EMPLEO_OBL, UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");
+
 				}	
 			}catch(err){}
 		}
 		
-		
-		
+
 }			
 		
 		
+/*###################################################################################################################*/
+// FUNCION		:	FCC_SELECCION_LISTA_JERARQUICA
+// DETALLE		:	Selecciona, deselecciona elementos de un picklista jerarquico multivalor (con popup)
+/*###################################################################################################################*/
 
-
-
-function XUL_TB_003_CHANGE(TEMP_ACCION){
+function FCC_SELECCION_LISTA_JERARQUICA1(TEMP_LISTA_MULTIPLE, TEMP_SELECT,TEMP_ARREGLO, ACCION){
 	
-	
-	console.log("hola");
-	var TEMP_CONTROL = UL_TB_003.checked;
-	UL_TXT_003.value = TEMP_CONTROL;
-	
-	if (TEMP_CONTROL) {
-			
-		try{ // ACCION SOBRE VISUALIZACION DE OPCIONES 
-			UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_VIEW;
-			UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_NONE;
-			UL_SECCION_MSJ_003.style.display=FCC_NONE;	
+	var TEMP_ELEMENT = document.createElement("option");
+	var  TEMP_TOPE_ARREGLO = TEMP_ARREGLO.length;
+	var  TEMP_TOPE_LISTA = TEMP_SELECT.length;	
 
-		}catch(err){}
-			
-		try{ // ACCION SOBRE COPORTAMIENTO DE CAMPOS 	
-			if(TEMP_ACCION){			
-				FCC_SELECCION_LISTA_JERARQUICA(UL_LIST_CARRERA_EMPLEO_OBL, UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"DEL");
-			}
-		}catch(err){}		
+	
+
+		//LIMPIANDO LISTA DE PRESENTACION CON WIDGET
+		/*try{
+			var pp = TEMP_LISTA.getElementsByClassName("pl-widget pl-widget-multi");
+			var jj = pp[0].getElementsByClassName("pl-rm");
 					
-	}else if (!TEMP_CONTROL){
+			var tope= jj.length;
+			for (ii= 0; ii<tope ; ii++){
+				jj[0].click();
+			}
+		}catch(err){}	*/
+	
+	if (ACCION=="ADD") {	
+		//AÑADIENDO ELEMENTOS AL SELECT INTERNO
+		try{
+			for (ni=0; ni<TEMP_TOPE_ARREGLO; ni++){
+				TEMP_ELEMENT = document.createElement("option");
+				TEMP_ELEMENT.value = TEMP_ARREGLO[ni];
+				TEMP_SELECT.options.add(TEMP_ELEMENT,0);
+				TEMP_SELECT.options[0].selected = true;
+			}
+		}catch(err){}	
+		
+	} else if (ACCION=="DEL"){
+		try{
 			
-			try{// ACCION SOBRE VISUALIZACION DE OPCIONES 
-				UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_NONE;
-				UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_VIEW;
-				UL_SECCION_MSJ_003.style.display=FCC_VIEW;	
+			console.log("borrando");
+			
+			var TEMP_MULTIPLE_SELECCION = TEMP_LISTA_MULTIPLE.getElementsByClassName("scrollable_readonly_ms")[0];
+			var TEMP_MULTIPLE_SELECCION_NAME = TEMP_MULTIPLE_SELECCION.id.substring(20, 100);
+			
+			mult_sel_del_all(TEMP_MULTIPLE_SELECCION,TEMP_MULTIPLE_SELECCION_NAME);
+			
+		}catch(err){}
+	}
+}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
-			}catch(err){}
 
-			try{	
-				if(TEMP_ACCION){ 
-					FCC_SELECCION_LISTA_JERARQUICA(UL_LIST_CARRERA_EMPLEO_OBL, UL_SELECT_CARRERA_EMPLEO_OBL[0],UL_ARREGLO_CARRERA_EMPLEO_OBL,"ADD");
-				}	
-			}catch(err){}
-		}
-		
-		
-		
-}	
 		
 
 // EMPLEOS - CARRERAS
@@ -579,7 +574,7 @@ function UL_TB_004_CHANGE(TEMP_ACCION){
 			
 		try{ // ACCION SOBRE COPORTAMIENTO DE CAMPOS 	
 			if(TEMP_ACCION){	
-				FCC_SELECCION_LISTA_JERARQUICA(UL_LIST_CONDICION_EMPLEO_OBL, UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
+				FCC_SELECCION_LISTA_JERARQUICA1(UL_WIDGET_CONDICION_EMPLEO_OBL, UL_SELECT_CONDICION_EMPLEO_OBL[1],UL_ARREGLO_CONDICION_EMPLEO_OBL,"DEL");
 			}
 		}catch(err){}		
 					
@@ -594,7 +589,7 @@ function UL_TB_004_CHANGE(TEMP_ACCION){
 
 			try{	
 				if(TEMP_ACCION){ 
-					FCC_SELECCION_LISTA_JERARQUICA(UL_LIST_CONDICION_EMPLEO_OBL, UL_SELECT_CONDICION_EMPLEO_OBL[0],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");
+					FCC_SELECCION_LISTA_JERARQUICA1(UL_WIDGET_CONDICION_EMPLEO_OBL, UL_SELECT_CONDICION_EMPLEO_OBL[1],UL_ARREGLO_CONDICION_EMPLEO_OBL,"ADD");
 				}	
 			}catch(err){}
 		}
