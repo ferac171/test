@@ -5,7 +5,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.3x";
+	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.4";
 	const FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL= "03/10/18";
 
 /*############################################################################################################################*/
@@ -66,6 +66,7 @@ var UL_TXT_CORREO_DOMINIO = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DOMINIO");
 var UL_TXT_CORREO_DIRECCION = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DIRECCION"); 
 
 var UL_CHK_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_mode___email_check"); 
+
 var UL_SECCION_CORREO = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__correo_electrnico_predetermina_"); 
 var UL_SECCION_CORREO_ORIGINAL = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__resume_email_"); 
 
@@ -331,6 +332,9 @@ var  UL_CODIGO="1";
 	
 	//CARACTERISTICAS DEL CORREO
 	
+	
+	
+	/*
 	try{
 		UL_CORREO= UL_TXT_CORREO.value;
 		UL_CORREO_DOMINIO= UL_CORREO.substring(UL_CORREO.indexOf('@'));
@@ -343,7 +347,8 @@ var  UL_CODIGO="1";
 		UL_TXT_CORREO_DOMINIO.readOnly  = true;
 
 	}catch(err){}
-		
+	*/
+	
 	FCC_VER_CORREO();	
 	
 	//CARGA INICIAL DE ACTIVIDADES
@@ -890,19 +895,17 @@ function FCC_INICIA_AFECHA(){
 }
 function FCC_VER_CORREO(){
 
-
 	try{
 			if(UL_CHK_CORREO.checked){
-				UL_SECCION_CORREO_ORIGINAL.style.display = FCC_NONE;
-				UL_SECCION_CORREO.style.display = "";
+				UL_SECCION_CORREO_ORIGINAL.style.display = "";
+				UL_SECCION_CORREO.style.display = FCC_NONE;
 			} else{
 				UL_SECCION_CORREO_ORIGINAL.style.display = FCC_NONE;
 				UL_SECCION_CORREO.style.display = FCC_NONE;
-
 			}
 
 	}catch(err){}
-
+	
 
 }
 
