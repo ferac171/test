@@ -5,8 +5,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.2";
-	const FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL= "01/10/18";
+	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.3x";
+	const FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL= "03/10/18";
 
 /*############################################################################################################################*/
 
@@ -310,6 +310,7 @@ var  UL_CODIGO="1";
 
 	UL_SECCION_SLC_006.style.display="";
 	UL_SECCION_TXT_006.style.display=FCC_NONE;
+	UL_SECCION_TXT_007.style.display=FCC_NONE;
 	
 	/*
 	if (UL_CODIGO == 0 ) { 
