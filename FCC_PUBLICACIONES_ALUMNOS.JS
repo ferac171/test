@@ -347,7 +347,7 @@ switch(FCC_CONTROL) {
 }
 
 var UL_SB_APPLY = document.getElementById("sb_apply");	
-UL_SB_APPLY.style.display=FCC_NONE;
+//UL_SB_APPLY.style.display=FCC_NONE;
 
 console.log("==> CIERRE CORRECTO");
 
