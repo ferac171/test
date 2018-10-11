@@ -7,10 +7,9 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.0";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "19/09/18";
-//pl_40a0086af506f1ec0530b5fb8893a558_trunk
-//<div id="pl_mask" class="masked"></div>
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.1";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "11/10/18";
+
 /*############################################################################################################################*/
 
 /*############################################################################################################################*/
@@ -38,6 +37,20 @@ const FCC_VIEW = "";
 var UL_CONTROL_LISTENER =false;	
 try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];}catch(err){}
 try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
+
+//VARIABLES DE CONTROL DE REMUNERACIONES
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_CBX_DIVISA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__divisa_");
+var UL_TXT_REMUNERACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__remuneracion_mensual_");
+var UL_TXT_REMUNERACION_VISIBLE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__remuneracion_");
+
+var UL_RADIOS_REMUNERACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__desea_mostrar_el_monto_de_la_r__widget"); 
+var UL_RDO_REMUNERACION_SI = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][desea_mostrar_el_monto_de_la_r]"); 
+
+var UL_SECCION_REMUNERACION_VISIBLE = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__remuneracion_"); 
+
+
 
 //VARIABLES DE CONTROL DE IDIOMAS
 //------------------------------------------------------------------------------------------------------------------
@@ -193,6 +206,13 @@ try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(UL_CONTROL_
 try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
 
 
+// REMUNERACIONES
+try{UL_RADIOS_REMUNERACION.addEventListener("click", UL_ACTUALIZA_REMUNERACION);}catch(err){}
+try{UL_CBX_DIVISA.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}catch(err){}
+try{UL_TXT_REMUNERACION.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}catch(err){}
+
+
+
 // BLOQUEANDO ACCIONES NO DESEADAS ;)
 $(document).ready(function() {
   $('form').keypress(function(e){   
@@ -305,13 +325,15 @@ var  UL_CODIGO="1";
 	if (UL_CODIGO == 0 ) { 
 		FCC_INICIA_AFECHA();
 		
-		UL_SECCION_SLC_006.style.display="";
-		UL_SECCION_TXT_006.style.display=FCC_NONE;
-		UL_SECCION_TXT_007.style.display=FCC_NONE;
-	} else{
-		UL_SECCION_SLC_006.style.display=FCC_NONE;
 		UL_SECCION_TXT_006.style.display="";
-	 	UL_SECCION_TXT_007.style.display="";	
+		UL_SECCION_SLC_006.style.display=FCC_NONE;
+		UL_SECCION_TXT_007.style.display="";
+		UL_SECCION_SLC_007.style.display=FCC_NONE;
+	} else{
+		UL_SECCION_TXT_006.style.display=FCC_NONE;
+		UL_SECCION_SLC_006.style.display="";
+	 	UL_SECCION_TXT_007.style.display=FCC_NONE;	
+		UL_SECCION_SLC_007.style.display="";
 	}
 		
 		
@@ -340,6 +362,11 @@ var  UL_CODIGO="1";
 	
 	//HABILITA LISTENERS
 	UL_CONTROL_LISTENER=true;
+	
+	
+	//REMUNERACIONES
+	UL_SECCION_REMUNERACION_VISIBLE.style.display=FCC_NONE;
+
 }
 
 /*###################################################################################################################
@@ -640,25 +667,33 @@ function UL_HABILITA_IDIOMA() {
 	
 function UL_ADD_IDIOMA() {
 	try{
+		var hab = true;
 		var idioma = document.getElementById("UL_CBX_001");
 		var nivel = document.getElementById("UL_CBX_002");
 		var lista = document.getElementById("UL_GRD_001");
+		var otro_idioma = document.getElementById("UL_TXT_OTRO_IDIOMA");
 		var valor = "";
 		
 		if (idioma.value == "OTRO" ){
-			valor = UL_TXT_OTRO_IDIOMA.value + "-" + nivel.value;
+			
+			if (otro_idioma.value.trim()==""){ 
+				hab=false;	
+				alert("Debe ingresar un idioma");
+			} else{
+				valor = otro_idioma.value.toUpperCase() + "-" + nivel.value;
+			}
+
 		} else{
 			valor = idioma.value + "-" + nivel.value;
 		}
 	
-
-		var TEMP_ELEMENT = document.createElement("option");
-		TEMP_ELEMENT.text = valor;
-		TEMP_ELEMENT.value = valor;
-
-		lista.options.add(TEMP_ELEMENT,0);
-
-		UL_LISTA_IDIOMAS();
+		if (hab){
+			var TEMP_ELEMENT = document.createElement("option");
+			TEMP_ELEMENT.text = valor;
+			TEMP_ELEMENT.value = valor;
+			lista.options.add(TEMP_ELEMENT,0);
+			UL_LISTA_IDIOMAS();
+		}
 	}catch(err){}
 }
 
@@ -672,7 +707,8 @@ function UL_INICIA_IDIOMA() {
 		var arrayDeCadenas = resumen.split(" / ");
 		var limitell = arrayDeCadenas;
 		
-		for (ll=0 ; ll<limitell.length; ll++){
+	
+		for (ll=1 ; ll<limitell.length; ll++){
 			
 	
 			TEMP_ELEMENT = document.createElement("option");
@@ -707,6 +743,10 @@ function UL_LISTA_IDIOMAS() {
 		  }
 	}catch(err){}
 }
+
+
+
+
 
 
 /*###################################################################################################################*/
@@ -814,25 +854,37 @@ function UL_HABILITA_HABILIDAD() {
 }
 	
 function UL_ADD_HABILIDAD() {
+	
+	var hab = true;
+	var habilidad = UL_CBX_003;
+	var lista = document.getElementById("UL_GRD_002");		
+	var valor = "";
+	var otro = document.getElementById("UL_TXT_OTRO_HABILIDAD");
+	
 	try{
-		var habilidad = UL_CBX_003;
-		var lista = document.getElementById("UL_GRD_002");
-		
-		var valor = "";
-		
+	
 		if (habilidad.value == "OTRO" ){
-			valor = UL_TXT_OTRO_HABILIDAD.value;
+			
+			valor = otro.value.trim().toUpperCase();
+			
+			if (valor==""){ 
+				hab=false;	
+				alert("Debe ingresar un valor");
+			}
+			
 		} else{
 			valor = UL_CBX_003.value;
 		}
 	
-		var TEMP_ELEMENT = document.createElement("option");
-		TEMP_ELEMENT.text = valor;
-		TEMP_ELEMENT.value = valor;
+		if (hab){
+			var TEMP_ELEMENT = document.createElement("option");
+			TEMP_ELEMENT.text = valor;
+			TEMP_ELEMENT.value = valor;
 
-		lista.options.add(TEMP_ELEMENT,0);
+			lista.options.add(TEMP_ELEMENT,0);
 
-		UL_LISTA_HABILIDAD();
+			UL_LISTA_HABILIDAD();
+		}
 	}catch(err){}
 }
 
@@ -846,7 +898,7 @@ function UL_INICIA_HABILIDAD() {
 		var arrayDeCadenas = resumen.split(" / ");
 		var limitell = arrayDeCadenas;
 		
-		for (ll=0 ; ll<limitell.length; ll++){
+		for (ll=1 ; ll<limitell.length; ll++){
 	
 			TEMP_ELEMENT = document.createElement("option");
 			TEMP_ELEMENT.text = arrayDeCadenas[ll];
@@ -874,15 +926,35 @@ function UL_LISTA_HABILIDAD() {
 
 		resumen.value="";
 		resumen.value+=lista.options[0].text;  
-
+		
 		  for (i=1; i<tope; i++){
+			  
 			  resumen.value+=" / "+lista.options[i].text;
+		  
 		  }
 	}catch(err){}
 }
 
 
 
+/*###################################################################################################################*/
+// FUNCION		:ACTUALIZA REMUNERACION
+// DETALLE		:CALCULA Y COMPLETA LA RMEUNERACION VISIBLE EN CASO DE SER LA OPCION SELECCIONADA 
+/*###################################################################################################################*/
+
+
+
+function UL_ACTUALIZA_REMUNERACION (){
+	
+	if(UL_RDO_REMUNERACION_SI[0].checked){
+		
+		UL_TXT_REMUNERACION_VISIBLE.value= UL_TXT_REMUNERACION.value + " " + UL_CBX_DIVISA.options[UL_CBX_DIVISA.selectedIndex].text;
+		
+	}else if (!UL_RDO_REMUNERACION_SI[0].checked){
+		
+		UL_TXT_REMUNERACION_VISIBLE.value="";
+	}
+}
 
 
 
