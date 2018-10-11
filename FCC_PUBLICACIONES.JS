@@ -5,8 +5,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.4";
-	const FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL= "03/10/18";
+	const FCC_PUBLICACIONES_MANAGER_VERSION_LOCAL = "1.5";
+	const FCC_PUBLICACIONES_MANAGER_FECHA_LOCAL= "11/10/18";
 
 /*############################################################################################################################*/
 
@@ -35,6 +35,21 @@ const FCC_VIEW = "";
 var UL_CONTROL_LISTENER =false;	
 try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];}catch(err){}
 try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
+
+
+//VARIABLES DE CONTROL DE REMUNERACIONES
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_CBX_DIVISA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__divisa_");
+var UL_TXT_REMUNERACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__remuneracion_mensual_");
+var UL_TXT_REMUNERACION_VISIBLE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__remuneracion_");
+
+var UL_RADIOS_REMUNERACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__desea_mostrar_el_monto_de_la_r__widget"); 
+var UL_RDO_REMUNERACION_SI = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][desea_mostrar_el_monto_de_la_r]"); 
+
+var UL_SECCION_REMUNERACION_VISIBLE = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__remuneracion_"); 
+
+
 
 //VARIABLES DE CONTROL DE IDIOMAS
 //------------------------------------------------------------------------------------------------------------------
@@ -65,7 +80,8 @@ var UL_TXT_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_email_")
 var UL_TXT_CORREO_DOMINIO = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DOMINIO"); 
 var UL_TXT_CORREO_DIRECCION = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DIRECCION"); 
 
-var UL_CHK_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_mode___email_check"); 
+var UL_RBT_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_mode___email_check"); 
+
 
 var UL_SECCION_CORREO = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__correo_electrnico_predetermina_"); 
 var UL_SECCION_CORREO_ORIGINAL = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__resume_email_"); 
@@ -191,13 +207,18 @@ try{UL_TXT_CARGO.addEventListener("change", function(){UL_TXT_CARGO.value = UL_T
 try{UL_TXT_POSICION.addEventListener("change", function(){UL_TXT_POSICION.value = UL_TXT_POSICION.value.toUpperCase();});}catch(err){}
 
 
-
-
 try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
 try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
 try{UL_TB_003.addEventListener("change", function(){UL_TB_003_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_003_CHANGE");}
 try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_004_CHANGE");}
 try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
+
+// REMUNERACIONES
+try{UL_RADIOS_REMUNERACION.addEventListener("click", UL_ACTUALIZA_REMUNERACION);}catch(err){}
+try{UL_CBX_DIVISA.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}catch(err){}
+try{UL_TXT_REMUNERACION.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}catch(err){}
+
+
 
 /*
 // BLOQUEANDO ACCIONES NO DESEADAS ;)
@@ -312,7 +333,7 @@ var  UL_CODIGO="1";
 	UL_SECCION_SLC_006.style.display="";
 	UL_SECCION_TXT_006.style.display=FCC_NONE;
 	UL_SECCION_TXT_007.style.display=FCC_NONE;
-	
+	UL_SECCION_REMUNERACION_VISIBLE.style.display=FCC_NONE;
 	/*
 	if (UL_CODIGO == 0 ) { 
 		//FCC_INICIA_AFECHA();
@@ -1004,6 +1025,25 @@ function UL_LISTA_HABILIDAD() {
 	}catch(err){}
 }
 
+
+/*###################################################################################################################*/
+// FUNCION		:ACTUALIZA REMUNERACION
+// DETALLE		:CALCULA Y COMPLETA LA RMEUNERACION VISIBLE EN CASO DE SER LA OPCION SELECCIONADA 
+/*###################################################################################################################*/
+
+
+
+function UL_ACTUALIZA_REMUNERACION (){
+	
+	if(UL_RDO_REMUNERACION_SI[0].checked){
+		
+		UL_TXT_REMUNERACION_VISIBLE.value= UL_TXT_REMUNERACION.value + " " + UL_CBX_DIVISA.options[UL_CBX_DIVISA.selectedIndex].text;
+		
+	}else if (!UL_RDO_REMUNERACION_SI[0].checked){
+		
+		UL_TXT_REMUNERACION_VISIBLE.value="";
+	}
+}
 
 
 
