@@ -5,8 +5,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_ALUMNOS.JS
 	
-	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.2";
-	const FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL= "03/10/18";
+	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.2x";
+	const FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL= "12/10/18";
 
 /*############################################################################################################################*/
 
@@ -16,6 +16,7 @@
 
 console.log("# CONTROL FCC_PUBLICACIONES_ALUMNOS V:"+FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL);
 
+document.querySelector("frame > main > div.page-main > div > div > div > div.job_review_wrap.form-layout.has-sidebar > div > div.form-col > div.job_display > div.visual-header-info.dark-theme > div > div.job-emp-info > div > div.job_follow.inline-block > a > div > span").style.textTransform = "initial"; 
 /*############################################################################################################################*/
 //DECLARACION DE CONSTANTES
 /*############################################################################################################################*/
