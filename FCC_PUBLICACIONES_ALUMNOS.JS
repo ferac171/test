@@ -5,7 +5,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_ALUMNOS.JS
 	
-	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.2x";
+	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.2xx";
 	const FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL= "12/10/18";
 
 /*############################################################################################################################*/
@@ -177,16 +177,19 @@ switch(FCC_CONTROL) {
 		}
 		
 		//MAESTRIA					
+			try{
 			FCC_DETALLE= FCC_AGREGA_LATERAL('Maestría deseable',UL_TXT_MAESTRIA_EMPLEO_OBL.innerHTML,FCC_DETALLE);	
 			FCC_OCULTA_POR_CLASE(UL_TXT_MAESTRIA_EMPLEO_OBL);
-				
+			}catch(err){}	
 		//ANIO EGRESO 					
+			try{
 			FCC_DETALLE= FCC_AGREGA_LATERAL('Año de egreso deseable',UL_TXT_ANIOEGRESO_EMPLEO_OBL.innerHTML,FCC_DETALLE);	
 			FCC_OCULTA_POR_CLASE(UL_TXT_ANIOEGRESO_EMPLEO_OBL);
-		
+			}catch(err){}
 		//AÑADENDO BARRA LATERAL
+			try{
 			FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
-				
+			}catch(err){}	
 	break;
 	
 	//OTRAS OPORTUNIDADES DE EMPLEO ----------------------------------------------------------------------------------------
@@ -219,17 +222,22 @@ switch(FCC_CONTROL) {
 			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_DES);
 		}
 		
-		//MAESTRIA					
+		//MAESTRIA	
+		try{
 			FCC_DETALLE= FCC_AGREGA_LATERAL('Maestría deseable',UL_TXT_MAESTRIA_EMPLEO_OBL.innerHTML,FCC_DETALLE);	
 			FCC_OCULTA_POR_CLASE(UL_TXT_MAESTRIA_EMPLEO_OBL);
+		}catch(err){}
 				
-		//ANIO EGRESO 					
+		//ANIO EGRESO
+		try{
 			FCC_DETALLE= FCC_AGREGA_LATERAL('Año de egreso deseable',UL_TXT_ANIOEGRESO_EMPLEO_OBL.innerHTML,FCC_DETALLE);	
 			FCC_OCULTA_POR_CLASE(UL_TXT_ANIOEGRESO_EMPLEO_OBL);
+		}catch(err){}
 		
 		//AÑADENDO BARRA LATERAL
+		try{
 			FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);		
-		
+		}catch(err){}
 	break;
 				
 //PRACTICAS PRE PROFESIONALES ----------------------------------------------------------------------------------------
@@ -262,12 +270,16 @@ switch(FCC_CONTROL) {
 			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_PRACTICAPRE_DES);
 		}
 				
-		//RANKING 					
+		//RANKING 
+		try{
 			FCC_DETALLE= FCC_AGREGA_LATERAL('Ranking deseable',UL_TXT_RANKING_PRACTICAPRE_OBL.innerHTML,FCC_DETALLE);	
 			FCC_OCULTA_POR_CLASE(UL_TXT_RANKING_PRACTICAPRE_OBL);
+		}catch(err){}
 					
 		//AÑADENDO BARRA LATERAL
+		try{
 			FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
+		}catch(err){}
 	
 	break;
 				
@@ -294,7 +306,9 @@ switch(FCC_CONTROL) {
 			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_PRACTICAPRO_OBL);	
 					
 		//AÑADENDO BARRA LATERAL
+		try{
 			FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
+		}catch(err){}
 				
 	break;
 				
@@ -314,7 +328,9 @@ switch(FCC_CONTROL) {
 				FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_INTERNADO_OBL);		
 		
 		//AÑADENDO BARRA LATERAL
+		try{
 				FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
+		}catch(err){}
 				
 	break;
 				
@@ -325,16 +341,22 @@ switch(FCC_CONTROL) {
 		//INICIANDO VARIABLES DE BARRA LATERAL
 			FCC_DETALLE="";
 		
-		//MAESTRIA 					
+		//MAESTRIA 
+		try{
 				FCC_DETALLE= FCC_AGREGA_LATERAL('Maestría deseable',UL_TXT_MAESTRIA_EJECUTIVO_OBL.innerHTML,FCC_DETALLE);	
 				FCC_OCULTA_POR_CLASE(UL_TXT_MAESTRIA_EJECUTIVO_OBL);	
+		}catch(err){}
 		
-		//CARRERA 					
+		//CARRERA 	
+		try{
 				FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera deseable',UL_TXT_CARRERA_EJECUTIVO_OBL.innerHTML,FCC_DETALLE);	
-				FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EJECUTIVO_OBL);		
+				FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EJECUTIVO_OBL);
+		}catch(err){}
 		
 		//AÑADENDO BARRA LATERAL
-				FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);	
+		try{
+				FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
+		}catch(err){}
 			
 				
 	break;
