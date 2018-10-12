@@ -16,7 +16,6 @@
 
 console.log("# CONTROL FCC_PUBLICACIONES_ALUMNOS V:"+FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL);
 
-document.querySelector("frame > main > div.page-main > div > div > div > div.job_review_wrap.form-layout.has-sidebar > div > div.form-col > div.job_display > div.visual-header-info.dark-theme > div > div.job-emp-info > div > div.job_follow.inline-block > a > div > span").style.textTransform = "initial"; 
 /*############################################################################################################################*/
 //DECLARACION DE CONSTANTES
 /*############################################################################################################################*/
