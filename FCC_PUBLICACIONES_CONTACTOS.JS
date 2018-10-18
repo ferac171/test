@@ -327,9 +327,12 @@ var  UL_CODIGO="1";
 		var tope_barra = TEMP_ELEMENTOS.length;
 		
 		for ( bb = 0; bb <tope_barra ; bb++){
-			if (TEMP_ELEMENTOS[bb].value=="GUARDAR Y FINALIZAR MAS TARDE"){	UL_CODIGO="0";
+			if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="GUARDAR Y FINALIZAR MÁS TARDE"){
+				UL_CODIGO="0";
 			}
-		}			
+		}	
+
+			
 	}catch(err){}
 	
 	//CONTROL TB_001
@@ -871,7 +874,7 @@ function FCC_INICIA_AFECHA(){
 		  //nueva fecha sumada
 		  TuFecha.setDate(TuFecha.getDate() + dias);
 		  //formato de salida para la fecha
-		  
+		  console.log("fecha -->" + TuFecha.getDate());
 		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + TuFecha.getDate();
 
 	}catch(err){}
