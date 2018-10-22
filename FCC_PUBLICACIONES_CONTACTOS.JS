@@ -7,12 +7,26 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.4xX";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.4xXX";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "21/10/18";
 
 /*############################################################################################################################*/
 
 
+var UL_CHECK_BUSQUEDA_TEXT = document.querySelector("#dnf_class_values_job__job_type__widget > label:nth-child(20)");
+var UL_CHECK_BUSQUEDA_RADIO = document.querySelector("#dnf_class_values_job__job_type__widget > input:nth-child(19)");
+
+var UL_libro_CV = document.getElementsByClassName("icn-contact_book");
+
+if (UL_libro_CV.length>=1){
+	UL_CHECK_BUSQUEDA_TEXT.style.display="";
+	UL_CHECK_BUSQUEDA_RADIO.style.display="";
+} else{
+	UL_CHECK_BUSQUEDA_TEXT.style.display="none";
+	UL_CHECK_BUSQUEDA_RADIO.style.display="none";
+}
+
+console.log("EMPRESA VIP: " +UL_libro_CV.length);
 
 
 
@@ -315,6 +329,9 @@ $(document).ready(function() {
 /*############################################################################################################################*/
 
 window.onload=function() {
+
+
+
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
