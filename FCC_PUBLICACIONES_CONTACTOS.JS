@@ -7,26 +7,28 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.4xXX";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.5";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "21/10/18";
 
 /*############################################################################################################################*/
 
+FCC_AGREGA_BOTONES_MENU("buttonbar-top");
+FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
+try{
+	var UL_CHECK_BUSQUEDA_TEXT = document.querySelector("#dnf_class_values_job__job_type__widget > label:nth-child(20)");
+	var UL_CHECK_BUSQUEDA_RADIO = document.querySelector("#dnf_class_values_job__job_type__widget > input:nth-child(19)");
 
-var UL_CHECK_BUSQUEDA_TEXT = document.querySelector("#dnf_class_values_job__job_type__widget > label:nth-child(20)");
-var UL_CHECK_BUSQUEDA_RADIO = document.querySelector("#dnf_class_values_job__job_type__widget > input:nth-child(19)");
+	var UL_libro_CV = document.getElementsByClassName("icn-contact_book");
 
-var UL_libro_CV = document.getElementsByClassName("icn-contact_book");
+	if (UL_libro_CV.length>=1){
+		UL_CHECK_BUSQUEDA_TEXT.style.display="";
+		UL_CHECK_BUSQUEDA_RADIO.style.display="";
+	} else{
+		UL_CHECK_BUSQUEDA_TEXT.style.display="none";
+		UL_CHECK_BUSQUEDA_RADIO.style.display="none";
+	}
 
-if (UL_libro_CV.length>=1){
-	UL_CHECK_BUSQUEDA_TEXT.style.display="";
-	UL_CHECK_BUSQUEDA_RADIO.style.display="";
-} else{
-	UL_CHECK_BUSQUEDA_TEXT.style.display="none";
-	UL_CHECK_BUSQUEDA_RADIO.style.display="none";
-}
-
-console.log("EMPRESA VIP: " +UL_libro_CV.length);
+}catch(err){}
 
 
 
@@ -35,8 +37,6 @@ console.log("EMPRESA VIP: " +UL_libro_CV.length);
 /*############################################################################################################################*/
 
 console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL);
-
-
 
 
 
@@ -420,13 +420,15 @@ var  UL_CODIGO="1";
 	
 	
 //CARTACRERISTIAS DE LA FECHA DE PUBLICACIONES
-	
+	try{
+		
 	UL_TXT_FECHAPUBLICACION.readOnly  = true;
 	UL_BTN_PUBLICAR.style.display=FCC_NONE;
 	UL_BTN_BORRAR.style.display=FCC_NONE;
 	
-	UL_TXT_006.readOnly  = true;
 	
+	UL_TXT_006.readOnly  = true;
+	}catch(err){}
 	
 	//HABILITANDO CAMPOS IDOMAS Y HABILIDADES
 	if (UL_CODIGO == 0 ) { 
@@ -1474,8 +1476,8 @@ try{
 	case '14': 	console.log("# TIPO: " + FCC_CONTROL_SOLICITUD+ " - EMPLEO: " );
 		try{	
 		//CARRERA 	
-		FCC_AGREGA_BARRA_LATERAL(UL_TB_003.checked, MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_EMPLEO_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_EMPLEO_DES);//NIVEL 			
-		FCC_AGREGA_BARRA_LATERAL(UL_TB_004.checked, MSJ_CONDICION,FCC_NIVEL_EMPLEO_OBL,MSJ_CONDICION_DESEABLE,FCC_NIVEL_EMPLEO_DES);
+		FCC_AGREGA_BARRA_LATERAL(UL_TXT_003.value =="true", MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_EMPLEO_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_EMPLEO_DES);//NIVEL 			
+		FCC_AGREGA_BARRA_LATERAL(UL_TXT_004.value =="true", MSJ_CONDICION,FCC_NIVEL_EMPLEO_OBL,MSJ_CONDICION_DESEABLE,FCC_NIVEL_EMPLEO_DES);
 		//MAESTRIA					
 		FCC_AGREGA_BARRA_LATERAL(false, "","",MSJ_MAESTRIA_DESEABLE,FCC_MAESTRIA_EMPLEO_OBL);
 		//ANIO EGRESO 						
@@ -1487,8 +1489,8 @@ try{
 	case '19':	console.log("# TIPO: " + FCC_CONTROL_SOLICITUD+ " - OTRAS OPORTUNIDADES: " );
 		try{	
 		//CARRERA 	
-		FCC_AGREGA_BARRA_LATERAL(UL_TB_003.checked, MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_EMPLEO_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_EMPLEO_DES);//NIVEL 			
-		FCC_AGREGA_BARRA_LATERAL(UL_TB_004.checked, MSJ_CONDICION,FCC_NIVEL_EMPLEO_OBL,MSJ_CONDICION_DESEABLE,FCC_NIVEL_EMPLEO_DES);
+		FCC_AGREGA_BARRA_LATERAL(UL_TXT_003.value =="true", MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_EMPLEO_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_EMPLEO_DES);//NIVEL 			
+		FCC_AGREGA_BARRA_LATERAL(UL_TXT_004.value =="true", MSJ_CONDICION,FCC_NIVEL_EMPLEO_OBL,MSJ_CONDICION_DESEABLE,FCC_NIVEL_EMPLEO_DES);
 		//MAESTRIA					
 		FCC_AGREGA_BARRA_LATERAL(false, "","",MSJ_MAESTRIA_DESEABLE,FCC_MAESTRIA_EMPLEO_OBL);
 		//ANIO EGRESO 						
@@ -1500,9 +1502,9 @@ try{
    case '3':	console.log("# TIPO: " + FCC_CONTROL_SOLICITUD+ " - PRACTICAS PRE: " );
 		try{		
 		//CARRERA 	
-		FCC_AGREGA_BARRA_LATERAL(UL_TB_001.checked, MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_PRACTICAPRE_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_PRACTICAPRE_DES);
+		FCC_AGREGA_BARRA_LATERAL(UL_TXT_001.value =="true", MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_PRACTICAPRE_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_PRACTICAPRE_DES);
 		//NIVEL 		
-		FCC_AGREGA_BARRA_LATERAL(UL_TB_002.checked, MSJ_CONDICION,FCC_NIVEL_PRACTICAPRE_OBL,MSJ_CONDICION_DESEABLE,FCC_NIVEL_PRACTICAPRE_DES);
+		FCC_AGREGA_BARRA_LATERAL(UL_TXT_002.value =="true", MSJ_CONDICION,FCC_NIVEL_PRACTICAPRE_OBL,MSJ_CONDICION_DESEABLE,FCC_NIVEL_PRACTICAPRE_DES);
 		//RANKING
 		FCC_AGREGA_BARRA_LATERAL(false, "","",MSJ_RANKING_DESEABLE,FCC_RANKING_PRACTICAPRE_OBL);	
 		}catch(err){}		
@@ -1512,7 +1514,7 @@ try{
 	case '17':	console.log("# TIPO: " + FCC_CONTROL_SOLICITUD+ " - PRACTICAS PRO: " );
 		try{		
 		//CARRERA 	
-		FCC_AGREGA_BARRA_LATERAL(UL_TB_005.checked, MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_PRACTICAPRO_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_PRACTICAPRO_DES);			
+		FCC_AGREGA_BARRA_LATERAL(UL_TXT_005.value =="true", MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_PRACTICAPRO_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_PRACTICAPRO_DES);			
 		//CONDICION 
 		FCC_AGREGA_BARRA_LATERAL(false, "","",MSJ_CONDICION_DESEABLE,FCC_NIVEL_PRACTICAPRO_DES);	
 		}catch(err){}				
@@ -1679,14 +1681,28 @@ function FCC_AGREGA_BOTONES(){
 	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
 	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
 }
+
+function FCC_AGREGA_BOTONES_MENU(FCC_BUTTTON_BAR){
+try{
+	// DECALRACION DE VARIABLES*/
+	var FCC_DOM= document.getElementsByClassName(FCC_BUTTTON_BAR)[0];
+	var FCC_ADD_DOM="";
+	var FCC_TEMP_DOM="";
+
+	// EJECUCION DEL PROCESO*/
+	FCC_ADD_DOM += "<input type='button' onclick='MODAL_OPEN()' class='input-button btn btn_generic' value='Vista previa'>";		
+	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
+	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
+}catch(err){}
+}
 	
 /*###################################################################################################################*/
 // FUNCION		:COMPORTAMIENTO MODAL
 // DETALLE		:comportamiento de las ventanas modales 
 /*###################################################################################################################*/
 		    
-function MODAL_OPEN(ID_MODAL){				
-	modal = document.getElementById(ID_MODAL); 
+function MODAL_OPEN(){				
+	modal = document.getElementById("myModal"); 
    modal.style.display = "block";
 		
 	FCC_BORRA_SECCION();
