@@ -7,8 +7,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.5";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "21/10/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.56";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "23/10/18";
 
 /*############################################################################################################################*/
 
@@ -181,6 +181,7 @@ var UL_CORREO_DOMINIO = "";
 //------------------------------------------------------------------------------------------------------------------
 
 var UL_TXT_FECHAPUBLICACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start_"); 
+var UL_TXT_FECHAPUBLICACION_HIDE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start__real"); 
 var UL_TXT_FECHAFINALIZACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end_"); 
 
 var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0"); 
@@ -910,8 +911,8 @@ function FCC_INICIA_AFECHA(){
 		  //formato de salida para la fecha
 		  console.log("fecha -->" + TuFecha.getDate());
 		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + TuFecha.getDate();
+			UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
 			
-			UL_TXT_FECHAPUBLICACION.onchange();
 	}catch(err){}
 
 
