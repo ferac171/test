@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.7";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.7X";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "23/10/18";
 
 /*############################################################################################################################*/
@@ -377,8 +377,8 @@ var  UL_CODIGO="1";
 			UL_TXT_001.value=true;
 			UL_TB_001.checked=true;
 			UL_TB_001_CHANGE(true);
-		}else if(UL_TXT_001.value=="true"){UL_TB_001.checked=true;	UL_TB_001_CHANGE(false);	
-		}else if(UL_TXT_001.value=="false"){UL_TB_001.checked=false;UL_TB_001_CHANGE(false);}
+		}else if(UL_TXT_001.value=="true"){UL_TB_001.checked=true;	UL_TB_001_CHANGE(true);	
+		}else if(UL_TXT_001.value=="false"){UL_TB_001.checked=false;UL_TB_001_CHANGE(true);}
 	}catch(err){}
 	
 	//CONTROL TB_002
@@ -418,8 +418,8 @@ var  UL_CODIGO="1";
 			UL_TXT_005.value=true;
 			UL_TB_005.checked=true;
 			UL_TB_005_CHANGE(true);
-		}else if(UL_TXT_005.value=="true"){UL_TB_005.checked=true;	UL_TB_005_CHANGE(false);	
-		}else if(UL_TXT_005.value=="false"){UL_TB_005.checked=false;UL_TB_005_CHANGE(false);}
+		}else if(UL_TXT_005.value=="true"){UL_TB_005.checked=true;	UL_TB_005_CHANGE(true);	
+		}else if(UL_TXT_005.value=="false"){UL_TB_005.checked=false;UL_TB_005_CHANGE(true);}
 	}catch(err){}
 	
 	
@@ -530,7 +530,10 @@ function UL_TB_001_CHANGE(TEMP_ACCION){
 			UL_SECCION_CARRERA_PRACTICAPRE_OBL.style.display=FCC_VIEW;
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_NONE;
 			UL_SECCION_MSJ_001.style.display=FCC_NONE;	
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"DEL");}
+			if(TEMP_ACCION){
+				FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"DEL");
+				FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_DES,"ADD");
+			}
 			
 		} else if (!TEMP_CONTROL){
 			
@@ -540,7 +543,10 @@ function UL_TB_001_CHANGE(TEMP_ACCION){
 			UL_SECCION_CARRERA_PRACTICAPRE_DES.style.display=FCC_VIEW;
 			UL_SECCION_MSJ_001.style.display=FCC_VIEW;	
 			
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"ADD");}
+			if(TEMP_ACCION){
+				FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_OBL,"ADD");
+				FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRE_DES,"DEL");
+			}
 		}
 	}catch(err){}
 
@@ -687,7 +693,10 @@ function UL_TB_005_CHANGE(TEMP_ACCION){
 			UL_SECCION_MSJ_005.style.display=FCC_NONE;	
 
 			
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"DEL");}
+			if(TEMP_ACCION){
+				FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"DEL");
+				FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_DES,"ADD");
+			}
 			
 		} else if (!TEMP_CONTROL){
 			
@@ -697,7 +706,10 @@ function UL_TB_005_CHANGE(TEMP_ACCION){
 			UL_SECCION_CARRERA_PRACTICAPRO_DES.style.display=FCC_VIEW;
 			UL_SECCION_MSJ_005.style.display=FCC_VIEW;	
 
-			if(TEMP_ACCION){FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"ADD");}
+			if(TEMP_ACCION){
+				FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_OBL,"ADD");
+				FCC_ACCION_SOBRE_SIMPLE(UL_LISTA_CARRERA_PRACTICAPRO_DES,"DEL");
+			}
 		}
 	}catch(err){
 		//console.log ("ERR: UL_TB_005_CHANGE");
