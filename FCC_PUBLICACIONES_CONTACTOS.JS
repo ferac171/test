@@ -7,7 +7,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.8";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.8x";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "23/10/18";
 
 /*############################################################################################################################*/
@@ -602,8 +602,8 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 	if (TEMP_CONTROL) { // trabajar sobre campos obligatorios
 			
 		try{ // ACCION SOBRE VISUALIZACION DE OPCIONES 
-			UL_SECCION_CARRERA_EMPLEO_OBL.style.display="";//FCC_VIEW;
-			UL_SECCION_CARRERA_EMPLEO_DES.style.display="";//FCC_NONE;
+			UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_VIEW;
+			UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_NONE;
 			UL_SECCION_MSJ_003.style.display=FCC_NONE;	
 		}catch(err){}
 			
@@ -623,8 +623,8 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 	}else if (!TEMP_CONTROL){
 			
 			try{// ACCION SOBRE VISUALIZACION DE OPCIONES 
-				UL_SECCION_CARRERA_EMPLEO_OBL.style.display="";//FCC_NONE;
-				UL_SECCION_CARRERA_EMPLEO_DES.style.display="";//FCC_VIEW;
+				UL_SECCION_CARRERA_EMPLEO_OBL.style.display=FCC_NONE;
+				UL_SECCION_CARRERA_EMPLEO_DES.style.display=FCC_VIEW;
 				UL_SECCION_MSJ_003.style.display=FCC_VIEW;	
 
 			}catch(err){}
