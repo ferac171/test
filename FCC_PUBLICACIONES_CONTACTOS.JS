@@ -7,10 +7,16 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.9";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.9Xz";
 	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "23/10/18";
 
 /*############################################################################################################################*/
+
+//UL_BARRA_MENU[0].style.display="";
+
+try{var UL_MSJ_USUARIO = FCC_GET_ELEMENTO_BYID("all_user_hints");}catch(err){}
+UL_MSJ_USUARIO.style.display="none";
+
 
 FCC_AGREGA_BOTONES_MENU("buttonbar-top");
 FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
@@ -62,7 +68,6 @@ const FCC_VIEW = "";
 
 var UL_CONTROL_LISTENER =false;	
 
-try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
 
 
 //VARIABLES DE CONTROL DE EMPLEO
@@ -341,7 +346,7 @@ window.onload=function() {
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
-var  UL_CODIGO="1";
+
 	
 	//OCULTANDO SOPORTES
 	try{
@@ -360,18 +365,72 @@ var  UL_CODIGO="1";
 		try{UL_TXT_OTRO_IDIOMA.style.display=FCC_NONE;}catch(err){}
 		try{UL_TXT_OTRO_HABILIDAD.style.display=FCC_NONE;}catch(err){}
 		
-	try{		
-		var TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
-		var tope_barra = TEMP_ELEMENTOS.length;
 		
-		for ( bb = 0; bb <tope_barra ; bb++){
-			if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="GUARDAR Y FINALIZAR MÁS TARDE"){
+	var  UL_CODIGO="1";
+
+/*try{		
+	var EMP_APROBADO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__approved_");
+	UL_CODIGO=EMP_APROBADO.value;	
+
+}catch(err){}	*/
+
+		
+try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
+try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-bottom");}catch(err){}
+
+		
+		var TEMP_ELEMENTOS;
+		var tope_barra;
+	
+	
+		try{		
+		
+		TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
+		tope_barra = TEMP_ELEMENTOS.length;
+		
+			for ( bb = 0; bb <tope_barra ; bb++){
+				if (TEMP_ELEMENTOS[bb].value.indexOf("Guardar")>=0){
 				UL_CODIGO="0";
+				}	
+			}
+		}catch(err){}
+	
+	
+	try{		
+		
+		TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
+		tope_barra = TEMP_ELEMENTOS.length;
+
+		if (UL_CODIGO=="1"){
+			
+			for ( bb = 0; bb <tope_barra ; bb++){
+				if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="ENVIAR"){
+					TEMP_ELEMENTOS[bb].style.display="none";
+					TEMP_ELEMENTOS[bb].classList.remove("btn");
+					TEMP_ELEMENTOS[bb].classList.remove("input-submit");
+				}	
 			}
 		}	
-
-			
 	}catch(err){}
+	
+	UL_BARRA_MENU_INFERIOR
+	
+		try{		
+		 TEMP_ELEMENTOS = UL_BARRA_MENU_INFERIOR[0].getElementsByTagName("input");
+		 tope_barra = TEMP_ELEMENTOS.length;
+
+		if (UL_CODIGO=="1"){
+			
+			for ( bb = 0; bb <tope_barra ; bb++){
+				if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="ENVIAR"){
+					TEMP_ELEMENTOS[bb].style.display="none";
+					TEMP_ELEMENTOS[bb].classList.remove("btn");
+					TEMP_ELEMENTOS[bb].classList.remove("input-submit");
+				}	
+			}
+		}	
+	}catch(err){}
+	
 	
 	//CONTROL TB_001
 	try{	
@@ -963,15 +1022,24 @@ function FCC_INICIA_AFECHA(){
 		var numero ="1";
 		  //la fecha
 		  var TuFecha = new Date();
-		  
+		  var dias;
 		  //dias a sumar
 		  var dias = parseInt(numero);
 		  
 		  //nueva fecha sumada
 		  TuFecha.setDate(TuFecha.getDate() + dias);
 		  //formato de salida para la fecha
-		  console.log("fecha -->" + TuFecha.getDate());
-		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + TuFecha.getDate();
+		  
+		  	  
+		  if(TuFecha.getDate() <10){
+			  dias ="0"+TuFecha.getDate()
+			}else{
+				dias =TuFecha.getDate()
+			}
+			
+			console.log("dias -->" + dias);
+		  
+		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
 			UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
 			
 	}catch(err){}
@@ -1385,7 +1453,7 @@ function CARGA_VISTA_PREVIA(){
 			}catch(err){}
 			
 //CODIGO DE EMPLEO 			
-		var FCC_CODIGO_EMPLEO = "TBD";
+		var FCC_CODIGO_EMPLEO = "S/C";
 			try{ ul_temp = UL_CODIGO_EMPLEO.value;
 				 if (ul_temp !=""){FCC_CODIGO_EMPLEO=ul_temp; }
 			}catch(err){}
