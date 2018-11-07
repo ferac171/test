@@ -1,6 +1,4 @@
 
-
-
 /*##############################################################################################################################*/
 
 // MODELO PARA MODIFICAR INTERFACE DE:
@@ -906,7 +904,7 @@ function FCC_ACCION_SOBRE_SIMPLE (TEMP_SIMPLE, ACCION){
 }
 
 /*###################################################################################################################*/
-// FUNCION		:	FCC_CONTROL DE IDICOMAS
+// FUNCION		:	FCC_CONTROL DE IDIOMAS
 // DETALLE		:	AÑADE Y ELEIINA LISTA DE IDIOMAS
 /*###################################################################################################################*/
 
@@ -964,7 +962,7 @@ function UL_INICIA_IDIOMA() {
 		var limitell = arrayDeCadenas;
 		
 	
-		for (ll=1 ; ll<limitell.length; ll++){
+		for (ll=0 ; ll<limitell.length; ll++){
 			
 	
 			TEMP_ELEMENT = document.createElement("option");
@@ -990,12 +988,22 @@ function UL_LISTA_IDIOMAS() {
 		var lista = document.getElementById("UL_GRD_001");
 		var tope = lista.length;
 		var resumen = document.getElementById("dnf_class_values_job__UL_TXT_061_");
-
+		var elemento ="";
+		
 		resumen.value="";
-		resumen.value+=lista.options[0].text;  
-
-		  for (i=1; i<tope; i++){
-			  resumen.value+=" / "+lista.options[i].text;
+		
+		  for (i=0; i<tope; i++){
+			  elemento = lista.options[i].text;
+			  
+			  if ( elemento !="") {
+				  
+				  if (resumen.value !="") { 
+					resumen.value+=" / "+lista.options[i].text; 
+				  }else{
+					resumen.value+=lista.options[i].text; 
+				  }
+			  }
+			  
 		  }
 	}catch(err){}
 }
@@ -1143,7 +1151,8 @@ function UL_ADD_HABILIDAD() {
 			valor = UL_CBX_003.value;
 		}
 	
-		if (hab){
+		
+		if (hab && valor != ""){
 			var TEMP_ELEMENT = document.createElement("option");
 			TEMP_ELEMENT.text = valor;
 			TEMP_ELEMENT.value = valor;
@@ -1165,7 +1174,7 @@ function UL_INICIA_HABILIDAD() {
 		var arrayDeCadenas = resumen.split(" / ");
 		var limitell = arrayDeCadenas;
 		
-		for (ll=1 ; ll<limitell.length; ll++){
+		for (ll=0 ; ll<limitell.length; ll++){
 	
 			TEMP_ELEMENT = document.createElement("option");
 			TEMP_ELEMENT.text = arrayDeCadenas[ll];
@@ -1185,18 +1194,32 @@ function UL_DEL_HABILIDAD() {
 	}catch(err){}
 }
 
+
+
+	
 function UL_LISTA_HABILIDAD() {
 	try{
 		var lista = document.getElementById("UL_GRD_002");
 		var tope = lista.length;
 		var resumen = document.getElementById("dnf_class_values_job__ul_txt_077_");
-
-		resumen.value="";
-		resumen.value+=lista.options[0].text;  
+		var elemento ="";
 		
-		  for (i=1; i<tope; i++){
-			  resumen.value+=" / "+lista.options[i].text;
+		resumen.value="";
+		
+		  for (i=0; i<tope; i++){
+			  elemento = lista.options[i].text;
+			  
+			  if ( elemento !="") {
+				  
+				  if (resumen.value !="") { 
+					resumen.value+=" / "+lista.options[i].text; 
+				  }else{
+					resumen.value+=lista.options[i].text; 
+				  }
+			  }
+			  
 		  }
+		  
 	}catch(err){}
 }
 
