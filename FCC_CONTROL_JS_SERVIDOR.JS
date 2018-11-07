@@ -47,7 +47,11 @@ switch(FCC_ESQUEMA) {
 		
 	case "PUBLICACIONES_CONTACTOS":
 		FCC_SRC = "https://rawgit.com/ferac171/test/master/FCC_PUBLICACIONES_CONTACTOS.JS";
-        break;		
+        break;	
+
+	case "BUSQUEDA_CONTACTOS":
+		FCC_SRC = "https://rawgit.com/ferac171/test/master/FCC_BUSQUEDAS_CONTACTOS.JS";	
+			break;				
 		
     default:
 }
