@@ -1,5 +1,6 @@
 
 
+
 /*##############################################################################################################################*/
 
 // MODELO PARA MODIFICAR INTERFACE DE:
@@ -7,16 +8,16 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "4.9Xz";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "23/10/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.0";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "07/11/18";
 
 /*############################################################################################################################*/
 
 //UL_BARRA_MENU[0].style.display="";
 
-try{var UL_MSJ_USUARIO = FCC_GET_ELEMENTO_BYID("all_user_hints");}catch(err){}
+try{var UL_MSJ_USUARIO = FCC_GET_ELEMENTO_BYID("all_user_hints");
 UL_MSJ_USUARIO.style.display="none";
-
+}catch(err){}
 
 FCC_AGREGA_BOTONES_MENU("buttonbar-top");
 FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
@@ -30,7 +31,7 @@ try{
 		UL_CHECK_BUSQUEDA_TEXT.style.display="";
 		UL_CHECK_BUSQUEDA_RADIO.style.display="";
 	} else{
-		UL_CHECK_BUSQUEDA_TEXT.style.display="none";
+		UL_CHECK_BUSQUEDA_TEXT.style.display="none"
 		UL_CHECK_BUSQUEDA_RADIO.style.display="none";
 	}
 
@@ -294,6 +295,17 @@ var UL_LIST_MAESTRIA_EMPLEO_DES = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job]
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
+try{var UL_BTN_GUARDAR0 = FCC_GET_ELEMENTO_BYNAME("formaction")[0];}catch(err){}
+try{var UL_BTN_GUARDAR1 = FCC_GET_ELEMENTO_BYNAME("formaction")[1];}catch(err){}
+try{var UL_BTN_GUARDAR2 = FCC_GET_ELEMENTO_BYNAME("formaction")[2];}catch(err){}
+try{var UL_BTN_GUARDAR3 = FCC_GET_ELEMENTO_BYNAME("formaction")[3];}catch(err){}
+
+
+try{UL_BTN_GUARDAR0.addEventListener("click", UL_GUARDA_TEMPORAL);}catch(err){}
+try{UL_BTN_GUARDAR1.addEventListener("click", UL_GUARDA_TEMPORAL);}catch(err){}
+try{UL_BTN_GUARDAR2.addEventListener("click", UL_GUARDA_TEMPORAL);}catch(err){}
+try{UL_BTN_GUARDAR3.addEventListener("click", UL_GUARDA_TEMPORAL);}catch(err){}
+
 
 try{UL_CBX_001.addEventListener("change", UL_HABILITA_IDIOMA);}catch(err){}
 try{UL_CBX_002.addEventListener("change", UL_HABILITA_HABILIDAD);}catch(err){}
@@ -331,6 +343,18 @@ $(document).ready(function() {
 });
 
 
+// GUARDA TEMPORAL
+
+UL_TXT_POSICION.value= UL_TXT_POSICION.value.replace("<P STYLE='COLOR:RED; FONT-WEIGHT: BOLD'>(PENDIENTE)</P>", "");
+
+function UL_GUARDA_TEMPORAL() {
+	
+	UL_TXT_POSICION.value+=  "<P STYLE='COLOR:RED; FONT-WEIGHT: BOLD'>(PENDIENTE)</P>";
+	
+}
+
+
+
 /*############################################################################################################################*/
 
 //FUNCION		:	ONLOAD
@@ -341,8 +365,12 @@ $(document).ready(function() {
 
 window.onload=function() {
 
-
-
+try{
+	var UL_CONTADOR_VISTAS = document.getElementsByTagName("aside")[0];
+	var tem_original = UL_CONTADOR_VISTAS.innerHTML;
+	var tem_res = tem_original.replace("Estudiante", "Vistas de estudiantes");
+	UL_CONTADOR_VISTAS.innerHTML=tem_res;
+}catch(err){}
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
