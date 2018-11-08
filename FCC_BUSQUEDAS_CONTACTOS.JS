@@ -254,7 +254,7 @@ function FCC_AGREGA_BOTONES(){
 
 	
 	// EJECUCION DEL PROCESO*/
-	FCC_ADD_DOM += "<div> <input type='submit' id='UL_BTN_CV_BOOK' onclick='GUARDAYCARGA()' class='input-submit btn btn_generic' value='GUARDAR Y EMPEZAR BUSQUEDA' /> <input value=' Cancelar' type='button' onclick='CANCEL()'  class='input-button btn btn_generic'></div></br>";		
+	FCC_ADD_DOM += "<div> <input type='submit' id='UL_BTN_CV_BOOK' onclick='GUARDAYCARGA()' class='input-submit btn btn_generic' style='text-transform: initial;' value='Guardar y empezar búsqueda' /> <input value=' Cancelar' type='button' onclick='CANCEL()'  class='input-button btn btn_generic'></div></br>";		
 	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
 	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
 	
