@@ -47,7 +47,7 @@ var UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_");
 var UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
 var UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
 
-console.log("## variables ok");
+
 //VARIABLES DE CONTROL DE IDIOMAS
 //------------------------------------------------------------------------------------------------------------------
 
@@ -64,16 +64,51 @@ var UL_SECCION_SLC_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_jo
 
 
 
-	var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0");
-	var UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
+var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0");
+var UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
 
-	var UL_BTN_PUBLICAR1 = FCC_GET_ELEMENTO_BYID("jscal_button_1"); 
-	var UL_BTN_BORRAR1 = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_1"); 
+var UL_BTN_PUBLICAR1 = FCC_GET_ELEMENTO_BYID("jscal_button_1"); 
+var UL_BTN_BORRAR1 = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_1"); 
 	
 
 
 
 
+
+
+
+
+FCC_AGREGA_BOTONES();
+
+
+
+/*############################################################################################################################*/
+
+//FUNCION		:	ONLOAD
+//DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
+//					Se ejecuta una vez acasarados todos los componentes de la pagina
+
+/*############################################################################################################################*/
+
+
+window.onload=function() {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+ UL_LISTA_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_"); 
+ UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_"); 
+ UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_"); 
+ UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
+ UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
+	
+	
+	
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
@@ -86,31 +121,18 @@ try{UL_CBX_001.addEventListener("change", UL_HABILITA_IDIOMA);}catch(err){}
 try{UL_LISTA_AREA.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
 try{UL_LISTA_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
 
-UL_TXT_AREA.addEventListener("change",  function(){UL_TXT_AREA.value = UL_TXT_AREA.value.toUpperCase();  UL_CALCULA_POSICION(); }  );
+try{UL_TXT_AREA.addEventListener("change",  function(){UL_TXT_AREA.value = UL_TXT_AREA.value.toUpperCase();  UL_CALCULA_POSICION(); }  );}catch(err){}
 
 try{UL_TXT_CARGO.addEventListener("change", function(){UL_TXT_CARGO.value = UL_TXT_CARGO.value.toUpperCase();  UL_CALCULA_POSICION();} );}catch(err){}
+
 try{UL_TXT_POSICION.addEventListener("change", function(){UL_TXT_POSICION.value = UL_TXT_POSICION.value.toUpperCase();});}catch(err){}
 
 
 
-console.log("## Listeners ok");
 
 
 
-FCC_AGREGA_BOTONES();
 
-console.log("## Botones ok");
-
-/*############################################################################################################################*/
-
-//FUNCION		:	ONLOAD
-//DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
-//					Se ejecuta una vez acasarados todos los componentes de la pagina
-
-/*############################################################################################################################*/
-
-
-window.onload=function() {
 	
 UL_SECCION_LIMITAR_SOL.style.display=FCC_NONE;
 
@@ -161,10 +183,43 @@ function GUARDAYCARGA(){
 	
 var xxx = document.getElementsByName("dnf_opt_submit")[0];
 
-console.log("ejecutando guarda y carga");
-xxx.onclick();
+var validacion = false;
 
-window.open('index.php?s=rezbook&ss=book&_ksl=1&mode=list', '_blank').focus();
+
+var T1 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_").value;
+var T2 = "FCC";//FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_").value;
+var T3 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_").value;
+var T4 = "FCC";//FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_").value;
+var T5 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_").value;
+var T6 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__divisa_").value;
+
+if (T1!="" && T2!="" && T3!="" && T4!="" && T5!="" && T6!="" ){
+	
+	validacion = true;
+}
+
+console.log("validación : " + validacion);
+
+
+
+if (validacion){
+	//alert("validacion completa")
+	console.log("ejecutando guarda y carga");
+	xxx.onclick();
+	window.open("index.php?mode=display&id=dfadf836bd26f9e1c2497337f91aa503&s=rezbook&ss=book", "_blank").focus();
+} else{
+	alert("Debe completar todos los campos obligatorios antes de continuar")
+}
+
+
+
+
+
+}
+
+function CANCEL(){
+	
+location.href ="https://ulima-cde.symplicity.com/employers/index.php?mode=list&";
 
 
 }
@@ -176,14 +231,28 @@ window.open('index.php?s=rezbook&ss=book&_ksl=1&mode=list', '_blank').focus();
 function FCC_AGREGA_BOTONES(){
 
 	// DECALRACION DE VARIABLES*/
+	
+	var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top")[0];
+	var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-bottom")[0];
+	
+	UL_BARRA_MENU.style.display=FCC_NONE;
+	UL_BARRA_MENU_INFERIOR.style.display=FCC_NONE;
+	
 	var FCC_DOM= document.getElementById("job_form_fieldgroup__default");
 	var FCC_ADD_DOM="";
 	var FCC_TEMP_DOM="";
 
+	
 	// EJECUCION DEL PROCESO*/
-	FCC_ADD_DOM += "<input type='submit' id='UL_BTN_CV_BOOK' onclick='GUARDAYCARGA()' class='input-submit btn btn_primary' value='GUARDAR Y VER CV BOOK' />";		
+	FCC_ADD_DOM += "<div> <input type='submit' id='UL_BTN_CV_BOOK' onclick='GUARDAYCARGA()' class='input-submit btn btn_generic' value='GUARDAR Y EMPEZAR BUSQUEDA' /> <input value=' Cancelar' type='button' onclick='CANCEL()'  class='input-button btn btn_generic'></div></br>";		
 	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
 	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
+	
+	
+	//<input value=" Cancelar" type="button" onclick="self.location.href='?mode=list&amp;'" class="input-button btn btn_generic">
+	
+
+	
 }
 
 
@@ -292,7 +361,6 @@ function UL_LISTA_IDIOMAS() {
 
 function UL_CALCULA_POSICION(){
 	
-	console.log("## INGRESO A : "+"UL_CALCULA_POSICION" );
 	
 	try{
 		var TEMP_AREA =  UL_LISTA_AREA.options[UL_LISTA_AREA.selectedIndex].text;
@@ -324,14 +392,21 @@ function FCC_INICIA_AFECHA(){
 	var UL_TXT_FECHAPUBLICACION_HIDE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end__real"); 		
 			
 		var numero ="0";
+		var numerof ="1";
+		
 		  //la fecha
 		  var TuFecha = new Date();
+		  var TuFechaf = new Date();
 		  var dias;
+		  var diasf;
+		  
 		  //dias a sumar
 		  var dias = parseInt(numero);
+		  var diasf = parseInt(numerof);
 		  
 		  //nueva fecha sumada
 		  TuFecha.setDate(TuFecha.getDate() + dias);
+		  TuFechaf.setDate(TuFechaf.getDate() + diasf);
 		  //formato de salida para la fecha
 		  
 		  	  
@@ -341,13 +416,17 @@ function FCC_INICIA_AFECHA(){
 				dias =TuFecha.getDate()
 			}
 			
-			console.log("dias -->" + dias);
+			if(TuFechaf.getDate() <10){
+			  diasf ="0"+TuFechaf.getDate()
+			}else{
+				diasf =TuFechaf.getDate()
+			}
 		  
 		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
-		
-			UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
-			UL_TXT_FECHAFINALIZACION.value = UL_TXT_FECHAPUBLICACION.value;
-			UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
+		 UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
+			
+		UL_TXT_FECHAFINALIZACION.value = TuFechaf.getFullYear() + '-' + (TuFechaf.getMonth() + 1)  + '-' + diasf;
+		UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAFINALIZACION.value;
 			
 	}catch(err){}
 
