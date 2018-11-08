@@ -8,8 +8,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_BUSQEUDA_PUBLICACIONES_VERSION_LOCAL = "1.0z";
-	const FCC_BUSQEUDA_PUBLICACIONES_FECHA_LOCAL= "07/11/18";
+	const FCC_BUSQEUDA_PUBLICACIONES_VERSION_LOCAL = "1.1";
+	const FCC_BUSQEUDA_PUBLICACIONES_FECHA_LOCAL= "08/11/18";
 
 /*############################################################################################################################*/
 
@@ -185,15 +185,25 @@ var xxx = document.getElementsByName("dnf_opt_submit")[0];
 
 var validacion = false;
 
-
-var T1 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_").value;
-var T2 = "FCC";//FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_").value;
+//CARGO
+var T1 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_").value; 
+//CARRERA
+var T2 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__bus_carrera___").value;
+//AREA
 var T3 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_").value;
-var T4 = "FCC";//FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_").value;
+//REMUNERACION
+var T4 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__remuneracion_mensual_").value;
+//POSICION
 var T5 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_").value;
+//DIVISA
 var T6 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__divisa_").value;
+//NIVEL
+var T7 = "FCC";//FCC_GET_ELEMENTO_BYID("dnf_class_values_job__bus_condicion_academica___").value;
+//MAESTRIA
+var T7 = "FCC";//FCC_GET_ELEMENTO_BYID("dnf_class_values_job__bus_maestria___").value;
 
-if (T1!="" && T2!="" && T3!="" && T4!="" && T5!="" && T6!="" ){
+
+if (T1!="" && T2!="" && T3!="" && T4!="" && T5!="" && T6!="" && T7!=""){
 	
 	validacion = true;
 }

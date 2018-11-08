@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.0";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "07/11/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.1";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "08/11/18";
 
 /*############################################################################################################################*/
 
@@ -114,6 +114,10 @@ var FCC_NIVEL_INTERNADO_OBL;
 // VARIBALES EJECUTIVO
 var UL_TXT_CARRERA_EJECUTIVO_OBL; 
 var UL_TXT_MAESTRIA_EJECUTIVO_OBL;
+
+var FCC_CARRERA_EJECUTIVO_OBL;
+var FCC_MAESTRIA_EJECUTIVO_OBL;
+
 
 // VARIBALES EMPLEOS
 var FCC_CARRERA_EMPLEO_OBL; 
@@ -261,6 +265,15 @@ var UL_LISTA_NIVEL_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job
 var	UL_LISTA_CARRERA_INTERNADO_OBL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_degree_level____widget");
 var	UL_LISTA_NIVEL_INTERNADO_OBL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__niveles____widget");
 
+
+
+//ELEMENTOS DE EMPLEOS EJECUTIVOS
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_LIST_CARRERA_EJECUTIVO_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__carrera_profesional_deseable____widget");
+var UL_LIST_MAESTRIA_EJECUTIVO_DES = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][maestra_deseable2][]")[0];
+
+
 //ELEMENTOS DE EMPLEOS Y OTROS 
 //------------------------------------------------------------------------------------------------------------------
 
@@ -343,11 +356,13 @@ $(document).ready(function() {
 
 // GUARDA TEMPORAL
 
-UL_TXT_POSICION.value= UL_TXT_POSICION.value.replace("<P STYLE='COLOR:RED; FONT-WEIGHT: BOLD'>(PENDIENTE)</P>", "");
+var FCC_TXT_PENDIENTE = "<P STYLE='COLOR:RED; FONT-WEIGHT:BOLD; FONT-SIZE: 12px;'>(PENDIENTE)</P>"; 
+
+UL_TXT_POSICION.value= UL_TXT_POSICION.value.replace(FCC_TXT_PENDIENTE, "");
 
 function UL_GUARDA_TEMPORAL() {
 	
-	UL_TXT_POSICION.value+=  "<P STYLE='COLOR:RED; FONT-WEIGHT: BOLD'>(PENDIENTE)</P>";
+	UL_TXT_POSICION.value+=FCC_TXT_PENDIENTE;
 	
 }
 
@@ -1467,6 +1482,15 @@ function CARGA_VISTA_PREVIA(){
 // TEXTOS EJECUTIVO
 //**********************************
 
+//CARRERA	
+	FCC_CARRERA_EJECUTIVO_OBL=GET_TEXT(UL_LIST_CARRERA_EJECUTIVO_DES,MSJ_CAMPO_OBLIGATORIO,"LISTA");
+	
+//MAESTRIA	
+	FCC_MAESTRIA_EJECUTIVO_OBL=GET_TEXT(UL_LIST_MAESTRIA_EJECUTIVO_DES,MSJ_CAMPO_OBLIGATORIO,"OPTION");
+
+
+/*
+
  UL_TXT_CARRERA_EJECUTIVO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-carrera_profesional_deseable")[0]; 
  UL_TXT_MAESTRIA_EJECUTIVO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-maestra_deseable2")[0];
 	
@@ -1490,7 +1514,7 @@ function CARGA_VISTA_PREVIA(){
 	}catch(err){
 		UL_TXT_MAESTRIA_EJECUTIVO_OBL = "No Seleccionada";
 	}	
-	
+	*/
 	
 	
 //===============================================================================================================			
@@ -1622,8 +1646,9 @@ function CARGA_VISTA_PREVIA(){
 				 if (ul_temp !=""){FCC_HABILIDADES=ul_temp; }
 			}catch(err){}			
 
-//===============================================================================================================			
+//===============================================================================================================		
 // AGREGANDO CAMPOS A VISTA PREVIA
+
 //===============================================================================================================
 
 		try{FCC_AGREGA_TITULO(FCC_POSICION);}catch(err){}
@@ -1658,7 +1683,8 @@ try{
 	case '14': 	console.log("# TIPO: " + FCC_CONTROL_SOLICITUD+ " - EMPLEO: " );
 		try{	
 		//CARRERA 	
-		FCC_AGREGA_BARRA_LATERAL(UL_TXT_003.value =="true", MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_EMPLEO_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_EMPLEO_DES);//NIVEL 			
+		FCC_AGREGA_BARRA_LATERAL(UL_TXT_003.value =="true", MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_EMPLEO_OBL,MSJ_CARRERA_PROFESIONAL_DESEABLE,FCC_CARRERA_EMPLEO_DES);
+		//NIVEL 			
 		FCC_AGREGA_BARRA_LATERAL(UL_TXT_004.value =="true", MSJ_CONDICION,FCC_NIVEL_EMPLEO_OBL,MSJ_CONDICION_DESEABLE,FCC_NIVEL_EMPLEO_DES);
 		//MAESTRIA					
 		FCC_AGREGA_BARRA_LATERAL(false, "","",MSJ_MAESTRIA_DESEABLE,FCC_MAESTRIA_EMPLEO_OBL);
@@ -1714,11 +1740,11 @@ try{
 				
 //EMPLEO EJECUTIVO ------------------------------------------------------------------------------------------------------
 	case '22':	console.log("# TIPO: " + FCC_CONTROL_SOLICITUD+ " - EMPLEO EJECUTIVO: " );
-		try{	
-		//MAESTRIA 					
-			FCC_AGREGA_LATERAL("Maestría deseable","ADMINISTRACIÓN, INGENIERÍA INDUSTRIAL");
+		try{			
 		//CARRERA 	
-			FCC_AGREGA_LATERAL("Carrera deseable","ADMINISTRACIÓN, INGENIERÍA INDUSTRIAL");
+		FCC_AGREGA_BARRA_LATERAL(true, MSJ_CARRERA_PROFESIONAL,FCC_CARRERA_EJECUTIVO_OBL,"","");	
+		//MAESTRIA					
+		FCC_AGREGA_BARRA_LATERAL(true, MSJ_MAESTRIA,FCC_MAESTRIA_EJECUTIVO_OBL,"","");
 		}catch(err){}		
 	break;
 						
