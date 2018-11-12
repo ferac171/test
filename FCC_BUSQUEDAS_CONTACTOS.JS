@@ -93,11 +93,14 @@ FCC_AGREGA_BOTONES();
 
 window.onload=function() {
 	
-	
-	
-	
-	
-	
+	try{
+		var UL_GPA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_gpa_"); 
+		UL_GPA.value="100";
+		
+		var UL_SECCION_GPA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_gpa_"); 
+		
+		UL_SECCION_GPA.style.display="none";
+	}catch(err){}
 	
 	
 	
