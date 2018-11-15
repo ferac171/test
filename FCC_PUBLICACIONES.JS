@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL = "6.2";
-	const FCC_PUBLICACIONES_FECHA_LOCAL= "14/11/18";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.3";
+	const FCC_PUBLICACIONES_FECHA_LOCAL1= "14/11/18";
 
 /*############################################################################################################################*/
 
@@ -41,7 +41,7 @@ try{
 //CONSTANTES DE VERSION
 /*############################################################################################################################*/
 
-console.log("# CONTROL FCC_PUBLICACIONES_MANAGER V:"+FCC_PUBLICACIONES_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_FECHA_LOCAL);
+console.log("# CONTROL FCC_PUBLICACIONES_MANAGER V:"+FCC_PUBLICACIONES_VERSION_LOCAL1 + " al "+FCC_PUBLICACIONES_FECHA_LOCAL1);
 
 
 
@@ -443,7 +443,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 		TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
 		tope_barra = TEMP_ELEMENTOS.length;
 
-		if (UL_CODIGO=="1"){
+		if (UL_CODIGO=="0"){
 			
 			for ( bb = 0; bb <tope_barra ; bb++){
 				if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="ENVIAR"){
@@ -461,7 +461,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 		 TEMP_ELEMENTOS = UL_BARRA_MENU_INFERIOR[0].getElementsByTagName("input");
 		 tope_barra = TEMP_ELEMENTOS.length;
 
-		if (UL_CODIGO=="1"){
+		if (UL_CODIGO=="0"){
 			
 			for ( bb = 0; bb <tope_barra ; bb++){
 				if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="ENVIAR"){
