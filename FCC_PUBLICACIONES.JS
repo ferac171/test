@@ -6,7 +6,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL = "6.1 E";
+	const FCC_PUBLICACIONES_VERSION_LOCAL = "6.2";
 	const FCC_PUBLICACIONES_FECHA_LOCAL= "14/11/18";
 
 /*############################################################################################################################*/
@@ -185,6 +185,7 @@ var UL_CORREO = "";
 var UL_CORREO_DIRECCION = "";
 var UL_CORREO_DOMINIO = "";
 
+
 //VARIABLES DE CONTROL DE FECHAS DE POSTULACION
 //------------------------------------------------------------------------------------------------------------------
 
@@ -257,7 +258,8 @@ var UL_SECCION_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf
 var UL_LISTA_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_applicant_type___");
 var UL_LISTA_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__sf_carreras_para_practicas_pro___");
 
-var UL_LISTA_NIVEL_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__condicion_prac_pro____widget");
+//var UL_LISTA_NIVEL_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__condicion_prac_pro____widget");
+var UL_LISTA_NIVEL_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][condicionnivel][]")[1];
 
 //INTERNADO
 //------------------------------------------------------------------------------------------------------------------
@@ -265,14 +267,12 @@ var UL_LISTA_NIVEL_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job
 var	UL_LISTA_CARRERA_INTERNADO_OBL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_degree_level____widget");
 var	UL_LISTA_NIVEL_INTERNADO_OBL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__niveles____widget");
 
-
-
 //ELEMENTOS DE EMPLEOS EJECUTIVOS
 //------------------------------------------------------------------------------------------------------------------
 
-var UL_LIST_CARRERA_EJECUTIVO_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__carrera_profesional_deseable____widget");
-var UL_LIST_MAESTRIA_EJECUTIVO_DES = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][maestra_deseable2][]")[0];
 
+var UL_LIST_MAESTRIA_EJECUTIVO_DES = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][maestra_deseable2][]")[0];
+var UL_LIST_CARRERA_EJECUTIVO_DES = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][carrera_profesional_deseable][]")[0];
 
 //ELEMENTOS DE EMPLEOS Y OTROS 
 //------------------------------------------------------------------------------------------------------------------
@@ -1457,7 +1457,7 @@ function CARGA_VISTA_PREVIA(){
 	FCC_CARRERA_PRACTICAPRO_OBL=GET_TEXT(UL_LISTA_CARRERA_PRACTICAPRO_OBL,MSJ_CAMPO_OBLIGATORIO,"OPTION");
 	FCC_CARRERA_PRACTICAPRO_DES=GET_TEXT(UL_LISTA_CARRERA_PRACTICAPRO_DES,MSJ_CAMPO_OBLIGATORIO,"OPTION");
 	//CONDICION 
-	FCC_NIVEL_PRACTICAPRO_DES=GET_TEXT(UL_LISTA_NIVEL_PRACTICAPRO_OBL,MSJ_CAMPO_OBLIGATORIO,"LISTA");
+	FCC_NIVEL_PRACTICAPRO_DES=GET_TEXT(UL_LISTA_NIVEL_PRACTICAPRO_OBL,MSJ_CAMPO_OBLIGATORIO,"OPTION");
  
 // TEXTOS INTERNADO
 //************************ 
@@ -1475,12 +1475,9 @@ function CARGA_VISTA_PREVIA(){
 	FCC_CARRERA_EMPLEO_OBL=GET_TEXT(UL_LIST_CARRERA_EMPLEO_OBL,MSJ_CAMPO_OBLIGATORIO,"OPTION");
 	FCC_CARRERA_EMPLEO_DES=GET_TEXT(UL_LIST_CARRERA_EMPLEO_DES,MSJ_CAMPO_OBLIGATORIO,"OPTION");
 	
-	
 	//NIVEL
 	FCC_NIVEL_EMPLEO_OBL=GET_TEXT(UL_LIST_CONDICION_EMPLEO_OBL,MSJ_CAMPO_OBLIGATORIO,"OPTION");
 	FCC_NIVEL_EMPLEO_DES=GET_TEXT(UL_LIST_CONDICION_EMPLEO_DES,MSJ_CAMPO_OBLIGATORIO,"OPTION");
-	
-	
 	
 	//AÑO DE EGRESO
 	FCC_ANIOEGRESO_EMPLEO_OBL=GET_TEXT(UL_TXT_ANIOEGRESO_EMPLEO_DES,MSJ_CAMPO_DESEABLE,"TEXT");
@@ -1491,7 +1488,7 @@ function CARGA_VISTA_PREVIA(){
 //**********************************
 
 //CARRERA	
-	FCC_CARRERA_EJECUTIVO_OBL=GET_TEXT(UL_LIST_CARRERA_EJECUTIVO_DES,MSJ_CAMPO_OBLIGATORIO,"LISTA");
+	FCC_CARRERA_EJECUTIVO_OBL=GET_TEXT(UL_LIST_CARRERA_EJECUTIVO_DES,MSJ_CAMPO_OBLIGATORIO,"OPTION");
 	
 //MAESTRIA	
 	FCC_MAESTRIA_EJECUTIVO_OBL=GET_TEXT(UL_LIST_MAESTRIA_EJECUTIVO_DES,MSJ_CAMPO_OBLIGATORIO,"OPTION");
