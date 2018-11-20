@@ -6,7 +6,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.4";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.3";
 	const FCC_PUBLICACIONES_FECHA_LOCAL1= "14/11/18";
 
 /*############################################################################################################################*/
@@ -353,7 +353,7 @@ try{UL_TXT_REMUNERACION.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}c
 
 // GUARDA TEMPORAL
 
-var FCC_TXT_PENDIENTE = ""; 
+var FCC_TXT_PENDIENTE = "<P STYLE='COLOR:RED; FONT-WEIGHT:BOLD; FONT-SIZE: 12px;'>(PENDIENTE)</P>"; 
 
 UL_TXT_POSICION.value= UL_TXT_POSICION.value.replace(FCC_TXT_PENDIENTE, "");
 
@@ -1415,7 +1415,7 @@ function CARGA_VISTA_PREVIA(){
 	try{ UL_DISPONIBILIDAD = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__disponibilidad_");}catch(err){}
 
 //BENEFICIOS ADICIONALES
-	try{ UL_BENEFICIOS = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__ingrese_informacin_adicional_q_");}catch(err){}
+	try{ UL_BENEFICIOS = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__beneficios_adicionales_");}catch(err){}
 
 //LUGAR DE TRABAJO
 	try{ 

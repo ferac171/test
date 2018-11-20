@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.1";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "08/11/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.2";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "20/11/18";
 
 /*############################################################################################################################*/
 
@@ -1413,7 +1413,7 @@ function CARGA_VISTA_PREVIA(){
 	try{ UL_DISPONIBILIDAD = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__disponibilidad_");}catch(err){}
 
 //BENEFICIOS ADICIONALES
-	try{ UL_BENEFICIOS = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__ingrese_informacin_adicional_q_");}catch(err){}
+	try{ UL_BENEFICIOS = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__beneficios_adicionales_");}catch(err){}
 
 //LUGAR DE TRABAJO
 	try{ 
