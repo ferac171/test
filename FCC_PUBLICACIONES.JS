@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.3";
-	const FCC_PUBLICACIONES_FECHA_LOCAL1= "14/11/18";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.4";
+	const FCC_PUBLICACIONES_FECHA_LOCAL1= "21/11/18";
 
 /*############################################################################################################################*/
 
@@ -353,7 +353,7 @@ try{UL_TXT_REMUNERACION.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}c
 
 // GUARDA TEMPORAL
 
-var FCC_TXT_PENDIENTE = "<P STYLE='COLOR:RED; FONT-WEIGHT:BOLD; FONT-SIZE: 12px;'>(PENDIENTE)</P>"; 
+var FCC_TXT_PENDIENTE = ""; 
 
 UL_TXT_POSICION.value= UL_TXT_POSICION.value.replace(FCC_TXT_PENDIENTE, "");
 
