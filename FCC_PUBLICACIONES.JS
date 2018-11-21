@@ -1415,7 +1415,7 @@ function CARGA_VISTA_PREVIA(){
 	try{ UL_DISPONIBILIDAD = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__disponibilidad_");}catch(err){}
 
 //BENEFICIOS ADICIONALES
-	try{ UL_BENEFICIOS = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__ingrese_informacin_adicional_q_");}catch(err){}
+	try{ UL_BENEFICIOS = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__beneficios_adicionales_");}catch(err){}
 
 //LUGAR DE TRABAJO
 	try{ 

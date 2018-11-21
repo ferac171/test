@@ -173,6 +173,7 @@ STYLOS PARA AYUDAS
   font-weight: bold;
   font-size:15px; 
   font-family: Arial, Helvetica, sans-serif;
+  z-index: -1;	
 }
 /*
 FIN STYLOS PARA AYUDAS
