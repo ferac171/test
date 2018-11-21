@@ -6,7 +6,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.6";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.6.1";
 	const FCC_PUBLICACIONES_FECHA_LOCAL1= "21/11/18";
 
 /*############################################################################################################################*/
@@ -539,7 +539,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 	}catch(err){}
 	
 	//HABILITANDO CAMPOS IDOMAS Y HABILIDADES
-	if (UL_CODIGO == 0 ) { 
+	if (UL_CODIGO == 1 ) { 
 		FCC_INICIA_AFECHA();
 		
 		//UL_SECCION_TXT_006.style.display=FCC_NONE;
