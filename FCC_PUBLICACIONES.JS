@@ -6,7 +6,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.5";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.6";
 	const FCC_PUBLICACIONES_FECHA_LOCAL1= "21/11/18";
 
 /*############################################################################################################################*/
@@ -438,7 +438,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 	console.log(" ##### EMPLEO ENVIADO : 0 = SI | 1 = NO "+ UL_CODIGO);
 	
 	
-	try{		
+	/*try{		
 		
 		TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
 		tope_barra = TEMP_ELEMENTOS.length;
@@ -453,7 +453,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 				}	
 			}
 		}	
-	}catch(err){}
+	}catch(err){}*/
 	
 	UL_BARRA_MENU_INFERIOR
 	
