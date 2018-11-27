@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.6.1";
-	const FCC_PUBLICACIONES_FECHA_LOCAL1= "21/11/18";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.4";
+	const FCC_PUBLICACIONES_FECHA_LOCAL1= "27/11/18";
 
 /*############################################################################################################################*/
 
@@ -353,7 +353,7 @@ try{UL_TXT_REMUNERACION.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}c
 
 // GUARDA TEMPORAL
 
-var FCC_TXT_PENDIENTE = ""; 
+var FCC_TXT_PENDIENTE = "<P STYLE='COLOR:RED; FONT-WEIGHT:BOLD; FONT-SIZE: 12px;'>(PENDIENTE)</P>"; 
 
 UL_TXT_POSICION.value= UL_TXT_POSICION.value.replace(FCC_TXT_PENDIENTE, "");
 
@@ -435,10 +435,10 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 			}
 		}catch(err){}
 	
-	console.log(" ##### EMPLEO ENVIADO : 0 = SI | 1 = NO "+ UL_CODIGO);
+	console.log(" ##### EMPLEO ENVIADO : " +  UL_CODIGO + " [0=SI | 1=NO]");
 	
 	
-	/*try{		
+	try{		
 		
 		TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
 		tope_barra = TEMP_ELEMENTOS.length;
@@ -453,7 +453,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 				}	
 			}
 		}	
-	}catch(err){}*/
+	}catch(err){}
 	
 	UL_BARRA_MENU_INFERIOR
 	
