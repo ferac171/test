@@ -6,7 +6,7 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.4";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.4.1";
 	const FCC_PUBLICACIONES_FECHA_LOCAL1= "27/11/18";
 
 /*############################################################################################################################*/
@@ -412,6 +412,10 @@ try{
 
 }catch(err){}	*/
 
+
+//OCULTABA BOTON ENVIAR DE BARRA MENU
+
+/*
 		
 try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
 try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-bottom");}catch(err){}
@@ -473,6 +477,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 		}	
 	}catch(err){}
 	
+*/
 	
 	//CONTROL TB_001
 	try{	
