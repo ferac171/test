@@ -2,12 +2,12 @@
 /*##############################################################################################################################*/
 
 // MODELO PARA MODIFICAR INTERFACE DE:
-// REGISTRO DE PUBLICACIONES DE EMPLEO - VISTA CONTACTO
+// REGISTRO DE PUBLICACIONES DE EMPLEO - VISTA MANAGER
 //
-// NAME		: FCC_PUBLICACIONES_CONTACTO.JS
+// NAME		: FCC_PUBLICACIONES.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.4.1";
-	const FCC_PUBLICACIONES_FECHA_LOCAL1= "27/11/18";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.5";
+	const FCC_PUBLICACIONES_FECHA_LOCAL1= "29/11/18";
 
 /*############################################################################################################################*/
 
@@ -52,9 +52,10 @@ console.log("# CONTROL FCC_PUBLICACIONES_MANAGER V:"+FCC_PUBLICACIONES_VERSION_L
 const FCC_BLOCK = "block";
 const FCC_NONE = "none";
 const FCC_VIEW = "";
+const FCC_DEBUG = true;
 
 
-
+//if(FCC_DEBUG){console.log("");}
 
 
 /*############################################################################################################################*/
@@ -66,7 +67,6 @@ const FCC_VIEW = "";
 //------------------------------------------------------------------------------------------------------------------
 
 var UL_CONTROL_LISTENER =false;	
-
 
 
 //VARIABLES DE CONTROL DE EMPLEO
@@ -375,16 +375,10 @@ function UL_GUARDA_TEMPORAL() {
 
 window.onload=function() {
 
-try{
-	var UL_CONTADOR_VISTAS = document.getElementsByTagName("aside")[0];
-	var tem_original = UL_CONTADOR_VISTAS.innerHTML;
-	var tem_res = tem_original.replace("Estudiante", "Vistas de estudiantes");
-	UL_CONTADOR_VISTAS.innerHTML=tem_res;
-}catch(err){}
+if(FCC_DEBUG){console.log("### INICIANDO PROCESO ONLOAD");}
 
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
-
 	
 	//OCULTANDO SOPORTES
 	try{
@@ -406,12 +400,15 @@ try{
 		
 	var  UL_CODIGO="1";
 
-/*try{		
-	var EMP_APROBADO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__approved_");
-	UL_CODIGO=EMP_APROBADO.value;	
+	try{		
+		var EMP_APROBADO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];
+		UL_CODIGO=EMP_APROBADO.value;	
+	}catch(err){
+		UL_CODIGO=0;
+	}	
 
-}catch(err){}	*/
-
+	//CONSOLA
+	if(FCC_DEBUG){console.log("Oferta aprobada: " + UL_CODIGO);}
 
 //OCULTABA BOTON ENVIAR DE BARRA MENU
 
@@ -544,7 +541,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 	}catch(err){}
 	
 	//HABILITANDO CAMPOS IDOMAS Y HABILIDADES
-	if (UL_CODIGO == 1 ) { 
+	if (UL_CODIGO == 0 ) { 
 		FCC_INICIA_AFECHA();
 		
 		//UL_SECCION_TXT_006.style.display=FCC_NONE;
