@@ -1,15 +1,35 @@
 
 /*##############################################################################################################################*/
 
-// MODELO PARA MODIFICAR INTERFACE DE:
-// REGISTRO DE PUBLICACIONES DE EMPLEO - VISTA MANAGER
+// PROCESOS POST: REGISTRO DE PUBLICACIONES DE EMPLEO
+// USUARIO: MANAGER
 //
 // NAME		: FCC_PUBLICACIONES.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.5";
-	const FCC_PUBLICACIONES_FECHA_LOCAL1= "29/11/18";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.6x";
+	const FCC_PUBLICACIONES_FECHA_LOCAL1= "03/12/18";
 
 /*############################################################################################################################*/
+
+/*############################################################################################################################*/
+//MENSAJE DE VERSION
+/*############################################################################################################################*/
+
+console.log("# CONTROL FCC_PUBLICACIONES_MANAGER V:"+FCC_PUBLICACIONES_VERSION_LOCAL1 + " al "+FCC_PUBLICACIONES_FECHA_LOCAL1);
+
+
+
+/*############################################################################################################################*/
+//DECLARACION DE CONSTANTES
+/*############################################################################################################################*/
+
+const FCC_BLOCK = "block";
+const FCC_NONE = "none";
+const FCC_VIEW = "";
+const FCC_DEBUG = true;
+
+
+
 
 //UL_BARRA_MENU[0].style.display="";
 
@@ -37,22 +57,7 @@ try{
 
 
 
-/*############################################################################################################################*/
-//CONSTANTES DE VERSION
-/*############################################################################################################################*/
 
-console.log("# CONTROL FCC_PUBLICACIONES_MANAGER V:"+FCC_PUBLICACIONES_VERSION_LOCAL1 + " al "+FCC_PUBLICACIONES_FECHA_LOCAL1);
-
-
-
-/*############################################################################################################################*/
-//DECLARACION DE CONSTANTES
-/*############################################################################################################################*/
-
-const FCC_BLOCK = "block";
-const FCC_NONE = "none";
-const FCC_VIEW = "";
-const FCC_DEBUG = true;
 
 
 //if(FCC_DEBUG){console.log("");}
@@ -571,7 +576,7 @@ try{var UL_BARRA_OCR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar do_not_print");}c
 		UL_TXT_CORREO_DIRECCION.value=UL_CORREO_DIRECCION;	
 		UL_TXT_CORREO_DOMINIO.value=UL_CORREO_DOMINIO;
 		
-		UL_TXT_CORREO.readOnly  = true;
+		//UL_TXT_CORREO.readOnly  = true;
 		UL_TXT_CORREO_DOMINIO.readOnly  = true;
 
 	}catch(err){}
@@ -1103,7 +1108,9 @@ function FCC_INICIA_AFECHA(){
 }
 function FCC_VER_CORREO(){
 
+				UL_SECCION_CORREO.style.display = FCC_NONE;
 
+/*
 	try{
 			if(UL_CHK_CORREO.checked && UL_TXT_CORREO.value!=""){
 				UL_SECCION_CORREO_ORIGINAL.style.display = FCC_NONE;
@@ -1119,7 +1126,7 @@ function FCC_VER_CORREO(){
 			}
 
 	}catch(err){}
-
+*/
 
 }
 
