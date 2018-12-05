@@ -15,9 +15,9 @@
 //#############################################################################################################################
 /*
 
-<script type="text/javascript"src="https://rawgit.com/ferac171/test/master/FCC_CONTROL.JS"></script>
+<script type="text/javascript"src="https://raw.githack.com/ferac171/test/master/FCC_CONTROL.JS"></script>
 
-<script type="text/javascript"src="http://localhost/DEV/02_PUBLICACION_EMPLEO/01_DEV/FCC_CONTROL.JS"></script>
+
 <script type="text/javascript">FCC_JSC("PUB_ALU");</script>
 
 */
@@ -72,9 +72,6 @@ var script = document.createElement( "script" );
 	script.onerror = function () {console.log("[ERROR] : FUENTE NO ENCONTRADA ");};
 	document.getElementsByTagName('head')[0].appendChild(script);
 }
-
-<script type="text/javascript" src="http://localhost/DEV/02_PUBLICACION_EMPLEO/01_DEV/FCC_CONTROL.JS"></script>
-<script type="text/javascript">FCC_JSC("PUB_ALU");</script>
 
 
 // LISTA DE PAGINAS
