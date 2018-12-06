@@ -5,8 +5,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_ALUMNOS.JS
 	
-	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.2xx";
-	const FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL= "12/10/18";
+	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.3";
+	const FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL= "05/12/18";
 
 /*############################################################################################################################*/
 

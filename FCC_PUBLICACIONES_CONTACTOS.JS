@@ -1,15 +1,35 @@
 
 /*##############################################################################################################################*/
 
-// MODELO PARA MODIFICAR INTERFACE DE:
-// REGISTRO DE PUBLICACIONES DE EMPLEO - VISTA CONTACTO
+// PROCESOS POST: REGISTRO DE PUBLICACIONES DE EMPLEO
+// USUARIO: CONTACTO DE EMPRESA
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.2";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "20/11/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.3";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "30/11/18";
 
 /*############################################################################################################################*/
+
+
+/*############################################################################################################################*/
+//MENSAJE DE VERSION
+/*############################################################################################################################*/
+
+console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL);
+
+/*############################################################################################################################*/
+//DECLARACION DE CONSTANTES
+/*############################################################################################################################*/
+
+const FCC_BLOCK = "block";
+const FCC_NONE = "none";
+const FCC_VIEW = "";
+const FCC_DEBUG = true;
+//if(FCC_DEBUG){console.log("");}
+
+
+
 
 //UL_BARRA_MENU[0].style.display="";
 
@@ -34,26 +54,6 @@ try{
 	}
 
 }catch(err){}
-
-
-
-/*############################################################################################################################*/
-//CONSTANTES DE VERSION
-/*############################################################################################################################*/
-
-console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL);
-
-
-
-/*############################################################################################################################*/
-//DECLARACION DE CONSTANTES
-/*############################################################################################################################*/
-
-const FCC_BLOCK = "block";
-const FCC_NONE = "none";
-const FCC_VIEW = "";
-
-
 
 
 
@@ -134,6 +134,18 @@ var UL_TXT_NIVEL_OTRO_OBL;
 var UL_TXT_NIVEL_OTRO_DES;		
 var UL_TXT_ANIOEGRESO_OTRO_OBL;
 var UL_TXT_MAESTRIA_OTRO_OBL;
+
+
+
+
+var UL_SECCION_TIPO_SOLICITUD = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__job_type_"); 
+
+var UL_SECCION_CARGO = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__cargo_"); 
+var UL_SECCION_CARGO_ESPECIFICO = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__especifique_el_cargo_"); 
+var UL_SECCION_AREA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__rea2_"); 
+var UL_SECCION_AREA_ESPECIFICA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__especifique_el_rea_"); 
+
+
 
 
 //VARIABLES DE CONTROL DE REMUNERACIONES
@@ -331,11 +343,20 @@ try{UL_TXT_CARGO.addEventListener("change", function(){UL_TXT_CARGO.value = UL_T
 try{UL_TXT_POSICION.addEventListener("change", function(){UL_TXT_POSICION.value = UL_TXT_POSICION.value.toUpperCase();});}catch(err){}
 
 // TOOGLE BUTTONS
-try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_001_CHANGE");}
-try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_002_CHANGE");}
-try{UL_TB_003.addEventListener("change", function(){UL_TB_003_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_003_CHANGE");}
-try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_004_CHANGE");}
-try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(UL_CONTROL_LISTENER);});}catch(err){console.log("ERR LISTENER: UL_TB_005_CHANGE");}
+try{UL_TB_001.addEventListener("change", function(){UL_TB_001_CHANGE(UL_CONTROL_LISTENER);});
+}catch(err){if(FCC_DEBUG){console.log("#ERR# LISTENER: UL_TB_001_CHANGE");}}
+
+try{UL_TB_002.addEventListener("change", function(){UL_TB_002_CHANGE(UL_CONTROL_LISTENER);});
+}catch(err){if(FCC_DEBUG){console.log("#ERR# LISTENER: UL_TB_002_CHANGE");}}
+
+try{UL_TB_003.addEventListener("change", function(){UL_TB_003_CHANGE(UL_CONTROL_LISTENER);});
+}catch(err){if(FCC_DEBUG){console.log("#ERR# LISTENER: UL_TB_003_CHANGE");}}
+
+try{UL_TB_004.addEventListener("change", function(){UL_TB_004_CHANGE(UL_CONTROL_LISTENER);});
+}catch(err){if(FCC_DEBUG){console.log("#ERR# LISTENER: UL_TB_004_CHANGE");}}
+
+try{UL_TB_005.addEventListener("change", function(){UL_TB_005_CHANGE(UL_CONTROL_LISTENER);});
+}catch(err){if(FCC_DEBUG){console.log("#ERR# LISTENER: UL_TB_005_CHANGE");}}
 
 // REMUNERACIONES
 try{UL_RADIOS_REMUNERACION.addEventListener("click", UL_ACTUALIZA_REMUNERACION);}catch(err){}
@@ -442,7 +463,7 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 		TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
 		tope_barra = TEMP_ELEMENTOS.length;
 
-		if (UL_CODIGO=="1"){
+		if (UL_CODIGO=="10"){
 			
 			for ( bb = 0; bb <tope_barra ; bb++){
 				if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="ENVIAR"){
@@ -472,6 +493,9 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 		}	
 	}catch(err){}
 	
+	
+	
+
 	
 	//CONTROL TB_001
 	try{	
@@ -538,17 +562,35 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 	
 	//HABILITANDO CAMPOS IDOMAS Y HABILIDADES
 	if (UL_CODIGO == 0 ) { 
+		//EMPLEO NUEVO
 		FCC_INICIA_AFECHA();
 		
 		UL_SECCION_TXT_006.style.display=FCC_NONE;
 		UL_SECCION_SLC_006.style.display="";
 		UL_SECCION_TXT_007.style.display=FCC_NONE;
 		UL_SECCION_SLC_007.style.display="";
+		
 	} else{
+		//EMPLEO GUARDADO O PUBLICADO 
 		UL_SECCION_TXT_006.style.display="";
 		UL_SECCION_SLC_006.style.display=FCC_NONE;
 	 	UL_SECCION_TXT_007.style.display="";	
 		UL_SECCION_SLC_007.style.display=FCC_NONE;
+			
+		UL_SECCION_TIPO_SOLICITUD.style.display=FCC_NONE;
+
+		
+		
+		//OCULATANDO CAMPOS DE CARGO Y AREA 
+		UL_SECCION_CARGO.style.display=FCC_NONE;
+		UL_SECCION_CARGO_ESPECIFICO.style.display=FCC_NONE;
+		UL_SECCION_AREA.style.display=FCC_NONE;
+		UL_SECCION_AREA_ESPECIFICA.style.display=FCC_NONE;
+		
+		UL_TXT_POSICION.readOnly =true;
+
+
+		
 	}
 		
 //INICIA LISTA DE IDIOMA		
@@ -663,7 +705,7 @@ function UL_TB_001_CHANGE(TEMP_ACCION){
 // PRACTICAS PRE-PROFESIONALES - NIVELES	
 function UL_TB_002_CHANGE(TEMP_ACCION){
 	
-	console.log ("UL_TB_002_CHANGE: "+UL_TB_002.checked);
+	if(FCC_DEBUG){console.log ("[FUNCION] UL_TB_002_CHANGE: "+UL_TB_002.checked);}
 	
 	try{
 		var TEMP_CONTROL = UL_TB_002.checked;
@@ -704,7 +746,8 @@ function UL_TB_002_CHANGE(TEMP_ACCION){
 
 // EMPLEOS - CARRERAS
 function UL_TB_003_CHANGE(TEMP_ACCION){
-	console.log ("UL_TB_003_CHANGE: "+UL_TB_003.checked);
+	
+	if(FCC_DEBUG){console.log ("[FUNCION] UL_TB_003_CHANGE: "+UL_TB_003.checked);}
 	console.log ("ACCION => " +TEMP_ACCION);
 	
 	
@@ -1885,7 +1928,8 @@ function FCC_AGREGA_BOTONES(){
 	var FCC_TEMP_DOM="";
 
 	// EJECUCION DEL PROCESO*/
-	FCC_ADD_DOM += "<input type='button' id='UL_BTN_VISTA_PREVIA' onclick='CARGA_VISTA_PREVIA()' class='input-submit btn btn_primary' value='Carga' />";		
+	FCC_ADD_DOM += "<input type='button' id='UL_BTN_VISTA_PREVIA' onclick='CARGA_VISTA_PREVIA()' class='input-submit btn btn_primary' value='Carga' />";
+	
 	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
 	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
 }
@@ -1898,11 +1942,55 @@ try{
 	var FCC_TEMP_DOM="";
 
 	// EJECUCION DEL PROCESO*/
+	
 	FCC_ADD_DOM += "<input type='button' onclick='MODAL_OPEN()' class='input-button btn btn_generic' value='Vista previa'>";		
+	
+	FCC_ADD_DOM += "<input type='button' onclick='FINALIZA_OFERTA()' class='input-button btn btn_generic' value='Finaliza Oferta'>";	
+	
 	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
 	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
 }catch(err){}
 }
+	
+	
+/*###################################################################################################################*/
+// FUNCION		:FINALIZA OFERTA
+// DETALLE		:comportamiento de las ventanas modales 
+/*###################################################################################################################*/
+		    
+function FINALIZA_OFERTA(){
+
+	try{
+			
+		var numero ="1";
+		  //la fecha
+		  var TuFecha = new Date();
+		  var dias;
+		  //dias a sumar
+		  var dias = parseInt(numero);
+		  
+		  //nueva fecha sumada
+		  TuFecha.setDate(TuFecha.getDate());
+		  //formato de salida para la fecha
+		  
+		  	  
+		  if(TuFecha.getDate() <10){
+			  dias ="0"+TuFecha.getDate()
+			}else{
+				dias =TuFecha.getDate()
+			}
+			
+			console.log("dias -->" + dias);
+		  
+		 UL_TXT_FECHAFINALIZACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
+			//UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
+			
+	}catch(err){}
+
+
+}	
+	
+	
 	
 /*###################################################################################################################*/
 // FUNCION		:COMPORTAMIENTO MODAL
