@@ -1,12 +1,15 @@
+
+
+
 /*##############################################################################################################################*/
 
 // MODELO PARA MODIFICAR INTERFACE DE:
-// POSTULACION DE PUBLICACIONES DE EMPLEO - VISTA ALUMNO
+// REGISTRO DE PUBLICACIONES DE EMPLEO - VISTA CONTACTO
 //
-// NAME		: FCC_PUBLICACIONES_ALUMNOS.JS
+// NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.3";
-	const FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL= "05/12/18";
+	const FCC_BUSQEUDA_PUBLICACIONES_VERSION_LOCAL = "1.1";
+	const FCC_BUSQEUDA_PUBLICACIONES_FECHA_LOCAL= "08/11/18";
 
 /*############################################################################################################################*/
 
@@ -14,7 +17,7 @@
 //CONSTANTES DE VERSION
 /*############################################################################################################################*/
 
-console.log("# CONTROL FCC_PUBLICACIONES_ALUMNOS V:"+FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL);
+console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_BUSQEUDA_PUBLICACIONES_VERSION_LOCAL + " al "+FCC_BUSQEUDA_PUBLICACIONES_FECHA_LOCAL);
 
 /*############################################################################################################################*/
 //DECLARACION DE CONSTANTES
@@ -23,368 +26,432 @@ console.log("# CONTROL FCC_PUBLICACIONES_ALUMNOS V:"+FCC_PUBLICACIONES_ALUMNOS_V
 const FCC_BLOCK = "block";
 const FCC_NONE = "none";
 const FCC_VIEW = "";
-const FCC_COMENTARIO=true;
-/*ESTRUCTURA DE LA PAGINA
 
-- job_summary 		: CABECERA DEL MODULO
-- job_display_desc 	: DECRIPCION DEL EMPLEO
-- job-bfields 		: CAMPOS DE DEATLLE Y DESCRIPCION 
-
-*/
 
 /*############################################################################################################################*/
 // DECLARACION GENERAL DE VARIABLES DE ELEMENTOS
 /*##############################################################################################################################*/
 
-//VARIABLES DE CONTROL
+
+//VARIABLES GENERALES DE FORMULARIO
 //------------------------------------------------------------------------------------------------------------------
 
-// VARIBALES DE CONTROL
-var UL_TB_001 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_001")[0];
-var UL_TB_002 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_002")[0];
-var UL_TB_003 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_003")[0];
-var UL_TB_004 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_004")[0];
-var UL_TB_005 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_0055")[0];
-				
-try{var VAL_TB_001 = UL_TB_001.innerHTML.trim();}catch(err){}
-try{var VAL_TB_002 = UL_TB_002.innerHTML.trim();}catch(err){}
-try{var VAL_TB_003 = UL_TB_003.innerHTML.trim();}catch(err){}
-try{var VAL_TB_004 = UL_TB_004.innerHTML.trim();}catch(err){}
-try{var VAL_TB_005 = UL_TB_005.innerHTML.trim();}catch(err){}
+var UL_SECCION_LIMITAR_SOL = document.getElementById("so_formfield_dnf_class_values_job__screen_flag_");
+
+//VARIABLES DE CONTROL DE CARGO A PUBLICAR
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_LISTA_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_"); 
+var UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_"); 
+var UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_"); 
+var UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
+var UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
 
 
-							
-//VARIABLES DE EMPLEO
-var UL_TXT_OFERTA=FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-visual_id")[0];
+//VARIABLES DE CONTROL DE IDIOMAS
+//------------------------------------------------------------------------------------------------------------------
+
+var UL_CBX_001 = FCC_GET_ELEMENTO_BYID("UL_CBX_001");
+var UL_TXT_006 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_061_"); 
+var UL_TXT_OTRO_IDIOMA = FCC_GET_ELEMENTO_BYID("UL_TXT_OTRO_IDIOMA"); 
+
+var UL_SECCION_TXT_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_061_"); 
+var UL_SECCION_SLC_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_PROP_061_"); 
+
+//VARIABLES DE CONTROL DE FECHAS DE POSTULACION
+//------------------------------------------------------------------------------------------------------------------
 
 
-// VARIBALES PRACTICAS PRE
-var UL_TXT_CARRERA_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-screen_work_authorization")[0]; 
-var UL_TXT_CARRERA_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-carreras_para_practicas_pre_pr")[0];
-			
-var UL_TXT_NIVEL_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-screen_class_level")[0];
-var UL_TXT_NIVEL_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-nivel_deseable_pre")[0];
-				
-var UL_TXT_RANKING_PRACTICAPRE_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-ranking_acadmico_ulima")[0];
-var UL_TXT_RANKING_PRACTICAPRE_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-ranking_acadmico_ulima")[0];
 
 
-// VARIBALES PRACTICAS PRO
-var UL_TXT_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-screen_applicant_type")[0]; 
-var UL_TXT_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-sf_carreras_para_practicas_pro")[0];
-			
-var UL_TXT_NIVEL_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-condicion_prac_pro")[0];
-var UL_TXT_NIVEL_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-condicion_prac_pro")[0];				
+var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0");
+var UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
 
-// VARIBALES INTERNADO
-var UL_TXT_CARRERA_INTERNADO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-screen_degree_level")[0]; 
-var UL_TXT_NIVEL_INTERNADO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-niveles")[0];
-
-// VARIBALES EJECUTIVO
-var UL_TXT_CARRERA_EJECUTIVO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-carrera_profesional_deseable")[0]; 
-var UL_TXT_MAESTRIA_EJECUTIVO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-maestra_deseable2")[0];
+var UL_BTN_PUBLICAR1 = FCC_GET_ELEMENTO_BYID("jscal_button_1"); 
+var UL_BTN_BORRAR1 = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_1"); 
+	
 
 
-// VARIBALES EMPLEOS
-var UL_TXT_CARRERA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-screen_minor")[0]; 
-var UL_TXT_CARRERA_EMPLEO_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-carrera_profesional_emp")[0];
-			
-var UL_TXT_NIVEL_EMPLEO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-screen_certificate")[0];
-var UL_TXT_NIVEL_EMPLEO_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-condicionnivel")[0];
-				
-var UL_TXT_ANIOEGRESO_EMPLEO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-ao_de_egreso_deseable")[0];
-
-var UL_TXT_MAESTRIA_EMPLEO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-maestra_deseable2")[0];
-
-// OTRAS OPORTUNIDADES
-var UL_TXT_CARRERA_OTRO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-screen_minor")[0]; 
-var UL_TXT_CARRERA_OTRO_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-carrera_profesional_emp")[0];
-			
-var UL_TXT_NIVEL_OTRO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-screen_certificate")[0];
-var UL_TXT_NIVEL_OTRO_DES = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-condicionnivel")[0];
-				
-var UL_TXT_ANIOEGRESO_OTRO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-ao_de_egreso_deseable")[0];
-
-var UL_TXT_MAESTRIA_OTRO_OBL = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-maestra_deseable2")[0];
 
 
-/*############################################################################################################################*/
-// LISTENERS
-/*##############################################################################################################################*/
+
+
+
+
+FCC_AGREGA_BOTONES();
 
 
 
 /*############################################################################################################################*/
 
-//FUNCION ONLOAD
-
-//-Ejecuta el codigo al terminar de cargar el formulario
-//-Contiene toda la lógica para movilizar y ocultar los elementos en base al tipo de empleo
+//FUNCION		:	ONLOAD
+//DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
+//					Se ejecuta una vez acasarados todos los componentes de la pagina
 
 /*############################################################################################################################*/
 
 
 window.onload=function() {
+	
+	try{
+		var UL_GPA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_gpa_"); 
+		UL_GPA.value="100";
+		
+		var UL_SECCION_GPA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__screen_gpa_"); 
+		
+		UL_SECCION_GPA.style.display="none";
+	}catch(err){}
+	
+	
+	
+ UL_LISTA_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_"); 
+ UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_"); 
+ UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_"); 
+ UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
+ UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
+	
+	
+	
+/*############################################################################################################################*/
+// LISTENERS
+/*##############################################################################################################################*/
 
-	FCC_OCULTA_POR_CLASE(UL_TB_001);
-	FCC_OCULTA_POR_CLASE(UL_TB_002);
-	FCC_OCULTA_POR_CLASE(UL_TB_003);
-	FCC_OCULTA_POR_CLASE(UL_TB_004);
-	FCC_OCULTA_POR_CLASE(UL_TB_005);
+
+try{UL_CBX_001.addEventListener("change", UL_HABILITA_IDIOMA);}catch(err){}
+
+// POSICION A PUBLICAR
+
+try{UL_LISTA_AREA.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
+try{UL_LISTA_CARGO.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
+
+try{UL_TXT_AREA.addEventListener("change",  function(){UL_TXT_AREA.value = UL_TXT_AREA.value.toUpperCase();  UL_CALCULA_POSICION(); }  );}catch(err){}
+
+try{UL_TXT_CARGO.addEventListener("change", function(){UL_TXT_CARGO.value = UL_TXT_CARGO.value.toUpperCase();  UL_CALCULA_POSICION();} );}catch(err){}
+
+try{UL_TXT_POSICION.addEventListener("change", function(){UL_TXT_POSICION.value = UL_TXT_POSICION.value.toUpperCase();});}catch(err){}
 
 
-	//OFERTA 										
-			
-	FCC_OCULTA_POR_CLASE(UL_TXT_OFERTA);
-	FCC_AGREGA_CABECERA('Código de Oferta',UL_TXT_OFERTA.innerHTML);
 
-		
-	//	if(FCC_COMENTARIO){console.log("Validando TB01: " + UL_TB_001);}	
 
-	var FCC_CONTROL= document.getElementsByName("dnf_class_values[job][job_type]")[0].value;
-	console.log("VARIABLE DE CONTROL: " + FCC_CONTROL);	
 
-switch(FCC_CONTROL) {
-	
-//EMPLEO --------------------------------------------------------------------------------------------------------
-	
-   case '14': 	console.log("# TIPO: " + FCC_CONTROL+ " - EMPLEO: " );
-	
-		//INICIANDO VARIABLES DE BARRA LATERAL
-		FCC_DETALLE="";
-				
-		//CARRERA 	
-		if (VAL_TB_003=="true"){ 
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EMPLEO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EMPLEO_DES);
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera profesional',UL_TXT_CARRERA_EMPLEO_OBL.innerHTML,FCC_DETALLE);			
-		}else if (VAL_TB_003=="false"){ 
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EMPLEO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EMPLEO_DES);
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera profesional deseable',UL_TXT_CARRERA_EMPLEO_DES.innerHTML,FCC_DETALLE);
-		}
-				
-		//NIVEL 	
-		if (VAL_TB_004=="true"){ 
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Condición',UL_TXT_NIVEL_EMPLEO_OBL.innerHTML,FCC_DETALLE);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_DES);
-					
-		}else if (VAL_TB_004=="false"){ 
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Condición deseable',UL_TXT_NIVEL_EMPLEO_DES.innerHTML,FCC_DETALLE);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_DES);
-		}
-		
-		//MAESTRIA					
-			try{
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Maestría deseable',UL_TXT_MAESTRIA_EMPLEO_OBL.innerHTML,FCC_DETALLE);	
-			FCC_OCULTA_POR_CLASE(UL_TXT_MAESTRIA_EMPLEO_OBL);
-			}catch(err){}	
-		//ANIO EGRESO 					
-			try{
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Año de egreso deseable',UL_TXT_ANIOEGRESO_EMPLEO_OBL.innerHTML,FCC_DETALLE);	
-			FCC_OCULTA_POR_CLASE(UL_TXT_ANIOEGRESO_EMPLEO_OBL);
-			}catch(err){}
-		//AÑADENDO BARRA LATERAL
-			try{
-			FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
-			}catch(err){}	
-	break;
-	
-	//OTRAS OPORTUNIDADES DE EMPLEO ----------------------------------------------------------------------------------------
-				
-	case '19':	console.log("# TIPO: " + FCC_CONTROL+ " - OTRAS OPORTUNIDADES: " );
-				
-		//INICIANDO VARIABLES DE BARRA LATERAL
-		FCC_DETALLE="";
-				
-		//CARRERA 	
-		if (VAL_TB_003=="true"){ 
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EMPLEO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EMPLEO_DES);
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera profesional',UL_TXT_CARRERA_EMPLEO_OBL.innerHTML,FCC_DETALLE);			
-		}else if (VAL_TB_003=="false"){ 
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EMPLEO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EMPLEO_DES);
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera profesional deseable',UL_TXT_CARRERA_EMPLEO_DES.innerHTML,FCC_DETALLE);
-		}
-				
-		//NIVEL 	
-		if (VAL_TB_004=="true"){ 
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Condición',UL_TXT_NIVEL_EMPLEO_OBL.innerHTML,FCC_DETALLE);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_DES);
-					
-		}else if (VAL_TB_004=="false"){ 
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Condición deseable',UL_TXT_NIVEL_EMPLEO_DES.innerHTML,FCC_DETALLE);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_EMPLEO_DES);
-		}
-		
-		//MAESTRIA	
-		try{
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Maestría deseable',UL_TXT_MAESTRIA_EMPLEO_OBL.innerHTML,FCC_DETALLE);	
-			FCC_OCULTA_POR_CLASE(UL_TXT_MAESTRIA_EMPLEO_OBL);
-		}catch(err){}
-				
-		//ANIO EGRESO
-		try{
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Año de egreso deseable',UL_TXT_ANIOEGRESO_EMPLEO_OBL.innerHTML,FCC_DETALLE);	
-			FCC_OCULTA_POR_CLASE(UL_TXT_ANIOEGRESO_EMPLEO_OBL);
-		}catch(err){}
-		
-		//AÑADENDO BARRA LATERAL
-		try{
-			FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);		
-		}catch(err){}
-	break;
-				
-//PRACTICAS PRE PROFESIONALES ----------------------------------------------------------------------------------------
 
-   case '3':	console.log("# TIPO: " + FCC_CONTROL+ " - PRACTICAS PRE: " );
-				
-		//INICIANDO VARIABLES DE BARRA LATERAL
-		FCC_DETALLE="";
-				
-		//CARRERA 	
-		if (VAL_TB_001=="true"){ 
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRE_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRE_DES);
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera profesional',UL_TXT_CARRERA_PRACTICAPRE_OBL.innerHTML,FCC_DETALLE);			
-		}else if (VAL_TB_001=="false"){ 
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRE_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRE_DES);
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera profesional deseable',UL_TXT_CARRERA_PRACTICAPRE_DES.innerHTML,FCC_DETALLE);
-		}
-				
-		//NIVEL 	
-		if (VAL_TB_002=="true"){ 
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Nivel',UL_TXT_NIVEL_PRACTICAPRE_OBL.innerHTML,FCC_DETALLE);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_PRACTICAPRE_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_PRACTICAPRE_DES);
-					
-		}else if (VAL_TB_002=="false"){ 
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Nivel deseable',UL_TXT_NIVEL_PRACTICAPRE_DES.innerHTML,FCC_DETALLE);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_PRACTICAPRE_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_PRACTICAPRE_DES);
-		}
-				
-		//RANKING 
-		try{
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Ranking deseable',UL_TXT_RANKING_PRACTICAPRE_OBL.innerHTML,FCC_DETALLE);	
-			FCC_OCULTA_POR_CLASE(UL_TXT_RANKING_PRACTICAPRE_OBL);
-		}catch(err){}
-					
-		//AÑADENDO BARRA LATERAL
-		try{
-			FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
-		}catch(err){}
+
 	
-	break;
-				
-//PRACTICAS PROFESIONALES ---------------------------------------------------------------------------------------------
+UL_SECCION_LIMITAR_SOL.style.display=FCC_NONE;
+
+var UL_SECCION_FECHA_FINALIZACION = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__job_end_"); 
+UL_SECCION_FECHA_FINALIZACION.style.display="none";
+
 	
-	case '17':	console.log("# TIPO: " + FCC_CONTROL+ " - PRACTICAS PRO: " );
-			
-		//INICIANDO VARIABLES DE BARRA LATERAL
-		FCC_DETALLE="";
-		
-		//CARRERA 	
-		if (VAL_TB_005=="true"){ 
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera profesional',UL_TXT_CARRERA_PRACTICAPRO_OBL.innerHTML,FCC_DETALLE);FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRO_DES);	
-			
-		}else if (VAL_TB_005=="false"){ 
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera profesional deseable',UL_TXT_CARRERA_PRACTICAPRO_DES.innerHTML,FCC_DETALLE);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRO_OBL);
-			FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRO_DES);
-		}
-				
-		//CONDICION 					
-			FCC_DETALLE= FCC_AGREGA_LATERAL('Condición deseable',UL_TXT_NIVEL_PRACTICAPRO_OBL.innerHTML,FCC_DETALLE);	
-			FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_PRACTICAPRO_OBL);	
-					
-		//AÑADENDO BARRA LATERAL
-		try{
-			FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
-		}catch(err){}
-				
-	break;
-				
-//INTERNADO -----------------------------------------------------------------------------------------------------------
+try{var UL_MSJ_USUARIO = FCC_GET_ELEMENTO_BYID("all_user_hints");
+UL_MSJ_USUARIO.style.display="none";
+}catch(err){}	
 	
-	case '20':	console.log("# TIPO: " + FCC_CONTROL+ " - INTERNADO: " );
 	
-		//INICIANDO VARIABLES DE BARRA LATERAL
-			FCC_DETALLE="";
-		
-		//CARRERA 					
-				FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera',UL_TXT_CARRERA_INTERNADO_OBL.innerHTML,FCC_DETALLE);	
-				FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_INTERNADO_OBL);	
-		
-		//NIVEL 					
-				FCC_DETALLE= FCC_AGREGA_LATERAL('Nivel',UL_TXT_NIVEL_INTERNADO_OBL.innerHTML,FCC_DETALLE);	
-				FCC_OCULTA_POR_CLASE(UL_TXT_NIVEL_INTERNADO_OBL);		
-		
-		//AÑADENDO BARRA LATERAL
-		try{
-				FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
-		}catch(err){}
-				
-	break;
-				
-//EMPLEO EJECUTIVO ------------------------------------------------------------------------------------------------------
+ UL_LISTA_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_"); 
+ UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_rea_"); 
+ UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_"); 
+ UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
+ UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
 	
-	case '22':	console.log("# TIPO: " + FCC_CONTROL+ " - EMPLEO EJECUTIVO: " );
 	
-		//INICIANDO VARIABLES DE BARRA LATERAL
-			FCC_DETALLE="";
+	
+	
+	try{UL_TXT_OTRO_IDIOMA.style.display=FCC_NONE;}catch(err){}
+	try{UL_SECCION_TXT_006.style.display=FCC_NONE;}catch(err){}
+	
+	
+	//CARTACRERISTIAS DE LA FECHA DE PUBLICACIONES
 		
-		//MAESTRIA 
-		try{
-				FCC_DETALLE= FCC_AGREGA_LATERAL('Maestría deseable',UL_TXT_MAESTRIA_EJECUTIVO_OBL.innerHTML,FCC_DETALLE);	
-				FCC_OCULTA_POR_CLASE(UL_TXT_MAESTRIA_EJECUTIVO_OBL);	
-		}catch(err){}
+	 UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0");
+	 UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
+	 UL_BTN_PUBLICAR1 = FCC_GET_ELEMENTO_BYID("jscal_button_1"); 
+	 UL_BTN_BORRAR1 = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_1"); 
+	
+		UL_BTN_PUBLICAR.style.display=FCC_NONE;
+		UL_BTN_BORRAR.style.display=FCC_NONE;
+		UL_BTN_PUBLICAR1.style.display=FCC_NONE;
+		UL_BTN_BORRAR1.style.display=FCC_NONE;
 		
-		//CARRERA 	
-		try{
-				FCC_DETALLE= FCC_AGREGA_LATERAL('Carrera deseable',UL_TXT_CARRERA_EJECUTIVO_OBL.innerHTML,FCC_DETALLE);	
-				FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_EJECUTIVO_OBL);
-		}catch(err){}
 		
-		//AÑADENDO BARRA LATERAL
-		try{
-				FCC_AGREGA_SECCION_LATERAL('Criterios de selección',FCC_DETALLE);
-		}catch(err){}
-			
-				
-	break;
-				
-				
-//NO CONTEMPLADO ----------------------------------------------------------------------------------------
-				
-   default: console.log("CASO NO CONTEMPLADO: " + FCC_CONTROL);	
+		FCC_INICIA_AFECHA();
+
+	
+}
+
+
+
+
+function GUARDAYCARGA(){
+	
+var xxx = document.getElementsByName("dnf_opt_submit")[0];
+
+var validacion = false;
+
+//CARGO
+var T1 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_").value; 
+//CARRERA
+var T2 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__bus_carrera___").value;
+//AREA
+var T3 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__rea2_").value;
+//REMUNERACION
+var T4 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__remuneracion_mensual_").value;
+//POSICION
+var T5 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_").value;
+//DIVISA
+var T6 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__divisa_").value;
+//NIVEL
+var T7 = "FCC";//FCC_GET_ELEMENTO_BYID("dnf_class_values_job__bus_condicion_academica___").value;
+//MAESTRIA
+var T7 = "FCC";//FCC_GET_ELEMENTO_BYID("dnf_class_values_job__bus_maestria___").value;
+
+
+if (T1!="" && T2!="" && T3!="" && T4!="" && T5!="" && T6!="" && T7!=""){
+	
+	validacion = true;
+}
+
+console.log("validación : " + validacion);
+
+
+
+if (validacion){
+	//alert("validacion completa")
+	console.log("ejecutando guarda y carga");
+	xxx.onclick();
+	window.open("index.php?mode=display&id=dfadf836bd26f9e1c2497337f91aa503&s=rezbook&ss=book", "_blank").focus();
+} else{
+	alert("Debe completar todos los campos obligatorios antes de continuar")
+}
+
+
+
+
 
 }
 
-var UL_SB_APPLY = document.getElementById("sb_apply");	
-//UL_SB_APPLY.style.display=FCC_NONE;
+function CANCEL(){
+	
+location.href ="https://ulima-cde.symplicity.com/employers/index.php?mode=list&";
 
-console.log("==> CIERRE CORRECTO");
 
 }
-// GETELEMENTO
-//---------------------------------------------------------------------------------------------------------
 
-/*############################################################################################################################*/
-/*############################################################################################################################*/
-/*############################################################################################################################*/
-/*############################################################################################################################*/
-//														ZONA DE FUNCIONES
-/*############################################################################################################################*/
-/*############################################################################################################################*/
-/*############################################################################################################################*/
+
+
+//FUNCIONES
+
+function FCC_AGREGA_BOTONES(){
+
+	// DECALRACION DE VARIABLES*/
+	
+	var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top")[0];
+	var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-bottom")[0];
+	
+	UL_BARRA_MENU.style.display=FCC_NONE;
+	UL_BARRA_MENU_INFERIOR.style.display=FCC_NONE;
+	
+	var FCC_DOM= document.getElementById("job_form_fieldgroup__default");
+	var FCC_ADD_DOM="";
+	var FCC_TEMP_DOM="";
+
+	
+	// EJECUCION DEL PROCESO*/
+	FCC_ADD_DOM += "<div> <input type='submit' id='UL_BTN_CV_BOOK' onclick='GUARDAYCARGA()' class='input-submit btn btn_generic' style='text-transform: initial;' value='Guardar y empezar búsqueda' /> <input value=' Cancelar' type='button' onclick='CANCEL()'  class='input-button btn btn_generic'></div></br>";		
+	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
+	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
+	
+	
+	//<input value=" Cancelar" type="button" onclick="self.location.href='?mode=list&amp;'" class="input-button btn btn_generic">
+	
+
+	
+}
+
+
+
+/*###################################################################################################################*/
+// FUNCION		:	FCC_CONTROL DE IDIOMAS
+// DETALLE		:	AÑADE Y ELEIINA LISTA DE IDIOMAS
+/*###################################################################################################################*/
+
+function UL_HABILITA_IDIOMA() {
+	try{
+		
+		if (UL_CBX_001.value == "OTRO" ){
+			UL_TXT_OTRO_IDIOMA.style.display="";
+		} else{
+			UL_TXT_OTRO_IDIOMA.style.display=FCC_NONE;
+		}
+	}catch(err){}
+}
+	
+function UL_ADD_IDIOMA() {
+	try{
+		var hab = true;
+		var idioma = document.getElementById("UL_CBX_001");
+		var nivel = document.getElementById("UL_CBX_002");
+		var lista = document.getElementById("UL_GRD_001");
+		var otro_idioma = document.getElementById("UL_TXT_OTRO_IDIOMA");
+		var valor = "";
+		
+		if (idioma.value == "OTRO" ){
+			
+			if (otro_idioma.value.trim()==""){ 
+				hab=false;	
+				alert("Debe ingresar un idioma");
+			} else{
+				valor = otro_idioma.value.toUpperCase() + "-" + nivel.value;
+			}
+
+		} else{
+			valor = idioma.value + "-" + nivel.value;
+		}
+	
+		if (hab){
+			var TEMP_ELEMENT = document.createElement("option");
+			TEMP_ELEMENT.text = valor;
+			TEMP_ELEMENT.value = valor;
+			lista.options.add(TEMP_ELEMENT,0);
+			UL_LISTA_IDIOMAS();
+		}
+	}catch(err){}
+}
+
+function UL_INICIA_IDIOMA() {
+	try{
+		
+		var resumen = document.getElementById("dnf_class_values_job__UL_TXT_061_").value;
+		var lista = document.getElementById("UL_GRD_001");
+		var TEMP_ELEMENT = document.createElement("option");
+
+		var arrayDeCadenas = resumen.split(" / ");
+		var limitell = arrayDeCadenas;
+		
+	
+		for (ll=1 ; ll<limitell.length; ll++){
+			
+	
+			TEMP_ELEMENT = document.createElement("option");
+			TEMP_ELEMENT.text = arrayDeCadenas[ll];
+			TEMP_ELEMENT.value = arrayDeCadenas[ll];
+			lista.options.add(TEMP_ELEMENT,0);
+		}
+		
+	}catch(err){}
+}
+
+function UL_DEL_IDIOMA() {
+	try{
+		var lista = document.getElementById("UL_GRD_001");
+		lista.options.remove(lista.selectedIndex);
+
+		UL_LISTA_IDIOMAS();
+	}catch(err){}
+}
+
+function UL_LISTA_IDIOMAS() {
+	try{
+		var lista = document.getElementById("UL_GRD_001");
+		var tope = lista.length;
+		var resumen = document.getElementById("dnf_class_values_job__UL_TXT_061_");
+
+		resumen.value="";
+		resumen.value+=lista.options[0].text;  
+
+		  for (i=1; i<tope; i++){
+			  resumen.value+=" / "+lista.options[i].text;
+		  }
+	}catch(err){}
+}
+
+
+
+/*###################################################################################################################*/
+// FUNCION		:	FCC CALCULA POSICION
+// DETALLE		:	CALCULA LA POSICION A PUBLICAR
+/*###################################################################################################################*/
+
+function UL_CALCULA_POSICION(){
+	
+	
+	try{
+		var TEMP_AREA =  UL_LISTA_AREA.options[UL_LISTA_AREA.selectedIndex].text;
+		var TEMP_CARGO = UL_LISTA_CARGO.options[UL_LISTA_CARGO.selectedIndex].text;
+		
+		var TEMP_AREA_2 = UL_TXT_AREA.value;
+		var TEMP_CARGO_2= UL_TXT_CARGO.value;
+		
+		if (TEMP_AREA_2!=""){	TEMP_AREA=TEMP_AREA_2;}
+		if (TEMP_CARGO_2!=""){TEMP_CARGO=TEMP_CARGO_2;}
+		
+		UL_TXT_POSICION.value=TEMP_CARGO.toUpperCase()+" DE "+TEMP_AREA.toUpperCase();
+	}catch(err){}
+}
+
+
+
+function FCC_INICIA_AFECHA(){
+
+
+	try{
+			
+	var UL_TXT_FECHAPUBLICACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start_"); 
+	var UL_TXT_FECHAPUBLICACION_HIDE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start__real"); 
+	
+	UL_TXT_FECHAPUBLICACION.readOnly  = true;
+	
+	var UL_TXT_FECHAFINALIZACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end_"); 	
+	var UL_TXT_FECHAPUBLICACION_HIDE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end__real"); 		
+			
+		var numero ="0";
+		var numerof ="1";
+		
+		  //la fecha
+		  var TuFecha = new Date();
+		  var TuFechaf = new Date();
+		  var dias;
+		  var diasf;
+		  
+		  //dias a sumar
+		  var dias = parseInt(numero);
+		  var diasf = parseInt(numerof);
+		  
+		  //nueva fecha sumada
+		  TuFecha.setDate(TuFecha.getDate() + dias);
+		  TuFechaf.setDate(TuFechaf.getDate() + diasf);
+		  //formato de salida para la fecha
+		  
+		  	  
+		  if(TuFecha.getDate() <10){
+			  dias ="0"+TuFecha.getDate()
+			}else{
+				dias =TuFecha.getDate()
+			}
+			
+			if(TuFechaf.getDate() <10){
+			  diasf ="0"+TuFechaf.getDate()
+			}else{
+				diasf =TuFechaf.getDate()
+			}
+		  
+		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
+		 UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
+			
+		UL_TXT_FECHAFINALIZACION.value = TuFechaf.getFullYear() + '-' + (TuFechaf.getMonth() + 1)  + '-' + diasf;
+		UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAFINALIZACION.value;
+			
+	}catch(err){}
+
+
+}
+
+
+
+
+
+
+
 
 
 /*###################################################################################################################
@@ -412,205 +479,3 @@ function FCC_GET_ELEMENTO_BYCLASSNAME(FCC_ID){
 	return FCC_VALOR;
 }
 
-
-
-
-
-function FCC_GET_ELEMENTO(FCC_FIELD){
-
-var FCC_VALOR="";
-
-	try {
-		FCC_VALOR=document.getElementsByClassName(FCC_FIELD)[0];
-	}catch(err) {
-		FCC_VALOR="99";
-	}
-
-return FCC_VALOR;
-}
-
-
-
-/*############################################################################################################################*/
-//FUNCION PARA AÑADIR CODIGOS EN CABECERA
-/*############################################################################################################################*/
-
-function FCC_AGREGA_CABECERA(FCC_ETIQUETA,FCC_VALOR){
-
-	console.log("CABECERA: "+FCC_ETIQUETA+ " = "+ FCC_VALOR);
-
-	// DECALRACION DE VARIABLES*/
-	var FCC_DOM= document.getElementsByClassName("job_summary_inner")[0];
-	var FCC_ADD_DOM="";
-	var FCC_TEMP_DOM="";
-	
-	// EJECUCION DEL PROCESO*/
-	FCC_ADD_DOM += "<div class='field'>";
-		FCC_ADD_DOM+= "<div class='label'>";
-		FCC_ADD_DOM+= FCC_ETIQUETA;
-		FCC_ADD_DOM+= "</div>";
-		FCC_ADD_DOM+= "<div class='widget'>";
-		FCC_ADD_DOM+= FCC_VALOR;
-		FCC_ADD_DOM+= "</div>";
-	FCC_ADD_DOM +="</div>";
-	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
-	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
-}
-
-/*############################################################################################################################*/
-//FUNCION PARA ABRIR Y CERRAR SECCIONES LATERALES
-/*############################################################################################################################*/
-
-function FCC_AGREGA_SECCION_LATERAL(FCC_ETIQUETA, FCC_DETALLE){
-
-	console.log("SECCION LATERAL: "+FCC_ETIQUETA);
-
-	// DECALRACION DE VARIABLES*/
-	var FCC_DOM= document.getElementsByClassName("sidebar sidebar-right")[0];
-	var FCC_DOM_SECCIONES="";
-	var FCC_DOM_SECCION="";
-	var FCC_ADD_DOM="";
-
-	// OCUALTANDO SECCION ORIGINAL
-	FCC_DOM_SECCIONES=FCC_DOM.getElementsByClassName("sidebar-inner sb");
-	
-	var i;
-		for (i = 0; i < FCC_DOM_SECCIONES.length ; i++) { 
-			FCC_DOM_SECCION = FCC_DOM_SECCIONES[i];
-					
-			if (FCC_DOM_SECCION.id=="") {
-				FCC_DOM_SECCION.style.display = 'none';
-				console.log("Sección lateral original : oculta");
-				break;
-			}
-			
-		}
-	
-	// EJECUCION DEL PROCESO*/
-	FCC_ADD_DOM += "<div class='sidebar-inner sb' id='fcc_detalle'>";
-		FCC_ADD_DOM += "<div class='sidebar-header row'>"
-			FCC_ADD_DOM += "<div class='sidebar-title col col-12'>"
-			FCC_ADD_DOM += FCC_ETIQUETA
-			FCC_ADD_DOM += "</div>"
-		FCC_ADD_DOM += "</div>"
-		FCC_ADD_DOM += FCC_DETALLE	
-	FCC_ADD_DOM +="</div>";
-	
-	FCC_DOM.innerHTML+=FCC_ADD_DOM;
-}
-
-/*############################################################################################################################*/
-//FUNCION PARA AÑADIR CODIGOS EN BARRA LATERAL DERECHA
-/*############################################################################################################################*/
-
-function FCC_AGREGA_LATERAL(FCC_ETIQUETA,FCC_VALOR,FCC_DETALLE){
-
-	console.log("LATERAL: "+FCC_ETIQUETA);
-
-	// EJECUCION DEL PROCESO*/
-	FCC_DETALLE += "<div class='sidebar-body'>";
-		FCC_DETALLE+= "<b>";
-		FCC_DETALLE+= FCC_ETIQUETA;
-		FCC_DETALLE+= "</b><br>";
-		FCC_DETALLE+= FCC_VALOR;
-		FCC_DETALLE+= "<br>";
-	FCC_DETALLE +="</div>";
-		
-	return FCC_DETALLE;
-}
-
-/*############################################################################################################################*/
-//FUNCION PARA OCULTAR ELEMENTOS
-/*############################################################################################################################*/
-
-function FCC_OCULTA_CAMPOS_SECCION(FCC_SUB_FORM_DESC,FCC_FIELD,FCC_INDICE_FIELD){
-
-	var FCC_SUB_FORM= document.getElementsByClassName(FCC_SUB_FORM_DESC)[0];
-	var FCC_ELEMENTO = FCC_SUB_FORM.getElementsByClassName(FCC_FIELD)[FCC_INDICE_FIELD];
-
-	FCC_ELEMENTO.style.display = 'none';
-
-	console.log("ocultando: " + FCC_SUB_FORM_DESC + " - "+ FCC_INDICE_FIELD);	
-}
-
-/*############################################################################################################################*/
-// FUNCION PARA OCULTAR CONTROLES
-/*############################################################################################################################*/
-
-function FCC_OCULTA_POR_CLASE(FCC_VALOR){
-	try{
-		FCC_CLASS_WIDGET_HIDE=FCC_VALOR.className;
-		FCC_SUB_FORM_DESC=	"job-bfields";
-		FCC_FIELD	="field";
-		FCC_INDICE_FIELD=0;
-		var FCC_ELEMENTO="";
-		
-		//obtenido el sub formulario prinicpal
-		var FCC_SUB_FORM= document.getElementsByClassName(FCC_SUB_FORM_DESC)[0];
-		
-		//obteniendo todos los Fields que coinciden con el valor 
-		var FCC_ELEMENTOS = FCC_SUB_FORM.getElementsByClassName(FCC_FIELD);
-		
-		var i;
-			for (i = 0; i < FCC_ELEMENTOS.length ; i++) { 
-			
-				FCC_ELEMENTO = FCC_ELEMENTOS[i].getElementsByClassName(FCC_CLASS_WIDGET_HIDE);
-						
-				if (FCC_ELEMENTO.length>0) {
-					FCC_ELEMENTOS[i].style.display = 'none';
-					console.log("ocultando:"+i+" : " +FCC_CLASS_WIDGET_HIDE);
-					break;
-				}
-			}
-	}catch(err){}
-}
-
-function FCC_OCULTA_POR_NOMBRE(FCC_VALOR){
-	
-	FCC_CLASS_WIDGET_HIDE=FCC_VALOR;
-	FCC_SUB_FORM_DESC=	"job_summary";
-	FCC_FIELD	="field";
-	var FCC_ELEMENTO="";
-	var FCC_SUB_ELEMENTO="";
-	
-	//obtenido el sub formulario prinicpal
-	var FCC_SUB_FORM= document.getElementsByClassName(FCC_SUB_FORM_DESC)[0];
-	
-	//obteniendo todos los Fields que coinciden con el valor 
-	var FCC_ELEMENTOS = FCC_SUB_FORM.getElementsByClassName(FCC_FIELD);
-	
-	console.log("CONTANDO CABECERAS  " +FCC_ELEMENTOS.length);
-	
-	try{FCC_ELEMENTOS[2].style.display = 'none';}catch(err){}
-	
-	console.log("ocultando:"+2+ " : " + FCC_CLASS_WIDGET_HIDE);
-}
-
-function FCC_OCULTA(FCC_CLASS_WIDGET_HIDE){
-	
-	FCC_SUB_FORM_DESC=	"job-bfields";
-	FCC_FIELD	="field";
-	FCC_INDICE_FIELD=0;
-	var FCC_ELEMENTO="";
-	
-	//obtenido el sub formulario prinicpal
-	var FCC_SUB_FORM= document.getElementsByClassName(FCC_SUB_FORM_DESC)[0];
-	
-	//obteniendo todos los Fields que coinciden con el valor 
-	var FCC_ELEMENTOS = FCC_SUB_FORM.getElementsByClassName(FCC_FIELD);
-	
-	var i;
-		for (i = 0; i < FCC_ELEMENTOS.length ; i++) { 
-		
-			FCC_ELEMENTO = FCC_ELEMENTOS[i].getElementsByClassName(FCC_CLASS_WIDGET_HIDE);
-					
-			if (FCC_ELEMENTO.length>0) {
-				FCC_ELEMENTOS[i].style.display = 'none';
-				console.log("ocultando:"+i+" : " +FCC_CLASS_WIDGET_HIDE);
-				break;
-			}
-			
-		}
-	
-	
-}
