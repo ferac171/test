@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.3";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "30/11/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.4";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "05/12/18";
 
 /*############################################################################################################################*/
 
@@ -138,8 +138,8 @@ var UL_TXT_MAESTRIA_OTRO_OBL;
 
 
 
-var UL_SECCION_TIPO_SOLICITUD = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__job_type_"); 
-
+var UL_SECCION_TIPO_SOLICITUD = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_type__widget"); 
+var UL_SECCION_LABEL_TIPO_SOLICITUD = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_type__field-label"); 
 var UL_SECCION_CARGO = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__cargo_"); 
 var UL_SECCION_CARGO_ESPECIFICO = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__especifique_el_cargo_"); 
 var UL_SECCION_AREA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__rea2_"); 
@@ -203,6 +203,7 @@ var UL_CORREO_DOMINIO = "";
 var UL_TXT_FECHAPUBLICACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start_"); 
 var UL_TXT_FECHAPUBLICACION_HIDE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start__real"); 
 var UL_TXT_FECHAFINALIZACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end_"); 
+var UL_TXT_FECHAFINALIZACION_HIDE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end__real");
 
 var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0"); 
 var UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
@@ -481,7 +482,7 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 		 TEMP_ELEMENTOS = UL_BARRA_MENU_INFERIOR[0].getElementsByTagName("input");
 		 tope_barra = TEMP_ELEMENTOS.length;
 
-		if (UL_CODIGO=="1"){
+		if (UL_CODIGO=="10"){
 			
 			for ( bb = 0; bb <tope_barra ; bb++){
 				if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="ENVIAR"){
@@ -578,7 +579,33 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 		UL_SECCION_SLC_007.style.display=FCC_NONE;
 			
 		UL_SECCION_TIPO_SOLICITUD.style.display=FCC_NONE;
+		
+		
+//TIPO SOLICITUD 
+		var FCC_TIPO_SOLICITUD_SEL = "";
+			try{ 
+				UL_TIPO_SOLICITUD_SEL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_type__widget");
+				ul_temp2 = UL_TIPO_SOLICITUD_SEL.getElementsByTagName("input");
 
+				for(i=0;i< ul_temp2.length;i++){
+					if (ul_temp2[i].checked){
+						FCC_CONTROL_SOLICITUD_SEL=ul_temp2[i].value;
+						switch(FCC_CONTROL_SOLICITUD_SEL) {
+							case "22":	FCC_TIPO_SOLICITUD_SEL = "Empleos Ejecutivos";	break;
+							case "14":	FCC_TIPO_SOLICITUD_SEL = "Empleos";	break;
+							case "17":	FCC_TIPO_SOLICITUD_SEL = "Prácticas Profesionales";	break;
+							case "20": FCC_TIPO_SOLICITUD_SEL = "Internado"; break;	
+							case "19":	FCC_TIPO_SOLICITUD_SEL = "Otras Oportunidades Laborales";	break;		
+							case "24":	FCC_TIPO_SOLICITUD_SEL = "VIP";break;	
+							case "3":	FCC_TIPO_SOLICITUD_SEL = "Prácticas Pre Profesionales";break;					
+							default:FCC_TIPO_SOLICITUD_SEL = "TIpo de solicitud no declarada, contactar con el admin";
+						}
+					}
+				}
+			}catch(err){}		
+		
+
+		UL_SECCION_LABEL_TIPO_SOLICITUD.innerHTML  = FCC_TIPO_SOLICITUD_SEL.toUpperCase();
 		
 		
 		//OCULATANDO CAMPOS DE CARGO Y AREA 
@@ -587,9 +614,30 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 		UL_SECCION_AREA.style.display=FCC_NONE;
 		UL_SECCION_AREA_ESPECIFICA.style.display=FCC_NONE;
 		
+		//HACIENDO CAMPOS DE SOLO LECTURA
 		UL_TXT_POSICION.readOnly =true;
 
+		
+		//DESCRIPCIOPN DE FUNCIONES
+		
+		var desc_sel = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_desc__widget");
+		var desc_LABEL_sel = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_desc__field-label");
+		
+//pendiente read only de descripcion 
+//$$$$$$$$$$$$$$$$$$$$$
+		
+		
+	try{
+		var iframe_sel = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_desc__ifr");
+		var UL_DESCRIPCION_SEL = iframe.contentWindow.document.getElementById("tinymce");
+		
+		UL_DESCRIPCION_SEL.readOnly =true;
+		//desc_LABEL_sel.innerHTML = UL_DESCRIPCION_SEL.innerHTML;
+		
+	}catch(err){}
 
+	
+	
 		
 	}
 		
@@ -1983,7 +2031,7 @@ function FINALIZA_OFERTA(){
 			console.log("dias -->" + dias);
 		  
 		 UL_TXT_FECHAFINALIZACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
-			//UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
+		UL_TXT_FECHAFINALIZACION_HIDE.value = UL_TXT_FECHAFINALIZACION.value;
 			
 	}catch(err){}
 
