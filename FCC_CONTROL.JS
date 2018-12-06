@@ -1,23 +1,24 @@
-//#############################################################################################################################
-//#
-//#	SCRIPT DE CONTROL DE EJEUCION DE PUBLICACIONES
-//#
-//# FORMULARIO		: TODOS
-//# DESARROLLADO	: FERNANDO CALDERON 
-//# VERSION			: 1.0
-//# FECHA			: 25.07.18
-//#
-//# FORMULARIO		: 
-//# CAMPO			: 
-//#
-//# UBICACION		: 
-//#	
-//#############################################################################################################################
+/*##############################################################################################################################*/
+
+// PROCESOS LOAD: CARGA SCRIPT DEV/PRD
+// USUARIO: TODOS
+//
+// NAME		: FCC_CONTROL.JS
+	
+	const FCC_CONTROL_VERSION_LOCAL = "1.0";
+	const FCC_CONTROL_FECHA_LOCAL= "05/12/18";
+
+/*############################################################################################################################*/
+
+
+/*############################################################################################################################*/
+//MENSAJE DE VERSION
+/*############################################################################################################################*/
+
+console.log("# CONTROL V:"+FCC_CONTROL_VERSION_LOCAL + " al "+FCC_CONTROL_FECHA_LOCAL);
 /*
 
-<script type="text/javascript"src="https://raw.githack.com/ferac171/test/master/FCC_CONTROL.JS"></script>
-
-
+<script type="text/javascript"src="https://rawgit.com/ferac171/test/master/FCC_CONTROL.JS"></script>
 <script type="text/javascript">FCC_JSC("PUB_ALU");</script>
 
 */
@@ -26,11 +27,6 @@
 /*
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ferac171/test/master/FCC_EMPRESAS.CSS"> 
 <link rel="stylesheet" type="text/css" href="https://rawgit.com/ferac171/test/master/FCC_PUBLICACIONES.CSS">
-
-<script type="text/javascript"src="https://rawgit.com/ferac171/test/master/FCC_CONTROL_JS_SERVIDOR.JS"></script>
-<script type="text/javascript"src="http://localhost/DEV/00_CONTROL_DEV/01_DEV/FCC_CONTROL_JS_LOCALES.js"></script>		
-
-<script type="text/javascript"src="http://localhost/DEV/02_PUBLICACION_EMPLEO/01_DEV/FCC_PUBLICACIONES_ALUMNOS.JS"></script>	
 
 */
 
@@ -49,7 +45,6 @@ var FCC_ESQUEMA_ACTUAL = FCC_ESQUEMA;
 	FCC_CARGA_SCRIPT_DEV(FCC_FUENTE_DEV,FCC_FUENTE_PRD);
 
 }
-
 
 //CARGANDO SCRIPT EN PAGINA
 	
@@ -93,7 +88,7 @@ function FCC_LOCAL_SRC(FCC_ESQUEMA){
 	switch(FCC_ESQUEMA) {
 		
 		case "PUB_ALU": 
-			FCC_FUENTE_DEV = "http://localhost/DEV/02_PUBLICACION_EMPLEO/01_DEV/FCC_PUBLICACIONES_ALUMNOS.JS1";
+			FCC_FUENTE_DEV = "http://localhost/DEV/02_PUBLICACION_EMPLEO/01_DEV/FCC_PUBLICACIONES_ALUMNOS.JS";
 			FCC_FUENTE_PRD = "https://rawgit.com/ferac171/test/master/FCC_PUBLICACIONES_ALUMNOS.JS";
 			break;
 				
