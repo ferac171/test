@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.4";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "05/12/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.5";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "11/12/18";
 
 /*############################################################################################################################*/
 
@@ -16,7 +16,9 @@
 //MENSAJE DE VERSION
 /*############################################################################################################################*/
 
+console.log("########################################");
 console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL + " al "+FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL);
+console.log("########################################");
 
 /*############################################################################################################################*/
 //DECLARACION DE CONSTANTES
@@ -25,30 +27,36 @@ console.log("# CONTROL FCC_PUBLICACIONES_CONTACTO V:"+FCC_PUBLICACIONES_CONTACTO
 const FCC_BLOCK = "block";
 const FCC_NONE = "none";
 const FCC_VIEW = "";
-const FCC_DEBUG = true;
+const FCC_DEBUG = false;
+var UL_CONTROL_LISTENER =false;	
 //if(FCC_DEBUG){console.log("");}
 
-
-
+/*############################################################################################################################*/
+// VALIDACION Y CONDICIONAMIENTO DE EMPRESA VIP
+/*##############################################################################################################################*/
 
 //UL_BARRA_MENU[0].style.display="";
 
-try{var UL_MSJ_USUARIO = FCC_GET_ELEMENTO_BYID("all_user_hints");
-UL_MSJ_USUARIO.style.display="none";
+try{
+	var UL_MSJ_USUARIO = FCC_GET_ELEMENTO_BYID("all_user_hints");
+	UL_MSJ_USUARIO.style.display="none";
 }catch(err){}
 
-FCC_AGREGA_BOTONES_MENU("buttonbar-top");
-FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
+
+
 try{
 	var UL_CHECK_BUSQUEDA_TEXT = document.querySelector("#dnf_class_values_job__job_type__widget > label:nth-child(20)");
+	
 	var UL_CHECK_BUSQUEDA_RADIO = document.querySelector("#dnf_class_values_job__job_type__widget > input:nth-child(19)");
 
 	var UL_libro_CV = document.getElementsByClassName("icn-contact_book");
 
 	if (UL_libro_CV.length>=1){
+		if(FCC_DEBUG){console.log("[VALOR] EMPRESA VIP");}
 		UL_CHECK_BUSQUEDA_TEXT.style.display="";
 		UL_CHECK_BUSQUEDA_RADIO.style.display="";
 	} else{
+		if(FCC_DEBUG){console.log("[VALOR] EMPRESA NO VIP");}
 		UL_CHECK_BUSQUEDA_TEXT.style.display="none"
 		UL_CHECK_BUSQUEDA_RADIO.style.display="none";
 	}
@@ -58,16 +66,19 @@ try{
 
 
 /*############################################################################################################################*/
+// LECTURA DE VARIABLES GENERALES PARA EJECUCION
+/*##############################################################################################################################*/
+var UL_CODIGO_EMPLEO =0;
+
+try{
+	UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0].value;
+	if(FCC_DEBUG){console.log("[VALOR] NUMERO DE OFERTA: " + UL_CODIGO_EMPLEO);}
+}catch(err){}
+
+
+/*############################################################################################################################*/
 // DECLARACION GENERAL DE VARIABLES DE ELEMENTOS
 /*##############################################################################################################################*/
-
-
-//VARIABLES DE CONTROL DE LISTENERS Y EVENTOS
-//------------------------------------------------------------------------------------------------------------------
-
-var UL_CONTROL_LISTENER =false;	
-
-
 
 //VARIABLES DE CONTROL DE EMPLEO
 //------------------------------------------------------------------------------------------------------------------
@@ -75,10 +86,8 @@ var UL_CONTROL_LISTENER =false;
 var FCC_CONTROL_SOLICITUD;
 var UL_POSICION;
 
-try{var UL_CODIGO_EMPLEO = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][visual_id]")[0];}catch(err){};
 var UL_TIPO_SOLICITUD;
 var UL_VACANTES ;
-
 	
 var UL_DESCRIPCION ;
 var UL_DISPONIBILIDAD;
@@ -114,10 +123,8 @@ var FCC_NIVEL_INTERNADO_OBL;
 // VARIBALES EJECUTIVO
 var UL_TXT_CARRERA_EJECUTIVO_OBL; 
 var UL_TXT_MAESTRIA_EJECUTIVO_OBL;
-
 var FCC_CARRERA_EJECUTIVO_OBL;
 var FCC_MAESTRIA_EJECUTIVO_OBL;
-
 
 // VARIBALES EMPLEOS
 var FCC_CARRERA_EMPLEO_OBL; 
@@ -135,18 +142,10 @@ var UL_TXT_NIVEL_OTRO_DES;
 var UL_TXT_ANIOEGRESO_OTRO_OBL;
 var UL_TXT_MAESTRIA_OTRO_OBL;
 
-
-
+// TIPO SOLICITUD
 
 var UL_SECCION_TIPO_SOLICITUD = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_type__widget"); 
 var UL_SECCION_LABEL_TIPO_SOLICITUD = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_type__field-label"); 
-var UL_SECCION_CARGO = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__cargo_"); 
-var UL_SECCION_CARGO_ESPECIFICO = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__especifique_el_cargo_"); 
-var UL_SECCION_AREA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__rea2_"); 
-var UL_SECCION_AREA_ESPECIFICA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__especifique_el_rea_"); 
-
-
-
 
 //VARIABLES DE CONTROL DE REMUNERACIONES
 //------------------------------------------------------------------------------------------------------------------
@@ -154,10 +153,8 @@ var UL_SECCION_AREA_ESPECIFICA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_v
 var UL_CBX_DIVISA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__divisa_");
 var UL_TXT_REMUNERACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__remuneracion_mensual_");
 var UL_TXT_REMUNERACION_VISIBLE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__remuneracion_");
-
 var UL_RADIOS_REMUNERACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__desea_mostrar_el_monto_de_la_r__widget"); 
 var UL_RDO_REMUNERACION_SI = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][desea_mostrar_el_monto_de_la_r]"); 
-
 var UL_SECCION_REMUNERACION_VISIBLE = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__remuneracion_"); 
 
 
@@ -167,7 +164,6 @@ var UL_SECCION_REMUNERACION_VISIBLE = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_cl
 var UL_CBX_001 = FCC_GET_ELEMENTO_BYID("UL_CBX_001");
 var UL_TXT_006 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_061_"); 
 var UL_TXT_OTRO_IDIOMA = FCC_GET_ELEMENTO_BYID("UL_TXT_OTRO_IDIOMA"); 
-
 var UL_SECCION_TXT_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_061_"); 
 var UL_SECCION_SLC_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_PROP_061_"); 
 
@@ -177,7 +173,6 @@ var UL_SECCION_SLC_006 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_jo
 var UL_CBX_002 = FCC_GET_ELEMENTO_BYID("UL_CBX_003");
 var UL_TXT_007 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__ul_txt_077_"); 
 var UL_TXT_OTRO_HABILIDAD = FCC_GET_ELEMENTO_BYID("UL_TXT_OTRO_HABILIDAD"); 
-
 var UL_SECCION_TXT_007 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__ul_txt_077_"); 
 var UL_SECCION_SLC_007 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__ul_prop_077_"); 
 
@@ -188,11 +183,9 @@ var UL_SECCION_SLC_007 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_jo
 var UL_TXT_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_email_"); 
 var UL_TXT_CORREO_DOMINIO = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DOMINIO"); 
 var UL_TXT_CORREO_DIRECCION = FCC_GET_ELEMENTO_BYID("UL_TXT_CORREO_DIRECCION"); 
-
 var UL_CHK_CORREO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__resume_mode___email_check"); 
 var UL_SECCION_CORREO = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__correo_electrnico_predetermina_"); 
 var UL_SECCION_CORREO_ORIGINAL = FCC_GET_ELEMENTO_BYID( "so_formfield_dnf_class_values_job__resume_email_"); 
-
 var UL_CORREO = "";
 var UL_CORREO_DIRECCION = "";
 var UL_CORREO_DOMINIO = "";
@@ -204,7 +197,6 @@ var UL_TXT_FECHAPUBLICACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_s
 var UL_TXT_FECHAPUBLICACION_HIDE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_start__real"); 
 var UL_TXT_FECHAFINALIZACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end_"); 
 var UL_TXT_FECHAFINALIZACION_HIDE = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_end__real");
-
 var UL_BTN_PUBLICAR = FCC_GET_ELEMENTO_BYID("jscal_button_0"); 
 var UL_BTN_BORRAR = FCC_GET_ELEMENTO_BYID("jscal_clearbutton_0"); 
 
@@ -216,6 +208,11 @@ var UL_TXT_AREA = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_re
 var UL_LISTA_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__cargo_"); 
 var UL_TXT_CARGO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__especifique_el_cargo_"); 
 var UL_TXT_POSICION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_title_"); 
+
+var UL_SECCION_CARGO = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__cargo_"); 
+var UL_SECCION_CARGO_ESPECIFICO = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__especifique_el_cargo_"); 
+var UL_SECCION_AREA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__rea2_"); 
+var UL_SECCION_AREA_ESPECIFICA = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__especifique_el_rea_"); 
 
 //VARIABLES DE CONTROL DE  INFORMACION ACADEMICA
 //------------------------------------------------------------------------------------------------------------------
@@ -237,7 +234,6 @@ var UL_TXT_002 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_002_");
 var UL_TXT_003 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_003_"); 
 var UL_TXT_004 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_004_"); 
 var UL_TXT_005 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__UL_TXT_0055_"); 
-
 
 var UL_SECCION_TXT_001 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_001_"); 
 var UL_SECCION_TXT_002 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__UL_TXT_002_"); 
@@ -269,7 +265,6 @@ var UL_SECCION_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("so_formfield_dnf
 var UL_SECCION_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__sf_carreras_para_practicas_pro___"); 
 var UL_LISTA_CARRERA_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_applicant_type___");
 var UL_LISTA_CARRERA_PRACTICAPRO_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__sf_carreras_para_practicas_pro___");
-
 var UL_LISTA_NIVEL_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__condicion_prac_pro____widget");
 
 //INTERNADO
@@ -278,14 +273,11 @@ var UL_LISTA_NIVEL_PRACTICAPRO_OBL = FCC_GET_ELEMENTO_BYID("dnf_class_values_job
 var	UL_LISTA_CARRERA_INTERNADO_OBL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__screen_degree_level____widget");
 var	UL_LISTA_NIVEL_INTERNADO_OBL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__niveles____widget");
 
-
-
 //ELEMENTOS DE EMPLEOS EJECUTIVOS
 //------------------------------------------------------------------------------------------------------------------
 
 var UL_LIST_CARRERA_EJECUTIVO_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__carrera_profesional_deseable____widget");
 var UL_LIST_MAESTRIA_EJECUTIVO_DES = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][maestra_deseable2][]")[0];
-
 
 //ELEMENTOS DE EMPLEOS Y OTROS 
 //------------------------------------------------------------------------------------------------------------------
@@ -316,25 +308,28 @@ var UL_TXT_ANIOEGRESO_EMPLEO_DES = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__
 
 var UL_LIST_MAESTRIA_EMPLEO_DES = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][maestra_deseable2][]")[1];
 
+
+
+
 /*############################################################################################################################*/
 // LISTENERS
 /*##############################################################################################################################*/
+
 try{var UL_BTN_GUARDAR0 = FCC_GET_ELEMENTO_BYNAME("formaction")[0];}catch(err){}
 try{var UL_BTN_GUARDAR1 = FCC_GET_ELEMENTO_BYNAME("formaction")[1];}catch(err){}
 try{var UL_BTN_GUARDAR2 = FCC_GET_ELEMENTO_BYNAME("formaction")[2];}catch(err){}
 try{var UL_BTN_GUARDAR3 = FCC_GET_ELEMENTO_BYNAME("formaction")[3];}catch(err){}
-
 
 try{UL_BTN_GUARDAR0.addEventListener("click", UL_GUARDA_TEMPORAL);}catch(err){}
 try{UL_BTN_GUARDAR1.addEventListener("click", UL_GUARDA_TEMPORAL);}catch(err){}
 try{UL_BTN_GUARDAR2.addEventListener("click", UL_GUARDA_TEMPORAL);}catch(err){}
 try{UL_BTN_GUARDAR3.addEventListener("click", UL_GUARDA_TEMPORAL);}catch(err){}
 
-
 try{UL_CBX_001.addEventListener("change", UL_HABILITA_IDIOMA);}catch(err){}
 try{UL_CBX_002.addEventListener("change", UL_HABILITA_HABILIDAD);}catch(err){}
 try{UL_TXT_CORREO_DIRECCION.addEventListener("change", UL_COMPONE_CORREO);}catch(err){}
 try{UL_CHK_CORREO.addEventListener("change", FCC_VER_CORREO);}catch(err){}
+
 
 // POSICION A PUBLICAR
 try{UL_LISTA_AREA.addEventListener("change", UL_CALCULA_POSICION);}catch(err){}
@@ -365,7 +360,11 @@ try{UL_CBX_DIVISA.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}catch(e
 try{UL_TXT_REMUNERACION.addEventListener("change", UL_ACTUALIZA_REMUNERACION);}catch(err){}
 
 
-// BLOQUEANDO ACCIONES NO DESEADAS ;)
+/*###################################################################################################################*/
+// FUNCION		:	LISTENER KEY PRESS ENTER
+// DETALLE		:	BLOAQUE LA FUNCION ENTER Y POR ENDE EL RE ENVIO DEL FORMULARIO
+/*###################################################################################################################*/
+
 $(document).ready(function() {
   $('form').keypress(function(e){   
     if(e == 13){return false;}
@@ -375,27 +374,74 @@ $(document).ready(function() {
   });
 });
 
+/*###################################################################################################################*/
+// FUNCION		:	UL_GUARDA_TEMPORAL
+// DETALLE		:	AÑADE EL TEXTO PENDIENTE A UNA PUBLICACION GUARDADA Y NO ENVIADA 
+/*###################################################################################################################*/
 
-// GUARDA TEMPORAL
-
+//BORRANDO AL CARGAR
 var FCC_TXT_PENDIENTE = "<P STYLE='COLOR:RED; FONT-WEIGHT:BOLD; FONT-SIZE: 12px;'>(PENDIENTE)</P>"; 
-
 UL_TXT_POSICION.value= UL_TXT_POSICION.value.replace(FCC_TXT_PENDIENTE, "");
 
+//AÑADIENDO AL GUARDAR
 function UL_GUARDA_TEMPORAL() {
-	
 	UL_TXT_POSICION.value+=FCC_TXT_PENDIENTE;
+}
+
+
+/*###################################################################################################################*/
+// FUNCION		:	UL_DETERMINA_ESTADO_PUBLICACION
+// DETALLE		:	0: NUEVA | 1: GUARDADA | 2:PUBLICADA | 3: VENCIDA 
+/*###################################################################################################################*/
+
+function UL_DETERMINA_ESTADO_PUBLICACION() {
 	
+try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
+try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-bottom");}catch(err){}
+
+		
+var TEMP_ELEMENTOS;
+var tope_barra;
+
+var ENVIADA=true;	
+var GUARDADA=false;	
+var SITUACION = 0;
+	
+try{		
+	TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
+	tope_barra = TEMP_ELEMENTOS.length;
+		
+	for ( bb = 0; bb <tope_barra ; bb++){
+		if (TEMP_ELEMENTOS[bb].value.indexOf("Guardar")>=0){
+			ENVIADA=false;
+		}
+	}
+}catch(err){}	
+
+if(ENVIADA || (!ENVIADA && UL_CODIGO_EMPLEO>0)){
+	GUARDADA=true;	
+}
+
+//console.log ("PUBLICACION ENVIADA: " + ENVIADA);
+//console.log ("CODIGO_EMPLEO: " + UL_CODIGO_EMPLEO);
+//console.log ("PUBLICACION GUARDADA: " + GUARDADA);
+
+if ( UL_CODIGO_EMPLEO>0 && GUARDADA ){SITUACION=1;}
+if ( UL_CODIGO_EMPLEO>0 && ENVIADA ){SITUACION=2;}
+
+//console.log ("SITUCION: " + SITUACION);
+
+return SITUACION;
 }
 
 
 
-/*############################################################################################################################*/
 
+
+/*############################################################################################################################*/
 //FUNCION		:	ONLOAD
 //DETALLE		:	Función principal que analiza el detalle de los formularios y acciones.
 //					Se ejecuta una vez acasarados todos los componentes de la pagina
-
 /*############################################################################################################################*/
 
 window.onload=function() {
@@ -410,7 +456,6 @@ try{
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
 
-	
 	//OCULTANDO SOPORTES
 	try{
 		UL_SECCION_TXT_001.style.display=FCC_NONE;
@@ -429,75 +474,15 @@ try{
 		try{UL_TXT_OTRO_HABILIDAD.style.display=FCC_NONE;}catch(err){}
 		
 		
-	var  UL_CODIGO="1";
+	var  UL_SITUACION =0;
+// VALIDACION SI PUBLICACION YA FUE ENVIADA 
+//---------------------------------------------------------------------------------------------------------
+UL_SITUACION= UL_DETERMINA_ESTADO_PUBLICACION();
+if(FCC_DEBUG){console.log("[FUNCION] SITUACION (0:NUEVA ,1:GUARDADA, 2:PUBLICADA) ==>" + UL_SITUACION)};
 
-/*try{		
-	var EMP_APROBADO = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__approved_");
-	UL_CODIGO=EMP_APROBADO.value;	
 
-}catch(err){}	*/
+// SI EXISTE EL BOTO N GUARDAR SIGNIFICA QUE NO ESTA ENVIADA
 
-		
-try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
-try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-bottom");}catch(err){}
-
-		
-		var TEMP_ELEMENTOS;
-		var tope_barra;
-	
-	
-		try{		
-		
-		TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
-		tope_barra = TEMP_ELEMENTOS.length;
-		
-			for ( bb = 0; bb <tope_barra ; bb++){
-				if (TEMP_ELEMENTOS[bb].value.indexOf("Guardar")>=0){
-				UL_CODIGO="0";
-				}	
-			}
-		}catch(err){}
-	
-	
-	try{		
-		
-		TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
-		tope_barra = TEMP_ELEMENTOS.length;
-
-		if (UL_CODIGO=="10"){
-			
-			for ( bb = 0; bb <tope_barra ; bb++){
-				if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="ENVIAR"){
-					TEMP_ELEMENTOS[bb].style.display="none";
-					TEMP_ELEMENTOS[bb].classList.remove("btn");
-					TEMP_ELEMENTOS[bb].classList.remove("input-submit");
-				}	
-			}
-		}	
-	}catch(err){}
-	
-	UL_BARRA_MENU_INFERIOR
-	
-		try{		
-		 TEMP_ELEMENTOS = UL_BARRA_MENU_INFERIOR[0].getElementsByTagName("input");
-		 tope_barra = TEMP_ELEMENTOS.length;
-
-		if (UL_CODIGO=="10"){
-			
-			for ( bb = 0; bb <tope_barra ; bb++){
-				if (TEMP_ELEMENTOS[bb].value.trim().toUpperCase()=="ENVIAR"){
-					TEMP_ELEMENTOS[bb].style.display="none";
-					TEMP_ELEMENTOS[bb].classList.remove("btn");
-					TEMP_ELEMENTOS[bb].classList.remove("input-submit");
-				}	
-			}
-		}	
-	}catch(err){}
-	
-	
-	
-
-	
 	//CONTROL TB_001
 	try{	
 		if(UL_TXT_001.value==""){
@@ -520,7 +505,6 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 			
 	//CONTROL TB_003
 	try{
-		//console.log("003 - desde load");
 		if(UL_TXT_003.value==""){
 			UL_TXT_003.value=true;
 			UL_TB_003.checked=true;
@@ -551,36 +535,47 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 	
 	
 //CARTACRERISTIAS DE LA FECHA DE PUBLICACIONES
+
+FCC_AGREGA_BOTONES_MENU("buttonbar-top");
+FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
+
+
+
 	try{
-		
-	UL_TXT_FECHAPUBLICACION.readOnly  = true;
-	UL_BTN_PUBLICAR.style.display=FCC_NONE;
-	UL_BTN_BORRAR.style.display=FCC_NONE;
-	
-	
-	UL_TXT_006.readOnly  = true;
+		UL_TXT_FECHAPUBLICACION.readOnly  = true;
+		UL_BTN_PUBLICAR.style.display=FCC_NONE;
+		UL_BTN_BORRAR.style.display=FCC_NONE;
+		UL_TXT_006.readOnly  = true;
 	}catch(err){}
 	
 	//HABILITANDO CAMPOS IDOMAS Y HABILIDADES
-	if (UL_CODIGO == 0 ) { 
+	if (UL_SITUACION == 0 ) { 
 		//EMPLEO NUEVO
 		FCC_INICIA_AFECHA();
-		
 		UL_SECCION_TXT_006.style.display=FCC_NONE;
 		UL_SECCION_SLC_006.style.display="";
 		UL_SECCION_TXT_007.style.display=FCC_NONE;
 		UL_SECCION_SLC_007.style.display="";
 		
-	} else{
-		//EMPLEO GUARDADO O PUBLICADO 
+	} else if (UL_SITUACION == 1 ){
+		//EMPLEO GUARDADO 
 		UL_SECCION_TXT_006.style.display="";
 		UL_SECCION_SLC_006.style.display=FCC_NONE;
 	 	UL_SECCION_TXT_007.style.display="";	
 		UL_SECCION_SLC_007.style.display=FCC_NONE;
-			
 		UL_SECCION_TIPO_SOLICITUD.style.display=FCC_NONE;
 		
-		
+	} else if (UL_SITUACION == 2 ){
+		//EMPLEO ENVIADO Y PUBLICADO 
+		UL_SECCION_TXT_006.style.display="";
+		UL_SECCION_SLC_006.style.display=FCC_NONE;
+	 	UL_SECCION_TXT_007.style.display="";	
+		UL_SECCION_SLC_007.style.display=FCC_NONE;
+		UL_SECCION_TIPO_SOLICITUD.style.display=FCC_NONE;
+
+		FCC_AGREGA_BOTONES_FINALIZA_MENU("buttonbar-top");
+		FCC_AGREGA_BOTONES_FINALIZA_MENU("buttonbar-bottom");		
+	}
 //TIPO SOLICITUD 
 		var FCC_TIPO_SOLICITUD_SEL = "";
 			try{ 
@@ -638,8 +633,7 @@ try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonb
 
 	
 	
-		
-	}
+
 		
 //INICIA LISTA DE IDIOMA		
 	UL_INICIA_IDIOMA();
@@ -710,7 +704,9 @@ function FCC_GET_ELEMENTO_BYCLASSNAME(FCC_ID){
 // PRACTICAS PREPROFESIONALES - CARRERAS
 function UL_TB_001_CHANGE(TEMP_ACCION){
 	
-	console.log ("UL_TB_001_CHANGE: "+UL_TB_001.checked);
+	
+	if(FCC_DEBUG){console.log ("[FUNCION] UL_TB_001_CHANGE: "+UL_TB_001.checked);}
+
 	var TEMP_CONTROL = UL_TB_001.checked;
 	UL_TXT_001.value = TEMP_CONTROL;
 	
@@ -796,10 +792,7 @@ function UL_TB_002_CHANGE(TEMP_ACCION){
 function UL_TB_003_CHANGE(TEMP_ACCION){
 	
 	if(FCC_DEBUG){console.log ("[FUNCION] UL_TB_003_CHANGE: "+UL_TB_003.checked);}
-	console.log ("ACCION => " +TEMP_ACCION);
-	
-	
-	
+
 	var TEMP_CONTROL = UL_TB_003.checked;
 	UL_TXT_003.value = TEMP_CONTROL;
 	
@@ -850,6 +843,9 @@ function UL_TB_003_CHANGE(TEMP_ACCION){
 
 function UL_TB_004_CHANGE(TEMP_ACCION){
 	
+	
+	if(FCC_DEBUG){console.log ("[FUNCION] UL_TB_004_CHANGE: "+UL_TB_004.checked);}
+
 	var TEMP_CONTROL = UL_TB_004.checked;
 	UL_TXT_004.value = TEMP_CONTROL;
 	
@@ -896,8 +892,8 @@ function UL_TB_004_CHANGE(TEMP_ACCION){
 // PRACTICAS PRO - CARRERAS	
 function UL_TB_005_CHANGE(TEMP_ACCION){
 	
-	console.log ("UL_TB_005_CHANGE: "+UL_TB_005.checked);
-
+	if(FCC_DEBUG){console.log ("[FUNCION] UL_TB_005_CHANGE: "+UL_TB_005.checked);}
+	
 	try{
 		var TEMP_CONTROL = UL_TB_005.checked;
 		UL_TXT_005.value = TEMP_CONTROL;
@@ -1179,10 +1175,12 @@ function FCC_INICIA_AFECHA(){
 				dias =TuFecha.getDate()
 			}
 			
-			console.log("dias -->" + dias);
-		  
+				  
 		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
 			UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
+			
+		if(FCC_DEBUG){console.log ("[CALCULO] FECHA DE PUBLICACION: "+UL_TXT_FECHAPUBLICACION.value);}
+
 			
 	}catch(err){}
 
@@ -1620,7 +1618,7 @@ function CARGA_VISTA_PREVIA(){
 			
 //CODIGO DE EMPLEO 			
 		var FCC_CODIGO_EMPLEO = "S/C";
-			try{ ul_temp = UL_CODIGO_EMPLEO.value;
+			try{ ul_temp = UL_CODIGO_EMPLEO;
 				 if (ul_temp !=""){FCC_CODIGO_EMPLEO=ul_temp; }
 			}catch(err){}
 			
@@ -1983,22 +1981,37 @@ function FCC_AGREGA_BOTONES(){
 }
 
 function FCC_AGREGA_BOTONES_MENU(FCC_BUTTTON_BAR){
-try{
-	// DECALRACION DE VARIABLES*/
-	var FCC_DOM= document.getElementsByClassName(FCC_BUTTTON_BAR)[0];
-	var FCC_ADD_DOM="";
-	var FCC_TEMP_DOM="";
+	try{
+		// DECALRACION DE VARIABLES*/
+		var FCC_DOM= document.getElementsByClassName(FCC_BUTTTON_BAR)[0];
+		var FCC_ADD_DOM="";
+		var FCC_TEMP_DOM="";
 
-	// EJECUCION DEL PROCESO*/
-	
-	FCC_ADD_DOM += "<input type='button' onclick='MODAL_OPEN()' class='input-button btn btn_generic' value='Vista previa'>";		
-	
-	FCC_ADD_DOM += "<input type='button' onclick='FINALIZA_OFERTA()' class='input-button btn btn_generic' value='Finaliza Oferta'>";	
-	
-	FCC_TEMP_DOM=FCC_DOM.innerHTML;			
-	FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
-}catch(err){}
+		// EJECUCION DEL PROCESO*/
+		
+		FCC_ADD_DOM += "<input type='button' onclick='MODAL_OPEN()' class='input-button btn btn_generic' value='Vista previa'>";		
+		
+		FCC_TEMP_DOM=FCC_DOM.innerHTML;			
+		FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
+	}catch(err){}
 }
+
+function FCC_AGREGA_BOTONES_FINALIZA_MENU(FCC_BUTTTON_BAR){
+	try{
+		// DECALRACION DE VARIABLES*/
+		var FCC_DOM= document.getElementsByClassName(FCC_BUTTTON_BAR)[0];
+		var FCC_ADD_DOM="";
+		var FCC_TEMP_DOM="";
+
+		// EJECUCION DEL PROCESO*/	
+		
+		FCC_ADD_DOM += "<input type='button' onclick='FINALIZA_OFERTA()' class='input-button btn btn_generic' value='Retirar Oferta'>";	
+		
+		FCC_TEMP_DOM=FCC_DOM.innerHTML;			
+		FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
+	}catch(err){}
+}
+
 	
 	
 /*###################################################################################################################*/
@@ -2028,10 +2041,13 @@ function FINALIZA_OFERTA(){
 				dias =TuFecha.getDate()
 			}
 			
-			console.log("dias -->" + dias);
+			
+			 
 		  
-		 UL_TXT_FECHAFINALIZACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
+		UL_TXT_FECHAFINALIZACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
 		UL_TXT_FECHAFINALIZACION_HIDE.value = UL_TXT_FECHAFINALIZACION.value;
+		
+		if(FCC_DEBUG){console.log ("[CALCULO] FECHA DE PUBLICACION: "+UL_TXT_FECHAFINALIZACION.value);}
 			
 	}catch(err){}
 
