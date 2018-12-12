@@ -538,6 +538,34 @@ FCC_AGREGA_BOTONES_MENU("buttonbar-top");
 FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
 
 
+//TIPO DE SOLICITUD SELECCIONADA
+
+//TIPO SOLICITUD 
+		var FCC_TIPO_SOLICITUD_SEL = "";
+			try{ 
+				UL_TIPO_SOLICITUD_SEL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_type__widget");
+				ul_temp2 = UL_TIPO_SOLICITUD_SEL.getElementsByTagName("input");
+
+				for(i=0;i< ul_temp2.length;i++){
+					if (ul_temp2[i].checked){
+						FCC_CONTROL_SOLICITUD_SEL=ul_temp2[i].value;
+						switch(FCC_CONTROL_SOLICITUD_SEL) {
+							case "22":	FCC_TIPO_SOLICITUD_SEL = "Empleos Ejecutivos";	break;
+							case "14":	FCC_TIPO_SOLICITUD_SEL = "Empleos";	break;
+							case "17":	FCC_TIPO_SOLICITUD_SEL = "Prácticas Profesionales";	break;
+							case "20": FCC_TIPO_SOLICITUD_SEL = "Internado"; break;	
+							case "19":	FCC_TIPO_SOLICITUD_SEL = "Otras Oportunidades Laborales";	break;		
+							case "24":	FCC_TIPO_SOLICITUD_SEL = "VIP";break;	
+							case "3":	FCC_TIPO_SOLICITUD_SEL = "Prácticas Pre Profesionales";break;					
+							default:FCC_TIPO_SOLICITUD_SEL = "TIpo de solicitud no declarada, contactar con el admin";
+						}
+					}
+				}
+			}catch(err){}		
+
+
+//COMPORTAMIENTO EN BASE AL LA SITUACION DE LA SOLICITUD
+//=========================================================================
 
 	try{
 		UL_TXT_FECHAPUBLICACION.readOnly  = true;
@@ -569,10 +597,13 @@ FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
 		UL_SECCION_SLC_006.style.display=FCC_NONE;
 	 	UL_SECCION_TXT_007.style.display="";	
 		UL_SECCION_SLC_007.style.display=FCC_NONE;
-		UL_SECCION_TIPO_SOLICITUD.style.display=FCC_NONE;
-
+		
 		FCC_AGREGA_BOTONES_FINALIZA_MENU("buttonbar-top");
-		FCC_AGREGA_BOTONES_FINALIZA_MENU("buttonbar-bottom");	
+		FCC_AGREGA_BOTONES_FINALIZA_MENU("buttonbar-bottom");		
+
+		//OCULATANDO TIPO DE SOLICITUD
+		UL_SECCION_TIPO_SOLICITUD.style.display=FCC_NONE;
+		UL_SECCION_LABEL_TIPO_SOLICITUD.innerHTML  = FCC_TIPO_SOLICITUD_SEL.toUpperCase();
 
 		//OCULATANDO CAMPOS DE CARGO Y AREA 
 		UL_SECCION_CARGO.style.display=FCC_NONE;
@@ -584,36 +615,8 @@ FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
 		UL_TXT_POSICION.readOnly =true;
 		
 	}
-//TIPO SOLICITUD 
-		var FCC_TIPO_SOLICITUD_SEL = "";
-			try{ 
-				UL_TIPO_SOLICITUD_SEL= FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_type__widget");
-				ul_temp2 = UL_TIPO_SOLICITUD_SEL.getElementsByTagName("input");
-
-				for(i=0;i< ul_temp2.length;i++){
-					if (ul_temp2[i].checked){
-						FCC_CONTROL_SOLICITUD_SEL=ul_temp2[i].value;
-						switch(FCC_CONTROL_SOLICITUD_SEL) {
-							case "22":	FCC_TIPO_SOLICITUD_SEL = "Empleos Ejecutivos";	break;
-							case "14":	FCC_TIPO_SOLICITUD_SEL = "Empleos";	break;
-							case "17":	FCC_TIPO_SOLICITUD_SEL = "Prácticas Profesionales";	break;
-							case "20": FCC_TIPO_SOLICITUD_SEL = "Internado"; break;	
-							case "19":	FCC_TIPO_SOLICITUD_SEL = "Otras Oportunidades Laborales";	break;		
-							case "24":	FCC_TIPO_SOLICITUD_SEL = "VIP";break;	
-							case "3":	FCC_TIPO_SOLICITUD_SEL = "Prácticas Pre Profesionales";break;					
-							default:FCC_TIPO_SOLICITUD_SEL = "TIpo de solicitud no declarada, contactar con el admin";
-						}
-					}
-				}
-			}catch(err){}		
-		
-
-		UL_SECCION_LABEL_TIPO_SOLICITUD.innerHTML  = FCC_TIPO_SOLICITUD_SEL.toUpperCase();
-		
-		
 
 
-		
 		//DESCRIPCIOPN DE FUNCIONES
 		
 		var desc_sel = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__job_desc__widget");
