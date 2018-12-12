@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.5";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "11/12/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.6";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "12/12/18";
 
 /*############################################################################################################################*/
 
@@ -27,7 +27,7 @@ console.log("########################################");
 const FCC_BLOCK = "block";
 const FCC_NONE = "none";
 const FCC_VIEW = "";
-const FCC_DEBUG = false;
+const FCC_DEBUG = true;
 var UL_CONTROL_LISTENER =false;	
 //if(FCC_DEBUG){console.log("");}
 
@@ -157,7 +157,6 @@ var UL_RADIOS_REMUNERACION = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__desea_
 var UL_RDO_REMUNERACION_SI = FCC_GET_ELEMENTO_BYNAME("dnf_class_values[job][desea_mostrar_el_monto_de_la_r]"); 
 var UL_SECCION_REMUNERACION_VISIBLE = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__remuneracion_"); 
 
-
 //VARIABLES DE CONTROL DE IDIOMAS
 //------------------------------------------------------------------------------------------------------------------
 
@@ -175,7 +174,6 @@ var UL_TXT_007 = FCC_GET_ELEMENTO_BYID("dnf_class_values_job__ul_txt_077_");
 var UL_TXT_OTRO_HABILIDAD = FCC_GET_ELEMENTO_BYID("UL_TXT_OTRO_HABILIDAD"); 
 var UL_SECCION_TXT_007 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__ul_txt_077_"); 
 var UL_SECCION_SLC_007 = FCC_GET_ELEMENTO_BYID("so_formfield_dnf_class_values_job__ul_prop_077_"); 
-
 
 //VARIABLES DE CONTROL DE CORREO ELECTRONICO
 //------------------------------------------------------------------------------------------------------------------
@@ -563,7 +561,7 @@ FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
 		UL_SECCION_SLC_006.style.display=FCC_NONE;
 	 	UL_SECCION_TXT_007.style.display="";	
 		UL_SECCION_SLC_007.style.display=FCC_NONE;
-		UL_SECCION_TIPO_SOLICITUD.style.display=FCC_NONE;
+		UL_SECCION_TIPO_SOLICITUD.style.display="";
 		
 	} else if (UL_SITUACION == 2 ){
 		//EMPLEO ENVIADO Y PUBLICADO 
@@ -574,7 +572,17 @@ FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
 		UL_SECCION_TIPO_SOLICITUD.style.display=FCC_NONE;
 
 		FCC_AGREGA_BOTONES_FINALIZA_MENU("buttonbar-top");
-		FCC_AGREGA_BOTONES_FINALIZA_MENU("buttonbar-bottom");		
+		FCC_AGREGA_BOTONES_FINALIZA_MENU("buttonbar-bottom");	
+
+		//OCULATANDO CAMPOS DE CARGO Y AREA 
+		UL_SECCION_CARGO.style.display=FCC_NONE;
+		UL_SECCION_CARGO_ESPECIFICO.style.display=FCC_NONE;
+		UL_SECCION_AREA.style.display=FCC_NONE;
+		UL_SECCION_AREA_ESPECIFICA.style.display=FCC_NONE;
+		
+		//HACIENDO CAMPOS DE SOLO LECTURA
+		UL_TXT_POSICION.readOnly =true;
+		
 	}
 //TIPO SOLICITUD 
 		var FCC_TIPO_SOLICITUD_SEL = "";
@@ -603,14 +611,7 @@ FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
 		UL_SECCION_LABEL_TIPO_SOLICITUD.innerHTML  = FCC_TIPO_SOLICITUD_SEL.toUpperCase();
 		
 		
-		//OCULATANDO CAMPOS DE CARGO Y AREA 
-		UL_SECCION_CARGO.style.display=FCC_NONE;
-		UL_SECCION_CARGO_ESPECIFICO.style.display=FCC_NONE;
-		UL_SECCION_AREA.style.display=FCC_NONE;
-		UL_SECCION_AREA_ESPECIFICA.style.display=FCC_NONE;
-		
-		//HACIENDO CAMPOS DE SOLO LECTURA
-		UL_TXT_POSICION.readOnly =true;
+
 
 		
 		//DESCRIPCIOPN DE FUNCIONES
