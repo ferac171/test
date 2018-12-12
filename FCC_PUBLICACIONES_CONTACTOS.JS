@@ -43,6 +43,35 @@ try{
 }catch(err){}
 
 
+//
+
+try{var UL_BARRA_MENU = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-top");}catch(err){}
+try{var UL_BARRA_MENU_INFERIOR = FCC_GET_ELEMENTO_BYCLASSNAME("buttonbar buttonbar-bottom");}catch(err){}
+
+		
+var TEMP_ELEMENTOS;
+var TEMP_ELEMENTOS1;
+var tope_barra;
+	
+try{		
+	TEMP_ELEMENTOS = UL_BARRA_MENU[0].getElementsByTagName("input");
+	TEMP_ELEMENTOS1= UL_BARRA_MENU_INFERIOR[0].getElementsByTagName("input");
+	
+	tope_barra = TEMP_ELEMENTOS.length;
+		
+	for ( bb = 0; bb <tope_barra ; bb++){
+		if (TEMP_ELEMENTOS[bb].value.indexOf("Enviar")>=0){
+			TEMP_ELEMENTOS[bb].value="Publicar";
+		}
+		if (TEMP_ELEMENTOS1[bb].value.indexOf("Enviar")>=0){
+			TEMP_ELEMENTOS1[bb].value="Publicar";
+		}
+		
+	}
+}catch(err){}	
+
+
+//
 
 try{
 	var UL_CHECK_BUSQUEDA_TEXT = document.querySelector("#dnf_class_values_job__job_type__widget > label:nth-child(20)");
@@ -451,6 +480,7 @@ try{
 	UL_CONTADOR_VISTAS.innerHTML=tem_res;
 }catch(err){}
 
+
 // VALIDACION DE EJECUCION DE JS
 //---------------------------------------------------------------------------------------------------------
 
@@ -577,7 +607,10 @@ FCC_AGREGA_BOTONES_MENU("buttonbar-bottom");
 	//HABILITANDO CAMPOS IDOMAS Y HABILIDADES
 	if (UL_SITUACION == 0 ) { 
 		//EMPLEO NUEVO
-		FCC_INICIA_AFECHA();
+		
+		FCC_INICIA_AFECHA(1);
+		FCC_VALIDA_FECHAS();
+		
 		UL_SECCION_TXT_006.style.display=FCC_NONE;
 		UL_SECCION_SLC_006.style.display="";
 		UL_SECCION_TXT_007.style.display=FCC_NONE;
@@ -1155,18 +1188,19 @@ function UL_COMPONE_CORREO(){
 
 }
 
+/*###################################################################################################################*/
+// FUNCION		:	FCC_INICIA_AFECHA
+// DETALLE		:	CALCULA LA FECHA INICIAL DE PUBLICACION EN BASE AL PARAMETRO RECIBIDO 
+/*###################################################################################################################*/
 
-function FCC_INICIA_AFECHA(){
-
+function FCC_INICIA_AFECHA(FCC_NUMERO){
 
 	try{
-			
-		var numero ="1";
 		  //la fecha
 		  var TuFecha = new Date();
 		  var dias;
 		  //dias a sumar
-		  var dias = parseInt(numero);
+		  var dias = parseInt(FCC_NUMERO);
 		  
 		  //nueva fecha sumada
 		  TuFecha.setDate(TuFecha.getDate() + dias);
@@ -1178,18 +1212,93 @@ function FCC_INICIA_AFECHA(){
 			}else{
 				dias =TuFecha.getDate()
 			}
-			
-				  
-		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
-			UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
+			  
+		UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
+		UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
 			
 		if(FCC_DEBUG){console.log ("[CALCULO] FECHA DE PUBLICACION: "+UL_TXT_FECHAPUBLICACION.value);}
-
 			
 	}catch(err){}
 
 
 }
+
+function FCC_VALIDA_FECHAS (){
+	
+	var FINICIO;
+	var FFIN;
+	var DINICIO=0;
+	var DFIN=0;
+	var DIFF;
+	var temp;
+	
+	FINICIO=UL_TXT_FECHAPUBLICACION.value
+	FFIN=UL_TXT_FECHAFINALIZACION.value;
+	
+
+		temp = FINICIO.split("-");
+		if (temp.length>1){
+			DINICIO =temp[0]*365+temp[1]*30+temp[2]*1;
+		}
+	
+		
+		temp = FFIN.split("-");
+		if (temp.length>1){
+			DFIN =temp[0]*365 + temp[1]*30 + temp[2]*1;
+		}
+
+	DIFF = DFIN-DINICIO; 
+	if(FCC_DEBUG){console.log ("[CALCULO] VARIACION DE FECHAS "+ DIFF);}	
+
+	return DIFF;
+	
+}
+
+
+
+/*###################################################################################################################*/
+// FUNCION		:FINALIZA OFERTA
+// DETALLE		:comportamiento de las ventanas modales 
+/*###################################################################################################################*/
+		    
+function FCC_FINALIZA_OFERTA(){
+
+	try{
+			
+		var numero ="1";
+		  //la fecha
+		  var TuFecha = new Date();
+		  var dias;
+		  //dias a sumar
+		  var dias = parseInt(numero);
+		  
+		  //nueva fecha sumada
+		  TuFecha.setDate(TuFecha.getDate());
+		  //formato de salida para la fecha
+		  
+		  	  
+		  if(TuFecha.getDate() <10){
+			  dias ="0"+TuFecha.getDate()
+			}else{
+				dias =TuFecha.getDate()
+			}
+			
+		UL_TXT_FECHAFINALIZACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
+		UL_TXT_FECHAFINALIZACION_HIDE.value = UL_TXT_FECHAFINALIZACION.value;
+		
+		if(FCC_DEBUG){console.log ("[CALCULO] FECHA DE PUBLICACION: "+UL_TXT_FECHAFINALIZACION.value);}
+			
+	}catch(err){}
+
+
+}	
+
+
+
+
+
+
+
 function FCC_VER_CORREO(){
 
 
@@ -2009,7 +2118,7 @@ function FCC_AGREGA_BOTONES_FINALIZA_MENU(FCC_BUTTTON_BAR){
 
 		// EJECUCION DEL PROCESO*/	
 		
-		FCC_ADD_DOM += "<input type='button' onclick='FINALIZA_OFERTA()' class='input-button btn btn_generic' value='Retirar Oferta'>";	
+		FCC_ADD_DOM += "<input type='button' onclick='FCC_FINALIZA_OFERTA()' class='input-button btn btn_generic' value='Retirar Oferta'>";	
 		
 		FCC_TEMP_DOM=FCC_DOM.innerHTML;			
 		FCC_DOM.innerHTML=FCC_ADD_DOM+FCC_TEMP_DOM;
@@ -2018,45 +2127,7 @@ function FCC_AGREGA_BOTONES_FINALIZA_MENU(FCC_BUTTTON_BAR){
 
 	
 	
-/*###################################################################################################################*/
-// FUNCION		:FINALIZA OFERTA
-// DETALLE		:comportamiento de las ventanas modales 
-/*###################################################################################################################*/
-		    
-function FINALIZA_OFERTA(){
 
-	try{
-			
-		var numero ="1";
-		  //la fecha
-		  var TuFecha = new Date();
-		  var dias;
-		  //dias a sumar
-		  var dias = parseInt(numero);
-		  
-		  //nueva fecha sumada
-		  TuFecha.setDate(TuFecha.getDate());
-		  //formato de salida para la fecha
-		  
-		  	  
-		  if(TuFecha.getDate() <10){
-			  dias ="0"+TuFecha.getDate()
-			}else{
-				dias =TuFecha.getDate()
-			}
-			
-			
-			 
-		  
-		UL_TXT_FECHAFINALIZACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
-		UL_TXT_FECHAFINALIZACION_HIDE.value = UL_TXT_FECHAFINALIZACION.value;
-		
-		if(FCC_DEBUG){console.log ("[CALCULO] FECHA DE PUBLICACION: "+UL_TXT_FECHAFINALIZACION.value);}
-			
-	}catch(err){}
-
-
-}	
 	
 	
 	
