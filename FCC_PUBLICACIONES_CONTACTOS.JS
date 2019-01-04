@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_CONTACTO.JS
 	
-	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.6";
-	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "12/12/18";
+	const FCC_PUBLICACIONES_CONTACTO_VERSION_LOCAL = "5.7";
+	const FCC_PUBLICACIONES_CONTACTO_FECHA_LOCAL= "04/01/18";
 
 /*############################################################################################################################*/
 
@@ -1199,6 +1199,7 @@ function FCC_INICIA_AFECHA(FCC_NUMERO){
 		  //la fecha
 		  var TuFecha = new Date();
 		  var dias;
+		  var meses;
 		  //dias a sumar
 		  var dias = parseInt(FCC_NUMERO);
 		  
@@ -1212,8 +1213,15 @@ function FCC_INICIA_AFECHA(FCC_NUMERO){
 			}else{
 				dias =TuFecha.getDate()
 			}
+			
+		
+		  if((TuFecha.getMonth() + 1) <10){
+			  meses ="0"+(TuFecha.getMonth() + 1)
+			}else{
+				meses =(TuFecha.getMonth() + 1)
+			}	
 			  
-		UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
+		UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + meses  + '-' + dias;
 		UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
 			
 		if(FCC_DEBUG){console.log ("[CALCULO] FECHA DE PUBLICACION: "+UL_TXT_FECHAPUBLICACION.value);}
@@ -1269,6 +1277,7 @@ function FCC_FINALIZA_OFERTA(){
 		  //la fecha
 		  var TuFecha = new Date();
 		  var dias;
+		  var meses;
 		  //dias a sumar
 		  var dias = parseInt(numero);
 		  
@@ -1283,7 +1292,14 @@ function FCC_FINALIZA_OFERTA(){
 				dias =TuFecha.getDate()
 			}
 			
-		UL_TXT_FECHAFINALIZACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
+			
+		  if((TuFecha.getMonth() + 1) <10){
+			  meses ="0"+(TuFecha.getMonth() + 1)
+			}else{
+				meses =(TuFecha.getMonth() + 1)
+			}	
+			
+		UL_TXT_FECHAFINALIZACION.value= TuFecha.getFullYear() + '-' + meses  + '-' + dias;
 		UL_TXT_FECHAFINALIZACION_HIDE.value = UL_TXT_FECHAFINALIZACION.value;
 		
 		if(FCC_DEBUG){console.log ("[CALCULO] FECHA DE PUBLICACION: "+UL_TXT_FECHAFINALIZACION.value);}
