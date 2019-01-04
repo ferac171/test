@@ -6,8 +6,8 @@
 //
 // NAME		: FCC_PUBLICACIONES.JS
 	
-	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.6xX";
-	const FCC_PUBLICACIONES_FECHA_LOCAL1= "03/12/18";
+	const FCC_PUBLICACIONES_VERSION_LOCAL1 = "6.7";
+	const FCC_PUBLICACIONES_FECHA_LOCAL1= "04/01/19";
 
 /*############################################################################################################################*/
 
@@ -1085,6 +1085,8 @@ function FCC_INICIA_AFECHA(){
 		  //la fecha
 		  var TuFecha = new Date();
 		  var dias;
+		  var meses;
+		  
 		  //dias a sumar
 		  var dias = parseInt(numero);
 		  
@@ -1100,9 +1102,16 @@ function FCC_INICIA_AFECHA(){
 			}
 			
 			console.log("dias -->" + dias);
+			
+		if((TuFecha.getMonth() + 1) <10){
+			  meses ="0"+(TuFecha.getMonth() + 1)
+			}else{
+				meses =(TuFecha.getMonth() + 1)
+			}
+			
 		  
-		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + (TuFecha.getMonth() + 1)  + '-' + dias;
-			UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
+		 UL_TXT_FECHAPUBLICACION.value= TuFecha.getFullYear() + '-' + meses  + '-' + dias;
+		UL_TXT_FECHAPUBLICACION_HIDE.value = UL_TXT_FECHAPUBLICACION.value;
 			
 	}catch(err){}
 
