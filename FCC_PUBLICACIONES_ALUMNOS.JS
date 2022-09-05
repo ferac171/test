@@ -5,8 +5,8 @@
 //
 // NAME		: FCC_PUBLICACIONES_ALUMNOS.JS
 	
-	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.3";
-	const FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL= "05/12/18";
+	const FCC_PUBLICACIONES_ALUMNOS_VERSION_LOCAL = "1.4";
+	const FCC_PUBLICACIONES_ALUMNOS_FECHA_LOCAL= "05/09/22";
 
 /*############################################################################################################################*/
 
@@ -22,12 +22,6 @@ if (!document.getElementById(cssId))
     link.media = 'all';
     head.appendChild(link);
 }
-
-
-
-
-
-
 
 /*############################################################################################################################*/
 //CONSTANTES DE VERSION
@@ -58,14 +52,21 @@ var UL_TB_002 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_002")[0];
 var UL_TB_003 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_003")[0];
 var UL_TB_004 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_004")[0];
 var UL_TB_005 = FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-UL_TXT_0055")[0];
-				
+		
+
 try{var VAL_TB_001 = UL_TB_001.innerHTML.trim();}catch(err){}
 try{var VAL_TB_002 = UL_TB_002.innerHTML.trim();}catch(err){}
 try{var VAL_TB_003 = UL_TB_003.innerHTML.trim();}catch(err){}
 try{var VAL_TB_004 = UL_TB_004.innerHTML.trim();}catch(err){}
 try{var VAL_TB_005 = UL_TB_005.innerHTML.trim();}catch(err){}
 
-							
+						
+//VARIABLES DE EMPLEO REMOTO
+var UL_TXT_REMOTO=FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-symp_remote_job")[0];
+var UL_TXT_REMOTO_VAL= document.getElementsByName("dnf_class_values[job][symp_remote_job]")[0].value;
+
+console.log("# CONTROL CAMPO REMOTO:"+UL_TXT_REMOTO_VAL  );
+						
 //VARIABLES DE EMPLEO
 var UL_TXT_OFERTA=FCC_GET_ELEMENTO_BYCLASSNAME("widget jobfld-visual_id")[0];
 
@@ -158,6 +159,8 @@ window.onload=function() {
 
 	
 // OCULTANDO CAMPOS	
+	if (UL_TXT_REMOTO_VAL==0){ 
+	FCC_OCULTA_POR_CLASE(UL_TXT_REMOTO);}
 	
 	FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRE_OBL);
 	FCC_OCULTA_POR_CLASE(UL_TXT_CARRERA_PRACTICAPRE_DES);
